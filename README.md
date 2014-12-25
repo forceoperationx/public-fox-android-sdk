@@ -55,7 +55,11 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 ```xml:
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
+
+READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)をご参照ください。
 
 ### メタデータの設定
 
@@ -107,10 +111,11 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 > 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
 
+### 広告IDを利用するためのGoogle Play Services SDKの導入
 
-[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
+広告IDを利用するためにはGoogle Play Services SDKが導入されている必要があります。Google Play Services SDKが導入されていない場合でもF.O.X SDKは動作しますが、広告IDが利用されないことで一部広告メニューの計測が行えなかったり、重複判定の精度が低下いたします。導入の詳細手順は[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)をご参照ください。
 
-[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
+### AndroidManifest.xmlサンプル
 
 [AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
