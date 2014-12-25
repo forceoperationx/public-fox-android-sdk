@@ -195,7 +195,7 @@ LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4
 
 自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。
 
-アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResume()にコードを追加します。
+アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResume()にAnalyticsManager.sendStartSessionメソッドを追加します。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
@@ -212,7 +212,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-> ※アプリケーションが複数の Activity を生成する場合には、それぞれの onResume()に処理を 追加してください。アプリケーションがバックグラウンドから復帰した際に、その Activity に起 動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。
+> ※アプリケーションが複数の Activity を生成する場合には、全てのActivityの onResume()に処理を 追加してください。アプリケーションがバックグラウンドから復帰した際に、その Activity に起動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。
 
 [アクセス解析による課金計測](./doc/analytics_purchase/ja/)
 
@@ -301,4 +301,4 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
-[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
+[外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
