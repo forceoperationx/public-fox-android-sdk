@@ -52,16 +52,20 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 
 <Manifest>タグ内に次のパーミッションの設定を追加します。
 
-```xml:
+```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
+
+READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)をご参照ください。
 
 ### メタデータの設定
 
 SDKの実行に必要な情報を<application>タグ内に追加します。
 
-```xml:
+```xml
 <meta-data android:name="APPADFORCE_APP_ID" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
 <meta-data android:name="APPADFORCE_SERVER_URL" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
 <meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
@@ -81,7 +85,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 ### インストールリファラ計測の設定
 インストールリファラーを用いたインストール計測を行うために下記の設定を<application>タグに追加します。
 
-```xml:
+```xml
 <receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
 	<intent-filter>
 		<action android:name="com.android.vending.INSTALL_REFERRER" />
@@ -96,7 +100,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 アプリを外部から起動できるようにするため、起動させる対象の<activity>タグ内に下記の設定を追加してください。
 
-```xml:
+```xml
 <intent-filter>
 	<action android:name="android.intent.action.VIEW" />
 	<category android:name="android.intent.category.DEFAULT" />
@@ -107,10 +111,11 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 > 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
 
+### 広告IDを利用するためのGoogle Play Services SDKの導入
 
-[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
+広告IDを利用するためにはGoogle Play Services SDKが導入されている必要があります。Google Play Services SDKが導入されていない場合でもF.O.X SDKは動作しますが、広告IDが利用されないことで一部広告メニューの計測が行えなかったり、重複判定の精度が低下いたします。導入の詳細手順は[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)をご参照ください。
 
-[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
+### AndroidManifest.xmlサンプル
 
 [AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
@@ -121,24 +126,26 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 アプリケーションの起動時に呼び出されるActivityのonCreate()内にsendConversionメソッドを実装します。
 
-```java:
+```java
 import jp.appAdForce.android.AdManager;
 
-onCreate() {
+@Override
+protected void onCreate(Bundle savedInstanceState){
+	super.onCreate(savedInstanceState);
+	
 	AdManager ad = new AdManager(this);
 	ad.sendConversion("default");
 }
-
 ```
 
-sendConversionの引数には、通常は上記の通り"default"という文字列を入力してください。
+sendConversionの引数には、通常は上記の通り"default"という文字列をそのまま指定してください。
 
 [sendConversionの詳細](./doc/send_conversion/ja/)
 
-また、URLスキーム経由の起動を計測するために、URLスキームが設定されているActivityのonResume()にsendReengageConversionメソッドを実装します。
+また、URLスキーム経由の起動を計測するために、URLスキームが設定されている全てのActivityのonResume()にsendReengageConversionメソッドを実装します。
 
 
-```java:
+```java
 import jp.appAdForce.android.AdManager;
 
 @Override
@@ -149,23 +156,29 @@ protected void onResume() {
 }
 ```
 
+URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"の場合は、URLスキーム経由でパラメータを受け取るためにonNewIntentメソッドをoverrideし、以下のようにsetIntentメソッドをコールしてください。
+
+```java
+@Overrideprotected void onNewIntent(Intent intent){	super.onNewIntent(intent);	setIntent(intent);}
+```
+
 ## 4. LTV計測の実装
 
 会員登録、チュートリアル突破、課金など任意の成果地点にLTV計測を実装することで、流入元広告のLTVを測定することができます。LTV計測が不要の場合には、本項目の実装を省略できます。
 
-```java:
+```java
 import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.sendLtvConversion(成果地点 ID);
+ltv.sendLtvConversion(成果地点ID);
 ```
 
 LTV計測を行うためには、各成果地点を識別する成果地点IDを指定する必要があります。sendLtvConversionの引数に発行されたIDを指定してください。
 
 課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。
 
-```java:
+```java
 import jp.appAdForce.android.LtvManager;
 // ...
 LtvManager ltv = new LtvManager(ad);
@@ -182,9 +195,9 @@ LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4
 
 自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。
 
-アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResume()にコードを追加します。
+アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResume()にAnalyticsManager.sendStartSessionメソッドを追加します。
 
-```java:
+```java
 import jp.appAdForce.android.AnalyticsManager;
 
 public class MainActivity extends Activity {
@@ -199,7 +212,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-> ※アプリケーションが複数の Activity を生成する場合には、それぞれの onResume()に処理を 追加してください。アプリケーションがバックグラウンドから復帰した際に、その Activity に起 動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。
+> ※アプリケーションが複数の Activity を生成する場合には、全てのActivityの onResume()に処理を 追加してください。アプリケーションがバックグラウンドから復帰した際に、その Activity に起動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。
 
 [アクセス解析による課金計測](./doc/analytics_purchase/ja/)
 
@@ -288,4 +301,4 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
-[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
+[外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)

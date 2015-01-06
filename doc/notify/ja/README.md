@@ -123,6 +123,12 @@ AndroidManifest.xml上で、Push通知のタップ時に起動させたいActivi
 
 ```xml
 <activity android:name=".ExampleActivity" >
-	<intent-filter>		<category android:name="android.intent.category.DEFAULT" />		<category android:name="android.intent.category.BROWSABLE" />		<action android:name="android.intent.action.VIEW" />		<data android:host="fuga" android:scheme="hoge" />	</intent-filter></activity>
+	<intent-filter>
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<action android:name="android.intent.action.VIEW" />
+		<data android:host="bar" android:scheme="foo" />
+	</intent-filter>
+</activity>
 ```
 

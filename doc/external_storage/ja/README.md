@@ -1,4 +1,4 @@
-## （オプション）外部ストレージを利用した重複排除設定
+## 外部ストレージを利用した重複排除設定
 
 アプリケーションの初回起動時にSDKが生成した識別IDをローカルストレージまたはSDカードに保存することで、アプリケーション再インストール時に重複判定を行うことができます。
 
@@ -18,7 +18,7 @@
 Environment.getExternalStorageDirectory().getPath()で取得できるパス/アプリのパッケージ名/__FOX_XUNIQ__
 ```
 
-### （任意）メタデータの設定
+### （任意）保存ディレクトリ及びファイル名の変更
 
 保存されるファイルのディレクトリ名は、標準ではパッケージ名で作成されますが、<application>タグ内に以下設定を追加することで、任意のディレクトリ名及びファイル名に変更することができます。
 
@@ -56,3 +56,12 @@ AndroidManifest.xmlの設定例を次に記載します。
 ```
 Environment.getExternalStorageDirectory().getPath()で取得できるパス/fox_id_dir/fox_id_file
 ```
+
+### 外部ストレージの利用停止
+
+Force Operation X SDKによる外部ストレージへのアクセスを停止したい場合には、AndroidManifest.xmlにAPPADFORCE_USE_EXTERNAL_STORAGEの設定を追加してください。
+```xml
+<meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
+```
+
+本設定を行うことで外部ストレージに対する記録が停止しますが、アプリケーションの削除によりデータが常に初期化されるため、正確なインストール計測が行われなくなります。
