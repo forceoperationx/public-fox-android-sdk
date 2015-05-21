@@ -132,7 +132,7 @@ import jp.appAdForce.android.AdManager;
 @Override
 protected void onCreate(Bundle savedInstanceState){
 	super.onCreate(savedInstanceState);
-	
+
 	AdManager ad = new AdManager(this);
 	ad.sendConversion("default");
 }
@@ -142,7 +142,7 @@ sendConversionの引数には、通常は上記の通り"default"という文字
 
 [sendConversionの詳細](./doc/send_conversion/ja/)
 
-また、URLスキーム経由の起動を計測するために、URLスキームが設定されている全てのActivityのonResume()にsendReengageConversionメソッドを実装します。
+また、URLスキーム経由の起動を計測するために、URLスキームが設定されている全てのActivityのonResume()にsendReengagementConversionメソッドを実装します。
 
 
 ```java
@@ -152,7 +152,7 @@ import jp.appAdForce.android.AdManager;
 protected void onResume() {
 	super.onResume();
 	AdManager ad = new AdManager(this);
-	ad.sendReengageConversion(getIntent());
+	ad.sendReengagementConversion(getIntent());
 }
 ```
 
@@ -205,7 +205,7 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		AdManager ad = new AdManager(this);
-		ad.sendReengageConversion(getIntent());
+		ad.sendReengagementConversion(getIntent());
 
 		AnalyticsManager.sendStartSession(this);
 	}
