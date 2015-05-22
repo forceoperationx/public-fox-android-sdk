@@ -26,6 +26,25 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 ## 1. インストール
 
+* **Gradleによって導入する場合**
+
+build.gradleに下記の設定を適切な場所に追加してください。
+
+```groovy
+repositories {
+	maven {
+		url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+	}
+}
+
+dependencies {
+	compile 'com.cz.fox:foxsdk:2.15.4g'
+}
+```
+設定完了後、[2.設定](#user-content-2-設定)へ進めてください。
+
+* **マニーアル導入する場合**
+
 以下のページより最新のSDKをダウンロードしてください。
 
 [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
@@ -132,7 +151,7 @@ import jp.appAdForce.android.AdManager;
 @Override
 protected void onCreate(Bundle savedInstanceState){
 	super.onCreate(savedInstanceState);
-	
+
 	AdManager ad = new AdManager(this);
 	ad.sendConversion("default");
 }
