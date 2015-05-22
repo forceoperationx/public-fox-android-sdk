@@ -2,11 +2,11 @@
 <metadata>
   <groupId>com.cz.fox</groupId>
   <artifactId>foxsdk</artifactId>
-  <version>2.15.3g</version>
+  <version>v2.15.4g</version>
   <versioning>
     <versions>
-      <version>2.15.3g</version>
+      <version>v2.15.4g</version>
     </versions>
-    <lastUpdated>20150522030751</lastUpdated>
+    <lastUpdated>20150522075627</lastUpdated>
   </versioning>
 </metadata>
