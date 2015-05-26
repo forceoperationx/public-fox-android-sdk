@@ -38,9 +38,12 @@ repositories {
 }
 
 dependencies {
-	compile 'com.cz.fox:foxsdk:2.15.4g'
+	compile 'com.cz.fox:foxsdk:v2.15.4g'
 }
 ```
+
+> _v2.15.4g: 指定するバージョンに変える_
+
 設定完了後、[2.設定](#user-content-2-設定)へ進めてください。
 
 * **マニーアル導入する場合**
