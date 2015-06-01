@@ -26,6 +26,24 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 ## 1. インストール
 
+* **Gradleを使用して導入する場合**
+
+build.gradleに下記の設定を適切な場所に追加してください。
+
+```groovy
+repositories {
+	maven {
+		url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+	}
+}
+
+dependencies {
+	compile 'co.jp.cyberz.fox:sdk-android:v2.15.4g'
+}
+```
+
+* **マニュアル導入する場合**
+
 以下のページより最新のSDKをダウンロードしてください。
 
 [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
