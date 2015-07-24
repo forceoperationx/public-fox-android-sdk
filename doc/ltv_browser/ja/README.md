@@ -27,7 +27,7 @@ import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.setLtvCookie();
+ltv.setLtvCookie(webView);
 
 // setLtvCookieを実行した後に、WebViewの表示を行います。
 // ...
@@ -49,5 +49,3 @@ LTVの成果地点となるページに計測タグを実装してください�
 
 
 _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
-
-
