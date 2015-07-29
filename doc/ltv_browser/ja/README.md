@@ -19,7 +19,7 @@ ltv.ltvOpenBrowser("http://yourhost.com/");
 
 ### アプリ内WebViewでのLTV計測
 
-ユーザーの遷移がWebView内で行われる場合には、setLtvCookieを利用することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にsetLtvCookieが実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSybcManagerを利用してCookieをセットします。
+ユーザーの遷移がWebView内で行われる場合には、setLtvCookieを用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にsetLtvCookieが実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
 
 ```java
 import jp.appAdForce.android.LtvManager;
@@ -27,11 +27,14 @@ import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.setLtvCookie(webView);
+WebView mWebView = (WebView) findViewById(R.id.sample_webview);
+ltv.setLtvCookie(mWebView);
 
-// setLtvCookieを実行した後に、WebViewの表示を行います。
 // ...
 ```
+> ※Android LよりサードパーティCookieがデフォルトでOFFとなります。
+そのためsetLtvCookie メソッドでは引数にWebViewを持たせることで、内部ではCookieManager.setAccesptThirdPartyCookiesを用いてサードパーティCookieの書込みを行っております。
+
 
 ### タグの実装
 
