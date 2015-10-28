@@ -44,7 +44,7 @@ ad.sendConversion("default");
 ## v.2.14.6g以前からのアップデートに関して
 
 
-「[インストールの計測の実装](../../../README.md#3-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E8%A8%88%E6%B8%AC%E3%81%AE%E5%AE%9F%E8%A3%85)」において、v2.14.7gよりURLスキーム経由からのアプリケーション起動時の成果計測に用いるメソッド名を下記のように変更しました。
+「[インストールの計測の実装](/lang/ja/doc/send_conversion/README.md)」において、v2.14.7gよりURLスキーム経由からのアプリケーション起動時の成果計測に用いるメソッド名を下記のように変更しました。
 
 <table>
   <tr>
@@ -60,3 +60,7 @@ ad.sendConversion("default");
 もし、setUrlSchemeメソッドを用いて実装している場合は、sendReengagementConversionメソッドを呼び出すように修正してください。
 
 > ※現在のバージョンにおいてもsetUrlSchemeメソッドは利用可能ですが、将来のバージョンアップで削除される可能性があります。尚、sendReengagementConversion メソッドとsetUrlSchemeメソッドの内部処理は同一となっております。
+
+
+---
+[トップ](/lang/ja/README.md)

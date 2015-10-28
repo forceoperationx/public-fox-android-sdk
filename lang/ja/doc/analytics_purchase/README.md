@@ -2,7 +2,7 @@
 
 アクセス解析機能を利用し、自然流入経由を含めた広告別の課金計測を行うことができます。アクセス解析による課金計測を行うために、次のsendEventメソッドを実装します。
 
-```java:
+```java
 public static void sendEvent(Context context, String eventName,String action, String label, String orderId, String sku, String itemName, double price, int quantity, String currency);
 ```
 
@@ -25,17 +25,14 @@ LTV計測においても課金を成果地点としている場合には、同�
 
 サンプルとして、以下にアメリカドルで9.99ドルの課金を行った場合の実装例を記載致します。
 
-
-
-
-```java:
+```java
 import jp.appAdForce.android.AnalyticsManager;
 
 public class MainActivity extends Activity {
 
 	//アプリ内課金成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
 		//...
-						// LTV計測による課金計測
+		// LTV計測による課金計測
 		LtvManager ltv = new LtvManager(ad);
 		ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
 		ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
@@ -43,3 +40,6 @@ public class MainActivity extends Activity {
 
 		// アクセス解析による課金計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
 ```
+
+---
+[トップ](/lang/ja/README.md)

@@ -38,3 +38,6 @@ public class MainActivity extends Activity {
   }
 }
 ```
+
+---
+[トップ](/lang/ja/README.md)

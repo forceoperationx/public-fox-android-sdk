@@ -44,8 +44,9 @@ EclipseとAndroid Studioに分けて説明しますので、ご利用の環境�
 Google Play Servicesを利用するために下記の設定をAndroidManifest.xmlの<application>タグ内に記述します。
 
 ```xml
-<meta-data android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
+<meta-data
+    android:name="com.google.android.gms.version"
+    android:value="@integer/google_play_services_version" />
 ```
 
 #### Proguardの設定
@@ -70,3 +71,6 @@ Proguardを利用して難読化している場合は、以下の設定を追加
     public static final ** CREATOR;
 }
 ```
+
+---
+[トップ](/lang/ja/README.md)

@@ -37,4 +37,5 @@ ad.sendConversion("default", "your unique id");
 ```
 > sendConversionは起動直後の処理として実装される必要があるため、ログインIDなどのユーザーアクションが伴う値を引数として渡すことはできません。
 
-[TOP](../../../#3-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E8%A8%88%E6%B8%AC%E3%81%AE%E5%AE%9F%E8%A3%85)
+---
+[トップ](/lang/ja/README.md)

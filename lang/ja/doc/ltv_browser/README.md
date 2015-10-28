@@ -52,3 +52,7 @@ LTVの成果地点となるページに計測タグを実装してください�
 
 
 _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+
+
+---
+[トップ](/lang/ja/README.md)

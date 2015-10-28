@@ -20,8 +20,8 @@ AndroidManifest.xmlを編集し、下記の設定を追加してください。
 
 <!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述します -->
 <meta-data
-	android:name="APPADFORCE_FORWARD_RECEIVER"
-	android:value="com.example.InstallReceiver" />
+		android:name="APPADFORCE_FORWARD_RECEIVER"
+		android:value="com.example.InstallReceiver" />
 ```
 
 ### 三つ以上のINSTALL_REFERRERレシーバーを共存させる場合
@@ -68,3 +68,6 @@ public class MyReceiver extends BroadcastReceiver {
        </intent-filter>
 </receiver>
 ```
+
+---
+[トップ](/lang/ja/README.md)

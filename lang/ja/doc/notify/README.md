@@ -65,12 +65,12 @@ import jp.appAdForce.android.NotifyManager;
 
 @Override
 public void onCreate(Bundle savedInstanceState) {
-	
+
 	//...
 
 	AdManager ad = new AdManager(this);
 	ad.sendConversion("default");
-	
+
 	NotifyManager notifyManager = new NotifyManager(this, ad);
 	String regId = notifyManager.getRegistrationId();
 	if ("".equals(regId)||regId == null) {
@@ -132,3 +132,6 @@ AndroidManifest.xml上で、Push通知のタップ時に起動させたいActivi
 </activity>
 ```
 
+
+---
+[トップ](/lang/ja/README.md)
