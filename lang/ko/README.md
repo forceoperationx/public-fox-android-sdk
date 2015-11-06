@@ -62,7 +62,7 @@ F.O.X SDK에서는 아래 4개의 퍼미션을 이용합니다.
 :---|:---:|:---:|:---
 INTERNET|Normal|필수|F.O.X SDK가 통신을 하기 위해서 필요합니다.
 ACCESS_NETWORK_STATE|Normal|필수|F.O.X SDK가 통신 가능 상태인가를 확인하기 위해서 필요합니다.
-READ_EXTERNAL_STORAGE ※1|Dangerous|임의|스토리지를 이용한 중복 배제 기능 향상에 필요합니다. (※1)
+READ_EXTERNAL_STORAGE ※1|Dangerous|임의|스토리지를 이용한 중복 배제 기능 향상에 필요합니다. (※2)
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|임의|스토리지를 이용한 중복 배제 기능 향상에 필요합니다. (※2)
 
 > ※1 READ_EXTERNAL_STORAGE 및 WRITE_EXTERNAL_STORAGE 퍼미션은, 외부 스토리지에 데이터를 기록하는 것으로 앱의 재인스톨시에 정확하게 인스톨 계측을 하기 위해서 필요합니다만, 필수는 아닙니다.
