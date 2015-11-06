@@ -1,47 +1,44 @@
-## Google Playデベロッパープログラムへの準拠
+## Google Play 개발자 프로그램 준수
 
-Force Operation X Android SDKはGoogle Playデベロッパープログラムポリシーに準拠しています。本SDKはポリシーに準拠するために、永続的なデバイス ID（IMEI、MACアドレス及びAndroidID）が取得される場合には広告IDが取得されません。2014年8月1日から、Google Playストアにアップロードされたすべての更新や新着アプリには、広告目的で使用する端末IDには広告ID を利用する必要があります。本ポリシーに準拠するために、以下の手順を行ってください。
-
+Force Operation X Android SDK는 Google Play 개발자 프로그램 정책을 준수하고 있습니다. 이 SDK는 정책을 준수하기 위해 영구적 인 장치 ID (IMEI, MAC 주소 및 AndroidID)가 취득하는 경우에는 광고 ID가 검색되지 않습니다.
+ 2014 년 8 월 1 일부터 Google Play 스토어에 업로드 된 모든 업데이트와 새로운 응용 프로그램은 광고 목적으로 사용하는 단말 ID는 광고 ID를 이용해야합니다. 본 정책을 준수하기 위해 다음 단계를 수행하십시오.
 
 ## Google Play Services SDK
 
-
-広告IDを利用できるようにするために、Google Play Services SDKが組み込まれている必要があります。
-アプリケーションにGoogle Play Services SDKが組み込まれていない場合には、次のサイトの手順に従い、導入を行ってください。
+광고 ID를 사용할 수 있도록하기 위해 Google Play Services SDK가 포함되어 있어야합니다.
+응용 프로그램에 Google Play Services SDK가 포함되어 있지 않은 경우에는 다음 사이트의 지침에 따라 설치를해야합니다.
 
 [Setting Up Google Play Services | Android Developers](https://developer.android.com/google/play-services/setup.html)
 
 
 
-## Google Play Services SDKの取得
+## Google Play Services SDK의 취득
 
-以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
+하기는 2014년 11월 시점에서의 Google Play Services SDK의 설치 방법을 기재합니다.
 
+Google Play Services SDK를 설치하지 않은 경우 Android SDK Manager에서 패키지를 가져옵니다.
 
-Google Play Services SDKをインストールしていない場合は、Android SDK Managerからパッケージを取得します。
-
-* Android SDK Managerを起動します。
-* Extrasディレクトリ配下のGoogle Play servicesにチェックをいれ、パッケージをインストールします。
+* Android SDK Manager를 시작합니다.
+* Extras 디렉토리의 Google Play services에 체크 패키지를 설치합니다.
 
 ![googlePlayServices01](./img01.png)
 
-## Google Play Servicesの導入
+## Google Play Services의 설치
 
-Google Play Servicesをプロジェクトに取り込みます。
-EclipseとAndroid Studioに分けて説明しますので、ご利用の環境に合わせて次のリンクから導入方法を参照ください。
+Google Play Services를 프로젝트에 추가합니다.
+Eclipse와 Android Studio로 나누어 설명하고 있으므로, 사용 환경에 따라 다음의 링크에서 설치 방법을 참조하십시오.
 
+[Eclipse 프로젝트에 Google Play Services의 설치](./eclipse/README.md)
 
-[EclipseプロジェクトへのGoogle Play Servicesの導入](./eclipse/README.md)
-
-[Android StudioプロジェクトへのGoogle Play Servicesの導入](./android_studio/README.md)
-
+[Android Studio 프로젝트에 Google Play Services의 설치](./android_studio/README.md)
 
 
-## Google Play Servicesを利用するための設定
 
-#### AndroidManifest.xmlの編集
+## Google Play Services를 이용하기위한 설정
 
-Google Play Servicesを利用するために下記の設定をAndroidManifest.xmlの<application>タグ内に記述します。
+#### AndroidManifest.xml의 편집
+
+Google Play Services를 이용하기 위해서는 아래의 설정을 AndroidManifest.xml의 <application> 태그 내에 기술합니다.
 
 ```xml
 <meta-data
@@ -49,9 +46,9 @@ Google Play Servicesを利用するために下記の設定をAndroidManifest.xm
     android:value="@integer/google_play_services_version" />
 ```
 
-#### Proguardの設定
+#### Proguard의 설정
 
-Proguardを利用して難読化している場合は、以下の設定を追加してください。
+Proguard를 이용하여 코드 난독화하는 경우 다음 설정을 추가하십시오.
 
 ```
 -keep class * extends java.util.ListResourceBundle {
@@ -73,4 +70,4 @@ Proguardを利用して難読化している場合は、以下の設定を追加
 ```
 
 ---
-[トップ](/lang/ja/README.md)
+[Top으로](/lang/ko/README.md)

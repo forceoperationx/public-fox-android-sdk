@@ -1,12 +1,13 @@
-## タグを利用したLTV計測について
+## 태그를 이용한 LTV 계측에 대해서
 
-会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してLTV計測を利用することができます。
+웹페이지로 회원등록이나 상품구입할 경우에, img태그를 이용해서 LTV계측이 가능합니다.
 
-F.O.XのLTV計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合にはltvOpenBrowser、アプリ内WebViewの場合にはsetLtvCookieメソッドを利用することで、F.O.XがLTV計測に必要な情報をブラウザのCookieに記録します。
+F.O.X의 LTV 계측은, 외부 브라우저, 앱 내 WebView의 양쪽 다 대응하고 있습니다. 외부 브라우저의 경우에는 ltvOpenBrowser, 앱 내 WebView의 경우에는 setLtvCookie메소드를 이용하는 것으로,
+ F.O.X가 LTV 계측에 필요한 정보를 브라우저의 Cookie에 기록합니다.
 
-### 外部ブラウザでのLTV計測
+### 외부 브라우저에서이 LTV 계측
 
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、ltvOpenBrowserメソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
+앱에서 외부 브라우저를 기동하고, 외부 브라우저에 표시된 웹 페이지에서 태그 계측을 할 경우는, ltvOpenBrowser메소드를 이용해서 외부 브라우저를 기동해 주세요. 매개변수에는, 외부 브라우저로 표시하는 URL을 문자열을 지정합니다.
 
 ```java
 import jp.appAdForce.android.LtvManager;
@@ -17,9 +18,11 @@ LtvManager ltv = new LtvManager(ad);
 ltv.ltvOpenBrowser("http://yourhost.com/");
 ```
 
-### アプリ内WebViewでのLTV計測
+### 앱 내 WebView에서의 LTV계측
 
-ユーザーの遷移がWebView内で行われる場合には、setLtvCookieを用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にsetLtvCookieが実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
+유저의 이동이 WebView 내에서 이루어지는 경우에는, setLtvCookie를 이용할 수 있습니다. WebView가 생성되는 장소에 아래 코드를 넣어 주십시오.
+ WebView가 여러번 생성/파기되는 경우에는, 생성될 때마다 setLtvCookie가 실행되도록 해 주세요. 내부적으로 android.webkit.CookieManager과 android.webkit.CookieSyncManager를 이용해서 Cookie를 설정 합니다.
+
 
 ```java
 import jp.appAdForce.android.LtvManager;
@@ -32,27 +35,26 @@ ltv.setLtvCookie(mWebView);
 
 // ...
 ```
-> ※Android LよりサードパーティCookieがデフォルトでOFFとなります。
-そのためsetLtvCookie メソッドでは引数にWebViewを持たせることで、内部ではCookieManager.setAccesptThirdPartyCookiesを用いてサードパーティCookieの書込みを行っております。
+> ※Android L부터 Third Party Cookie가 기본적으로 OFF됩니다.
+따라서 setLtvCookie 메소드에서는 매개변수에 WebView를 넘기는 것으로 내부에서는 CookieManager.setAccesptThirdPartyCookies을 사용하여 Third Party Cookie의 쓰기를 하고 있습니다.
 
+### 태그의 구현
 
-### タグの実装
+LTV의 성과지점이 되는 페이지에 계측 태그를 구현해 주세요. 계측 태그는 Force Operation X 관리자가 연락합니다.
 
-LTVの成果地点となるページに計測タグを実装してください。計測タグはForce Operation X管理者から連絡いたします。
+태그에 이용하는 파라미터 사양은 하기와 같습니다.
 
-タグに利用するパラメータ仕様は以下の通りです。
-
-|パラメータ名|必須|備考|
+|파라미터 명|필수|비고|
 |:-----|:-----|:-----|
-|_buyer|必須|広告主を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_cvpoint|必須|成果地点を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_price|オプション|課金額。課金計測時に設定してください。|
-|_currency|オプション|半角英字3文字の通貨コード。<br />課金計測時に設定してください。<br />通貨が設定されていない場合、_priceをJPY(日本円)として扱います。|
-|_buid|オプション|半角英数字64文字まで。<br />会員IDなどユーザー毎にユニークな値を保持する場合にご使用ください。|
+|_buyer|필수|광고주를 식별하는 ID.<br />관리자로부터 연락받은 값을 넣어 주십시오.|
+|_cvpoint|필수|성과 지점을 식별하는 ID.<br />관리자로부터 연락받은 값을 넣어 주십시오.|
+|_price|옵션|과금액. 과금 계측 시에 설정해 주십시오.|
+|_currency|옵션|통화 코드(3자).<br />과금 계측 시에 설정해 주십시오.<br />통화가 설정되지 않은 경우、_price는JPY(엔)으로 됩니다.|
+|_buid|옵션|영문, 숫자 조합(64자 까지)<br />회원 ID등 유저 별 유니크한 값을 보존할 경우 사용해 주십시오.|
 
 
-_currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+_currencyには[ISO 4217](https://ko.wikipedia.org/wiki/ISO_4217)에 정의된 통화 코드를 지정해 주십시오.
 
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP으로](/lang/ko/README.md)

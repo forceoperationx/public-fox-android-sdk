@@ -1,37 +1,33 @@
-## 最新バージョンへのアップデートについて
+## 최신 버전으로 업데이트에 대하여
 
-以前のF.O.X SDKが導入されたアプリに最新のSDKを導入する際に必要な手順は以下の通りです。
+이전 버전의 F.O.X SDK가 설치된 앱에 대한 최신 버전의 F.O.X SDK를 설치하는데 필요한 단계를 설명합니다.
 
-1. 以前のバージョンの AppAdForce.jarがプロジェクトに組み込まれていれば、それらを削除
-2.「2. SDK導入手順」に従い最新のAppAdForce.jarをプロジェクトに追加
-3. Eclipse の「プロジェクト」→「クリーン」を実行
+1. 이전 버전의 AppAdForce.jar이 존재하면 프로젝트에서 삭제
+2.「2. SDK 설치 절차」에 따라서 최신 번전의 AppAdForce.jar를 프로젝트에 추가
+3. Eclipse의 「프로젝트」→「클린」을 실행
 
+※ 「[(옵션)광고ID를 이용하기 위한 Google Play Services SDK의 설치](../../google_play_services/README.md)」를 미실시한 경우에는 대응해 주세요.
 
-※「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../../google_play_services/ja/)」が未実施の場合には対応してください。
+※ 「[(옵션)외부 스토리지를 이용한 중복 배제 설정](../../external_storage/README.md)」를 미실시한 경우에는 대응해 주세요.
 
+SDK의 업데이트후는, 반드시 효과측정 테스트를 실시하고, 계측 및 앱의 동작에 문제 없는 것을 확인해 주세요.
 
-※「[（オプション）外部ストレージを利用した重複排除設定](../../external_storage/ja/)」が未実施の場合には対応してください。
+## 2.10.4g 버전에서 업데이트 된 점
 
-SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
+Android SDK V2.10.4g 이전의 해외판/글로벌 판 SDK (버전 번호의 끝이 'u' 또는 'g')로부터 SDK를 최신판에 업데이트를 할 경우, ID의 하위호환성을 위해서, 다음과 같이 AdManger인스턴스를 생성하는 것 보다
+이전의 위치에서 반드시 updateFrom2_10_4g()을 호출해 주십시오.
 
-
-## 2.10.4g以前からのアップデートに関して
-
-Android SDK v2.10.4g以前の海外版/グローバル版 SDK (バージョン末尾が u もしくは g)からSDKを最新版にアップデートをする場合、ID の下位互換性のために、次のように AdMangerインスタンスを生成するより以前の位置で必ずupdateFrom2_10_4g()をコールしてください。
-
-本メソッドにより、v2.10.4g 以前にインストールされた端末において、LTV やアクセス解析の計測を継続することができるようになります。
-
+본 메소드에 의해, V2.10.4g 이전에 인스톨된 단말에 있어서, LTV나 액세스 해석의 계측을 계속할 수 있게 됩니다.
 
 ```java
-AdManager.updateFrom2_10_4g(); // 必ずnew AdManager より前でコールすること
+AdManager.updateFrom2_10_4g(); // 반드시 new AdManager 보다 앞에서 호출할 것
 AdManager ad = new AdManager(this);
 ad.sendConversion("default");
 ```
 
-> ※v2.10.4g以前のSDKを導入しリリースされたことがあるアプリケーション、例えば v2.10g→v2.10.5g→v2.10.6gとv2.10.4gより後のSDK からのアップデートであっても updateFrom2_10_4g の実装を外さないでください。
+> ※V2.10.4g보다 이전 버전의 SDK를 설치해 릴리즈된 적이 있는 앱, 예를 들면 V2.10g→V2.10.5g→V2.10.6g와 V2.10.4g보다 아래 버전의 SDK로부터 업데이트 할 때에도 updateFrom2_10_4g의 구현을 넣어 주십시오.
 
-
-下記バージョンのSDKか過去に導入されたことがあるアプリケーションでは、本手順が必要となります。
+하기 버전의 SDK가 과거에 설치된 적이 있는 앱에서는 본 절차에 따를 필요가 있습니다.
 
 * v2.7u / v2.7.1u / v2.7.2u
 * v2.8u / v2.8.1u
@@ -39,28 +35,27 @@ ad.sendConversion("default");
 * v2.10g / v2.10.1g / v2.10.4g
 
 > ※末尾に u や g がつかないバージョンからのアップデートの場合には本手順は必要ありません。
+> ※버전의 끝에  'u' 나  'g'가 붙어 있지 않은 버전으로부터의 업데이트의 경우에는 본 절차를 따를 필요가 없습니다.
 
+## v.2.14.6g 버전에서 업데이트 된 점
 
-## v.2.14.6g以前からのアップデートに関して
+「[인스톨 계측의 구현](/lang/ko/doc/send_conversion/README.md)」에 있어서, V2.14.7g 버전 부터 URL 스키마 경유로의 앱 기동시의 성과계측에 이용하는 메소드명을 아래와같이 변경했습니다.
 
-
-「[インストールの計測の実装](/lang/ja/doc/send_conversion/README.md)」において、v2.14.7gよりURLスキーム経由からのアプリケーション起動時の成果計測に用いるメソッド名を下記のように変更しました。
 
 <table>
   <tr>
-    <td>変更後</td>
+    <td>변경후</td>
     <td>sendReengagementConversion(Intent)</td>
   </tr>
   <tr>
-    <td>変更前</td>
+    <td>변경전</td>
     <td>setUrlScheme(Intenet)</td>
   </tr>
 </table>
 
-もし、setUrlSchemeメソッドを用いて実装している場合は、sendReengagementConversionメソッドを呼び出すように修正してください。
+만일 setUrlScheme메소드를 이용해서 구현하고 있을 경우는, sendReengagementConversion메소드를 호출하게 수정해 주세요.
 
-> ※現在のバージョンにおいてもsetUrlSchemeメソッドは利用可能ですが、将来のバージョンアップで削除される可能性があります。尚、sendReengagementConversion メソッドとsetUrlSchemeメソッドの内部処理は同一となっております。
-
+> ※현재 버전에서도 setUrlScheme메소드는 이용가능지만, 앞으로의 버전 업(version up)으로 삭제될 가능성이 있습니다. 한편, sendReengagementConversion 메소드와 setUrlScheme메소드의 내부처리는 동일해졌습니다.
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP으로](/lang/ko/README.md)
