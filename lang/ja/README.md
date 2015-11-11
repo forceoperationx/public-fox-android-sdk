@@ -1,4 +1,4 @@
-# Force Opetaion Xとは
+# Force Operation Xとは
 
 Force Operation X (以下F.O.X)は、スマートフォンにおける広告効果最適化のためのトータルソリューションプラットフォームです。アプリケーションのダウンロード、ウェブ上でのユーザーアクションの計測はもちろん、スマートフォンユーザーの行動特性に基づいた独自の効果計測基準の元、企業のプロモーションにおける費用対効果を最大化することができます。
 
@@ -174,7 +174,12 @@ protected void onResume() {
 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"の場合は、URLスキーム経由でパラメータを受け取るために`onNewIntent`メソッドをoverrideし、以下のように`setIntent`メソッドをコールしてください。
 
 ```java
-@Overrideprotected void onNewIntent(Intent intent){	super.onNewIntent(intent);	setIntent(intent);}
+@Override
+protected void onNewIntent(Intent intent)
+{
+	super.onNewIntent(intent);
+	setIntent(intent);
+}
 ```
 
 > ※1 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityにカスタムURLスキームが設定されている必要があります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
