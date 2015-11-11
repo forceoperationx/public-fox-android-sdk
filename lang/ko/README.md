@@ -1,4 +1,4 @@
-# Force Opetaion X 란?
+# Force Operation X 란?
 
 Force Operation X (이하 F.O.X)는 스마트폰의 광고 효과 최적화를 위한 토탈 솔루션 플랫폼 입니다. 앱의 다운로드, 웹상에서의 사용자 액션의 측정은 물론, 스마트폰 사용자의 행동 특성에 근거한 독자적인 효과측정기준을 바탕으로 기업의 프로모션의 비용효과를 극대화 할 수 있습니다.
 
@@ -179,7 +179,12 @@ protected void onResume() {
 URL 스키마로 기동되는 Activity의 launchMode가 "singleTask" 또는 "singleInstance"의 경우, URL 스키마 경유로 매개 변수를 받기 위하여 `onNewIntent` 메소드를 override하여 다음과 같이 `setIntent` 메소드를 호출해 주십시오.
 
 ```java
-@Overrideprotected void onNewIntent(Intent intent){	super.onNewIntent(intent);	setIntent(intent);}
+@Override
+protected void onNewIntent(Intent intent)
+{
+	super.onNewIntent(intent);
+	setIntent(intent);
+}
 ```
 
 > ※1 재반응(re-engagement)유도 계측을 위해서는 AndroidManifest.xml에 정의되어있는 Acitvity에 사용자 정의 URL 스키마가 설정되어 있어야합니다. 본 측정에서는 사용자 정의 URL 스키마에 의해 Activity가 호출되는 것으로 재반응(re-engagement)유도 계측합니다.
