@@ -1,45 +1,45 @@
-## アクセス解析による課金計測
+## 依靠流量分析進行消費計測
 
-アクセス解析機能を利用し、自然流入経由を含めた広告別の課金計測を行うことができます。アクセス解析による課金計測を行うために、次のsendEventメソッドを実装します。
+利用流量分析機能，能夠計測不同廣告流入和自然流入的用戶消費狀況。為了依靠流量分析進行消費計測，請安裝下面的sendEvent方法。
 
 ```java
 public static void sendEvent(Context context, String eventName,String action, String label, String orderId, String sku, String itemName, double price, int quantity, String currency);
 ```
 
-sendEventメソッドのパラメータの仕様は下記の通りです。
+sendEvent方法的參數說明如下。
 
-|パラメータ|型|概要|
+|參數|型|概要|
 |:------|:------:|:------|
-|eventName|String|トラッキングを行うイベントを識別できる任意の名前を設定します。イベント 名は自由に設定可能です。|
-|action|String|イベントに属するアクション名を設定します。アクション名は自由に設定可能です。|
-|label|String|アクションに属するラベル名を設定します。ラベル名は自由に設定可能です。nullでも構いません。|
-|orderId|String|注文番号等を指定します。nullでも構いません。|
-|sku|String|商品コード等を指定します。nullでも構いません。|
-|itemName|String|商品名を指定します。nullでも構いません。|
-|price|double|商品単価を指定します。|
-|quantity|int|数量を指定します。price * quantityが売上金額として計上されます。|
-|currency|String|通貨コードを指定します。nullの場合は"JPY"が指定されます。|
+|eventName|String|設定能夠識別監測Event的任意名稱。可以自由設定。|
+|action|String|設定屬於Event的Action名。可以自由設定。|
+|label|String|屬於Action的Label名。可以自由設定。不做特別指定的場合可以為null。|
+|orderId|String|指定訂單號。不做特別指定的場合可以為null。|
+|sku|String|指定商品代號sku。不做特別指定的場合可以為null。|
+|itemName|String|指定商品名。可以為null。|
+|price|double|指定商品單價。|
+|quantity|int|指定數量。按price * quantity的銷售金額來計算在內。|
+|currency|String|指定貨幣代碼。null的場合默認指定為"JPY"。|
 
-
-LTV計測においても課金を成果地点としている場合には、同一の箇所にLTVとアクセス解析のそれぞれの計測処理を実装します。
+如果希望在LTV計測地點也做消費計測，請在同一個地點安裝LTV和流量分析的各自的計測處理代碼。
 
 サンプルとして、以下にアメリカドルで9.99ドルの課金を行った場合の実装例を記載致します。
+下面是一個計測消費9.99美元的安裝實例。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
 
 public class MainActivity extends Activity {
 
-	//アプリ内課金成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
+	//APP内消費成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
 		//...
-		// LTV計測による課金計測
+		// LTV計測形式的消費計測
 		LtvManager ltv = new LtvManager(ad);
 		ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
 		ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
 		ltv.sendLtvConversion(成果地点ID);
 
-		// アクセス解析による課金計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
+		// 流量分析形式的消費計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
 ```
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)
