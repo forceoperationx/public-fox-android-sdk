@@ -1,7 +1,6 @@
-## EclipseプロジェクトへのGoogle Play Servicesの導入
+## 在Eclipse項目裡導入Google Play Services
 
-Eclipseのメニューの「ファイル」>「インポート」から、「Android」>「Existing Android Code into Workspace」を選択します。
-
+從Eclipse菜單的「File」-> 「Import」裡選擇「Android」->「Existing Android Code into Workspace」。
 
 ![googlePlayServices01](./img01.png)
 
@@ -9,17 +8,14 @@ Eclipseのメニューの「ファイル」>「インポート」から、「And
 ![googlePlayServices01](./img02.png)
 
 
-<android-sdk>/extras/google/google_play_services/libproject/google-play-services_lib/にあるGoogle Play Servicesのライブラリプロジェクトをインポートします。
+導入<android-sdk>/extras/google/google_play_services/libproject/google-play-services_lib/裡的Google Play Services的類庫項目。
 
 
 ![googlePlayServices01](./img03.png)
 
-
-アプリケーションのプロジェクトを右クリックし、「プロパティ」を選択。左のメニューから「Android」を選択します。右側のライブラリの「
-追加」ボタンから、先程インポートしたGoogle Play Servicesのライブラリプロジェクトをアプリケーションから参照できるようにします。
-
+右鍵點擊APP的項目，選擇「Property」。從左菜單選擇「Android」。點擊右側Library的「追加」按鈕，設定從APP能夠訪問到剛才導入的Google Play Services的類庫項目。
 
 ![googlePlayServices01](./img04.png)
 
 ---
-[戻る](../README.md)
+[返回](../README.md)

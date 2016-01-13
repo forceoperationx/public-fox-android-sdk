@@ -1,6 +1,6 @@
-## Android StudioプロジェクトへのGoogle Play Servicesの導入
+## 在Android Studio項目裡導入Google Play Services
 
-アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、下記のように、最新のGoogle Play servicesへのdependenciesの設定を追記します。
+打開APP的module directory裡的build.gradle，像下面那樣追加對最新Google Play services的dependencies設定。
 
 ```
 dependencies {
@@ -8,7 +8,7 @@ dependencies {
 }
 ```
 
-> Google Play servicesの最新のバージョンはAndroidのデベロッパーサイトにて確認するようにしてください。
+> Google Play services的最新版本請在Android的開發網站進行確認
 
 [Google Play Services | Android Developers](https://developer.android.com/google/play-services/index.html)
 
@@ -16,4 +16,4 @@ dependencies {
 ![googlePlayServices01](./img01.png)
 
 ---
-[戻る](../README.md)
+[返回](../README.md)
