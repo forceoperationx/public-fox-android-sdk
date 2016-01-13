@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- URL スキームの設定 (sampleapp://) -->
+            <!-- URL Scheme的設定 (sampleapp://) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,23 +28,23 @@
             </intent-filter>
         </activity>
 
-        <!-- インストールリファラー計測の receiver 設定 -->
+        <!-- Install Referrer計測的receiver設定 -->
         <receiver android:exported="true" android:name="jp.appAdForce.android.InstallReceiver" >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
 
-        <!-- オプション: 二つのINSTALL_REFERRER レシーバーを共存させる 設定 -->
-        <!-- valueに共存させたいレシーバークラスのパスを記述します -->
+        <!-- 任意：讓兩個INSTALL_REFERRER Receiver共存的設定 -->
+        <!-- 記述了讓value共存的Receiver Class的path -->
         <meta-data android:name="APPADFORCE_FORWARD_RECEIVER"
             android:value="com.example.InstallReceiver" />
 
-        <!-- Google Play Services SDKの導入 -->
+        <!-- Google Play Services SDK的導入 -->
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!-- 必須: meta-data の設定 -->
+        <!-- 必須: meta-data 的設定 -->
         <meta-data android:name="APPADFORCE_APP_ID" android:value="xxxxxx" />
         <meta-data android:name="APPADFORCE_SERVER_URL" android:value="xxxxxx" />
         <meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="xxxxxx" />
@@ -52,10 +52,10 @@
 
     </application>
 
-    <!-- 必須: パーミッションの設定 -->
+    <!-- 必須: permission的設定 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 推奨: パーミッションの設定 -->
+    <!-- 推奨: permission的設定 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
