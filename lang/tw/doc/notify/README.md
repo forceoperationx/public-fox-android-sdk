@@ -1,31 +1,31 @@
-## プッシュ通知機能の実装
-F.O.Xのプッシュ通知機能は、Googleが提供するGCM(Google Cloud Messaging for Android)を利用して、ユーザーの端末にプッシュ通知を行う機能です。
-プッシュ通知を行うために、以下の実装を行ってください。
+## PUSH通知的安裝
 
-## gcm.jarの追加
+F.O.X的PUSH通知是利用Google提供的GCM(Google Cloud Messaging for Android)來向用戶的移動終端做PUSH通知的功能。
+為了進行PUSH通知，請進行如下安裝。
 
-- Androidプロジェクトの「libs」フォルダ配下にgcm.jarをコピーします。
-- Androidプロジェクトを選択し、右クリック→「プロパティー」を選択します。
-- 左のメニューから「Javaのビルド・パス」を選択します。
-- 右側のメイン画面にある「ライブラリー」タブを選択します。
-- メイン画面の右側にある「Jar追加」を選択します。します。
-- Androidプロジェクトの「libs」フォルダーに配置した「gcm.jar」を選択します。
-- 参照ライブラリに「gcm.jar」が追加されていることを確認します。
+## 追加gcm.jar
+
+- 拷貝gcm.jar到Android項目的「libs」目錄下。
+- 選擇Android項目，點擊右鍵→選擇「Property」。
+- 從左側菜單裡選擇「Java Build Path」。
+- 從右側主畫面裡選擇「Libraries」標籤。
+- 選擇主畫面右側的「Add JARs」。
+- 選擇事先拷貝到Android項目「libs」目錄下的「gcm.jar」。
+- 確認「gcm.jar」是否已被追加到鏈接類庫。
 
 ![notify01](./img01.png)
 ![notify02](./img02.png)
 
+## AndroidManifest.xml的設定
 
-## AndroidManifest.xmlの設定
+### permission的設定
 
-### パーミッションの設定
-
-下記のように、プッシュ通知を受け取るために必要なパーミッションの設定を\<manifest\>タグ内に追加してください。
+為了接收PUSH通知，請按下面那樣把必要的permission設定追加到\<manifest\>tag裡。
 
 ```xml
 <uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" />
-<permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+<uses-permission android:name="APP的Package名.permission.C2D_MESSAGE" />
+<permission android:name="APP的Package名.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
@@ -44,20 +44,20 @@ F.O.Xのプッシュ通知機能は、Googleが提供するGCM(Google Cloud Mess
 </receiver>
 ```
 
-### 二つのレシーバーを共存させる場合
+### 讓2個receiver共存
 
-com.google.android.c2dm.intent.RECEIVEとcom.google.android.c2dm.intent.REGISTRATIONに対するレシーバークラスは一つしか選択できません。アプリケーションが二つのレシーバークラスを必要とする場合は、以下の設定を追記してください。
+只能在com.google.android.c2dm.intent.RECEIVE和com.google.android.c2dm.intent.REGISTRATION相對應的Receiver Class裡選擇一個。如果App需要兩個receiver Class，請追加下面的設定。
 
 ```xml
-<meta-data android:name="APPADFORCE_NOTIFY_RECEIVER" android:value="共存させたいF.O.X以外のレシーバークラス" />
+<meta-data android:name="APPADFORCE_NOTIFY_RECEIVER" android:value="想要共存的F.O.X以外的receiver Class" />
 ```
 
-内部的にはjp.appAdForce.android.NotifyReceiverクラスから、共存させたいレシーバークラスのonResume()、もしくはonMessage()、onRegistered()を呼び出します。
+在內部從jp.appAdForce.android.NotifyReceiver類，調用想要共存的receiver Class的onResume()、或onMessage()、onRegistered()。
 
 
-## Main Activityの設定
+## Main Activity的設定
 
-アプリケーションの起動時に呼び出されるActivityのonCreate()に次の処理を実装します。
+在APP啟動時調用的Activity的onCreate()方法裡安裝下面的處理。
 
 ```java
 import jp.appAdForce.android.AdManager;
@@ -79,47 +79,49 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-GCMegistrar.registerの第二引数には、Project番号を入力してください。
+在GCMegistrar.register的第二個參數裡輸入Project編號。
 
-### Project番号とAPI KEYの取得について
+### 有關Project編號とAPI KEY的取得
 
-* https://console.developers.google.com/project にアクセスします。
-* APIプロジェクトを作成していない場合は、「プロジェクトを作成」を押下し、プロジェクトを作成します。
+* 訪問https://console.developers.google.com/project。
+* 如果沒有建立API項目，請按下「Create Project」新建一個項目。
 
 ![notify03](./img03.png)
 
-* プロジェクトを選択します。
-* 画面上部にプロジェクト番号が表示されているので、こちらの値を参照してください。
+* 選擇項目。
+* 畫面上方會顯示項目編號，請查看那個值。
 
 
 ![notify04](./img04.png)
 
 
-* 画面左側のメニューから「APIと認証」＞「API」を選択します。
-* Google Cloud Messaging for Androidのステータスをオンにします。
+* 從畫面左側菜單裡，選擇「API和認證」＞「API」。
+* 獎Google Cloud Messaging for Android的狀態設為ON。
 
 ![notify06](./img05.png)
 
-* 画面左側のメニューから「APIと認証」＞「認証情報」を選択します。
+* 從畫面左側菜單裡，選擇「API和認證」＞「認證信息」。
 
 ![notify06](./img06.png)
 
-* APIキーを作成していない場合は、公開APIへのアクセスの「新しいキーを作成」を押下、「サーバー キー」を選択し、APIキーを作成します。
+* 如果沒有建立API Key、請按下訪問公開API的「建立新Key」、選擇「Server Key」、新建API Key。
 
 
 * 作成したキーのAPIキーを取得します。
+* 取得新建成的Key的API Key。
 
 
 ![notify06](./img08.png)
 
 
-## 遷移先指定
+## 指定遷移目的地
 
-Push通知をタップした際に、アプリ内の任意の地点を開くことが可能です。遷移先のURLスキームは、FOXの管理画面で設定することができます。
+點擊PUSH通知內容的時候，可以打開APP裡的任意地點。可以在FOX的管理畫面裡設定遷移目的地的URL Scheme。
 
-AndroidManifest.xml上で、Push通知のタップ時に起動させたいActivityタグ内にURLスキームの設定を行ってください。
+請使用AndroidManifest.xml，在點PUSH通知希望啟動的Activity標籤裡設定URL Scheme。
 
-例として、"foo://bar"というURLスキームでExampleActiviyを起動させたい場合の設定を記載します。
+例如，使用"foo://bar"這樣的URL Scheme，記述了希望啟動ExampleActiviy的設定
+
 
 ```xml
 <activity android:name=".ExampleActivity" >
@@ -134,4 +136,4 @@ AndroidManifest.xml上で、Push通知のタップ時に起動させたいActivi
 
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)
