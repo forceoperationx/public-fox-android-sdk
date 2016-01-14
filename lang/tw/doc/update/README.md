@@ -1,50 +1,46 @@
-## 最新バージョンへのアップデートについて
+## 有關更新到最新版本
 
-以前のF.O.X SDKが導入されたアプリに最新のSDKを導入する際に必要な手順は以下の通りです。
+已經導入了舊版本F.O.X SDK的APP需要更新到最新的SDK，這時請按下面的步驟來進行。
+1. 如果開發項目裡含有舊版本AppAdForce.jar，請先刪除。
+1. 遵照「2. SDK導入步驟」追加最新版本的AppAdForce.jar到開發項目裡
+1. 執行Eclipse的「Product」→「Clean」
 
-1. 以前のバージョンの AppAdForce.jarがプロジェクトに組み込まれていれば、それらを削除
-2.「2. SDK導入手順」に従い最新のAppAdForce.jarをプロジェクトに追加
-3. Eclipse の「プロジェクト」→「クリーン」を実行
+※還沒執行「[（任意）導入Google Play Services SDK來使用廣告ID](../../google_play_services/ja/)」的話請先執行。
 
+※還沒執行「[（任意）利用外部存儲設定重複排除](../../external_storage/ja/)」的話請先執行。
 
-※「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../../google_play_services/ja/)」が未実施の場合には対応してください。
-
-
-※「[（オプション）外部ストレージを利用した重複排除設定](../../external_storage/ja/)」が未実施の場合には対応してください。
-
-SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
+更新完SDK以後，請一定去做疏通測試，以確保計測和APP動作沒有發生問題。
 
 
-## 2.10.4g以前からのアップデートに関して
+## 更新v2.10.4g及以前的舊版本
 
-Android SDK v2.10.4g以前の海外版/グローバル版 SDK (バージョン末尾が u もしくは g)からSDKを最新版にアップデートをする場合、ID の下位互換性のために、次のように AdMangerインスタンスを生成するより以前の位置で必ずupdateFrom2_10_4g()をコールしてください。
-
-本メソッドにより、v2.10.4g 以前にインストールされた端末において、LTV やアクセス解析の計測を継続することができるようになります。
+如果是從Android SDK v2.10.4g以前的海外版／世界版SDK（版本號末尾為u或g）更新到最新版，為了ID的向下兼容，請按照下面那樣，請一定在生成AdManger實例之前的位置調用updateFrom2_10_4g()方法。
+依靠這個方法，安裝了v2.10.4g及以前版本的移動終端也能夠繼續LTV和流量分析的計測了。
 
 
 ```java
-AdManager.updateFrom2_10_4g(); // 必ずnew AdManager より前でコールすること
+AdManager.updateFrom2_10_4g(); // 一定要在new AdManager之前調用
 AdManager ad = new AdManager(this);
 ad.sendConversion("default");
 ```
 
-> ※v2.10.4g以前のSDKを導入しリリースされたことがあるアプリケーション、例えば v2.10g→v2.10.5g→v2.10.6gとv2.10.4gより後のSDK からのアップデートであっても updateFrom2_10_4g の実装を外さないでください。
+> ※導入了v2.10.4g及以前版本並發佈過的APP，比如v2.10g→v2.10.5g→v2.10.6之後要更新到最新版，或者從v2.10.4g之後的版本更新到最新版本時，請不要去掉updateFrom2_10_4g方法。
 
 
-下記バージョンのSDKか過去に導入されたことがあるアプリケーションでは、本手順が必要となります。
+對於以前導入過下面版本SDK的APP，需要執行這個步驟。
 
 * v2.7u / v2.7.1u / v2.7.2u
 * v2.8u / v2.8.1u
 * v2.9g / v2.9.1g / v2.9.2g
 * v2.10g / v2.10.1g / v2.10.4g
 
-> ※末尾に u や g がつかないバージョンからのアップデートの場合には本手順は必要ありません。
+> ※更新版本號末尾沒有u或g的時候不需要這個步驟。
 
 
-## v.2.14.6g以前からのアップデートに関して
+## 有關更新v.2.14.6g及以前的版本
 
 
-「[インストールの計測の実装](/lang/ja/doc/send_conversion/README.md)」において、v2.14.7gよりURLスキーム経由からのアプリケーション起動時の成果計測に用いるメソッド名を下記のように変更しました。
+在「[Install計測的安裝](/lang/ja/doc/send_conversion/README.md)」裡，從v2.14.7g開始通過URL Scheme啟動APP的成果計測使用的方法名變成了下面那樣
 
 <table>
   <tr>
@@ -59,8 +55,7 @@ ad.sendConversion("default");
 
 もし、setUrlSchemeメソッドを用いて実装している場合は、sendReengagementConversionメソッドを呼び出すように修正してください。
 
-> ※現在のバージョンにおいてもsetUrlSchemeメソッドは利用可能ですが、将来のバージョンアップで削除される可能性があります。尚、sendReengagementConversion メソッドとsetUrlSchemeメソッドの内部処理は同一となっております。
-
+> ※現在的版本可以使用setUrlScheme方法，但將來版本升級時可能刪除此方法。此外，sendReengagementConversion方法和setUrlScheme方法的內部處理是相同的。
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)
