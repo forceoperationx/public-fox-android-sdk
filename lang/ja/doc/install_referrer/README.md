@@ -24,6 +24,11 @@ AndroidManifest.xmlを編集し、下記の設定を追加してください。
 		android:value="com.example.InstallReceiver" />
 ```
 
+> Proguardを利用する場合、`APPADFORCE_FORWARD_RECEIVER`に指定するクラスは-keep指定でクラス名が変更されないようにしてください。<br>
+Proguardの対象となりますとF.O.X SDKがクラスを探せなくなり正常に動作しませんのでご注意ください。
+
+
+
 ### 三つ以上のINSTALL_REFERRERレシーバーを共存させる場合
 
 三つ以上のレシーバーを組み込む際は、一つ軸となるレシーバークラスを定義し、そのクラス内で直列に各レシーバーを呼び出すようにします。
