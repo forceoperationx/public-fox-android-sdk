@@ -1,8 +1,8 @@
-### Android Studioプロジェクトへの導入
+### 導入到Android Studio項目
 
-#### ・Gradleを使用して導入する場合
+#### ・使用Gradle來導入
 
-build.gradleに下記の設定を適切な場所に追加してください。
+請把下面的設定追加到恰當的地方。
 
 ```
 repositories {
@@ -17,16 +17,16 @@ dependencies {
 ```
 
 
-#### ・手動で導入する場合
+#### ・手動導入
 
-Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下の通りです。
+把AppAdForce.jar追加到Android Studio項目裡的方法如下。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にAppAdForce.jarを配置します。
+* 拷貝AppAdForce.jar到APP項目的「libs」目錄下
 
 
 ![integration01](./img01.png)
 
-アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、AppAdForce.jarへのパスを追記します。
+打開APP的Module Directory裡的build.gradle，追加訪問AppAdForce.jar的路徑。
 
 ```
 dependencies {
@@ -38,4 +38,4 @@ dependencies {
 
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)

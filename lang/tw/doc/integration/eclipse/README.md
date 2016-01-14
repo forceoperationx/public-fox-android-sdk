@@ -1,20 +1,18 @@
-### Eclipseプロジェクトへの導入
+### 導入Eclipse項目
 
-EclipseプロジェクトへAppAdForce.jarを外部jarとして追加する方法は以下の通りです。
+把AppAdForce.jar作為外部jar追加到Eclipse項目裡的方法如下。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にAppAdForce.jarをコピー
+* 拷貝AppAdForce.jar到APP項目的「libs」目錄下
 
 
 ![integration01](./img01.png)
 
-
-* アプリケーションを選択し、右クリック>「プロパティ」を選択するとプロパティウィンドウが立ち上がる
-* プロパティウィンドウの左のメニューから「Javaのビルド・パス」を選択
-* プロパティウィンドウの右側の「ライブラリー」タブを選択し、「Jar追加」を選択します
-* アプリケーションの「libs」フォルダに配置した「AppAdForce.jar」を選択する
-
+* 選擇APP，右鍵點擊 -> 選擇「Property」會彈出屬性窗口。
+* 在屬性窗口的左菜單選擇「Java Build Path」。
+* 選擇屬性窗口右側的「Libraries」選項卡，選擇「Add JARs」。
+* 選擇事先放在APP「libs」目錄下的「AppAdForce.jar」。
 
 ![integration02](./img02.png)
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)
