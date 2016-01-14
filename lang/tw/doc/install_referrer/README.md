@@ -1,15 +1,15 @@
-## 複数のINSTALL_REFERRERレシーバーを共存させる場合の設定
+## 讓多個INSTALL_REFERRER Receiver共存的設定
 
-"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスは一つしか定義することができません。
+只能定義一個與"com.android.vending.INSTALL_REFERRER"相對應的Receiver Class。
 
-F.O.X以外のSDK等、既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合は、F.O.X SDKが用意しているレシーバークラスから、他のレシーバークラスを呼び出すことで共存させることが可能です。
+如果F.O.X以外的SDK已經定義了與"com.android.vending.INSTALL_REFERRER"相對應的Receiver Class，可以利用從F.O.X SDK裡提供的Receiver Class調用其他Receiver Class的方式實現共存。
 
-### 二つのINSTALL_REFERRERレシーバーを共存させる場合
+### 讓2個INSTALL_REFERRER Receiver共存
 
-AndroidManifest.xmlを編集し、下記の設定を追加してください。
+請編輯AndroidManifest.xml，追加下面的設定。
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定します -->
+<!-- Receiver Class指定F.O.X SDK的Class -->
 <receiver
 	android:name="jp.appAdForce.android.InstallReceiver"
 	android:exported="true">
@@ -18,26 +18,26 @@ AndroidManifest.xmlを編集し、下記の設定を追加してください。
 	</intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述します -->
+<!-- 從F.O.X SDK調用其他Receiver Class的信息作為meta-data來記述 -->
 <meta-data
 		android:name="APPADFORCE_FORWARD_RECEIVER"
 		android:value="com.example.InstallReceiver" />
 ```
 
-### 三つ以上のINSTALL_REFERRERレシーバーを共存させる場合
+### 讓3個或以上INSTALL_REFERRER的Receiver共存
 
-三つ以上のレシーバーを組み込む際は、一つ軸となるレシーバークラスを定義し、そのクラス内で直列に各レシーバーを呼び出すようにします。
+當定義3個或以上Receiver的時候，以一個Receiver定義為主軸，在這個Class裡順序調用其他各個Receiver。
 
-下記に実装例を記載します。
+下面記述了安裝實例。
 
-* MyReceiverクラス（クラス名は好きに変更して頂いて構いません）
+* MyReceiver Class（可以按喜好變更Class名）
 
 ```java
 public class MyReceiver extends BroadcastReceiver {
-	// F.O.XのINSTALL_REFERRERレシーバー
+	// F.O.X的INSTALL_REFERRER Receiver
    jp.appAdForce.android.InstallReceiver foxReceiver;
 
-   // F.O.X以外のINSTALL_REFERRERレシーバー
+   // F.O.X以外的INSTALL_REFERRER Receiver
    jp.co.android.sample.InstallReceiver thirdPartyReceiver;
    jp.co.android.sample.InstallReceiver2 thirdPartyReceiver2;
 
@@ -70,4 +70,4 @@ public class MyReceiver extends BroadcastReceiver {
 ```
 
 ---
-[トップ](/lang/ja/README.md)
+[TOP](/lang/tw/README.md)

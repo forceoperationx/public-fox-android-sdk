@@ -107,7 +107,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 </receiver>
 ```
 
-如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓兩個INSTALL_REFERRER receiver共存的設定](./doc/install_referrer/README.md)
+如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER receiver共存的設定](./doc/install_referrer/README.md)
 
 ### URL scheme設定
 

@@ -16,8 +16,6 @@ Force Operation X Android SD遵循Google Play developer programme policy的準�
 
 如果沒有安裝Google Play Services SDK，請從Android SDK Manager取得Package。
 
-* Android SDK Managerを起動します。
-* Extrasディレクトリ配下のGoogle Play servicesにチェックをいれ、パッケージをインストールします。
 * 起動Android SDK Manager
 * 勾選Extras目錄下的Google Play services選項來安裝Package。
 
