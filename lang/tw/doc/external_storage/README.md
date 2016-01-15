@@ -1,6 +1,6 @@
-## 利用外部存儲設定重複排除（Option）
+## 利用外部存儲設定重複排除（任意）
 
-將APP初次啟動時，SDK生成的識別ID會保存在本地存儲和外部存儲（SD card）裡，在APP再安裝時能做重複判定。雖然本設定並非必須，但為了提高監測再安裝APP時的重複精度，建議設定會較好。
+將APP初次啟動時，SDK生成的識別ID會保存在本地存儲和外部存儲（SD card）裡，在APP再安裝時能做重複判定。雖然本設定並非必須，但為了提高再安裝APP時的重複監測精度，推薦設定。
 
 ### permission的設定
 
@@ -13,7 +13,7 @@
 如果設定了上述Permission，識別ID文件將被保存在下面的路徑。
 
 ```
-能夠用Environment.getExternalStorageDirectory().getPath()取得路徑/APP的Package名/__FOX_XUNIQ__
+用Environment.getExternalStorageDirectory().getPath()取得的路徑/APP的Package名/__FOX_XUNIQ__
 ```
 
 ### （任意）變更保存目錄和文件名
@@ -60,7 +60,7 @@
 
 ### 停止使用外部存儲
 
-希望讓Force Operation X SDK停止訪問外部存儲的時候，請在AndroidManifest.xml裡追加APPADFORCE_USE_EXTERNAL_STORAGE的設定。
+如果希望Force Operation X SDK停止訪問外部存儲，請在AndroidManifest.xml裡追加APPADFORCE_USE_EXTERNAL_STORAGE的設定。
 ```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
@@ -70,8 +70,8 @@
 
 ### Android M(6.0)的注意事項
 
-為了利用ProtectionLevel設定為`dangerous`權限的機能，需要通過用戶許可。如果用戶不許可，數據無法保存到存儲領域，進而無法利用重複排除設定。
-前面說到的READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE的級別也屬於dangerous，需要做安裝來獲得用戶許可。
+為了利用ProtectionLevel設定為`dangerous`權限的機能，需要獲得用戶許可。如果用戶不許可，數據無法保存到存儲領域，進而無法利用重複排除設定。
+前面說到的READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE的級別也屬於dangerous，需要做實際安裝來獲得用戶許可。
 
 
 * [安裝參考](https://developer.android.com/training/permissions/requesting.html#perm-request)
