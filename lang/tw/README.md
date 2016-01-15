@@ -63,9 +63,9 @@ ACCESS_NETWORK_STATE|Normal|必須|F.O.X SDK確認可否通信時必須。
 READ_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排重功能時必須。(※2)
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排重功能時必須。(※2)
 
-> ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE權限是利用把數據保存在外部存儲器，在再安裝APP的時候為了更準確地進行Install計測必須設定的權限，屬於任意設定。
+> ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE權限是利用把數據保存在外部存儲器，為了再安裝APP的時候更準確地進行Install計測而必須設定的權限，屬於任意設定。
 
-> ※2 Android M為了利用ProtectionLevel設定為`dangerous`權限的機能，需要通過用戶許可。詳細請查看[利用外部存儲設定重複排除](/lang/tw/doc/integration/android/external_storage/README.md)
+> ※2 Android M為了利用ProtectionLevel設定為`dangerous`權限的機能，需要獲得用戶許可。詳細請查看[利用外部存儲設定重複排除](/integration/android/external_storage/README.md)
 
 ### meta-data的設定
 

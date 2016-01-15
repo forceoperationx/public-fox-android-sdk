@@ -1,4 +1,4 @@
-## Google Playデベロッパープログラムへの準拠
+## Google Play開發程序準則
 
 Force Operation X Android SD遵循Google Play developer programme policy的準則。依據policy，若已經取得永久性的Device ID (IMEI、MAC address和Android ID)，將不會再取得廣告ID。2014年8月1日開始，上傳在Play store全部的更新和新APP中，對於為了廣告目的使用的設備ID必須使用廣告ID。為了符合此Policy，請按照下面的流程進行。
 
