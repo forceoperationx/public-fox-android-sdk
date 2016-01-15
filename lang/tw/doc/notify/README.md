@@ -20,7 +20,7 @@ F.O.X的PUSH通知是利用Google提供的GCM(Google Cloud Messaging for Android
 
 ### permission的設定
 
-為了接收PUSH通知，請按下面那樣把必要的permission設定追加到\<manifest\>tag裡。
+為了接收PUSH通知，請按下面那樣把必要的Permission設定追加到\<manifest\>tag裡。
 
 ```xml
 <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -29,9 +29,9 @@ F.O.X的PUSH通知是利用Google提供的GCM(Google Cloud Messaging for Android
 <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
-### プッシュ通知用レシーバーの設定
+### PUSH通知用的Receiver的設定
 
-下記のように、プッシュ通知を受け取るために必要なレシーバーの設定を\<application\>タグ内に追加してください。
+為了接收PUSH通知，請按下面那樣把必要的Receiver設定追加到\<application\>tag裡。
 
 ```xml
 <receiver android:name="jp.appAdForce.android.NotifyReceiver"
@@ -39,7 +39,7 @@ F.O.X的PUSH通知是利用Google提供的GCM(Google Cloud Messaging for Android
 	<intent-filter>
 		<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 		<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-		<category android:name="アプリのパッケージ名" />
+		<category android:name="APP的Package名" />
 	</intent-filter>
 </receiver>
 ```
