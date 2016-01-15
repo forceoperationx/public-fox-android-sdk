@@ -15,13 +15,13 @@
 若流覽器無法啟動，說明沒有正常設定。請重新設定，若仍無法發現問題，請與弊司聯繫。
 1. 把畫面移轉到LTV地點<br />
 1. 結束並從後台刪除APP<br />
-1. 刪除浏览器的Cookie、點擊Reengagement計測測試用URL。請確認APP是否啟動。
-如果APP沒有啟動，請確認是否設定了定製的URL Scheme。<br />
+1. 刪除浏览器的Cookie、點擊Reengagement計測測試用URL。請確認APP是否啟動。<br />
+＊如果APP沒有啟動，請確認是否設定了定製的URL Scheme。<br />
 請重新設定，若仍無法發現問題，請與弊司聯繫。<br />
 1. 到達LTV地点
 1. 不顯示APP、讓其運行在後台。
-1. 再次刪除瀏覽器的Cookie、點擊Reengagement計測測試用URL。請確認APP是否啟動。
-如果APP沒有啟動，請確認是否設定了定製的URL Scheme。<br />
+1. 再次刪除瀏覽器的Cookie、點擊Reengagement計測測試用URL。請確認APP是否啟動。<br />
+＊如果APP沒有啟動，請確認是否設定了定製的URL Scheme。<br />
 請重新設定，若仍無法發現問題，請與弊司聯繫。<br />
 1. 畫面移轉到LTV地點
 1. 關閉APP並從後台刪除
