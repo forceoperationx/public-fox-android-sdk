@@ -1,4 +1,4 @@
-### 導入到Android Studio項目
+### AndroidStudio項目的導入方法
 
 #### ・使用Gradle來導入
 

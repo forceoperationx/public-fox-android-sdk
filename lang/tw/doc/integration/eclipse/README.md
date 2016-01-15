@@ -1,4 +1,4 @@
-### 導入Eclipse項目
+### Eclipse項目的導入方法
 
 把AppAdForce.jar作為外部jar追加到Eclipse項目裡的方法如下。
 
