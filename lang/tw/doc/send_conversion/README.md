@@ -35,7 +35,7 @@ ad.sendConversion("http://yourhost.com/yourpage.html");
 ad.sendConversion("default", "your unique id");
 ```
 
-> 作為剛啟動後的處理需要實際安裝sendConversion，但像登錄ID這樣的用戶行為相伴的值無法通過參數傳遞。
+> 作為啟動繼發處理需要實際安裝sendConversion，像登錄ID這樣的與用戶行為相伴的值不能通過參數傳遞。
 
 ---
 [TOP](/lang/tw/README.md)

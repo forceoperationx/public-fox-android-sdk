@@ -107,7 +107,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 </receiver>
 ```
 
-如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER receiver共存的設定](./doc/install_referrer/README.md)
+如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER R seceiver共存的設定](./doc/install_referrer/README.md)
 
 ### URL scheme設定
 
@@ -126,7 +126,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 ### 導入Google Play Services SDK來使用廣告ID
 
-為了能使用廣告ID，必須導入Google Play Services SDK。雖然即使Google Play Services SDK沒被導入，F.O.X SDK也能起作用，但是不利用廣告ID會導致無法計測一部分廣告菜單或降低重複判定的精度。導入詳細步驟請參考[導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/README.md)。
+為了能使用廣告ID，必須導入Google Play Services SDK。即使Google Play Services SDK沒被導入，F.O.X SDK也能起作用，但若不利用廣告ID會導致無法計測一部分廣告項目，或降低重複判定的精度。導入詳細步驟請參考[導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/README.md)。
 
 ### AndroidManifest.xml實例
 
@@ -177,7 +177,7 @@ protected void onNewIntent(Intent intent)
 }
 ```
 
-> ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。本次計測是利用定制URL Scheme來調用Activity的方法進行Reengagement計測的。
+> ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。本次計測是利用定制URL Scheme調用Activity的方法來進行Reengagement計測的。
 
 ## 4. LTV計測的安裝
 
@@ -213,7 +213,7 @@ ltv.sendLtvConversion(成果地点ID);
 
 自然流入和廣告流入的安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。如果不做流量分析，可以省略本項目的安裝。
 
-為了計測APP的啟動和計測從後台恢復到前台的活動狀態，請在各Activity的onResume()裡追加`AnalyticsManager.sendStartSession`方法。
+為了計測APP的啟動和計測從後台到前台的恢復，請在各Activity的onResume()裡追加`AnalyticsManager.sendStartSession`方法。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
@@ -260,7 +260,7 @@ public class MainActivity extends Activity {
 -dontwarn com.naef.jnlua.**
 ```
 
-如果已導入GooglePlayServiceSDK，請確認以下網頁所記載的keep指定是否有被記述。
+如果已導入GooglePlayServiceSDK，請確認下面網頁所記載的keep指定是否有被記述。
 
 [導入Google Play Services時的Proguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
@@ -276,8 +276,8 @@ public class MainActivity extends Activity {
 1. 如果測試用的設備已安裝APP，請先卸載掉APP
 1. 刪除測試終端設備的默認瀏覽器的Cookie
 1. 點選由弊司發行的測試用URL
-1. 再移轉到Market
-1. 在測試用移動終端上安裝測試APP<br />
+1. 畫面移轉到Market
+1. 在測試用的移動終端上安裝測試APP<br />
 1. 啟動APP，瀏覽器啟動<br />
 若流覽器無法啟動，說明沒有正常設定。請重新設定，若仍無法發現問題，請與弊司聯繫。
 1. 把畫面移轉到LTV地點<br />
