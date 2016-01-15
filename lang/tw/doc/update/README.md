@@ -6,9 +6,9 @@
 1. 遵照「2. SDK導入步驟」追加最新版本的AppAdForce.jar到開發項目裡
 1. 執行Eclipse的「Product」→「Clean」
 
-※還沒執行「[（任意）導入Google Play Services SDK來使用廣告ID](../../google_play_services/tw/)」的話請先執行。
+※還沒執行「[（任意）導入Google Play Services SDK來使用廣告ID](../google_play_services/README.md)」的話請先執行。
 
-※還沒執行「[（任意）利用外部存儲設定重複排除](../../external_storage/tw/)」的話請先執行。
+※還沒執行「[（任意）利用外部存儲設定重複排除](../external_storage/README.md)」的話請先執行。
 
 更新完SDK以後，請一定去做疏通測試，以確保計測和APP動作沒有發生問題。
 
