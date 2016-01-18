@@ -1,16 +1,16 @@
 # Force Operation X是什麼
 
-Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改善廣告效果的綜合解決方案平台。除了對APP下載量和網絡用戶操作的基本計測外，還能基於手機用戶行为特性採用獨自效果計測基準，實現了企業宣傳推廣时費用与效果比的最大改善。
+Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改善廣告效果的綜合解決方案平台。除了對APP下載量和網絡用戶操作的基本計測外，還能基於手機用戶行為特性採用獨自效果計測基準，實現了企業宣傳推廣时費用与效果比的最大改善。
 
 在這個文檔裡，詳細講解了基於智慧手機平台優化廣告效果的F.O.X SDK的導入步驟。
 
 ## F.O.X SDK是什麼
 
-在APP裡導入F.O.X SDK的方法來實現如下功能。
+在APP中導入FOX，可以實現如下功能。
 
 * **Install計測**
 
-能够按不同的广告流入来計測安装数。
+能夠按不同的廣告流入來計測安裝數。
 
 * **LTV計測**
 
@@ -20,17 +20,15 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 自然流入和廣告流入的APP安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。
 
-* **PUSH通知**
-
-使用F.O.X監測的信息，能夠針對用戶來做PUSH通知。比如，能夠針對特定廣告流入用戶來發送消息。
-
 ## 1. 安裝
 
 請從下面的頁面來下載最新的SDK。
 
 * [SDK發布頁面](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
+<!--
 已經在APP裡導入了SDK的話，請參考[有關更新到最新版本](./doc/update/README.md)。
+-->
 
 請展開下載的SDK「FOX_Android_SDK_<version>.zip」，把「AppAdForce.jar」導入到APP的項目裡。
 
@@ -42,12 +40,12 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 * **SDK設定**
 
-為使SDK發揮作用請在AndroidManifest.xml裡追加必要的設定。
+為使SDK發揮作用請在AndroidManifest.xml裡添加必要的設定。
 
 ### permission的設定
 
 F.O.X SDK利用下面4種permission。
-請在&lt;Manifest&gt;tag內追加如下permission設定。
+請在&lt;Manifest&gt;tag內添加如下permission設定。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -69,7 +67,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 ### meta-data的設定
 
-為了執行SDK，請將必要的訊息追加到<application>tag內。
+為了執行SDK，請將必要的訊息添加到<application>tag內。
 
 ```xml
 <meta-data
@@ -97,7 +95,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 
 ### Install referrer計測的設定
-將Install referrer計測所需要的設定追加在<application>tag內。
+將Install referrer計測所需要的設定添加在<application>tag內。
 
 ```xml
 <receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
@@ -111,7 +109,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 ### URL scheme設定
 
-為了能夠從外部啟動APP。請在要啟動的對象的&lt;activity&gt;tag內追加如下設定。
+為了能夠從外部啟動APP。請在要啟動的對象的&lt;activity&gt;tag內添加如下設定。
 
 ```xml
 <intent-filter>
@@ -134,7 +132,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 ## 3. Install計測的安裝
 
-安裝了初次啟動時的Install計測處理，就能夠測定廣告效果了。請編輯項目的源代碼，按下面的那樣來安裝。
+安裝了初次啟動時的Install計測處理，就能夠測定廣告效果了。請編輯項目的源代碼，請仿照下面的例子來安裝。
 
 請在啟動APP時調用的Activity的onCreate()裡面安裝sendConversion方法。
 
@@ -167,7 +165,7 @@ protected void onResume() {
 }
 ```
 
-如果使用URL Scheme啟動Activity的launchMode設定為"singleTask"或"singleInstance"，為了通過URL Scheme來接收參數，請重寫onNewIntent方法，並按下面那樣調用`setIntent`方法。
+如果使用URL Scheme啟動Activity的launchMode設定為"singleTask"或"singleInstance"，為了通過URL Scheme來接收參數，請重寫onNewIntent方法，並請仿照下面的例子調用`setIntent`方法。
 ```java
 @Override
 protected void onNewIntent(Intent intent)
@@ -193,7 +191,7 @@ ltv.sendLtvConversion(成果地点ID);
 
 為了進行LTV計測，必須指定識別各成果地點的成果地點ID。請在`sendLtvConversion`方法的參數裡指定發行的ID。
 
-進行消費計測的時候，請按照下面那樣在完成消費處理的地方指定消費額和貨幣代碼。
+進行消費計測的時候，請仿照下面的例子在完成消費處理的地方指定消費額和貨幣代碼。
 
 
 ```java
@@ -213,7 +211,7 @@ ltv.sendLtvConversion(成果地点ID);
 
 自然流入和廣告流入的安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。如果不做流量分析，可以省略本項目的安裝。
 
-為了計測APP的啟動和計測從後台到前台的恢復，請在各Activity的onResume()裡追加`AnalyticsManager.sendStartSession`方法。
+為了計測APP的啟動和計測從後台到前台的恢復，請在各Activity的onResume()裡添加`AnalyticsManager.sendStartSession`方法。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
@@ -230,7 +228,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-> ※APP在產生複數的Activity時，請將處理追加到所有Activity的onResume()。APP從Background恢復到活動狀態時，若尚未導入啟動計測到Activity，將無法計測正確的活躍用戶數。
+> ※APP在產生複數的Activity時，請將處理添加到所有Activity的onResume()。APP從Background恢復到活動狀態時，若尚未導入啟動計測到Activity，將無法計測正確的活躍用戶數。
 
 [依靠流量分析進行Event計測](./doc/analytics_event/README.md)
 
@@ -274,12 +272,12 @@ public class MainActivity extends Activity {
 **測試步驟**
 
 1. 如果測試用的設備已安裝APP，請先卸載掉APP
-1. 刪除測試終端設備的默認瀏覽器的Cookie
+1. 刪除測試設備的默認瀏覽器的Cookie
 1. 點選由弊司發行的測試用URL
 1. 畫面移轉到Market
-1. 在測試用的移動終端上安裝測試APP<br />
+1. 在測試用的終端上安裝測試APP<br />
 1. 啟動APP，瀏覽器啟動<br />
-＊若流覽器無法啟動，說明沒有正常設定。請重新設定，若仍無法發現問題，請與弊司聯繫。
+＊若流覽器無法啟動，說明沒有正常設定。重新設定後，若仍無法發現問題，請與弊司聯繫
 1. 把畫面移轉到LTV地點<br />
 1. 結束並從後台關閉APP<br />
 1. 再次啟動APP<br />
@@ -295,7 +293,9 @@ public class MainActivity extends Activity {
 
 ## 8. 其他機能的安裝
 
+<!--
 * [PUSH通知的安裝](./doc/notify/README.md)
+-->
 
 * [Opt-Out的安裝](./doc/optout/README.md)
 
@@ -314,8 +314,8 @@ public class MainActivity extends Activity {
 
 ### 9.3. 用F.O.X計測的Install數值比Google Play Developer Console的數值要大
 
-F.O.X使用了多種方式來監測移動終端的重複安裝。
-倘若設定了不進行重複監測，在相同移動終端再安裝時F.O.X會判定為新的安裝。
+F.O.X使用了多種方式來監測終端的重複安裝。
+倘若設定了不進行重複監測，在相同終端再安裝時F.O.X會判定為新的安裝。
 
 為了提高重複監測的精度，請進行如下設定。
 
