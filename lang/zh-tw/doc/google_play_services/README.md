@@ -37,7 +37,7 @@ Force Operation X Android SD遵循Google Play developer programme policy的準�
 
 #### AndroidManifest.xml的編輯
 
-為了利用Google Play Services，請在AndroidManifest.xml的<application>tag内追加下面的設定。
+為了利用Google Play Services，請在AndroidManifest.xml的&lt;application&gt;tag内追加下面的設定。
 
 ```xml
 <meta-data

@@ -26,7 +26,7 @@
 
 **[備份全部APP數據的時候]**
 
-  如果想要設定成備份全部APP數據，請設定成把下面文件排除掉的形式。
+  如果想要設定成備份全部APP數據，請把下面文件設定成例外。
 
 ```
 <exclude domain="file" path="__ADMAGE_WEB_CONVERSION_COMPLETED__" />

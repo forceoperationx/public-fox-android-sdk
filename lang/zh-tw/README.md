@@ -63,7 +63,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 ### meta-data的設定
 
-為了執行SDK，請將必要的訊息添加到<application>tag內。
+為了執行SDK，請將必要的訊息添加到&lt;application&gt;tag內。
 
 ```xml
 <meta-data
@@ -171,7 +171,7 @@ protected void onNewIntent(Intent intent)
 }
 ```
 
-> ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。本次計測是利用定制URL Scheme調用Activity的方法來進行Reengagement計測的。
+> ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。該計測是利用定制URL Scheme調用Activity的方法來進行Reengagement計測的。
 
 ## 4. LTV計測的安裝
 
@@ -288,12 +288,7 @@ public class MainActivity extends Activity {
 
 ## 8. 其他機能的安裝
 
-<!--
-* [PUSH通知的安裝](./doc/notify/README.md)
--->
-
 * [Opt-Out的安裝](./doc/optout/README.md)
-
 
 ## 9. 最後請務必確認（到現在發生過的問題集）
 
