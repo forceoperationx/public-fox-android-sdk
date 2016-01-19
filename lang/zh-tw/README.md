@@ -6,7 +6,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 ## F.O.X SDK是什麼
 
-在APP中導入FOX，可以實現如下功能。
+在APP中導入F.O.X，可以實現如下功能。
 
 * **Install計測**
 
