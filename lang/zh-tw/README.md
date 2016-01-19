@@ -80,7 +80,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 	android:value="請輸入Force Operation X管理員告知的值。" />
 ```
 
-審定的Key和Value如下：
+設定的Key和Value如下：
 
 |參數名|必須|概要|
 |:------|:------|:------|
@@ -91,7 +91,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 
 ### Install referrer計測的設定
-將Install referrer計測所需要的設定添加在<application>tag內。
+將Install referrer計測所需要的設定添加在&lt;application&gt;tag內。
 
 ```xml
 <receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
