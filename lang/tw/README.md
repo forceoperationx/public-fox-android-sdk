@@ -26,10 +26,6 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 * [SDK發布頁面](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-<!--
-已經在APP裡導入了SDK的話，請參考[有關更新到最新版本](./doc/update/README.md)。
--->
-
 請展開下載的SDK「FOX_Android_SDK_<version>.zip」，把「AppAdForce.jar」導入到APP的項目裡。
 
 
