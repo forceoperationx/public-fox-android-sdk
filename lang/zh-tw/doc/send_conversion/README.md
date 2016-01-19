@@ -38,4 +38,4 @@ ad.sendConversion("default", "your unique id");
 > 作為啟動繼發處理需要實際安裝sendConversion，像登錄ID這樣的與用戶行為相伴的值不能通過參數傳遞。
 
 ---
-[TOP](/lang/tw/README.md)
+[TOP](/lang/zh-tw/README.md)

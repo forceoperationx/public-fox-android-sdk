@@ -69,4 +69,4 @@ Force Operation X Android SD遵循Google Play developer programme policy的準�
 ```
 
 ---
-[TOP](/lang/tw/README.md)
+[TOP](/lang/zh-tw/README.md)
