@@ -67,7 +67,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重�
 
 > ※1 READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。
 
-> ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複排除設定](/lang/ja/doc/integration/android/external_storage/README.md)をご確認ください。
+> ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)をご確認ください。
 
 ### メタデータの設定
 
