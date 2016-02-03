@@ -158,7 +158,7 @@ sendConversionの引数には、通常は上記の通り"default"という文字
 
 [sendConversionの詳細](./doc/send_conversion/README.md)
 
-また、リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendReengageConversion`メソッドを実装します。
+また、リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendReengagementConversion`メソッドを実装します。
 
 ```java
 import jp.appAdForce.android.AdManager;
@@ -167,7 +167,7 @@ import jp.appAdForce.android.AdManager;
 protected void onResume() {
 	super.onResume();
 	AdManager ad = new AdManager(this);
-	ad.sendReengageConversion(getIntent());
+	ad.sendReengagementConversion(getIntent());
 }
 ```
 
@@ -227,7 +227,7 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		AdManager ad = new AdManager(this);
-		ad.sendReengageConversion(getIntent());
+		ad.sendReengagementConversion(getIntent());
 
 		AnalyticsManager.sendStartSession(this);
 	}
