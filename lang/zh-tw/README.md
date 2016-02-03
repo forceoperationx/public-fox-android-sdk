@@ -148,7 +148,7 @@ protected void onCreate(Bundle savedInstanceState){
 
 [sendConversion的詳細](./doc/send_conversion/README.md)
 
-為了進行Reengagement廣告的計測（經由URL Scheme啟動的計測），請在全部設定了URL Scheme的`Activity(※1)`的onResume()裡安裝`sendReengageConversion`方法。
+為了進行Reengagement廣告的計測（經由URL Scheme啟動的計測），請在全部設定了URL Scheme的`Activity(※1)`的onResume()裡安裝`sendReengagementConversion`方法。
 
 ```java
 import jp.appAdForce.android.AdManager;
@@ -157,7 +157,7 @@ import jp.appAdForce.android.AdManager;
 protected void onResume() {
 	super.onResume();
 	AdManager ad = new AdManager(this);
-	ad.sendReengageConversion(getIntent());
+	ad.sendReengagementConversion(getIntent());
 }
 ```
 
@@ -217,7 +217,7 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		AdManager ad = new AdManager(this);
-		ad.sendReengageConversion(getIntent());
+		ad.sendReengagementConversion(getIntent());
 
 		AnalyticsManager.sendStartSession(this);
 	}

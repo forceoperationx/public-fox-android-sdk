@@ -162,7 +162,7 @@ sendConversion의 매개변수에는, 특별한 이유가 없을 때에는 @"def
 
 [sendConversion의 상세](./doc/send_conversion/README.md)
 
-또 재반응(re-engagement)유도 계측 (URL 스키마 경유 기동 측정)하기 위해, `URL 스키마가 설정되어있는 모든 Activity(※ 1)의 `onResume()`에 `sendReengageConversion` 메소드를 구현합니다.
+또 재반응(re-engagement)유도 계측 (URL 스키마 경유 기동 측정)하기 위해, `URL 스키마가 설정되어있는 모든 Activity(※ 1)의 `onResume()`에 `sendReengagementConversion` 메소드를 구현합니다.
 
 
 ```java
@@ -172,7 +172,7 @@ import jp.appAdForce.android.AdManager;
 protected void onResume() {
 	super.onResume();
 	AdManager ad = new AdManager(this);
-	ad.sendReengageConversion(getIntent());
+	ad.sendReengagementConversion(getIntent());
 }
 ```
 
@@ -233,7 +233,7 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		AdManager ad = new AdManager(this);
-		ad.sendReengageConversion(getIntent());
+		ad.sendReengagementConversion(getIntent());
 
 		AnalyticsManager.sendStartSession(this);
 	}
