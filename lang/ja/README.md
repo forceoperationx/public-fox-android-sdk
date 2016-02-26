@@ -240,6 +240,8 @@ public class MainActivity extends Activity {
 
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 
+[エンゲージメント配信について](./doc/fox_engagement/README.md)
+
 
 ## 6. ProGuardを利用する場合
 
