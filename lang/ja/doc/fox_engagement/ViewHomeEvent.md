@@ -16,7 +16,7 @@ AnalyticsManager.sendEvent(this, "_view_toppage", null, null, 0, eventInfo);
 ### 引数詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
+|:----------|:-----------:|:------------|
 |context|Context|呼び出し元のActivityのContext|
 |eventName|String|“\_view\_toppage”を指定してください。|
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
@@ -28,7 +28,7 @@ AnalyticsManager.sendEvent(this, "_view_toppage", null, null, 0, eventInfo);
 #### イベント情報詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
-|eventInfo(din/dout)|JSONObject|日付の指定がある場合は入力（任意）|
-|eventInfo(criteo_partner_id)|JSONObject|CriteoアカウントIDが同一アプリで異なる場合は入力(任意)|
-|eventInfo(fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。(任意)|
+|:----------|:-----------:|:------------|
+|eventInfo (din/dout)|JSONObject|日付の指定がある場合は入力（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|CriteoアカウントIDが同一アプリで異なる場合は入力(任意)|
+|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。(任意)|

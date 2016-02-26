@@ -35,7 +35,7 @@ public static void sendEvent(Context context,
 引数それぞれのパラメータの仕様は以下の通りです。
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
+|:----------|:-----------:|:------------|
 |eventName|String|計測を行うイベント種別に応じて、指定されたイベント名を設定します。|
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。 |
 |<span style="color:grey">label	|<span style="color:grey">String|<span style="color:grey">使用しません。|
@@ -53,12 +53,12 @@ public static void sendEvent(Context context,
 Jsonの仕様は以下の通りです。
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
+|:----------|:-----------:|:------------|
 |product|Array|閲覧した、カートに入れた等の商品の設定領域です。|
-|product[].id|String|閲覧した、カートに入れた等の商品IDを設定します。|
-|product[].price|double|閲覧した、カートに入れた等の商品単価を設定します。|
-|product[].quantity|int|閲覧した、カートに入れた等の商品数量を設定します。|
-|product[].category|String|閲覧した、カートに入れた等の商品カテゴリを指定します。<br>複数ある場合はカンマ「,」区切り、階層がある場合は「>」で分割します。<br>例）映画、ビデオ>DVD>スポーツ、レジャー|
+|&nbsp;&nbsp;product[].id|String|閲覧した、カートに入れた等の商品IDを設定します。|
+|&nbsp;&nbsp;product[].price|double|閲覧した、カートに入れた等の商品単価を設定します。|
+|&nbsp;&nbsp;product[].quantity|int|閲覧した、カートに入れた等の商品数量を設定します。|
+|&nbsp;&nbsp;product[].category|String|閲覧した、カートに入れた等の商品カテゴリを指定します。<br>複数ある場合はカンマ「,」区切り、階層がある場合は「>」で分割します。<br>例）映画、ビデオ>DVD>スポーツ、レジャー|
 |din|String|開始日の指定がある場合に設定します。|
 |dout|String|終了日の指定がある場合に指定します。|
 |criteo_partner_id|String|CriteoアカウントIDが同一アプリで異なる場合に設定します。|
@@ -72,21 +72,21 @@ Jsonの仕様は以下の通りです。
 データフィードの状態が更新されるアクションの場合、下記を実装してください。
 
 | 引数 |必須|型 | 概要 |
-|:----------:|:-------:|:----:|:------------|
+|:----------|:-------:|:----:|:------------|
 |datafeed.version|必須|String|データフィードのバージョンを指定します。|
-|datafeed.product|必須|Array<Object>|商品マスタデータフィードの設定領域です。|
-|datafeed.product[].id|必須|String|データフィードの商品を一意に識別するIDです。|
-|datafeed.product[].action|必須|String|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
-|datafeed.product[].name|必須|String|商品名です。<br>削除の際はnullで構いません。|
-|datafeed.product[].expire|任意|String|商品の有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|datafeed.product[].effective|任意|String|商品の公開日時です。<br>これが設定された場合、公開日時になるまで商品は表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|datafeed.product[].img|任意|String|商品画像のURLです。|
-|datafeed.product[].category1|任意|String|第一階層のカテゴリを指定します。|
-|datafeed.product[].category2|任意|String|第二階層のカテゴリを指定します。|
-|datafeed.product[].category3|任意|String|第三階層のカテゴリを指定します。|
-|datafeed.product[].price|任意|Double|商品の価格を指定します。|
-|datafeed.product[].currency|任意|String|商品の通貨コードを指定します。<br>nullの場合JPYが適用されます。|
-|datafeed.product[].(任意)|任意|String|その他の配信や分析に使用する項目を指定します。<br>データフィードの項目を設定してください。|
+|datafeed.product|必須|Array|商品マスタデータフィードの設定領域です。|
+|&nbsp;&nbsp;datafeed.product[].id|必須|String|データフィードの商品を一意に識別するIDです。|
+|　datafeed.product[].action|必須|String|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
+|&nbsp;&nbsp;datafeed.product[].name|必須|String|商品名です。<br>削除の際はnullで構いません。|
+|&nbsp;&nbsp;datafeed.product[].expire|任意|String|商品の有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
+|&nbsp;&nbsp;datafeed.product[].effective|任意|String|商品の公開日時です。<br>これが設定された場合、公開日時になるまで商品は表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
+|&nbsp;&nbsp;datafeed.product[].img|任意|String|商品画像のURLです。|
+|&nbsp;&nbsp;datafeed.product[].category1|任意|String|第一階層のカテゴリを指定します。|
+|&nbsp;&nbsp;datafeed.product[].category2|任意|String|第二階層のカテゴリを指定します。|
+|&nbsp;&nbsp;datafeed.product[].category3|任意|String|第三階層のカテゴリを指定します。|
+|&nbsp;&nbsp;datafeed.product[].price|任意|Double|商品の価格を指定します。|
+|&nbsp;&nbsp;datafeed.product[].currency|任意|String|商品の通貨コードを指定します。<br>nullの場合JPYが適用されます。|
+|&nbsp;&nbsp;datafeed.product[].(任意)|任意|String|その他の配信や分析に使用する項目を指定します。<br>データフィードの項目を設定してください。|
 
 
 　　　　

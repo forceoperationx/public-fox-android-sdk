@@ -23,7 +23,7 @@ AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 ### 引数詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
+|:----------|:-----------:|:------------|
 |context|Context|呼び出し元のActivityのContext|
 |eventName|String|"\_add\_to\_cart" を指定してください。|
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
@@ -35,12 +35,13 @@ AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 #### イベント情報詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
-|eventInfo(currency)|JSONObject|通貨<br>Nil/Nullの場合、デフォルト “JPY”|
-|eventInfo(fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo(product[].id)|JSONObject|商品ID<br>データフィードと同じ商品IDを使用してください。|
-|eventInfo(product[].price)|JSONObject|該当商品の価格を設定します。|
-|eventInfo(product[].quantity)|JSONObject|該当商品を買った個数を設定します。|
-|eventInfo(din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo(criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
+|:----------|:-----------:|:------------|
+|eventInfo (currency)|JSONObject|通貨<br>Nil/Nullの場合、デフォルト “JPY”|
+|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
+|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>データフィードと同じ商品IDを使用してください。|
+|&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|該当商品の価格を設定します。|
+|&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|該当商品を買った個数を設定します。|
+|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
 　　

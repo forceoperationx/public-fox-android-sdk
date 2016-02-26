@@ -18,7 +18,7 @@ AnalyticsManager.sendEvent(this, "_view_content", null, null, 0, eventInfo);
 ### 引数詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
+|:----------|:-----------:|:------------|
 |context|Context|呼び出し元のActivityのContext|
 |eventName|String|"\_view\_content" を指定してください。|
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
@@ -29,9 +29,10 @@ AnalyticsManager.sendEvent(this, "_view_content", null, null, 0, eventInfo);
 #### イベント情報詳細
 
 | 引数 | 型 | 概要 |
-|:----------:|:-----------:|:------------|
-|eventInfo(fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo(product[].id)|JSONObject|閲覧した商品IDを設定します。|
-|eventInfo(din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo(criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
+|:----------|:-----------:|:------------|
+|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
+|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|閲覧した商品IDを設定します。|
+|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
 　　
