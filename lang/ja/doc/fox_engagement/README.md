@@ -63,6 +63,7 @@ Jsonの仕様は以下の通りです。
 |dout|String|終了日の指定がある場合に指定します。|
 |criteo_partner_id|String|CriteoアカウントIDが同一アプリで異なる場合に設定します。|
 |fox_cvpoint|Long|F.O.Xの成果地点IDを入力します。|
+|datafeed|JSONObject|リアルタイムデータフィード (以下参照)|
 
 ### 1.3. リアルタイムデータフィード更新仕様
 　eventInfo内にデータフィードの更新情報をJson形式で設定することで、F.O.Xエンゲージメント配信連携により、リアルタイムにデータフィードを更新することができます。
@@ -73,20 +74,20 @@ Jsonの仕様は以下の通りです。
 
 | 引数 |必須|型 | 概要 |
 |:----------|:-------:|:----:|:------------|
-|datafeed.version|必須|String|データフィードのバージョンを指定します。|
-|datafeed.product|必須|Array|商品マスタデータフィードの設定領域です。|
-|&nbsp;&nbsp;datafeed.product[].id|必須|String|データフィードの商品を一意に識別するIDです。|
-|&nbsp;&nbsp;datafeed.product[].action|必須|String|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
-|&nbsp;&nbsp;datafeed.product[].name|必須|String|商品名です。<br>削除の際はnullで構いません。|
-|&nbsp;&nbsp;datafeed.product[].expire|任意|String|商品の有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|&nbsp;&nbsp;datafeed.product[].effective|任意|String|商品の公開日時です。<br>これが設定された場合、公開日時になるまで商品は表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|&nbsp;&nbsp;datafeed.product[].img|任意|String|商品画像のURLです。|
-|&nbsp;&nbsp;datafeed.product[].category1|任意|String|第一階層のカテゴリを指定します。|
-|&nbsp;&nbsp;datafeed.product[].category2|任意|String|第二階層のカテゴリを指定します。|
-|&nbsp;&nbsp;datafeed.product[].category3|任意|String|第三階層のカテゴリを指定します。|
-|&nbsp;&nbsp;datafeed.product[].price|任意|Double|商品の価格を指定します。|
-|&nbsp;&nbsp;datafeed.product[].currency|任意|String|商品の通貨コードを指定します。<br>nullの場合JPYが適用されます。|
-|&nbsp;&nbsp;datafeed.product[].(任意)|任意|String|その他の配信や分析に使用する項目を指定します。<br>データフィードの項目を設定してください。|
+|version|必須|String|データフィードのバージョンを指定します。|
+|product|必須|Array|商品マスタデータフィードの設定領域です。|
+|&nbsp;&nbsp;product[].id|必須|String|データフィードの商品を一意に識別するIDです。|
+|&nbsp;&nbsp;product[].action|必須|String|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
+|&nbsp;&nbsp;product[].name|必須|String|商品名です。<br>削除の際はnullで構いません。|
+|&nbsp;&nbsp;product[].expire|任意|String|商品の有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
+|&nbsp;&nbsp;product[].effective|任意|String|商品の公開日時です。<br>これが設定された場合、公開日時になるまで商品は表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
+|&nbsp;&nbsp;product[].img|任意|String|商品画像のURLです。|
+|&nbsp;&nbsp;product[].category1|任意|String|第一階層のカテゴリを指定します。|
+|&nbsp;&nbsp;product[].category2|任意|String|第二階層のカテゴリを指定します。|
+|&nbsp;&nbsp;product[].category3|任意|String|第三階層のカテゴリを指定します。|
+|&nbsp;&nbsp;product[].price|任意|Double|商品の価格を指定します。|
+|&nbsp;&nbsp;product[].currency|任意|String|商品の通貨コードを指定します。<br>nullの場合JPYが適用されます。|
+|&nbsp;&nbsp;product[].(任意)|任意|String|その他の配信や分析に使用する項目を指定します。<br>データフィードの項目を設定してください。|
 
 
 　　　　
