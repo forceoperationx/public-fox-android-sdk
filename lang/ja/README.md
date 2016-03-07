@@ -9,9 +9,9 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[1. インストール](#install_sdk)**
 * **[2. 設定](#setting_sdk)**
 * **[3. インストール計測の実装](#tracking_install)**
-	* **[sendConversionの詳細](./doc/send_conversion/README.md)**
+	* [sendConversionの詳細](./doc/send_conversion/README.md)
 * **[4. LTV計測の実装](#tracking_ltv)**
-	* **[タグを利用したLTV計測について](./doc/ltv_browser/README.md)**
+	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
 * **[5. アクセス解析の実装](#tracking_analytics)**
 	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
