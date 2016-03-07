@@ -7,6 +7,9 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 ## 目次
 
 * **[1. インストール](#install_sdk)**
+	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
 * **[2. 設定](#setting_sdk)**
 * **[3. インストール計測の実装](#tracking_install)**
 	* [sendConversionの詳細](./doc/send_conversion/README.md)
