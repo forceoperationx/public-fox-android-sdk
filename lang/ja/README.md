@@ -4,6 +4,9 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 本ドキュメントでは、スマートフォンアプリケーションにおける広告効果最大化のためのF.O.X SDK導入手順について説明します。
 
+
+* [インストール計測の実装](#tracking_install)
+
 ## F.O.X SDKとは
 
 F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
@@ -136,6 +139,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 [AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
 
+<div id="tracking_install"></div>
 ## 3. インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。プロジェクトのソースコードを編集し、次の通り実装を行ってください。
