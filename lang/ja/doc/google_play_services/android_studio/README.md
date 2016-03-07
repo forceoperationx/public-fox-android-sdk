@@ -17,3 +17,4 @@ dependencies {
 
 ---
 [戻る](../README.md)
+[トップ](/lang/ja/README.md)

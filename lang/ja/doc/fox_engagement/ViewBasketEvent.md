@@ -44,4 +44,8 @@ AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 |&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|該当商品を買った個数を設定します。|
 |eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
 |eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
-　　
+
+
+---
+[戻る](/lang/ja/doc/fox_engagement/README.md)
+[トップ](/lang/ja/README.md)

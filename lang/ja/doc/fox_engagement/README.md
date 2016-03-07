@@ -99,3 +99,7 @@ Jsonの仕様は以下の通りです。
 * [> View Product イベント](./ViewProductEvent.md)
 * [> View Basket イベント](./ViewBasketEvent.md)
 * [> Track Transaction イベント](./ViewTransactionEvent.md)
+
+
+---
+[トップ](/lang/ja/README.md)

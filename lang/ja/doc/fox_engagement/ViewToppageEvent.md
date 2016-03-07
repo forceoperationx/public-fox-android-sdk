@@ -32,3 +32,8 @@ AnalyticsManager.sendEvent(this, "_view_toppage", null, null, 0, eventInfo);
 |eventInfo (din/dout)|JSONObject|日付の指定がある場合は入力（任意）|
 |eventInfo (criteo_partner_id)|JSONObject|CriteoアカウントIDが同一アプリで異なる場合は入力(任意)|
 |eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。(任意)|
+
+
+---
+[戻る](/lang/ja/doc/fox_engagement/README.md)
+[トップ](/lang/ja/README.md)
