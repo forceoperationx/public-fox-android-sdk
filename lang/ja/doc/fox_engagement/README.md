@@ -94,7 +94,7 @@ Jsonの仕様は以下の通りです。
 ## 2.イベント計測の実装
 　F.O.X SDKで対応しているF.O.XエンゲージメントおよびCriteoのイベント計測は以下の５つとなっています。<br>実装の詳細は以下詳細ページにてご確認ください。
 
-* [> View Home イベント](./ViewHomeEvent.md)
+* [> View Toppage イベント](./ViewToppageEvent.md)
 * [> View Listing イベント](./ViewListingEvent.md)
 * [> View Product イベント](./ViewProductEvent.md)
 * [> View Basket イベント](./ViewBasketEvent.md)

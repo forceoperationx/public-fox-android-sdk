@@ -13,12 +13,12 @@ JSONObject eventInfo = new JSONObject("{" +
                                                 "{'id':'1235','price':550,'quantity':2}," +
                                                 "{'id':'1236','price':550,'quantity':2}" +
                                                 "]," +
-                                      "'din':'2016 -01-02'," +
+                                      "'din':'2016-01-02'," +
                                       "'dout':'2016-01-05'," +
                                       "'criteo_partner_id':'XXXXX'" +
                                       "'datafeed' : {" +
                                                     "'version':'v1.0'," +
-                                                    "`product`:[" +
+                                                    "'product':[" +
                                                                "{" +
                                                                 "'id':'12345'" +
                                                                 "'action':'U'" +
