@@ -4,6 +4,31 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 本ドキュメントでは、スマートフォンアプリケーションにおける広告効果最大化のためのF.O.X SDK導入手順について説明します。
 
+## 目次
+
+* **[1. インストール](#install_sdk)**
+	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
+* **[2. 設定](#setting_sdk)**
+* **[3. インストール計測の実装](#tracking_install)**
+	* [sendConversionの詳細](./doc/send_conversion/README.md)
+* **[4. LTV計測の実装](#tracking_ltv)**
+	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
+* **[5. アクセス解析の実装](#tracking_analytics)**
+	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
+	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
+* **[6. ProGuardを利用する場合](#use_proguard)**
+* **[7. 疎通テストの実施](#integration_test)**
+	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
+* **[8. その他機能の実装](#other_function)**
+	* [プッシュ通知の実装](./doc/notify/README.md)
+	* [オプトアウトの実装](./doc/optout/README.md)
+	* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
+	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
+	* [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
+* **[9. 最後に必ずご確認ください](#trouble_shooting)**
+
 ## F.O.X SDKとは
 
 F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
@@ -20,6 +45,11 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 
 自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
 
+* **プッシュ通知**
+
+F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通知を行うことができます。例えば、特定の広告から流入したユーザーに対してメッセージを送ることができます。
+
+<div id="install_sdk"></div>
 ## 1. インストール
 
 以下のページより最新のSDKをダウンロードしてください。
@@ -34,7 +64,7 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 * [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
 
 
-
+<div id="setting_sdk"></div>
 ## 2. 設定
 
 
@@ -132,6 +162,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 [AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
 
+<div id="tracking_install"></div>
 ## 3. インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。プロジェクトのソースコードを編集し、次の通り実装を行ってください。
@@ -180,6 +211,7 @@ protected void onNewIntent(Intent intent)
 
 > ※1 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityにカスタムURLスキームが設定されている必要があります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
 
+<div id="tracking_ltv"></div>
 ## 4. LTV計測の実装
 
 会員登録、チュートリアル突破、課金など任意の成果地点にLTV計測を実装することで、流入元広告のLTVを測定することができます。LTV計測が不要の場合には、本項目の実装を省略できます。
@@ -209,6 +241,7 @@ LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4
 
 [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
 
+<div id="tracking_analytics"></div>
 ## 5. アクセス解析の実装
 
 自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。
@@ -236,7 +269,7 @@ public class MainActivity extends Activity {
 
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 
-
+<div id="use_proguard"></div>
 ## 6. ProGuardを利用する場合
 
 ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
@@ -252,10 +285,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 -dontwarn jp.appAdForce.android.**
 -dontwarn jp.co.dimage.**
 -dontwarn jp.co.cyberz.fox.**
--dontwarn com.adobe.fre.FREContext
--dontwarn com.adobe.fre.FREExtension
--dontwarn com.adobe.fre.FREFunction
--dontwarn com.adobe.fre.FREObject
+-dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
 ```
@@ -264,7 +294,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
-
+<div id="integration_test"></div>
 ## 7. 疎通テストの実施
 
 マーケットへの申請までに、SDKを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
@@ -293,12 +323,14 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 
 [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
 
-
+<div id="other_function"></div>
 ## 8. その他機能の実装
+
+* [プッシュ通知の実装](./doc/notify/README.md)
 
 * [オプトアウトの実装](./doc/optout/README.md)
 
-
+<div id="trouble_shooting"></div>
 ## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
 
 ### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない

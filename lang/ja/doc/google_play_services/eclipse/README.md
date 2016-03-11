@@ -23,3 +23,5 @@ Eclipseのメニューの「ファイル」>「インポート」から、「And
 
 ---
 [戻る](../README.md)
+
+[トップ](/lang/ja/README.md)
