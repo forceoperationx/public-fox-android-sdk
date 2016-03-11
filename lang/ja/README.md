@@ -20,6 +20,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 * **[6. ProGuardを利用する場合](#use_proguard)**
 * **[7. 疎通テストの実施](#integration_test)**
+	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
 * **[8. その他機能の実装](#other_function)**
 	* [プッシュ通知の実装](./doc/notify/README.md)
 	* [オプトアウトの実装](./doc/optout/README.md)
@@ -284,10 +285,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 -dontwarn jp.appAdForce.android.**
 -dontwarn jp.co.dimage.**
 -dontwarn jp.co.cyberz.fox.**
--dontwarn com.adobe.fre.FREContext
--dontwarn com.adobe.fre.FREExtension
--dontwarn com.adobe.fre.FREFunction
--dontwarn com.adobe.fre.FREObject
+-dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
 ```
