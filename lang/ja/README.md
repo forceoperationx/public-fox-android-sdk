@@ -20,6 +20,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 	* [エンゲージメント配信について](./doc/fox_engagement/README.md)
 * **[6. 広告配信機能](#fox_trade)**
+	* [広告配信機能の詳細](./doc/fox_trade/README.md)
 * **[7. ProGuardを利用する場合](#use_proguard)**
 * **[8. 疎通テストの実施](#integration_test)**
 	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
@@ -307,7 +308,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-[広告配信機能の詳細](./doc/deliver/README.md)
+[広告配信機能の詳細](./doc/fox_trade/README.md)
 
 ### 6.2 インタースティシャル広告表示の実装
 
