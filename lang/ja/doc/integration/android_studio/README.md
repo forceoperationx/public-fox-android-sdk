@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.jp.cyberz.fox:sdk-android:v2.15.7g'
+    compile 'co.jp.cyberz.fox:sdk-android:3.0.0'
 }
 ```
 
