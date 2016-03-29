@@ -2,12 +2,15 @@
 <metadata>
   <groupId>co.jp.cyberz.fox</groupId>
   <artifactId>sdk-android</artifactId>
-  <version>v3.0.0</version>
+  <version>v2.15.4g</version>
   <versioning>
     <versions>
-      <version>v3.0.0</version>
+      <version>v2.15.4g</version>
+      <version>v2.15.5g</version>
+      <version>v2.15.6g</version>
+      <version>v2.15.7g</version>
       <version>3.0.0</version>
     </versions>
-    <lastUpdated>20160210015555</lastUpdated>
+    <lastUpdated>20160329034532</lastUpdated>
   </versioning>
 </metadata>
