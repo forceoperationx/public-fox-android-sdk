@@ -55,7 +55,7 @@ AdvertisingIDを取得するには[`こちら`](/lang/ja/doc/google_play_service
 
 ## 3. コードへの組み込み
 
-### バナー広告表示サンプル その１
+### 3.1 バナー広告表示サンプル その１
 
 javaコードのみでの実装
 
@@ -87,7 +87,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### バナー広告表示サンプル その２
+### 3.2 バナー広告表示サンプル その２
 
 layoutのXMLで定義しての実装
 
@@ -123,7 +123,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### インタースティシャル広告表示サンプル その１
+### 3.3 インタースティシャル広告表示サンプル その１
 
 ```java
 @Override
@@ -136,7 +136,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### インタースティシャル広告表示サンプル その２
+### 3.4 インタースティシャル広告表示サンプル その２
 
 ```java
 protected void onCreate(Bundle savedInstanceState) {
@@ -167,11 +167,9 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 > 使用例 : 画面A→画面Bへ遷移する際、インタースティシャル広告を表示してから遷移させるなど<br>
-（画面A→インタースティシャル広告→画面B）<br>その場合、画面Aにて上記実装を行い、`onSuccess`,`onFailed`,`onCloseView`の各々のメソッド内に画面Bへの遷移する処理を実装することで可能となります。
+（画面A→インタースティシャル広告→画面B）<br>その場合、画面Aにて上記実装を行い、`onSuccess`,`onFailed`,`onClose`の各々のメソッド内に画面Bへの遷移する処理を実装することで可能となります。
 
 ## 4. 表示サンプル
-
-### バナー広告サンプル
 
 <table>
 <tr>
