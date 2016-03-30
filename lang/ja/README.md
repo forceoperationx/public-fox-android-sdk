@@ -18,16 +18,19 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[5. アクセス解析の実装](#tracking_analytics)**
 	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
-* **[6. ProGuardを利用する場合](#use_proguard)**
-* **[7. 疎通テストの実施](#integration_test)**
+	* [エンゲージメント配信について](./doc/fox_engagement/README.md)
+* **[6. 広告配信機能](#fox_trade)**
+	* [広告配信機能の詳細](./doc/fox_trade/README.md)
+* **[7. ProGuardを利用する場合](#use_proguard)**
+* **[8. 疎通テストの実施](#integration_test)**
 	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
-* **[8. その他機能の実装](#other_function)**
+* **[9. その他機能の実装](#other_function)**
 	* [プッシュ通知の実装](./doc/notify/README.md)
 	* [オプトアウトの実装](./doc/optout/README.md)
 	* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
 	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
 	* [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
-* **[9. 最後に必ずご確認ください](#trouble_shooting)**
+* **[10. 最後に必ずご確認ください](#trouble_shooting)**
 
 ## F.O.X SDKとは
 
@@ -48,6 +51,10 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 * **プッシュ通知**
 
 F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通知を行うことができます。例えば、特定の広告から流入したユーザーに対してメッセージを送ることができます。
+
+* **広告配信**
+
+アプリ内に相互集客広告を表示させることができます。尚、広告表示が不要の場合には、本項目の実装を省略できます。
 
 <div id="install_sdk"></div>
 ## 1. インストール
@@ -269,8 +276,74 @@ public class MainActivity extends Activity {
 
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 
+[エンゲージメント配信について](./doc/fox_engagement/README.md)
+
+<div id="fox_trade"></div>
+## 6. 広告配信機能
+
+本機能を利用することで相互集客広告を表示させることができます。
+尚、広告表示が不要の場合には、本項目の実装を省略できます。
+表示する広告の種類は以下の２つとなります。
+
+* バナー広告
+* インタースティシャル広告
+
+### 6.1 バナー広告表示の実装
+
+ActivityのonCreate内で`BannerView`インスタンスを生成し、既存レイアウトのViewGroupに追加します。
+`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.test_activity);
+
+   // 既存レイアウトに追加
+   LinearLayout ll = (LinearLayout) findViewById(R.id.banner_layout);
+   // バナー広告表示View
+   BannerView mBannerView = new BannerView(this);
+   mBannerView.show("広告表示ID");
+   ll.addView(mBannerView);
+}
+```
+
+[広告配信機能の詳細](./doc/fox_trade/README.md)
+
+### 6.2 インタースティシャル広告表示の実装
+
+**[Activityの追加]**
+
+インタースティシャル広告を表示する際に必須となるActivityとなります。<br>
+以下、そのままコピーして&lt;application&gt;タグ内にご設定ください。
+
+```xml
+<activity
+    android:name="co.cyberz.dahlia.DahliaActivity"
+    android:theme="@android:style/Theme.Translucent" />
+```
+
+**[実装コード]**
+
+`Interstitial`インスタンスを生成し`show`メソッドを呼び出すことで、前述のDahliaActivityに遷移し
+インタースティシャル広告が表示されます。<br>
+`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.test_activity);
+    // インタースティシャル表示用メソッド
+    Interstitial mInterstitial = new Interstitial(this);
+    mInterstitial.show("広告表示ID");
+}
+```
+
+[広告配信機能の詳細](./doc/deliver/README.md)
+
 <div id="use_proguard"></div>
-## 6. ProGuardを利用する場合
+## 7. ProGuardを利用する場合
 
 ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
 
@@ -295,7 +368,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="integration_test"></div>
-## 7. 疎通テストの実施
+## 8. 疎通テストの実施
 
 マーケットへの申請までに、SDKを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -324,26 +397,26 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
 
 <div id="other_function"></div>
-## 8. その他機能の実装
+## 9. その他機能の実装
 
 * [プッシュ通知の実装](./doc/notify/README.md)
 
 * [オプトアウトの実装](./doc/optout/README.md)
 
 <div id="trouble_shooting"></div>
-## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
+## 10. 最後に必ずご確認ください（これまで発生したトラブル集）
 
-### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
+### 10.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
 
 Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
 
 
-### 9.2. URLスキームに大文字が含まれ、正常にアプリに遷移されない
+### 10.2. URLスキームに大文字が含まれ、正常にアプリに遷移されない
 
 環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
 
 
-### 9.3. F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
+### 10.3. F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
 
 F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。
 重複検知が行えない設定では、同一端末でも再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。
