@@ -8,8 +8,8 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 * **[1. インストール](#install_sdk)**
 	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
-	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
 	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
+	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
 * **[2. 設定](#setting_sdk)**
 * **[3. インストール計測の実装](#tracking_install)**
 	* [sendConversionの詳細](./doc/send_conversion/README.md)
@@ -59,17 +59,31 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 <div id="install_sdk"></div>
 ## 1. インストール
 
-以下のページより最新のSDKをダウンロードしてください。
+プロジェクトのbuild.gradleに以下を追加してください。
+
+```
+repositories {
+    maven {
+        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+    }
+}
+
+dependencies {
+    compile 'co.jp.cyberz.fox:sdk-android:3.1.0'
+}
+```
+
+手動でインストールを行う場合は、以下のページより最新のSDKをダウンロードしてください。
 
 * [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/update/README.md)をご参照ください。
+ダウンロードしたSDKを展開し、`libs/AppAdForce_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
 
-ダウンロードしたSDK「FOX_Android_SDK_<version>.zip」を展開し、「AppAdForce.jar」をアプリケーションのプロジェクトに組み込んでください。
-
-* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+**[詳細]**
 * [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
+* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
 
+> ※ 既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/update/README.md)をご参照ください。
 
 <div id="setting_sdk"></div>
 ## 2. 設定
@@ -354,10 +368,12 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 -keep interface jp.appAdForce.** { *; }
 -keep class jp.appAdForce.** { *; }
 -keep class jp.co.dimage.** { *; }
+-keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn jp.appAdForce.android.**
 -dontwarn jp.co.dimage.**
 -dontwarn jp.co.cyberz.fox.**
+-dontwarn co.cyberz.**
 -dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**

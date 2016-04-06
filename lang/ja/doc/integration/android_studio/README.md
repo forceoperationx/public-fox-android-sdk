@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.jp.cyberz.fox:sdk-android:3.0.0'
+    compile 'co.jp.cyberz.fox:sdk-android:{VERSION}'
 }
 ```
 
@@ -30,7 +30,7 @@ Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下�
 
 ```
 dependencies {
-	compile files('libs/AppAdForce.jar')
+	compile files('libs/AppAdForce_{VERSION}.jar')
 }
 ```
 
