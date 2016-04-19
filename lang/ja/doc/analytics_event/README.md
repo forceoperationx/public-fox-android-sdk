@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
   //イベント成功時
   public void didTutorial()　{
     // イベントの送信
-    AnalyticsManager.sendEvent("チュートリアル突破", null, null, 1);
+    AnalyticsManager.sendEvent(MainActivity.this, "チュートリアル突破", null, null, 1);
   }
 }
 ```
