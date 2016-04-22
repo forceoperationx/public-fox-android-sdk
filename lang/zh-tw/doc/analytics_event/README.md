@@ -20,6 +20,7 @@ sendEvent方法的參數說明如下。
 
 |參數|型|概要|
 |:------|:------:|:------:|:------|
+|context|Context|設定為MainActivity.this|
 |eventName|String|設定能夠識別計測Event的任意名稱。|
 |action|String|設定屬於Event的Action名。可以自由設定。可以為null。|
 |label|String|設定屬於Event的Label名。可以自由設定。可以為null。|
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
   //Event成功時
   public void didTutorial()　{
     // Event發送
-    AnalyticsManager.sendEvent("教程突破", null, null, 1);
+    AnalyticsManager.sendEvent(MainActivity.this, "教程突破", null, null, 1);
   }
 }
 ```
