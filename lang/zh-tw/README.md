@@ -4,6 +4,34 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 在這個文檔裡，詳細講解了基於智慧手機平台優化廣告效果的F.O.X SDK的導入步驟。
 
+## 目次
+
+* **[1. インストール](#install_sdk)**
+	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
+	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+* **[2. 設定](#setting_sdk)**
+* **[3. インストール計測の実装](#tracking_install)**
+	* [sendConversionの詳細](./doc/send_conversion/README.md)
+* **[4. LTV計測の実装](#tracking_ltv)**
+	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
+* **[5. アクセス解析の実装](#tracking_analytics)**
+	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
+	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
+	* [エンゲージメント配信について](./doc/fox_engagement/README.md)
+* **[6. 広告配信機能](#fox_trade)**
+	* [広告配信機能の詳細](./doc/fox_trade/README.md)
+* **[7. ProGuardを利用する場合](#use_proguard)**
+* **[8. 疎通テストの実施](#integration_test)**
+	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
+* **[9. その他機能の実装](#other_function)**
+	* [プッシュ通知の実装](./doc/notify/README.md)
+	* [オプトアウトの実装](./doc/optout/README.md)
+	* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
+	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
+	* [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
+* **[10. 最後に必ずご確認ください](#trouble_shooting)**
+
 ## F.O.X SDK是什麼
 
 在APP中導入F.O.X，可以實現如下功能。
@@ -20,18 +48,40 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 自然流入和廣告流入的APP安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。
 
+* **広告配信**
+
+アプリ内に相互集客広告を表示させることができます。尚、広告表示が不要の場合には、本項目の実装を省略できます。
+
+<div id="install_sdk"></div>
 ## 1. 導入
 
-請從下面的頁面來下載最新的SDK。
+請把下面代碼添加到項目的build.gradle裡。
+
+```
+repositories {
+    maven {
+        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+    }
+}
+
+dependencies {
+    compile 'co.jp.cyberz.fox:sdk-android:3.1.0'
+}
+```
+
+如果希望手動安裝，請從下面的頁面來下載最新的SDK。
 
 * [SDK發布頁面](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-請展開下載的SDK「FOX_Android_SDK_<version>.zip」，把「AppAdForce.jar」導入到APP的項目裡。
+請展開下載的SDK、把`libs/AppAdForce_{VERSION}.jar`導入到APP的項目裡。
 
-
-* [Eclipse項目的導入方法](./doc/integration/eclipse/README.md)
+**[詳細]**
 * [AndroidStudio項目的導入方法](./doc/integration/android_studio/README.md)
+* [Eclipse項目的導入方法](./doc/integration/eclipse/README.md)
 
+> ※ 如果已經在APP裡導入了SDK，請參考[有關更新到最新版本](./doc/update/README.md)。
+
+<div id="setting_sdk"></div>
 ## 2. 設定
 
 * **SDK設定**
@@ -59,7 +109,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 > ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE權限是利用把數據保存在外部存儲器，為了再安裝APP的時候更準確地進行Install計測而必須設定的權限，屬於任意設定。
 
-> ※2 Android M為了利用ProtectionLevel設定為`dangerous`權限的機能，需要獲得用戶許可。詳細請查看[利用外部存儲設定重複排除](/lang/zh-tw/doc/external_storage/README.md)
+> ※2 Android M為了利用ProtectionLevel設定為`dangerous`權限的機能，需要獲得用戶許可。詳細請查看[利用外部存儲設定重複排除](./doc/external_storage/README.md)
 
 ### meta-data的設定
 
@@ -126,6 +176,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 
 [AndroidManifest.xml實例](./doc/config_android_manifest/AndroidManifest.xml)
 
+<div id="tracking_install"></div>
 ## 3. Install計測的安裝
 
 安裝了初次啟動時的Install計測處理，就能夠測定廣告效果了。請編輯項目的源代碼，請仿照下面的例子來安裝。
@@ -173,6 +224,7 @@ protected void onNewIntent(Intent intent)
 
 > ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。該計測是利用定制URL Scheme調用Activity的方法來進行Reengagement計測的。
 
+<div id="tracking_ltv"></div>
 ## 4. LTV計測的安裝
 
 通過在會員登錄，教程突破，消費等任意的成果地點安裝LTV計測，能夠測定不同廣告流入的LTV。如果不做LTV計測，可以省略本項目的安裝。
@@ -203,6 +255,7 @@ ltv.sendLtvConversion(成果地点ID);
 
 [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
 
+<div id="tracking_analytics"></div>
 ## 5. 流量分析的安裝
 
 自然流入和廣告流入的安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。如果不做流量分析，可以省略本項目的安裝。
@@ -230,8 +283,74 @@ public class MainActivity extends Activity {
 
 [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
 
+[關於Reengagement廣告投放](./doc/fox_engagement/README.md)
 
-## 6. 使用ProGuard
+<div id="fox_trade"></div>
+## 6. 広告配信機能
+
+本機能を利用することで相互集客広告を表示させることができます。
+尚、広告表示が不要の場合には、本項目の実装を省略できます。
+表示する広告の種類は以下の２つとなります。
+
+* バナー広告
+* インタースティシャル広告
+
+### 6.1 バナー広告表示の実装
+
+ActivityのonCreate内で`BannerView`インスタンスを生成し、既存レイアウトのViewGroupに追加します。
+`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.test_activity);
+
+   // 既存レイアウトに追加
+   LinearLayout ll = (LinearLayout) findViewById(R.id.banner_layout);
+   // バナー広告表示View
+   BannerView mBannerView = new BannerView(this);
+   mBannerView.show("広告表示ID");
+   ll.addView(mBannerView);
+}
+```
+
+[広告配信機能の詳細](./doc/fox_trade/README.md)
+
+### 6.2 インタースティシャル広告表示の実装
+
+**[Activityの追加]**
+
+インタースティシャル広告を表示する際に必須となるActivityとなります。<br>
+以下、そのままコピーして&lt;application&gt;タグ内にご設定ください。
+
+```xml
+<activity
+    android:name="co.cyberz.dahlia.DahliaActivity"
+    android:theme="@android:style/Theme.Translucent" />
+```
+
+**[実装コード]**
+
+`Interstitial`インスタンスを生成し`show`メソッドを呼び出すことで、前述のDahliaActivityに遷移し
+インタースティシャル広告が表示されます。<br>
+`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.test_activity);
+    // インタースティシャル表示用メソッド
+    Interstitial mInterstitial = new Interstitial(this);
+    mInterstitial.show("広告表示ID");
+}
+```
+
+[広告配信機能の詳細](./doc/deliver/README.md)
+
+<div id="use_proguard"></div>
+## 7. 使用ProGuard
 
 使用ProGuard進行APP讀取混淆化時，請進行以下設定，將F.O.X SDK的method排除在對象外。
 
@@ -242,14 +361,13 @@ public class MainActivity extends Activity {
 -keep interface jp.appAdForce.** { *; }
 -keep class jp.appAdForce.** { *; }
 -keep class jp.co.dimage.** { *; }
+-keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn jp.appAdForce.android.**
 -dontwarn jp.co.dimage.**
 -dontwarn jp.co.cyberz.fox.**
--dontwarn com.adobe.fre.FREContext
--dontwarn com.adobe.fre.FREExtension
--dontwarn com.adobe.fre.FREFunction
--dontwarn com.adobe.fre.FREObject
+-dontwarn co.cyberz.**
+-dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
 ```
@@ -258,8 +376,8 @@ public class MainActivity extends Activity {
 
 [導入Google Play Services時的Proguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
-
-## 7. 進行疏通測試
+<div id="integration_test"></div>
+## 8. 進行疏通測試
 
 在APP上架申請以前，在導入SDK的狀態請做充分的測試，以確保APP的動作沒有問題。
 
@@ -285,24 +403,25 @@ public class MainActivity extends Activity {
 
 [Reengagement計測時的疏通測試](./doc/reengagement_test/README.md)
 
-
-## 8. 其他機能的安裝
+<div id="other_function"></div>
+## 9. 其他機能的安裝
 
 * [Opt-Out的安裝](./doc/optout/README.md)
 
-## 9. 最後請務必確認（到現在發生過的問題集）
+<div id="trouble_shooting"></div>
+## 10. 最後請務必確認（到現在發生過的問題集）
 
-### 9.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
+### 10.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
 
 為了進行Cookie計測，在啟動外部瀏覽器以後，要利用URL Scheme跳轉到APP來返回到原來的畫面。這時有必要設定獨自的URL Scheme，未設定URL Scheme發布的APP將無法正常跳轉。
 
 
-### 9.2. URL Scheme裡包含了大寫字母，無法正常跳轉回APP
+### 10.2. URL Scheme裡包含了大寫字母，無法正常跳轉回APP
 
 由於環境的不同，可能無法判別URL Scheme裡的大小寫字母，進而引起不能正常跳轉。因此URL Scheme請全部使用小寫字母來設定。
 
 
-### 9.3. 用F.O.X計測的Install數值比Google Play Developer Console的數值要大
+### 10.3. 用F.O.X計測的Install數值比Google Play Developer Console的數值要大
 
 F.O.X使用了多種方式來監測終端的重複安裝。
 倘若設定了不進行重複監測，在相同終端再安裝時F.O.X會判定為新的安裝。
