@@ -4,33 +4,32 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 在這個文檔裡，詳細講解了基於智慧手機平台優化廣告效果的F.O.X SDK的導入步驟。
 
-## 目次
+## 目錄
 
-* **[1. インストール](#install_sdk)**
-	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
-	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
-	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+* **[1. 導入](#install_sdk)**
+	* [SDK下載](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [AndroidStudio項目的導入方法](./doc/integration/android_studio/README.md)
+	* [Eclipse項目的導入方法](./doc/integration/eclipse/README.md)
 * **[2. 設定](#setting_sdk)**
-* **[3. インストール計測の実装](#tracking_install)**
-	* [sendConversionの詳細](./doc/send_conversion/README.md)
-* **[4. LTV計測の実装](#tracking_ltv)**
-	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
-* **[5. アクセス解析の実装](#tracking_analytics)**
-	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
-	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
-	* [エンゲージメント配信について](./doc/fox_engagement/README.md)
+* **[3. Install計測的安裝](#tracking_install)**
+	* [sendConversion的詳細](./doc/send_conversion/README.md)
+* **[4. LTV計測的安裝](#tracking_ltv)**
+	* [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
+* **[5. 流量分析的安裝](#tracking_analytics)**
+	* [依靠流量分析進行Event計測](./doc/analytics_event/README.md)
+	* [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
+	* [關於reengagement廣告投放](./doc/fox_engagement/README.md)
 * **[6. 広告配信機能](#fox_trade)**
-	* [広告配信機能の詳細](./doc/fox_trade/README.md)
-* **[7. ProGuardを利用する場合](#use_proguard)**
-* **[8. 疎通テストの実施](#integration_test)**
-	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
-* **[9. その他機能の実装](#other_function)**
-	* [プッシュ通知の実装](./doc/notify/README.md)
-	* [オプトアウトの実装](./doc/optout/README.md)
-	* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
-	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-	* [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
-* **[10. 最後に必ずご確認ください](#trouble_shooting)**
+	* [廣告投放機能的詳細](./doc/fox_trade/README.md)
+* **[7. 使用ProGuard](#use_proguard)**
+* **[8. 進行疏通測試](#integration_test)**
+	* [Reengagement計測時的疏通測試](./doc/reengagement_test/README.md)
+* **[9. 其他機能的安裝](#other_function)**
+	* [Opt-Out的安裝](./doc/optout/README.md)
+	* [導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/README.md)
+	* [利用外部存儲設定重複排除](./doc/external_storage/README.md)
+	* [Android M(6.0) 利用自動備份功能](./doc/auto_backup/README.md)
+* **[10. 最後請務必確認](#trouble_shooting)**
 
 ## F.O.X SDK是什麼
 
@@ -50,7 +49,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 * **広告配信**
 
-アプリ内に相互集客広告を表示させることができます。尚、広告表示が不要の場合には、本項目の実装を省略できます。
+能夠在APP內部表示相互推廣獲得客源的廣告。如果不需要顯示該廣告，可以省略本章節的安裝。
 
 <div id="install_sdk"></div>
 ## 1. 導入
@@ -286,19 +285,19 @@ public class MainActivity extends Activity {
 [關於Reengagement廣告投放](./doc/fox_engagement/README.md)
 
 <div id="fox_trade"></div>
-## 6. 広告配信機能
+## 6. 廣告投放機能
 
-本機能を利用することで相互集客広告を表示させることができます。
-尚、広告表示が不要の場合には、本項目の実装を省略できます。
-表示する広告の種類は以下の２つとなります。
+能夠在APP內部表示相互推廣獲得客源的廣告。
+如果不需要顯示該廣告，可以省略本章節的安裝。
+可以顯示的廣告種類有以下兩種。
 
-* バナー広告
-* インタースティシャル広告
+* 橫幅廣告（Banner Ad）
+* 插播廣告（Interstitial Ad）
 
-### 6.1 バナー広告表示の実装
+### 6.1 橫幅廣告表示的安裝
 
-ActivityのonCreate内で`BannerView`インスタンスを生成し、既存レイアウトのViewGroupに追加します。
-`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+在Activity的onCreate裡生成`BannerView`實例，並添加到既存佈局的ViewGroup裡。
+請在`show`方法裡指定管理員發行的`広告表示ID`。
 
 ```java
 @Override
@@ -306,23 +305,23 @@ protected void onCreate(Bundle savedInstanceState) {
    super.onCreate(savedInstanceState);
    setContentView(R.layout.test_activity);
 
-   // 既存レイアウトに追加
+   // 添加到既存佈局裡
    LinearLayout ll = (LinearLayout) findViewById(R.id.banner_layout);
-   // バナー広告表示View
+   // 橫幅廣告表示View
    BannerView mBannerView = new BannerView(this);
-   mBannerView.show("広告表示ID");
+   mBannerView.show("廣告表示ID");
    ll.addView(mBannerView);
 }
 ```
 
-[広告配信機能の詳細](./doc/fox_trade/README.md)
+[廣告投放機能的詳細](./doc/fox_trade/README.md)
 
-### 6.2 インタースティシャル広告表示の実装
+### 6.2 插播廣告表示的安裝
 
-**[Activityの追加]**
+**[添加Activity]**
 
-インタースティシャル広告を表示する際に必須となるActivityとなります。<br>
-以下、そのままコピーして&lt;application&gt;タグ内にご設定ください。
+在表示插播廣告的時候，必須依靠Activity。<br>
+請原封不動地拷貝下面的代碼，設定到&lt;application&gt;標籤裡。
 
 ```xml
 <activity
@@ -330,24 +329,23 @@ protected void onCreate(Bundle savedInstanceState) {
     android:theme="@android:style/Theme.Translucent" />
 ```
 
-**[実装コード]**
+**[安裝代碼]**
 
-`Interstitial`インスタンスを生成し`show`メソッドを呼び出すことで、前述のDahliaActivityに遷移し
-インタースティシャル広告が表示されます。<br>
-`show`メソッドには管理者より発行される`広告表示ID`を指定してください。
+生成`Interstitial`實例，通過調用`show`方法來遷移到前述的DahliaActivity裡，然後來顯示插播廣告。<br>
+請在`show`方法裡指定管理員發行的`廣告表示ID`。
 
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.test_activity);
-    // インタースティシャル表示用メソッド
+    // 插播廣告表示使用的方法
     Interstitial mInterstitial = new Interstitial(this);
     mInterstitial.show("広告表示ID");
 }
 ```
 
-[広告配信機能の詳細](./doc/deliver/README.md)
+[廣告投放機能的詳細](./doc/deliver/README.md)
 
 <div id="use_proguard"></div>
 ## 7. 使用ProGuard
