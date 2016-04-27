@@ -76,31 +76,30 @@ public static void sendEvent(Context context,
 | 參數 |必須|型 | 概要 |
 |:----------|:-------:|:----:|:------------|
 |version|必須|String|指定數據字段的版本。|
-|product|必須|Array|商品マスタデータフィードの設定領域です。|
-|&nbsp;&nbsp;product[].id|必須|String|データフィードの商品を一意に識別するIDです。|
-|&nbsp;&nbsp;product[].action|必須|String|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
-|&nbsp;&nbsp;product[].name|必須|String|商品名です。<br>削除の際はnullで構いません。|
-|&nbsp;&nbsp;product[].expire|任意|String|商品の有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|&nbsp;&nbsp;product[].effective|任意|String|商品の公開日時です。<br>これが設定された場合、公開日時になるまで商品は表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。|
-|&nbsp;&nbsp;product[].img|任意|String|商品画像のURLです。|
-|&nbsp;&nbsp;product[].category1|任意|String|第一階層のカテゴリを指定します。|
-|&nbsp;&nbsp;product[].category2|任意|String|第二階層のカテゴリを指定します。|
-|&nbsp;&nbsp;product[].category3|任意|String|第三階層のカテゴリを指定します。|
-|&nbsp;&nbsp;product[].price|任意|Double|商品の価格を指定します。|
-|&nbsp;&nbsp;product[].currency|任意|String|商品の通貨コードを指定します。<br>nullの場合JPYが適用されます。|
-|&nbsp;&nbsp;product[].(任意)|任意|String|その他の配信や分析に使用する項目を指定します。<br>データフィードの項目を設定してください。|
-
+|product|必須|Array|商品主表的數據字段的設定領域。|
+|&nbsp;&nbsp;product[].id|必須|String|能夠識別數據字段的商品的唯一ID。|
+|&nbsp;&nbsp;product[].action|必須|String|輸入變更數據字段的動作。<br>U:添加或編輯　D:刪除|
+|&nbsp;&nbsp;product[].name|必須|String|商品名。<br>刪除時可以設定為null。|
+|&nbsp;&nbsp;product[].expire|任意|String|商品的有效期限。<br>請按照「yyyy-MM-dd HH:mm:ss」或者「yyyy-MM-dd」的格式來輸入日期。|
+|&nbsp;&nbsp;product[].effective|任意|String|商品的公開日期和時間。<br>如果此項被設定，到公開日期和時間為止，商品不會被顯示出來。<br>請按照「yyyy-MM-dd HH:mm:ss」或「yyyy-MM-dd」的格式來輸入日期。|
+|&nbsp;&nbsp;product[].img|任意|String|商品畫像的URL。|
+|&nbsp;&nbsp;product[].category1|任意|String|指定第一層次的種別。|
+|&nbsp;&nbsp;product[].category2|任意|String|指定第二層次的種別。|
+|&nbsp;&nbsp;product[].category3|任意|String|指定第三層次的種別。|
+|&nbsp;&nbsp;product[].price|任意|Double|指定商品價格。|
+|&nbsp;&nbsp;product[].currency|任意|String|指定商品的貨幣代碼。<br>null的場合默認指定為"JPY"。|
+|&nbsp;&nbsp;product[].(任意)|任意|String|指定其他投放或分析使用的項目。<br>請指定數據字段的項目。|
 
 　　　　
-## 2.イベント計測の実装
-　F.O.X SDKで対応しているF.O.XエンゲージメントおよびCriteoのイベント計測は以下の５つとなっています。<br>実装の詳細は以下詳細ページにてご確認ください。
+## 2.Event計測的安裝
+　F.O.X SDK對應的F.O.X Reengagement的Event計測和Criteo的Event計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
 
-* [> View Toppage イベント](./ViewToppageEvent.md)
-* [> View Listing イベント](./ViewListingEvent.md)
-* [> View Product イベント](./ViewProductEvent.md)
-* [> View Basket イベント](./ViewBasketEvent.md)
-* [> Track Transaction イベント](./ViewTransactionEvent.md)
+* [> View Toppage Event](./ViewToppageEvent.md)
+* [> View Listing Event](./ViewListingEvent.md)
+* [> View Product Event](./ViewProductEvent.md)
+* [> View Basket Event](./ViewBasketEvent.md)
+* [> Track Transaction Event](./ViewTransactionEvent.md)
 
 
 ---
-[トップ](/lang/ja/README.md)
+[Top](/lang/zh-tw/README.md)
