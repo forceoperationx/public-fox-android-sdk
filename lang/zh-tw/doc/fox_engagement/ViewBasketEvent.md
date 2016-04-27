@@ -38,7 +38,7 @@ AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 |:----------|:-----------:|:------------|
 |eventInfo (currency)|JSONObject|貨幣<br>如果設定為Nil/Null、默認為“JPY”|
 |eventInfo (fox_cvpoint)|JSONObject|設定F.O.X的成果地點ID。|
-|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。
+|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。|
 |&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>請使用和數據字段相同的商品ID。|
 |&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|設定該商品的價格。|
 |&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|設定購入該商品的個數。|
@@ -47,5 +47,5 @@ AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 
 
 ---
-[返回](/lang/zh-tw/doc/fox_engagement/README.md)
+[返回](/lang/zh-tw/doc/fox_engagement/README.md)<br>
 [Top](/lang/zh-tw/README.md)
