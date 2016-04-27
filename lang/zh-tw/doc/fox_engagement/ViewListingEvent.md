@@ -1,19 +1,19 @@
-#	View Listing（複数商品閲覧イベント）実装方法
+#	View Listing（多個商品閱覽事件）安裝方法
 
-　View Listing（検索結果・一覧画面）イベントが発生する箇所に、下記に従ってアクセス解析のイベント計測機能を実装ください。上位３つの商品が計測されます。
+　在View Listing（檢索結果・一覽畫面）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。先頭的3個商品被計測。
 
-### 実装例
+### 安裝實例
 
 ```java
 JSONObject eventInfo = new JSONObject("{" +
                                  "'fox_cvpoint': '12345'," +
                                  "'product':[" +
                                         "{'id': '111'," +
-                                        "'category':'映画、ビデオ>DVD>スポーツ、レジャー'}," +
+                                        "'category':'電影、錄像>DVD>體育、休閑'}," +
                                         "{'id': '112'," +
-                                         "'category':'映画、ビデオ>DVD>スポーツ、レジャー'}," +
+                                         "'category':'電影、錄像>DVD>體育、休閑'}," +
                                         "{'id': '113'," +
-                                         "'category':'映画、ビデオ>DVD>スポーツ、レジャー'}" +
+                                         "'category':'電影、錄像>DVD>體育、休閑'}" +
                                  "]," +
                                  "'din':'2016-01-02'," +
                                  "'dout':'2016-01-05'," +
@@ -22,29 +22,29 @@ JSONObject eventInfo = new JSONObject("{" +
 AnalyticsManager.sendEvent(this, "_view_listing", null, null, 0, eventInfo);
 ```
 
-### 引数詳細
+### 參數詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|context|Context|呼び出し元のActivityのContext|
-|eventName|String|"\_view\_listing"を指定してください。|
-|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">使用しません。|
-|eventInfo|JSONObject|イベント情報詳細 (以下参照)|
+|context|Context|調用源的Activity的Context|
+|eventName|String|請指定"\_view\_listing"|
+|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">不使用。|
+|eventInfo|JSONObject|事件信息詳細 (參考下面)|
 
-#### イベント情報詳細
+#### 事件信息詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
-|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品IDを設定します。<br>データフィードと同じ商品IDを使⽤してください。|
-|&nbsp;&nbsp;eventInfo (product[].category)|JSONObject|商品カテゴリを設定します。<br>データフィードと同じ商品カテゴリを使用してください。<br>１商品に対して複数カテゴリある場合はカンマ「,」区切り、階層がある場合は「>」で分割します。<br>例）映画、ビデオ>DVD>スポーツ、レジャーnullでも構いません。|
-|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
-|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
+|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>請使用和數據字段相同的商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].category)|JSONObject|設定商品種別。<br>請使用和數據字段相同的商品種別。<br>如果一個商品有多個種別請用「,」區分、分層次請用「>」來分割。<br>例）電影，錄像>DVD>體育，休閑，可以設定成null。|
+|eventInfo (din/dout)|JSONObject|如果希望指定日期請輸入（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo帳號ID在同一個APP裡不一樣的時候請設定。(任意)|
+|eventInfo (fox_cvpoint)|JSONObject|設定F.O.X的成果地點ID。|
 
 
 ---
-[戻る](/lang/ja/doc/fox_engagement/README.md)
-[トップ](/lang/ja/README.md)
+[返回](/lang/zh-tw/doc/fox_engagement/README.md)
+[Top](/lang/zh-tw/README.md)

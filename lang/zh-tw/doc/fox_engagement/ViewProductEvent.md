@@ -1,8 +1,8 @@
-#	View Product（商品閲覧イベント）実装方法
+#	View Product（商品閱覽事件）安裝方法
 
-　View Product（単一商品閲覧）イベントが発生する箇所に、下記に従ってアクセス解析のイベント計測機能を実装ください。
+　在View Product（單個商品閱覽）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。
 
-### 実装例
+### 安裝實例
 
 ```java
 JSONObject eventInfo = new JSONObject("{" +
@@ -15,28 +15,28 @@ JSONObject eventInfo = new JSONObject("{" +
 AnalyticsManager.sendEvent(this, "_view_content", null, null, 0, eventInfo);
 ```
 
-### 引数詳細
+### 参数详细
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|context|Context|呼び出し元のActivityのContext|
-|eventName|String|"\_view\_content" を指定してください。|
-|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">使用しません。|
-|eventInfo|JSONObject|イベント情報詳細 (以下参照)|
+|context|Context|調用源的Activity的Context|
+|eventName|String|請指定"\_view\_content"|
+|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">不使用。|
+|eventInfo|JSONObject|事件信息詳細 (參考下面)|
 
-#### イベント情報詳細
+#### 事件信息詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
-|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|閲覧した商品IDを設定します。|
-|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
+|eventInfo (fox_cvpoint)|JSONObject|設定F.O.X的成果地點ID。|
+|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|設定閱覽的商品ID。|
+|eventInfo (din/dout)|JSONObject|如果希望指定日期請輸入（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo帳號ID在同一個APP裡不一樣的時候請設定。(任意)|
 　　
 
 ---
-[戻る](/lang/ja/doc/fox_engagement/README.md)
-[トップ](/lang/ja/README.md)
+[返回](/lang/zh-tw/doc/fox_engagement/README.md)
+[Top](/lang/zh-tw/README.md)

@@ -77,12 +77,12 @@ public static void sendEvent(Context context,
 |:----------|:-------:|:----:|:------------|
 |version|必須|String|指定數據字段的版本。|
 |product|必須|Array|商品主表的數據字段的設定領域。|
-|&nbsp;&nbsp;product[].id|必須|String|能夠識別數據字段的商品的唯一ID。|
-|&nbsp;&nbsp;product[].action|必須|String|輸入變更數據字段的動作。<br>U:添加或編輯　D:刪除|
+|&nbsp;&nbsp;product[].id|必須|String|能夠專門識別數據字段的商品的ID。|
+|&nbsp;&nbsp;product[].action|必須|String|輸入對數據字段的操作。<br>U:添加或編輯　D:刪除|
 |&nbsp;&nbsp;product[].name|必須|String|商品名。<br>刪除時可以設定為null。|
 |&nbsp;&nbsp;product[].expire|任意|String|商品的有效期限。<br>請按照「yyyy-MM-dd HH:mm:ss」或者「yyyy-MM-dd」的格式來輸入日期。|
 |&nbsp;&nbsp;product[].effective|任意|String|商品的公開日期和時間。<br>如果此項被設定，到公開日期和時間為止，商品不會被顯示出來。<br>請按照「yyyy-MM-dd HH:mm:ss」或「yyyy-MM-dd」的格式來輸入日期。|
-|&nbsp;&nbsp;product[].img|任意|String|商品畫像的URL。|
+|&nbsp;&nbsp;product[].img|任意|String|商品的畫像URL。|
 |&nbsp;&nbsp;product[].category1|任意|String|指定第一層次的種別。|
 |&nbsp;&nbsp;product[].category2|任意|String|指定第二層次的種別。|
 |&nbsp;&nbsp;product[].category3|任意|String|指定第三層次的種別。|
@@ -94,11 +94,11 @@ public static void sendEvent(Context context,
 ## 2.Event計測的安裝
 　F.O.X SDK對應的F.O.X Reengagement的Event計測和Criteo的Event計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
 
-* [> View Toppage Event](./ViewToppageEvent.md)
-* [> View Listing Event](./ViewListingEvent.md)
-* [> View Product Event](./ViewProductEvent.md)
-* [> View Basket Event](./ViewBasketEvent.md)
-* [> Track Transaction Event](./ViewTransactionEvent.md)
+* [> View Toppage事件](./ViewToppageEvent.md)
+* [> View Listing事件](./ViewListingEvent.md)
+* [> View Product事件](./ViewProductEvent.md)
+* [> View Basket事件](./ViewBasketEvent.md)
+* [> Track Transaction事件](./ViewTransactionEvent.md)
 
 
 ---

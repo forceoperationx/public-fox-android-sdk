@@ -1,8 +1,8 @@
-# Track Transaction（商品購入イベント）実装方法
+# Track Transaction（商品購入事件）実装方法
 
-Track Transaction（商品購入）イベントが発生する箇所に、下記に従ってアクセス解析のイベント計測機能を実装ください。
+在Track Transaction（商品購入）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。
 
-### 実装例
+### 安裝實例
 
 ```java
 JSONObject eventInfo = new JSONObject("{" +
@@ -36,58 +36,58 @@ JSONObject eventInfo = new JSONObject("{" +
 AnalyticsManager.sendEvent(this, "_purchase", null, null, null, null, null, 2750, 5, "JPY",　eventInfo);
 ```
 
-### 引数詳細
+### 参数详细
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|context|Context|呼び出し元のActivityのContext|
-|eventName|String|任意の名前を指定してください。特に指定がない場は、"_purchase" を指定してください。|
-|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|orderID|String|（任意）注⽂番号等を指定します。|
-|sku|String|（任意）商品コード等を指定します。|
-|<span style="color:grey">itemName|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|price|double|商品総額を指定します。<br><span style="color:red">※必ず price * quantity の値が商品総額となるよう指定ください|
-|quantity|int|1を指定してください。|
-|currency|int|通貨コードを指定します。<br>nullの場合は”JPY”が指定されます。|
-|eventInfo|JSONObject|イベント情報詳細 (以下参照)|
+|context|Context|調用源的Activity的Context|
+|eventName|String|請指定為任意名稱。如果沒有特別指定，請指定為"_purchase"。|
+|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">不使用。|
+|orderID|String|（任意）指定訂單號。|
+|sku|String|（任意）指定商品代號sku。|
+|<span style="color:grey">itemName|<span style="color:grey">String|<span style="color:grey">不使用。|
+|price|double|指定商品總額。<br><span style="color:red">※請務必把price * quantity的結果作為商品總額來指定|
+|quantity|int|請指定為1。|
+|currency|int|指定貨幣代碼。<br>null的場合默認指定為"JPY"。|
+|eventInfo|JSONObject|事件信息詳細 (參考下面)|
 
-#### イベント情報詳細
+#### 事件信息詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo (transaction.id)|JSONObject|注文番号、問い合わせ番号などのトランザクションID|
-|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
-|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品IDデータフィードと同じ商品IDを使用してください。|
-|&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|該当商品の価格を設定します。|
-|&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|該当商品を買った個数を設定します。|
-|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)<br>以下、このアクションによってデータフィードが変動する場合に設定します。|
-|eventInfo (datafeed)|JSONObject|リアルタイムデータフィード (以下参照)|
+|eventInfo (fox_cvpoint)|JSONObject|設定F.O.X的成果地點ID。|
+|eventInfo (transaction.id)|JSONObject|訂單號，諮詢號等處理事務ID|
+|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>請使用和數據字段相同的商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|設定該商品的價格。|
+|&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|設定購入該商品的個數。|
+|eventInfo (din/dout)|JSONObject|如果希望指定日期請輸入。（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo帳號ID在同一個APP裡不一樣的時候請設定。(任意)<br>在下方，根據這個Action的不同，在數據字段變動時做設定|
+|eventInfo (datafeed)|JSONObject|實時數據字段 (參考下方)|
 
-#### データフィード詳細
+#### 數據字段詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|datafeed (version)|JSONObject|データフィードのバージョンを指定します。|
-|datafeed (product)|JSONArray|変動するデータフィードを設定します。|
-|&nbsp;&nbsp;datafeed (product[].id)|JSONObject|データフィードのアイテムを一意に識別するIDです。|
-|&nbsp;&nbsp;datafeed (product[].action)|JSONObject|データフィードをどのように変更するかを入力します。<br>U:追加もしくは編集　D:削除|
-|&nbsp;&nbsp;datafeed (product[].name)|JSONObject|アイテム名です。<br>以下全て、削除の際はnullで構いません。|
-|&nbsp;&nbsp;datafeed (product[].expire)|JSONObject|アイテムの有効期限です。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].effective)|JSONObject|アイテムの公開日時です。<br>これが設定された場合、公開日時になるまで商品はでません表示されません。<br>「yyyy-MM-dd HH:mm:ss」もしくは「yyyy-MM-dd」の書式で日付を入力してください。nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].img)|JSONObject|アイテムの画像URLです。<br>nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].category1)|JSONObject|第一階層のカテゴリを指定します。<br>nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].category2)|JSONObject|第二階層のカテゴリを指定します。<br>nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].category3)|JSONObject|第三階層のカテゴリを指定します。<br>nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].price)|JSONObject|アイテムの価格を指定します。<br>nullでも構いません。|
-|&nbsp;&nbsp;datafeed (product[].currency)|JSONObject|アイテムの通貨コードを指定します。<br>nullの場合、JPYが適用されます。|
-|&nbsp;&nbsp;datafeed (product[].{任意})|JSONObject|その他配信、分析に使用する項目を指定します。|
+|datafeed (version)|JSONObject|指定數據字段的版本。|
+|datafeed (product)|JSONArray|指定變動的數據字段。|
+|&nbsp;&nbsp;datafeed (product[].id)|JSONObject|能夠專門識別數據字段的商品的ID。|
+|&nbsp;&nbsp;datafeed (product[].action)|JSONObject|輸入對數據字段的操作。<br>U:添加或編輯　D:刪除|
+|&nbsp;&nbsp;datafeed (product[].name)|JSONObject|商品名。<br>下面的項目同樣，刪除時可以設定為null。|
+|&nbsp;&nbsp;datafeed (product[].expire)|JSONObject|商品的有效期限。<br>請按照「yyyy-MM-dd HH:mm:ss」或者「yyyy-MM-dd」的格式來輸入日期。可以為null。|
+|&nbsp;&nbsp;datafeed (product[].effective)|JSONObject|商品的公開日期和時間。<br>如果此項被設定，到公開日期和時間為止，商品不會被顯示出來。<br>請按照「yyyy-MM-dd HH:mm:ss」或「yyyy-MM-dd」的格式來輸入日期。可以為null。|
+|&nbsp;&nbsp;datafeed (product[].img)|JSONObject|商品的畫像URL。<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].category1)|JSONObject|指定第一層次的種別。<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].category2)|JSONObject|指定第二層次的種別。<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].category3)|JSONObject|指定第三層次的種別。<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].price)|JSONObject|指定商品價格<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].currency)|JSONObject|指定商品的貨幣代碼。<br>null的場合默認指定為"JPY"。|
+|&nbsp;&nbsp;datafeed (product[].{任意})|JSONObject|指定其他投放或分析使用的項目。|
 
-> ※ 商品購⼊イベントの price に⼊⼒する⾦額は必ず、Json データに指定した商品の総額 (price * quantity)となるよう指定してください。指定されていない場合、集計が正しく⾏われません。
+> ※ 商品購入事件的price裡輸入的金額，請一定按照Json數據裡指定的商品總額(price * quantity)來指定。沒有指定的話，無法正常統計。
 
 
 ---
-[戻る](/lang/ja/doc/fox_engagement/README.md)
-[トップ](/lang/ja/README.md)
+[返回](/lang/zh-tw/doc/fox_engagement/README.md)
+[Top](/lang/zh-tw/README.md)

@@ -1,8 +1,8 @@
-# View Basket（買い物かご）実装方法
+# View Basket（購物筐）実装方法
 
-　View Basket（商品購入予定一覧）イベントが発生する箇所に、下記に従ってアクセス解析のイベント計測機能を実装ください。
+　在View Basket（商品購入預定一覽）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。
 
-### 実装例
+### 安裝例
 
 ```java
 JSONObject eventInfo = new JSONObject("{" +
@@ -20,32 +20,32 @@ JSONObject eventInfo = new JSONObject("{" +
 AnalyticsManager.sendEvent(this, "_add_to_cart", null, null, 0, eventInfo);
 ```
 
-### 引数詳細
+### 參數詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|context|Context|呼び出し元のActivityのContext|
-|eventName|String|"\_add\_to\_cart" を指定してください。|
-|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">使用しません。|
-|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">使用しません。|
-|eventInfo|JSONObject|イベント情報詳細 (以下参照)|
+|context|Context|調用來源的Activity的Context|
+|eventName|String|請指定"\_add\_to\_cart"。|
+|<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">不使用。|
+|<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">不使用。|
+|eventInfo|JSONObject|事件信息詳細 (參考下面)|
 
 
-#### イベント情報詳細
+#### 事件信息詳細
 
-| 引数 | 型 | 概要 |
+| 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|eventInfo (currency)|JSONObject|通貨<br>Nil/Nullの場合、デフォルト “JPY”|
-|eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
-|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>データフィードと同じ商品IDを使用してください。|
-|&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|該当商品の価格を設定します。|
-|&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|該当商品を買った個数を設定します。|
-|eventInfo (din/dout)|JSONObject|⽇付の指定がある場合は⼊⼒してください。（任意）|
-|eventInfo (criteo_partner_id)|JSONObject|Criteo アカウントID が同⼀アプリで異なる場合は⼊⼒(任意)|
+|eventInfo (currency)|JSONObject|貨幣<br>如果設定為Nil/Null、默認為“JPY”|
+|eventInfo (fox_cvpoint)|JSONObject|設定F.O.X的成果地點ID。|
+|eventInfo (product)|JSONArray|把Product作為KEY，用數組形式設定商品ID。
+|&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品ID<br>請使用和數據字段相同的商品ID。|
+|&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|設定該商品的價格。|
+|&nbsp;&nbsp;eventInfo (product[].quantity)|JSONObject|設定購入該商品的個數。|
+|eventInfo (din/dout)|JSONObject|如果希望指定日期請輸入。（任意）|
+|eventInfo (criteo_partner_id)|JSONObject|Criteo帳號ID在同一個APP裡不一樣的時候請設定。(任意)|
 
 
 ---
-[戻る](/lang/ja/doc/fox_engagement/README.md)
-[トップ](/lang/ja/README.md)
+[返回](/lang/zh-tw/doc/fox_engagement/README.md)
+[Top](/lang/zh-tw/README.md)
