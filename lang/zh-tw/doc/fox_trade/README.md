@@ -2,15 +2,15 @@
 
 ## 1. 環境設定
 
-組み込み対象のアプリにはGooglePlayServicesをご導入の上、AdvertisingIDを取得出来ることが必須となっております。<br>
-AdvertisingIDを取得するには[`こちら`](/lang/ja/doc/google_play_services/README.md)をご確認ください。
+對於嵌入對象APP，必須導入GooglePlayServices來取得AdvertisingID。<br>
+取得AdvertisingID的方法請到[`這裏`](/lang/zh-tw/doc/google_play_services/README.md)確認。
 
-## 1.1 AndroidManifest.xmlの設定
+## 1.1 AndroidManifest.xml的設定
 
-**[Activityの追加]**
+**[Activity的添加]**
 
-インタースティシャル広告を表示する際に必須となるActivityとなります。<br>
-以下、そのままコピーして&lt;application&gt;タグ内にご設定ください。
+是指在顯示插播廣告的時候作為必須的Activity。<br>
+請原封不動拷貝下面的代碼設定到&lt;application&gt;裡。
 
 ```xml
 <activity
@@ -22,42 +22,42 @@ AdvertisingIDを取得するには[`こちら`](/lang/ja/doc/google_play_service
 
 ### BannerView
 
-|返り値型|メソッド|詳細|
+|返回值類型|方法|詳細|
 |---:|:---|:---|
-|-|BannerView ( Context c )|コンストラクター|
-|void|show ( String placementId )<br><br>`placementID` : 広告表示ID (管理者より発行されます)|バナー広告を表示します。|
-|void|show ( String placementId, DahliaAdViewListener listener )<br><br>`placementID` : 広告表示ID (管理者より発行されます)<br>`listener` : 広告表示の際のイベントを取得するためのリスナー|バナー広告を表示します。|
+|-|BannerView ( Context c )|構造函數|
+|void|show ( String placementId )<br><br>`placementID` : 廣告表示ID (由管理員發行)|表示橫幅廣告。|
+|void|show ( String placementId, DahliaAdViewListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽|表示橫幅廣告。|
 
 ### Interstitial
 
-|返り値型|メソッド|詳細|
+|返回值類型|方法|詳細|
 |---:|:---|:---|
-|-|Interstitial ( Context c )|コンストラクター|
-|void|show ( String placementId )<br><br>`placementID` : 広告表示ID (管理者より発行されます)|インタースティシャル広告を表示します。|
-|void|show ( String placementId, DalInterStitialListener listener )<br><br>`placementID` : 広告表示ID (管理者より発行されます)<br>`listener` : 広告表示の際のイベントを取得するためのリスナー|インタースティシャル広告を表示します。|
+|-|Interstitial ( Context c )|構造函數|
+|void|show ( String placementId )<br><br>`placementID` : 廣告表示ID (由管理員發行)|表示插播廣告。|
+|void|show ( String placementId, DalInterStitialListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽|表示橫幅廣告。|
 
 ### BannerView.OnStateListener
 
-|返り値型|メソッド|詳細|
+|返回值類型|方法|詳細|
 |---:|:---|:---|
-|void|onSuccess ( View v )<br><br>`v` : 広告のView|バナー広告の表示が正常だった場合に呼ばれます。|
-|void|onFailed ( View v ) <br><br> `v` : 広告のView|バナー広告が表示できなかった場合に呼ばれます。|
+|void|onSuccess ( View v )<br><br>`v` : 廣告的View|橫幅廣告正常表示時被調用。|
+|void|onFailed ( View v ) <br><br> `v` : 廣告的View|橫幅廣告不能正常表示時被調用。|
 
 ### Interstitial.OnStateListener
 
-|返り値型|メソッド|詳細|
+|返回值類型|方法|詳細|
 |---:|:---|:---|
-|void|onSuccess ( )|インタースティシャル広告の表示が正常だった場合に呼ばれます。|
-|void|onFailed ( )|インタースティシャル広告が表示できなかった場合に呼ばれます。|
-|void|onClosed ( )|インタースティシャル広告が閉じられた際にに呼ばれます。|
+|void|onSuccess ( )|插播廣告正常表示時被調用。|
+|void|onFailed ( )|插播廣告不能正常表示時被調用。|
+|void|onClosed ( )|橫幅廣告關閉時被調用。|
 
-> インタースティシャル広告が表示できなかった場合、`onFailed`メソッドが呼ばれた後にも`onClosed`メソッドは呼ばれます。
+> 插播廣告不能正常表示時，會先調用`onFailed`方法，然後調用`onClosed`方法。
 
-## 3. コードへの組み込み
+## 3. 嵌入到代碼
 
-### 3.1 バナー広告表示サンプル その１
+### 3.1 橫幅廣告表示實例1
 
-javaコードのみでの実装
+只用java代碼的安裝
 
 ```java
 @Override
@@ -65,20 +65,20 @@ protected void onCreate(Bundle savedInstanceState) {
    super.onCreate(savedInstanceState);
    setContentView(R.layout.test_activity);
 
-   // 既存レイアウトに追加
+   // 添加到既存佈局裡
    LinearLayout ll = (LinearLayout) findViewById(R.id.banner_layout);
-   // バナー広告表示View
+   // 橫幅廣告表示View
    BannerView mBannerView = new BannerView(this);
    mBannerView.show("広告表示ID", new BannerView.OnStateListener() {
       @Override
       public void onSuccess(View v) {
-        // バナー広告が正常に表示された場合の処理
+        // 橫幅廣告表示正常時的處理
         Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
       }
 
       @Override
       public void onFailed(View v) {
-        // バナー広告の表示に失敗した場合の処理
+        // 橫幅廣告表示失敗時的處理
         Toast.makeText(this, "失敗", Toast.LENGTH_SHORT).show();
         v.setVisibility(View.GONE);
       }
@@ -87,9 +87,9 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### 3.2 バナー広告表示サンプル その２
+### 3.2 橫幅廣告表示實例2
 
-layoutのXMLで定義しての実装
+使用layout的XML定義的安裝
 
 [xml]
 ```xml
@@ -107,7 +107,7 @@ layoutのXMLで定義しての実装
 
 </LinearLayout>  
 ```
-> `BannerView`は管理画面に登録したクリエイティブのサイズに自動調整します。横幅と縦幅の指定には`wrap_content`を指定ください。
+> `BannerView`會按登錄到管理畫面的廣告圖的尺寸來自動調整。橫幅和縱幅的指定請使用`wrap_content`。
 
 [java]
 ```java
@@ -116,65 +116,65 @@ protected void onCreate(Bundle savedInstanceState) {
    super.onCreate(savedInstanceState);
    setContentView(R.layout.test_activity);
 
-   // xmlからBannerViewオブジェクトの呼び出し
+   // 從xml調用BannerView對象
    BannerView mBannerView = (BannerView) findViewById(R.id.banner);
-   // バナー広告表示View
+   // 橫幅廣告表示View
    mBannerView.show("広告表示ID");
 }
 ```
 
-### 3.3 インタースティシャル広告表示サンプル その１
+### 3.3 插播廣告表示實例1
 
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.test_activity);
-    // インタースティシャル表示用メソッド
+    // 表示插播廣告用的方法
     Interstitial mInterstitial = new Interstitial(this);
-    mInterstitial.show("広告表示ID");
+    mInterstitial.show("廣告表示ID");
 }
 ```
 
-### 3.4 インタースティシャル広告表示サンプル その２
+### 3.4 插播廣告表示實例2
 
 ```java
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.test_activity);
-    // インタースティシャル表示用メソッド
+    // 表示插播廣告的方法
     Interstitial mInterstitial = new Interstitial(this);
     mInterstitial.show("広告表示ID", new Interstitial.OnStateListener {
       @Override
       public void onSuccess() {
-        // インタースティシャル広告が正常に表示された場合の処理
+        // 插播廣告正常表示時的處理
         Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
       }
 
       @Override
       public void onFailed() {
-        // インタースティシャル広告の表示に失敗した場合の処理
+        // 插播廣告表示失敗時的處理
         Toast.makeText(this, "失敗", Toast.LENGTH_SHORT).show();
       }
 
       @Override
       public void onClosed() {
-        // インタースティシャル広告を閉じられた場合の処理
+        // 插播廣告關閉時的處理
 
       }
     });
 }
 ```
 
-> 使用例 : 画面A→画面Bへ遷移する際、インタースティシャル広告を表示してから遷移させるなど<br>
-（画面A→インタースティシャル広告→画面B）<br>その場合、画面Aにて上記実装を行い、`onSuccess`,`onFailed`,`onClose`の各々のメソッド内に画面Bへの遷移する処理を実装することで可能となります。
+> 使用實例：從畫面A跳轉到畫面B的時候，表示完插播廣告以後讓其跳轉<br>
+（畫面A→插播廣告→畫面B）<br>這時，在畫面A裡進行如上的安裝，能夠在`onSuccess`,`onFailed`,`onClose`的各個方法裡安裝跳轉到畫面B的處理。
 
-## 4. 表示サンプル
+## 4. 表示實例
 
 <table>
 <tr>
-<td align="center" style="border-style:none;">[バナー広告サンプル]</td>
-<td align="center" style="border-style:none;">[インタースティシャル広告サンプル]</td>
+<td align="center" style="border-style:none;">[橫幅廣告實例]</td>
+<td align="center" style="border-style:none;">[插播廣告實例]</td>
 </tr>
 <tr>
 <td style="border-style:none;"><img src="./sample_banner.png" width="300px"/></td>
@@ -183,4 +183,4 @@ protected void onCreate(Bundle savedInstanceState) {
 </table>
 
 ---
-[トップ](/lang/ja/README.md)
+[Top](/lang/zh-tw/README.md)
