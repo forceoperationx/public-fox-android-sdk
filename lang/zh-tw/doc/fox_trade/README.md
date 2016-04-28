@@ -26,7 +26,7 @@
 |---:|:---|:---|
 |-|BannerView ( Context c )|構造函數|
 |void|show ( String placementId )<br><br>`placementID` : 廣告表示ID (由管理員發行)|表示橫幅廣告。|
-|void|show ( String placementId, DahliaAdViewListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽|表示橫幅廣告。|
+|void|show ( String placementId, DahliaAdViewListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽器|表示橫幅廣告。|
 
 ### Interstitial
 
@@ -34,7 +34,7 @@
 |---:|:---|:---|
 |-|Interstitial ( Context c )|構造函數|
 |void|show ( String placementId )<br><br>`placementID` : 廣告表示ID (由管理員發行)|表示插播廣告。|
-|void|show ( String placementId, DalInterStitialListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽|表示橫幅廣告。|
+|void|show ( String placementId, DalInterStitialListener listener )<br><br>`placementID` : 廣告表示ID (由管理員發行)<br>`listener` : 為了取得廣告表示事件的監聽器|表示橫幅廣告。|
 
 ### BannerView.OnStateListener
 

@@ -8,16 +8,16 @@
 
 ### 1.1.	SDK式樣
 
-通過利用F.O.X SDK流量分析機能，進行橫跨媒體的協作Event計測。計測是依據內容來執行各種方法。
+透過利用F.O.X SDK流量分析機能，進行橫跨媒體的協作事件計測。計測可以根據不同內容來執行各種方法。
 
-#### Event信息的送信
+#### 事件資訊的送信
 
 引入AnalyticsManager類庫。
 ```java
 import jp.appAdForce.android.AnalyticsManager;
 ```
 
-利用下面的sendEvent方法，發送Event信息。
+利用下面的sendEvent方法，發送事件資訊。
 ```java
 public static void sendEvent(Context context,
 							 String eventName,
@@ -38,7 +38,7 @@ public static void sendEvent(Context context,
 
 | 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
-|eventName|String|針對做計測的Event種別來設定指定的Event名稱。|
+|eventName|String|針對做計測的事件種別來設定指定的Event名稱。|
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。 |
 |<span style="color:grey">label	|<span style="color:grey">String|<span style="color:grey">不使用。|
 |orderId|String|(任意)指定訂單號。|
@@ -51,7 +51,7 @@ public static void sendEvent(Context context,
 |eventInfo|JSONObject|按下面式樣的說明來指定Json。|
 
 ### 1.2. eventInfo JSON 佈局詳細
-　在eventInfo裡，通過Json形式設定附帶信息給Action的方式，能夠進行動態廣告協作投放。Json式樣如下。
+　在eventInfo裡，通過Json形式設定附帶資訊給Action的方式，能夠進行動態廣告協作投放。Json式樣如下。
 
 | 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
@@ -82,7 +82,7 @@ public static void sendEvent(Context context,
 |&nbsp;&nbsp;product[].name|必須|String|商品名。<br>刪除時可以設定為null。|
 |&nbsp;&nbsp;product[].expire|任意|String|商品的有效期限。<br>請按照「yyyy-MM-dd HH:mm:ss」或者「yyyy-MM-dd」的格式來輸入日期。|
 |&nbsp;&nbsp;product[].effective|任意|String|商品的公開日期和時間。<br>如果此項被設定，到公開日期和時間為止，商品不會被顯示出來。<br>請按照「yyyy-MM-dd HH:mm:ss」或「yyyy-MM-dd」的格式來輸入日期。|
-|&nbsp;&nbsp;product[].img|任意|String|商品的畫像URL。|
+|&nbsp;&nbsp;product[].img|任意|String|商品的圖像URL。|
 |&nbsp;&nbsp;product[].category1|任意|String|指定第一層次的種別。|
 |&nbsp;&nbsp;product[].category2|任意|String|指定第二層次的種別。|
 |&nbsp;&nbsp;product[].category3|任意|String|指定第三層次的種別。|
@@ -91,8 +91,8 @@ public static void sendEvent(Context context,
 |&nbsp;&nbsp;product[].(任意)|任意|String|指定其他投放或分析使用的項目。<br>請指定數據字段的項目。|
 
 　　　　
-## 2.Event計測的安裝
-　F.O.X SDK對應的F.O.X Reengagement的Event計測和Criteo的Event計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
+## 2.事件計測的安裝
+　F.O.X SDK對應的F.O.X Reengagement的事件計測和Criteo的事件計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
 
 * [> View Toppage事件](./ViewToppageEvent.md)
 * [> View Listing事件](./ViewListingEvent.md)

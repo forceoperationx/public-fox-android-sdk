@@ -1,6 +1,6 @@
 # Track Transaction（商品購入事件）実装方法
 
-在Track Transaction（商品購入）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。
+在Track Transaction（商品購入）事件發生的地點、請按照下面的例子來安裝流量分析的事件計測功能。
 
 ### 安裝實例
 
@@ -50,9 +50,9 @@ AnalyticsManager.sendEvent(this, "_purchase", null, null, null, null, null, 2750
 |price|double|指定商品總額。<br><span style="color:red">※請務必把price * quantity的結果作為商品總額來指定|
 |quantity|int|請指定為1。|
 |currency|int|指定貨幣代碼。<br>null的場合默認指定為"JPY"。|
-|eventInfo|JSONObject|事件信息詳細 (參考下面)|
+|eventInfo|JSONObject|事件資訊詳細 (參考下面)|
 
-#### 事件信息詳細
+#### 事件資訊詳細
 
 | 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
@@ -77,7 +77,7 @@ AnalyticsManager.sendEvent(this, "_purchase", null, null, null, null, null, 2750
 |&nbsp;&nbsp;datafeed (product[].name)|JSONObject|商品名。<br>下面的項目同樣，刪除時可以設定為null。|
 |&nbsp;&nbsp;datafeed (product[].expire)|JSONObject|商品的有效期限。<br>請按照「yyyy-MM-dd HH:mm:ss」或者「yyyy-MM-dd」的格式來輸入日期。可以為null。|
 |&nbsp;&nbsp;datafeed (product[].effective)|JSONObject|商品的公開日期和時間。<br>如果此項被設定，到公開日期和時間為止，商品不會被顯示出來。<br>請按照「yyyy-MM-dd HH:mm:ss」或「yyyy-MM-dd」的格式來輸入日期。可以為null。|
-|&nbsp;&nbsp;datafeed (product[].img)|JSONObject|商品的畫像URL。<br>可以為null。|
+|&nbsp;&nbsp;datafeed (product[].img)|JSONObject|商品的圖像URL。<br>可以為null。|
 |&nbsp;&nbsp;datafeed (product[].category1)|JSONObject|指定第一層次的種別。<br>可以為null。|
 |&nbsp;&nbsp;datafeed (product[].category2)|JSONObject|指定第二層次的種別。<br>可以為null。|
 |&nbsp;&nbsp;datafeed (product[].category3)|JSONObject|指定第三層次的種別。<br>可以為null。|

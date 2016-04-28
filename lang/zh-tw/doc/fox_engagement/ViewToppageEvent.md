@@ -1,5 +1,5 @@
 #	View Home(APP TOP訪問事件)安裝方法
-　在View Home（HOME畫面）事件發生的地點、請按照下面的例子來安裝流量分析的Event計測功能。
+　在View Home（HOME畫面）事件發生的地點、請按照下面的例子來安裝流量分析的事件計測功能。
 
 ### 安裝實例
 
@@ -22,10 +22,10 @@ AnalyticsManager.sendEvent(this, "_view_toppage", null, null, 0, eventInfo);
 |<span style="color:grey">action|<span style="color:grey">String|<span style="color:grey">不使用。|
 |<span style="color:grey">label|<span style="color:grey">String|<span style="color:grey">不使用。|
 |<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">不使用。|
-|eventInfo|JSONObject|事件信息詳細 (參考下面)|
+|eventInfo|JSONObject|事件資訊詳細 (參考下面)|
 
 
-#### 事件信息詳細
+#### 事件資訊詳細
 
 | 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|

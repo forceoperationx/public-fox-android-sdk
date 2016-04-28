@@ -18,7 +18,7 @@
 	</intent-filter>
 </receiver>
 
-<!-- 從F.O.X SDK調用其他Receiver Class的信息作為meta-data來記述 -->
+<!-- 從F.O.X SDK調用其他Receiver Class的資訊作為meta-data來記述 -->
 <meta-data
 		android:name="APPADFORCE_FORWARD_RECEIVER"
 		android:value="com.example.InstallReceiver" />

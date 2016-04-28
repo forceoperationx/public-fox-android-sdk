@@ -1,14 +1,14 @@
-## 依靠流量分析進行Event計測
+## 依靠流量分析進行事件計測
 
-能夠計測按不同廣告流入和自然流入的用戶在APP裡面引發的Event。請在想要做Event計測的全部地點追加代碼。
+能夠計測按不同廣告流入和自然流入的用戶在APP裡面引發的Event。請在想要做事件計測的全部地點追加代碼。
 
-為了進行依據流量分析的Event計測，請安裝下面的sendEvent方法。
+為了進行依據流量分析的事件計測，請安裝下面的sendEvent方法。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
 ```
 
-利用下面的sendEvent方法來發送Event信息。
+利用下面的sendEvent方法來發送事件資訊。
 
 ```java
 public static void sendEvent(Context context, String eventName, String action, String label,

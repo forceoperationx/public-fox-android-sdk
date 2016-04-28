@@ -16,7 +16,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 * **[4. LTV計測的安裝](#tracking_ltv)**
 	* [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
 * **[5. 流量分析的安裝](#tracking_analytics)**
-	* [依靠流量分析進行Event計測](./doc/analytics_event/README.md)
+	* [依靠流量分析進行事件計測](./doc/analytics_event/README.md)
 	* [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
 	* [關於reengagement廣告投放](./doc/fox_engagement/README.md)
 * **[6. 広告配信機能](#fox_trade)**
@@ -278,7 +278,7 @@ public class MainActivity extends Activity {
 
 > ※APP在產生複數的Activity時，請將處理添加到所有Activity的onResume()。APP從Background恢復到活動狀態時，若尚未導入啟動計測到Activity，將無法計測正確的活躍用戶數。
 
-[依靠流量分析進行Event計測](./doc/analytics_event/README.md)
+[依靠流量分析進行事件計測](./doc/analytics_event/README.md)
 
 [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
 
