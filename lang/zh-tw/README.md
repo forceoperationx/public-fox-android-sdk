@@ -18,7 +18,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 * **[5. 流量分析的安裝](#tracking_analytics)**
 	* [依靠流量分析進行事件計測](./doc/analytics_event/README.md)
 	* [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
-	* [關於reengagement廣告投放](./doc/fox_engagement/README.md)
+	* [關於Rngagement廣告投放](./doc/fox_engagement/README.md)
 * **[6. 広告配信機能](#fox_trade)**
 	* [廣告投放機能的詳細](./doc/fox_trade/README.md)
 * **[7. 使用ProGuard](#use_proguard)**
@@ -47,9 +47,9 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 自然流入和廣告流入的APP安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。
 
-* **広告配信**
+* **廣告投放**
 
-能夠在APP內部表示相互推廣獲得客源的廣告。如果不需要顯示該廣告，可以省略本章節的安裝。
+能夠在APP內部表示互動推廣廣告。如果不需要顯示該廣告，可以省略本章節的安裝。
 
 <div id="install_sdk"></div>
 ## 1. 導入
@@ -70,7 +70,7 @@ dependencies {
 
 如果希望手動安裝，請從下面的頁面來下載最新的SDK。
 
-* [SDK發布頁面](https://github.com/cyber-z/public_fox_android_sdk/releases)
+* [SDK下載](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
 請展開下載的SDK、把`libs/AppAdForce_{VERSION}.jar`導入到APP的項目裡。
 
@@ -282,7 +282,7 @@ public class MainActivity extends Activity {
 
 [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
 
-[關於Reengagement廣告投放](./doc/fox_engagement/README.md)
+[關於Engagement廣告投放](./doc/fox_engagement/README.md)
 
 <div id="fox_trade"></div>
 ## 6. 廣告投放機能

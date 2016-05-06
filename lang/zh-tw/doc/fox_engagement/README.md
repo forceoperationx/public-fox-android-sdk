@@ -1,11 +1,11 @@
-# F.O.X Reengagement廣告投放
+# F.O.X Engagement廣告投放
 
 ## 1. 概要
-本章對基於Force Operation X SDK(下面略稱F.O.X)的F.O.X Reengagement廣告投放以及和Criteo協作時的必要安裝做說明。
-在進行F.O.X Reengagement廣告投放時，需要在相同地點安裝LTV和流量分析各自的計測處理。
+本章對基於Force Operation X SDK(下面略稱F.O.X)的F.O.X Engagement廣告投放以及和Criteo協作時的必要安裝做說明。
+在進行F.O.X Engagement廣告投放時，需要在相同地點安裝LTV和流量分析各自的計測處理。
 
 * **對應F.O.X Android SDK版本** : `v2.16g`及以上
-
+	
 ### 1.1.	SDK式樣
 
 透過利用F.O.X SDK流量分析機能，進行橫跨媒體的協作事件計測。計測可以根據不同內容來執行各種方法。
@@ -51,7 +51,7 @@ public static void sendEvent(Context context,
 |eventInfo|JSONObject|按下面式樣的說明來指定Json。|
 
 ### 1.2. eventInfo JSON 佈局詳細
-　在eventInfo裡，通過Json形式設定附帶資訊給Action的方式，能夠進行動態廣告協作投放。Json式樣如下。
+在eventInfo裡，通過Json形式設定Action附帶的資訊这种方式，能夠進行動態廣告協作投放。Json式樣如下。
 
 | 參數 | 型 | 概要 |
 |:----------|:-----------:|:------------|
@@ -67,7 +67,7 @@ public static void sendEvent(Context context,
 |datafeed|JSONObject|實時數據字段(參考下方)|
 
 ### 1.3. 實時數據字段更新式樣
-　在eventInfo裡，通過Json形式設定數據字段的更新情報的方式，根据F.O.X Reengagement廣告投放協作能夠實時更新數據字段。
+　在eventInfo裡，通過Json形式設定數據字段的更新情報的方式，根据F.O.X Engagement廣告投放協作能夠實時更新數據字段。
 
 #### JSON 佈局詳細
 
@@ -92,7 +92,7 @@ public static void sendEvent(Context context,
 
 　　　　
 ## 2.事件計測的安裝
-　F.O.X SDK對應的F.O.X Reengagement的事件計測和Criteo的事件計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
+　F.O.X SDK對應的F.O.X Engagement的事件計測和Criteo的事件計測分為以下5種。<br>安裝的詳細請確認下面的詳細頁面。
 
 * [> View Toppage事件](./ViewToppageEvent.md)
 * [> View Listing事件](./ViewListingEvent.md)
@@ -102,4 +102,4 @@ public static void sendEvent(Context context,
 
 
 ---
-[Top](/lang/zh-tw/README.md)
+[TOP](/lang/zh-tw/README.md)
