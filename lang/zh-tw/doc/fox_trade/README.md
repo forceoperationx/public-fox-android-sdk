@@ -1,4 +1,4 @@
-# 広告配信機能
+# 廣告投放功能
 
 ## 1. 環境設定
 
@@ -183,4 +183,4 @@ protected void onCreate(Bundle savedInstanceState) {
 </table>
 
 ---
-[Top](/lang/zh-tw/README.md)
+[TOP](/lang/zh-tw/README.md)
