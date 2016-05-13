@@ -345,7 +345,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-[廣告投放機能的詳細](./doc/deliver/README.md)
+[廣告投放機能的詳細](./doc/fox_trade/README.md)
 
 <div id="use_proguard"></div>
 ## 7. 使用ProGuard
