@@ -5,7 +5,7 @@
 在進行F.O.X Engagement廣告投放時，需要在相同地點安裝LTV和流量分析各自的計測處理。
 
 * **對應F.O.X Android SDK版本** : `v2.16g`及以上
-	
+
 ### 1.1.	SDK式樣
 
 透過利用F.O.X SDK流量分析機能，進行橫跨媒體的協作事件計測。計測可以根據不同內容來執行各種方法。
@@ -45,7 +45,7 @@ public static void sendEvent(Context context,
 |sku	|String|(任意)指定商品代號sku。|
 |<span style="color:grey">itemName|<span style="color:grey">String|<span style="color:grey">不使用。|
 |<span style="color:grey">value|<span style="color:grey">int|<span style="color:grey">不使用。|
-|price|double|	指定銷售額。|
+|price|double|	指定商品単価。|
 |quantity|int|	指定數量。<br>按price * quantity來計算銷售額。|
 |currency|String|指定貨幣代碼。null的場合默認指定為"JPY"。|
 |eventInfo|JSONObject|按下面式樣的說明來指定Json。|
