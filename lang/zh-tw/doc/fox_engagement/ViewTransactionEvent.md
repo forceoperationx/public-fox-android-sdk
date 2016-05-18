@@ -47,7 +47,7 @@ AnalyticsManager.sendEvent(this, "_purchase", null, null, null, null, null, 2750
 |orderID|String|（任意）指定訂單號。|
 |sku|String|（任意）指定商品代號sku。|
 |<span style="color:grey">itemName|<span style="color:grey">String|<span style="color:grey">不使用。|
-|price|double|指定商品總額。<br><span style="color:red">※請務必把price * quantity的結果作為商品總額來指定|
+|price|double|指定商品單價。<br><span style="color:red">※請務必把price * quantity的結果作為商品總額來指定|
 |quantity|int|請指定為1。|
 |currency|int|指定貨幣代碼。<br>null的場合默認指定為"JPY"。|
 |eventInfo|JSONObject|事件資訊詳細 (參考下面)|
