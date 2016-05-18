@@ -354,7 +354,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-[広告配信機能の詳細](./doc/deliver/README.md)
+[広告配信機能の詳細](./doc/fox_trade/README.md)
 
 <div id="use_proguard"></div>
 ## 7. ProGuardを利用する場合

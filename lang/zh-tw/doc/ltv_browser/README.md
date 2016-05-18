@@ -2,7 +2,7 @@
 
 在WEB頁面上進行會員登錄或商品購入的場合，可以利用img Tag進行LTV計測。
 
-F.O.X的LTV計測適用於外部瀏覽器和APP內WebView。外部瀏覽器利用ltvOpenBrowser:而APP内WebView利用setLtvCookie來把LTV計測需要的信息記錄到瀏覽器的Cookie裡。
+F.O.X的LTV計測適用於外部瀏覽器和APP內WebView。外部瀏覽器利用ltvOpenBrowser:而APP内WebView利用setLtvCookie來把LTV計測需要的資訊記錄到瀏覽器的Cookie裡。
 
 ## 使用外部瀏覽器的LTV計測
 
