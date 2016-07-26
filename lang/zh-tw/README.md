@@ -19,17 +19,15 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 	* [依靠流量分析進行事件計測](./doc/analytics_event/README.md)
 	* [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
 	* [關於Rngagement廣告投放](./doc/fox_engagement/README.md)
-* **[6. 広告配信機能](#fox_trade)**
-	* [廣告投放機能的詳細](./doc/fox_trade/README.md)
-* **[7. 使用ProGuard](#use_proguard)**
-* **[8. 進行疏通測試](#integration_test)**
+* **[6. 使用ProGuard](#use_proguard)**
+* **[7. 進行疏通測試](#integration_test)**
 	* [Reengagement計測時的疏通測試](./doc/reengagement_test/README.md)
-* **[9. 其他機能的安裝](#other_function)**
+* **[8. 其他機能的安裝](#other_function)**
 	* [Opt-Out的安裝](./doc/optout/README.md)
 	* [導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/README.md)
 	* [利用外部存儲設定重複排除](./doc/external_storage/README.md)
 	* [Android M(6.0) 利用自動備份功能](./doc/auto_backup/README.md)
-* **[10. 最後請務必確認](#trouble_shooting)**
+* **[9. 最後請務必確認](#trouble_shooting)**
 
 ## F.O.X SDK是什麼
 
@@ -284,71 +282,8 @@ public class MainActivity extends Activity {
 
 [關於Engagement廣告投放](./doc/fox_engagement/README.md)
 
-<div id="fox_trade"></div>
-## 6. 廣告投放機能
-
-能夠在APP內部表示相互推廣獲得客源的廣告。
-如果不需要顯示該廣告，可以省略本章節的安裝。
-可以顯示的廣告種類有以下兩種。
-
-* 橫幅廣告（Banner Ad）
-* 插播廣告（Interstitial Ad）
-
-### 6.1 橫幅廣告表示的安裝
-
-在Activity的onCreate裡生成`BannerView`實例，並添加到既存佈局的ViewGroup裡。
-請在`show`方法裡指定管理員發行的`広告表示ID`。
-
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-   super.onCreate(savedInstanceState);
-   setContentView(R.layout.test_activity);
-
-   // 添加到既存佈局裡
-   LinearLayout ll = (LinearLayout) findViewById(R.id.banner_layout);
-   // 橫幅廣告表示View
-   BannerView mBannerView = new BannerView(this);
-   mBannerView.show("廣告表示ID");
-   ll.addView(mBannerView);
-}
-```
-
-[廣告投放機能的詳細](./doc/fox_trade/README.md)
-
-### 6.2 插播廣告表示的安裝
-
-**[添加Activity]**
-
-在表示插播廣告的時候，必須依靠Activity。<br>
-請原封不動地拷貝下面的代碼，設定到&lt;application&gt;標籤裡。
-
-```xml
-<activity
-    android:name="co.cyberz.dahlia.DahliaActivity"
-    android:theme="@android:style/Theme.Translucent" />
-```
-
-**[安裝代碼]**
-
-生成`Interstitial`實例，通過調用`show`方法來遷移到前述的DahliaActivity裡，然後來顯示插播廣告。<br>
-請在`show`方法裡指定管理員發行的`廣告表示ID`。
-
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.test_activity);
-    // 插播廣告表示使用的方法
-    Interstitial mInterstitial = new Interstitial(this);
-    mInterstitial.show("広告表示ID");
-}
-```
-
-[廣告投放機能的詳細](./doc/fox_trade/README.md)
-
 <div id="use_proguard"></div>
-## 7. 使用ProGuard
+## 6. 使用ProGuard
 
 使用ProGuard進行APP讀取混淆化時，請進行以下設定，將F.O.X SDK的method排除在對象外。
 
@@ -375,7 +310,7 @@ protected void onCreate(Bundle savedInstanceState) {
 [導入Google Play Services時的Proguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="integration_test"></div>
-## 8. 進行疏通測試
+## 7. 進行疏通測試
 
 在APP上架申請以前，在導入SDK的狀態請做充分的測試，以確保APP的動作沒有問題。
 
@@ -402,24 +337,24 @@ protected void onCreate(Bundle savedInstanceState) {
 [Reengagement計測時的疏通測試](./doc/reengagement_test/README.md)
 
 <div id="other_function"></div>
-## 9. 其他機能的安裝
+## 8. 其他機能的安裝
 
 * [Opt-Out的安裝](./doc/optout/README.md)
 
 <div id="trouble_shooting"></div>
-## 10. 最後請務必確認（到現在發生過的問題集）
+## 9. 最後請務必確認（到現在發生過的問題集）
 
-### 10.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
+### 9.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
 
 為了進行Cookie計測，在啟動外部瀏覽器以後，要利用URL Scheme跳轉到APP來返回到原來的畫面。這時有必要設定獨自的URL Scheme，未設定URL Scheme發布的APP將無法正常跳轉。
 
 
-### 10.2. URL Scheme裡包含了大寫字母，無法正常跳轉回APP
+### 9.2. URL Scheme裡包含了大寫字母，無法正常跳轉回APP
 
 由於環境的不同，可能無法判別URL Scheme裡的大小寫字母，進而引起不能正常跳轉。因此URL Scheme請全部使用小寫字母來設定。
 
 
-### 10.3. 用F.O.X計測的Install數值比Google Play Developer Console的數值要大
+### 9.3. 用F.O.X計測的Install數值比Google Play Developer Console的數值要大
 
 F.O.X使用了多種方式來監測終端的重複安裝。
 倘若設定了不進行重複監測，在相同終端再安裝時F.O.X會判定為新的安裝。
