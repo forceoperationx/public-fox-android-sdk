@@ -30,15 +30,22 @@ import jp.appAdForce.android.AnalyticsManager;
 
 public class MainActivity extends Activity {
 
-	//アプリ内課金成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
+	//アプリ内課金成功時
+	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
 		//...
-		// LTV計測による課金計測
+
+
+		// LTV計測による課金計測
 		LtvManager ltv = new LtvManager(ad);
 		ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
 		ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
 		ltv.sendLtvConversion(成果地点ID);
 
-		// アクセス解析による課金計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
+		// アクセス解析による課金計測
+		AnalyticsManager.sendEvent(this, "アプリ内課金", action, null, null, orderId, sku, itemName, 9.99, 1, "USD");
+	}
+
+}
 ```
 
 ---
