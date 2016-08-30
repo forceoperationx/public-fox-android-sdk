@@ -1,0 +1,106 @@
+[TOP](/4.x/lang/ja/README.md)　>　イベント計測の詳細
+
+---
+
+# イベント計測の詳細
+
+以下、各種イベントを実装する際の詳細を説明します。<br>
+エンゲージメント計測やダイナミック配信連携を行う際に必要となる実装も含まれます。本実装を行うことで、媒体を横断したイベント計測連携が可能となります。
+
+* **[1. アプリ内の各種イベント実装例](#each_event_sample)**
+* **[2. 旧バージョンでの実装の置き換え(エンゲージメント計測)](#continuity)**
+
+<div id="each_event_sample"></div>
+## 1. アプリ内の各種イベント実装例
+
+#### 　1.1 会員登録イベント計測 実装例
+
+```java
+// 会員登録イベント計測
+Button registerBtn = (Button) findViewById(R.id.ltv_register);
+registerBtn.setOnClickListener(new OnClickListener() {
+
+  @Override
+  public void onClick(View v) {
+    FoxEvent event = new FoxEvent("_register_account", 5473);
+    event.buid = "USER_A001";
+    event.action = "register account";
+    Fox.trackEvent(event);
+  }
+});
+```
+
+#### 　1.2 チュートリアル完了イベント計測 実装例
+
+```java
+// チュートリアル完了ベント計測
+FoxEvent tutorialComp = new FoxEvent("_tutorial_comp", 456);
+tutorialComp.buid = "USER_A001";
+Fox.trackEvent(tutorialComp);
+```
+
+#### 　1.3 課金イベント計測 実装例
+
+```java
+// 課金イベント計測
+FoxEvent purchaseEvent = new FoxEvent("_purchase", 123);
+purchaseEvent.price = 1.2;
+purchaseEvent.currency = "USD";
+purchaseEvent.buid = "USER_A001";
+purchaseEvent.sku = "ABC789";
+purchaseEvent.quantity = 2;
+Fox.trackEvent(purchaseEvent);
+```
+
+<div id="continuity"></div>
+## 2. 旧バージョンでの実装の置き換え(エンゲージメント計測)
+
+これまでのF.O.X Android SDK 3.0.0以下で行っていた実装方法を継続することも可能となっています。<br>
+下記は課金イベントのエンゲージメント計測の実装例です。
+
+**実装例**
+
+```java
+import org.json.JSONObject;
+import co.cyberz.fox.FoxTrack;
+import co.cyberz.fox.service.FoxEvent;
+
+JSONObject eventInfo = new JSONObject("{" +
+                                      "'fox_cvpoint':'12345'," +
+                                      "'transaction_id':'ABCDFE’," +
+                                      "'product':[" +
+                                                "{'id':'1234','price':550,'quantity':1}," +
+                                                "{'id':'1235','price':550,'quantity':2}," +
+                                                "{'id':'1236','price':550,'quantity':2}" +
+                                                "]," +
+                                      "'din':'2016-01-02'," +
+                                      "'dout':'2016-01-05'," +
+                                      "'criteo_partner_id':'XXXXX'" +
+                                      "'datafeed' : {" +
+                                                    "'version':'v1.0'," +
+                                                    "'product':[" +
+                                                               "{" +
+                                                                "'id':'12345'" +
+                                                                "'action':'U'" +
+                                                                "'name':'icecreame'" +
+                                                                "'expire':'2016-10-31'" +
+                                                                "'effective':'2016-04-01'" +
+                                                                "'img':'http://pngimg.com/upload/ice_cream_PNG5099.png'" +
+                                                                "'category1':'food'" +
+                                                                "'price':'2750'" +
+                                                                "'currency':'JPY'"
+                                                               "}"
+                                                              "]" +
+                                                    "}" +
+                                      "}");
+FoxEvent purchaseEvent = new FoxEvent("_purchase", 12345);
+purchaseEvent.buid = "USER_A001";
+purchaseEvent.price = 2750;
+purchaseEvent.quantity = 1;
+purchaseEvent.orderId = "ABCDFE";
+purchaseEvent.eventInfo = eventInfo;
+Fox.trackEvent(purchaseEvent);
+```
+
+---
+[トップ](../../README.md)
