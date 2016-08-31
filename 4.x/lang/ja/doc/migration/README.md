@@ -34,15 +34,45 @@
 
 3.&nbsp;&nbsp;Gradle Buildを実行
 
-## 2. 設定の見直し
+## 2. 設定の変更
 
-* 「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/ja/)」が未実施の場合には対応してください。
-* 「[（オプション）外部ストレージを利用した重複排除設定](../external_storage/ja/)」が未実施の場合には対応してください。
+### 2.1 設定必須パラメータの変更
+
+これまでAndroidManifest.xmlに記述していた以下のmeta-dataの設定箇所が変更となり、コード上での設定となります。
+
+```xml
+<meta-data
+    android:name="APPADFORCE_APP_ID"
+    android:value="1234" />
+<meta-data
+    android:name="APPADFORCE_SERVER_URL"
+    android:value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+<meta-data
+    android:name="APPADFORCE_CRYPTO_SALT"
+    android:value="YYYYYYYYYYYYYYYYYYYYYYYYYY" />
+<meta-data
+    android:name="ANALYTICS_APP_KEY"
+    android:value="ZZZZZZZZZZZZZZZZZZZZZZZZZZ" />
+```
+
+**[必須パラメータの設定箇所]**
+
+|必須パラメータ|〜3.3.0|4.0.0〜|
+|:---:|:---:|:---:|
+|APPADFORCE_APP_ID|AndroidManifest.xml|[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|APPADFORCE_SERVER_URL|AndroidManifest.xml|不要|
+|APPADFORCE_CRYPTO_SALT|AndroidManifest.xml|[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|ANALYTICS_APP_KEY|AndroidManifest.xml|[FoxConfig](../sdk_api/README.md#foxconfig).java|
+
+### 2.2 設定の見直し
+
+* 「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/ja/)」が未実施の場合には対応をご検討ください。
+* 「[（オプション）外部ストレージを利用した重複排除設定](../external_storage/ja/)」が未実施の場合には対応をご検討ください。
 
 ※ SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
 
 
-## 3. 旧バージョン(4.0.0未満)からのアップデート
+## 3. 旧バージョン(4.0.0未満)からの実装方法を更新
 
 ### 3.1 マイグレーション時の注意
 
