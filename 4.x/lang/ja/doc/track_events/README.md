@@ -9,7 +9,7 @@
 
 * **[1. アプリ内の各種イベント実装例](#each_event_sample)**
 * **[2. 旧バージョンでの実装の置き換え(エンゲージメント計測)](#continuity)**
-* **[3. タグを利用したイベント計測について]**
+* **[3. タグを利用したイベント計測について](#track_by_tag)**
 
 <div id="each_event_sample"></div>
 ## 1. アプリ内の各種イベント実装例
@@ -102,6 +102,7 @@ purchaseEvent.eventInfo = eventInfo;
 Fox.trackEvent(purchaseEvent);
 ```
 
+<div id="track_by_tag"></div>
 ## 3. タグを利用したイベント計測について
 
 会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
