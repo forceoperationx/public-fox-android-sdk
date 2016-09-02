@@ -96,7 +96,9 @@ JSONObject eventInfo = new JSONObject("{" +
 FoxEvent purchaseEvent = new FoxEvent("_purchase", 12345);
 purchaseEvent.buid = "USER_A001";
 purchaseEvent.price = 2750;
+purchaseEvent.currency = "JPY";
 purchaseEvent.quantity = 1;
+purchaseEvent.sku = @"ABC789";
 purchaseEvent.orderId = "ABCDFE";
 purchaseEvent.eventInfo = eventInfo;
 Fox.trackEvent(purchaseEvent);
