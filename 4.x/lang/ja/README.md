@@ -38,6 +38,10 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 <div id="whats_fox_sdk"></div>
 ## F.O.X SDKとは
 
+[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
+[![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
+
+
 F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
 
 * **インストール計測**
