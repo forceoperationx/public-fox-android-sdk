@@ -38,7 +38,9 @@
 
 ### 2.1 設定必須パラメータの変更
 
-これまでAndroidManifest.xmlに記述していた以下のmeta-dataの設定箇所が変更となり、コード上での設定となります。
+これまでAndroidManifest.xmlに記述していた以下のmeta-dataの設定箇所が不要となり、コード上での設定となります。
+
+**[削除]**
 
 ```xml
 <meta-data
