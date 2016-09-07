@@ -240,12 +240,12 @@ public class YourApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        private int FOX_APP_ID = 発行されたアプリID;
-        private String FOX_APP_KEY = "発行されたAPP_KEY";
-        private String FOX_APP_SALT = "発行されたAPP_SALT";
+        int FOX_APP_ID = 発行されたアプリID;
+        String FOX_APP_KEY = "発行されたAPP_KEY";
+        String FOX_APP_SALT = "発行されたAPP_SALT";
         FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
 				  config.addDebugOption(BuildConfig.DEBUG)
-						.activate()
+						.activate();
     }
 }
 
