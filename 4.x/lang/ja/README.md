@@ -64,7 +64,7 @@ F.O.X SDKモジュールをGradleを用いてインポートする場合、以�
 ```
 repositories {
     maven {
-        url "https://github.com/cyber-z/public--android-sdk/raw/master/mavenRepo"
+        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
     }
 }
 
