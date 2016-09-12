@@ -1,6 +1,6 @@
 # Force Operation X Android SDK Integration Guide
 
-## VERSIONS
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[〜 3.3.0](./3.x/README.md)
-
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.0.0 〜](./4.x/README.md)
+###LANGUAGE
+* [Japanese](./3.x/lang/ja/README.md)
+* [Korean](./3.x/lang/ko/README.md)
+* [Chinese(Traditional)](./3.x/lang/zh-tw/README.md)
