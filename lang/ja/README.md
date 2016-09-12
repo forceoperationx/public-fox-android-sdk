@@ -376,6 +376,3 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 * [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
 
 * [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
-
----
-[トップメニュー](/blob/3.x/README.md)

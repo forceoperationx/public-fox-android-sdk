@@ -328,6 +328,3 @@ F.O.X는 몇가지 방식을 조합하여 단말의 중복 설치 감지하고 �
 * [외부 스토리지를 이용한 중복 제거 설정](./doc/external_storage/README.md)
 
 * [Android M (6.0) 자동 백업 기능 이용](./doc/auto_backup/README.md)
-
----
-[TOP 메뉴로](/blob/3.x/README.md)

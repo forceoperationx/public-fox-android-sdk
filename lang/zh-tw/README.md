@@ -366,6 +366,3 @@ F.O.X使用了多種方式來監測終端的重複安裝。
 * [利用外部存儲設定重複排除](./doc/external_storage/README.md)
 
 * [Android M(6.0) 利用自動備份功能](./doc/auto_backup/README.md)
-
----
-[主菜單](/blob/3.x/README.md)
