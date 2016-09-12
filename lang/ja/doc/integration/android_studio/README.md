@@ -1,4 +1,4 @@
-[TOP](../../README.md)　>　Android Studioプロジェクトへの導入
+[TOP](../../../README.md)　>　Android Studioプロジェクトへの導入
 
 ---
 
