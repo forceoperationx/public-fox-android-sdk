@@ -378,4 +378,4 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 * [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
 
 ---
-[トップメニュー](/README.md)
+[トップメニュー](/blob/3.x/README.md)

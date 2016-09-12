@@ -330,4 +330,4 @@ F.O.X는 몇가지 방식을 조합하여 단말의 중복 설치 감지하고 �
 * [Android M (6.0) 자동 백업 기능 이용](./doc/auto_backup/README.md)
 
 ---
-[TOP 메뉴로](/README.md)
+[TOP 메뉴로](/blob/3.x/README.md)
