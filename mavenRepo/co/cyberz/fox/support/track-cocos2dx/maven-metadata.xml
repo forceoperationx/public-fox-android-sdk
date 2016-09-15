@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>co.cyberz.fox.support</groupId>
-  <artifactId>foxtrack-extension</artifactId>
+  <artifactId>track-cocos2dx</artifactId>
   <versioning>
     <release>1.0.0</release>
     <versions>
       <version>1.0.0</version>
     </versions>
-    <lastUpdated>20160902113251</lastUpdated>
+    <lastUpdated>20160915093249</lastUpdated>
   </versioning>
 </metadata>

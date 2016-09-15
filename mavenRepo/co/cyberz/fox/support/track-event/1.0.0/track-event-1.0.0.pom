@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>co.cyberz.fox.support</groupId>
-  <artifactId>foxtrack-extension</artifactId>
+  <artifactId>track-event</artifactId>
   <version>1.0.0</version>
   <packaging>aar</packaging>
   <licenses>
@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>co.cyberz.fox</groupId>
-      <artifactId>foxtrack-core</artifactId>
+      <artifactId>track-core</artifactId>
       <version>4.0.0</version>
       <scope>compile</scope>
     </dependency>
