@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:foxtrack-core:4.0.0'
+    compile 'co.cyberz.fox:track-core:4.0.0'
 }
 ```
 
