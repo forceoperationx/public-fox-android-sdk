@@ -381,6 +381,7 @@ public class YourApplication extends Application {
 
 会員登録、チュートリアル突破、課金など任意の成果地点にイベント計測を実装することで、流入元広告のLTVを測定することができます。<br>イベント計測が不要の場合には、本項目の実装を省略できます。
 
+<div id="tracking_event_tutorial"></div>
 **[チュートリアルイベントの計測例]**
 
 ```java
@@ -396,6 +397,7 @@ Fox.trackEvent(tutorialEvent);
 
 > イベント計測を行うためには、各成果地点を識別する`成果地点ID`を指定する必要があります。[`FoxEvent`](./doc/sdk_api/README.md#foxevent)クラスのコンストラクタの引数にイベント名と発行されたIDを指定してください。
 
+<div id="tracking_event_purchase"></div>
 **[課金イベントの計測例]**
 
 課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。

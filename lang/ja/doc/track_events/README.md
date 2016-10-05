@@ -112,6 +112,7 @@ Fox.trackEvent(purchaseEvent);
 会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
 F.O.Xのイベント計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合には[`trackEventByBrowser`](../sdk_api/README.md#fox)メソッド、アプリ内WebViewの場合には[`trackEventByWebView`](../sdk_api/README.md#fox)メソッドを利用することで、F.O.Xがイベント計測に必要な情報をブラウザのCookieに記録します。
 
+<div id="track_by_browser"></div>
 ### 3.1 外部ブラウザによるイベント計測
 
 アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、`trackEventByBrowser`メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
@@ -123,6 +124,7 @@ import co.cyberz.fox.Fox;
 Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 ```
 
+<div id="track_by_webview"></div>
 ### 3.2 アプリ内WebViewでのイベント計測について
 
 ユーザーの遷移がWebView内で行われる場合には、`trackEventByWebView`を用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度に`trackEventByWebView`が実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
