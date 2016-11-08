@@ -26,7 +26,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [プッシュ通知の実装](./doc/notify/README.md)
 	* [オプトアウトの実装](./doc/optout/README.md)
 	* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
-	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
+	* [外部ストレージを利用した重複判定設定](./doc/external_storage/README.md)
 	* [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
 * **[9. 最後に必ずご確認ください](#trouble_shooting)**
 
@@ -107,12 +107,12 @@ F.O.X SDKでは下記4つのパーミッションを利用します。
 :---|:---:|:---:|:---
 INTERNET|Normal|必須|F.O.X SDKが通信を行うために必要となります。
 ACCESS_NETWORK_STATE|Normal|必須|F.O.X SDKが通信可能かを確認するために必要となります。
-READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
-WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
+READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定機能向上に必要となります。(※2)
+WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定機能向上に必要となります。(※2)
 
 > ※1 READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。
 
-> ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)をご確認ください。
+> ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複判定設定](./doc/external_storage/README.md)をご確認ください。
 
 ### メタデータの設定
 
@@ -373,6 +373,6 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 * [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
 
-* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
+* [外部ストレージを利用した重複判定設定](./doc/external_storage/README.md)
 
 * [Android M(6.0) オートバックアップ機能の利用](./doc/auto_backup/README.md)
