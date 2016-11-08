@@ -107,8 +107,8 @@ F.O.X SDKでは下記4つのパーミッションを利用します。
 :---|:---:|:---:|:---
 INTERNET|Normal|必須|F.O.X SDKが通信を行うために必要となります。
 ACCESS_NETWORK_STATE|Normal|必須|F.O.X SDKが通信可能かを確認するために必要となります。
-READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定機能向上に必要となります。(※2)
-WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定機能向上に必要となります。(※2)
+READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定精度向上に必要となります。(※2)
+WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複判定精度向上に必要となります。(※2)
 
 > ※1 READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。
 
