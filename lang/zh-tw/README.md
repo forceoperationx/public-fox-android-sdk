@@ -66,7 +66,7 @@ dependencies {
 }
 ```
 
-如果希望手動安裝，請從下面的頁面來下載最新的SDK。
+如果希望手動安裝，請從下面的頁面來下載最新的安定版（Latest release）SDK。
 
 * [SDK下載](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
@@ -84,6 +84,7 @@ dependencies {
 * **SDK設定**
 
 為使SDK發揮作用請在AndroidManifest.xml裡添加必要的設定。
+請在FOX管理畫面裡（SDK導入→平台的選擇→SDK導入文檔→SDK導入步驟→設定文件的下載）下載該設定文件，並根據自己項目的需要進行修改。
 
 ### permission的設定
 
@@ -125,6 +126,9 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 <meta-data
 	android:name="ANALYTICS_APP_KEY"
 	android:value="請輸入Force Operation X管理員告知的值。" />
+<meta-data
+	android:name="ANALYTICS_SERVER_URL"
+	android:value="請輸入Force Operation X管理員告知的值。" />
 ```
 
 設定的Key和Value如下：
@@ -135,6 +139,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 |APPADFORCE_SERVER_URL|必須|請輸入Force Operation X管理員告知的值。|
 |APPADFORCE_CRYPTO_SALT|必須|請輸入Force Operation X管理員告知的值。|
 |ANALYTICS_APP_KEY|必須|請輸入Force Operation X管理員告知的值。|
+|ANALYTICS_SERVER_URL|必須|請輸入Force Operation X管理員告知的值。|
 
 
 ### Install referrer計測的設定
@@ -285,6 +290,7 @@ public class MainActivity extends Activity {
 <div id="use_proguard"></div>
 ## 6. 使用ProGuard
 
+如果沒有使用ProGuard功能，可以跳過本節。
 使用ProGuard進行APP讀取混淆化時，請進行以下設定，將F.O.X SDK的method排除在對象外。
 
 ```

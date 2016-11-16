@@ -49,6 +49,7 @@
         <meta-data android:name="APPADFORCE_SERVER_URL" android:value="xxxxxx" />
         <meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="xxxxxx" />
         <meta-data android:name="ANALYTICS_APP_KEY" android:value="xxxxxx" />
+        <meta-data android:name="ANALYTICS_SERVER_URL" android:value="xxxxxx" />
 
     </application>
 
