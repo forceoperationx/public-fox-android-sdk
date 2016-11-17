@@ -66,7 +66,7 @@ dependencies {
 }
 ```
 
-如果希望手動安裝，請從下面的頁面來下載最新的SDK。
+如果希望手動安裝，請從下面的頁面來下載最新的安定版（Latest release）SDK。
 
 * [SDK下載](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
@@ -84,6 +84,7 @@ dependencies {
 * **SDK設定**
 
 為使SDK發揮作用請在AndroidManifest.xml裡添加必要的設定。
+請在FOX管理畫面裡（SDK導入→平台的選擇→SDK導入文檔→SDK導入步驟→設定文件的下載）下載該設定文件，並根據自己項目的需要進行修改。
 
 ### permission的設定
 
@@ -125,6 +126,9 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 <meta-data
 	android:name="ANALYTICS_APP_KEY"
 	android:value="請輸入Force Operation X管理員告知的值。" />
+<meta-data
+	android:name="ANALYTICS_SERVER_URL"
+	android:value="請輸入Force Operation X管理員告知的值。" />
 ```
 
 設定的Key和Value如下：
@@ -135,6 +139,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 |APPADFORCE_SERVER_URL|必須|請輸入Force Operation X管理員告知的值。|
 |APPADFORCE_CRYPTO_SALT|必須|請輸入Force Operation X管理員告知的值。|
 |ANALYTICS_APP_KEY|必須|請輸入Force Operation X管理員告知的值。|
+|ANALYTICS_SERVER_URL|必須|請輸入Force Operation X管理員告知的值。|
 
 
 ### Install referrer計測的設定
@@ -285,6 +290,7 @@ public class MainActivity extends Activity {
 <div id="use_proguard"></div>
 ## 6. 使用ProGuard
 
+如果沒有使用ProGuard功能，可以跳過本節。
 使用ProGuard進行APP讀取混淆化時，請進行以下設定，將F.O.X SDK的method排除在對象外。
 
 ```
@@ -318,17 +324,20 @@ public class MainActivity extends Activity {
 
 **測試步驟**
 
-1. 如果測試用的設備已安裝APP，請先卸載掉APP
-1. 刪除測試設備的默認瀏覽器的Cookie
-1. 複製鄙司發行的測試用URL，粘貼到默認瀏覽器（標準瀏覽器）的URL欄裡進行訪問。<br />
-＊請一定在OS設定的默認瀏覽器裡使用測試URL來發出請求。點擊URL彈出的瀏覽器就是默認瀏覽器。郵件APP或QR碼讀取APP等這些APP內部會用WebView發生的畫面跳轉是無法計測的。
+1. 如果測試用的設備已安裝APP，請先卸載掉APP<br />
+1. 清除測試移动终端默认浏览器的Cookie<br />
+＊請查看默认浏览器的设置。一般點擊某個URL自動彈出的瀏覽器就是默認瀏覽器。<br />
+1. 複製鄙司發行的【安装用测试URL】，粘貼到默認瀏覽器（標準瀏覽器）的URL欄裡進行訪問。<br />
+＊請在管理畫面（SDK導入→平台的選擇→SDK導入文檔→测试URL→安装用测试URL）裡取得【安装用测试URL】。<br />
+＊請一定在OS設定的默認瀏覽器裡粘貼測試URL來發出請求。郵件APP或QR碼讀取APP等這些APP內部會用WebView發生的畫面跳轉是無法計測的。<br />
 1. 畫面移轉到Market<br />
-＊使用測試URL，可能會因為沒有設定跳轉目的地而彈出錯誤對話框，這個不影響測試。
-1. 在測試用的終端上安裝測試APP<br />
-1. 啟動APP，瀏覽器啟動<br />
-＊若流覽器無法啟動，說明沒有正常設定。重新設定後，若仍無法發現問題，請與弊司聯繫。
-1. 把畫面移轉到LTV地點<br />
-＊如果登錄了LTV地點執行此步驟
+＊使用測試URL，可能會因為沒有設定跳轉目的地（沒有在APP詳細裡設定「商城URL」）而彈出錯誤對話框，這個不影響測試。<br />
+1. 在測試終端上安裝測試APP<br />
+1. 啟動APP<br />
+＊如果沒有勾選cookie計測手法，瀏覽器將不會彈跳出來。<br />
+＊如果勾選了cookie計測手法，瀏覽器將自動打開，若流覽器無法啟動，說明沒有正常設定。請重新設定，若仍無法發現問題，請與弊司聯繫。<br />
+1. 把畫面移轉到LTV計測地點<br />
+＊如果登錄了LTV地點執行此步驟<br />
 1. 結束並從後台關閉APP<br />
 1. 再次啟動APP<br />
 
