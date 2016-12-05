@@ -57,7 +57,7 @@ AnalyticsManager.sendEvent(this, "_purchase", null, null, null, null, null, 2750
 | 引数 | 型 | 概要 |
 |:----------|:-----------:|:------------|
 |eventInfo (fox_cvpoint)|JSONObject|F.O.Xの成果地点IDを設定します。|
-|eventInfo (transaction.id)|JSONObject|注文番号、問い合わせ番号などのトランザクションID|
+|eventInfo (transaction_id)|JSONObject|注文番号、問い合わせ番号などのトランザクションID|
 |eventInfo (product)|JSONArray|Product をキーとして商品IDを配列で設定します。
 |&nbsp;&nbsp;eventInfo (product[].id)|JSONObject|商品IDデータフィードと同じ商品IDを使用してください。|
 |&nbsp;&nbsp;eventInfo (product[].price)|JSONObject|該当商品の価格を設定します。|
