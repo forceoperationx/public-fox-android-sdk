@@ -29,7 +29,7 @@
 **[追加]**
 
 ```
-    compile 'co.cyberz.fox:foxtrack-core:{VERSION}'
+    compile 'co.cyberz.fox:track-core:{VERSION}'
 ```
 
 3.&nbsp;&nbsp;Gradle Buildを実行
