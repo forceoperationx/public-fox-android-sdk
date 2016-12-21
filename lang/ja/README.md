@@ -95,7 +95,7 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 <div id="setting_permission"></div>
 ### 2.1 パーミッションの設定
 
-F.O.X SDKでは下記4つのパーミッションを利用します。
+F.O.X SDKでは下記3つのパーミッションを利用します。
 &lt;Manifest&gt;タグ内に次のパーミッションの設定を追加します。
 
 ```xml
@@ -107,7 +107,6 @@ F.O.X SDKでは下記4つのパーミッションを利用します。
 パーミッション|Protection Level|必須|概要
 :---|:---:|:---:|:---
 INTERNET|Normal|必須|F.O.X SDKが通信を行うために必要となります。
-ACCESS_NETWORK_STATE|Normal|必須|F.O.X SDKが通信可能かを確認するために必要となります。
 READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
 
@@ -182,7 +181,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 
 > ※ 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
 
-> ※ カスタムURLスキームの詳細は[Android Dvelopers (暗黙的インテントの受信) ](https://developer.android.com/guide/components/intents-filters.html#Receiving)をご確認ください。
+> ※ カスタムURLスキームの詳細は[Android Developers (暗黙的インテントの受信) ](https://developer.android.com/guide/components/intents-filters.html#Receiving)をご確認ください。
 
 <div id="setting_googleplayservices"></div>
 ### 2.5 広告IDを利用するためのGoogle Play Servicesの導入
@@ -299,7 +298,7 @@ protected void onResume() {
 }
 ```
 
-> ※1 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"である場合を考慮し、最新のIntentを受け取るために`onNewIntent`メソッドをoverrideし、以下のように`setIntent`メソッドをコールしてください。
+> ※1 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"である場合を考慮し、最新のIntentを受け取るために`onNewIntent`メソッドをoverrideし、`setIntent`メソッドをコールしてください。
 
 > ※2 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityに[カスタムURLスキーム](#setting_urlscheme)が設定されていることが前提となります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
 
