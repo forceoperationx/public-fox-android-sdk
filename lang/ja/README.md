@@ -13,6 +13,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[2. 設定](#setting_sdk)**
 * **[3. インストール計測の実装](#tracking_install)**
 	* [sendConversionの詳細](./doc/send_conversion/README.md)
+	* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 * **[4. LTV計測の実装](#tracking_ltv)**
 	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
 * **[5. アクセス解析の実装](#tracking_analytics)**
@@ -200,11 +201,31 @@ protected void onCreate(Bundle savedInstanceState){
 }
 ```
 
-sendConversionの引数には、通常は上記の通り"default"という文字列をそのまま指定してください。
+sendConversionの引数には、通常は上記の通り"default"という文字列をそのまま指定してください。<br>
 
-[sendConversionの詳細](./doc/send_conversion/README.md)
+* [sendConversionの詳細](./doc/send_conversion/README.md)
+* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 
-また、リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendReengagementConversion`メソッドを実装します。
+
+また、リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendDeeplinkConversion`メソッドを実装します。
+
+[![F.O.X](http://img.shields.io/badge/Version-3.5.0%20+-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/blob/master/4.x/lang/ja/README.md)
+
+```java
+import jp.appAdForce.android.AdManager;
+
+@Override
+protected void onResume() {
+	super.onResume();
+	AdManager ad = new AdManager(this);
+	ad.sendDeeplinkConversion(getIntent());
+}
+```
+
+> SDKバージョン3.4.0まではリエンゲージメント計測に`sendReengagementConversion`メソッドを実装していましたが<br>
+バージョン3.5.0より[ディファードディープリンク](./doc/deferred_deeplink/README.md)のサポートに伴い`sendDeeplinkConversion`メソッドを実装します。
+
+[![F.O.X](http://img.shields.io/badge/Version-〜%203.4.0-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/blob/master/4.x/lang/ja/README.md)
 
 ```java
 import jp.appAdForce.android.AdManager;
@@ -216,6 +237,8 @@ protected void onResume() {
 	ad.sendReengagementConversion(getIntent());
 }
 ```
+
+> SDKバージョン3.5.0以降、`sendReengagementConversion`メソッドはDepricatedとなっておりますのでご注意ください。
 
 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"の場合は、URLスキーム経由でパラメータを受け取るために`onNewIntent`メソッドをoverrideし、以下のように`setIntent`メソッドをコールしてください。
 
