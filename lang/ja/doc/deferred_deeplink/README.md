@@ -10,7 +10,7 @@
 
 |返り値|メソッド|実装箇所|説明|
 |:---:|:---|:---:|:---|
-|AdManager|registerDeeplinkCallback (int expire, <br>TimeUnit timeUnit, <br>[`FoxDeeplinkListener`](#foxdeeplinklistener) listener)<br><br>・`expire` : ラストクリックの有効期限<br>・`timeUnit` : 有効期限の単位（分/時間/日）<br>・[`FoxDeeplinkListener`](#foxdeeplinklistener) : ディープリンク受診時のコールバック|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、FoxDeeplinkListenerを介してディープリンクを返します。|
+|AdManager|registerDeeplinkCallback (int expire, <br>TimeUnit timeUnit, <br>[FoxDeeplinkListener](#foxdeeplinklistener) listener)<br><br>・`expire` : ラストクリックの有効期限<br>・`timeUnit` : 有効期限の単位（分/時間/日）<br>・[FoxDeeplinkListener](#foxdeeplinklistener) : ディープリンク受診時のコールバック|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、FoxDeeplinkListenerを介してディープリンクを返します。|
 |AdManager|registerDeeplinkCallback ( )|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、ディープリンク先に自動遷移します。遷移のタイミングのコントロールは出来ません。|
 |void|sendDeeplinkConversion ( Intent i)<br>・`i` : Activity内で取得できるIntent|onResume()|アプリが初回起動直後に閉じられたり、ブラウザを起動しランディングページを開いたのちに、再度アプリがフォアグラウンドに戻った際、取得していたディープリンクのハンドリングを行うために必要となります。また、リエンゲージメント計測を行う場合にも実装が必須です。|
 
@@ -18,7 +18,7 @@
 ### FoxDeeplinkListener
 |返り値|メソッド|説明|
 |:---:|:---|:---|
-|void|onReceived (String deeplink) <br>・`deeplink` : 受信したディープリンク|クリック情報が存在し、ディープリンクを受信した際に呼ばれます。|
+|void|onReceived (String deeplink) <br>・`deeplink` : 受信したディープリンク|クリック情報が存在し、ディープリンクを受信した際に呼ばれます。引数のdeeplinkには入稿時に設定したディープリンクを返します。（URLデコード等の編集も行いません）|
 |void|onFailed ( ) |クリック情報が存在しない場合、或いはディープリンクを受信出来なかった(端末がオフライン時や通信に失敗した)場合に呼ばれます。|
 
 ### 実装例
@@ -31,7 +31,7 @@ import jp.appAdForce.android.AdManager;
 @Override
 public void onCreate(Bundle savedInstanceState) {
 	AdManager ad = new AdManager(this);
-  ad.registerDeeplinkCallback(2, TimeUnit.DAYS, new FoxDeeplinkListener() {
+	ad.registerDeeplinkCallback(2, TimeUnit.DAYS, new FoxDeeplinkListener() {
       @Override
       public void onReceived(String deeplink) {
           // ディープリンクを取得した場合の処理
@@ -67,7 +67,7 @@ import jp.appAdForce.android.AdManager;
 @Override
 public void onCreate(Bundle savedInstanceState) {
 	AdManager ad = new AdManager(this);
-  ad.registerDeeplinkCallback()
+	ad.registerDeeplinkCallback()
 	  .sendConversion("default");
 }
 
@@ -80,4 +80,10 @@ protected void onResume() {
 ```
 
 > ※ ディープリンクを取得し、ディープリンク先への遷移をSDKが行う例となっています。遷移するタイミングはディープリンク取得直後となっており、コントロールすることはできません。<br>
-また、ディープリンクを取得出来なかった場合や、遷移が不可能な無効なディープリンクの場合には何も起きません。
+また、ディープリンクを取得出来なかった場合や、遷移が不可能な無効なディープリンクの場合には反応しません。
+
+> ※ ディープリンクに記号や特殊な文字を含む場合には、画面遷移の処理を本SDKに委譲せず`FoxDeeplinkListener`を用いて実装されることを推奨します。
+
+
+---
+[トップ](/lang/ja/README.md)
