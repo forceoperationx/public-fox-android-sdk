@@ -13,7 +13,7 @@
 |返り値|メソッド|実装箇所|説明|
 |:---:|:---|:---:|:---|
 |AdManager|registerDeeplinkCallback (int expire, <br>TimeUnit timeUnit, <br>[FoxDeeplinkListener](#foxdeeplinklistener) listener)<br><br>・`expire` : ラストクリックの有効期限<br>・`timeUnit` : 有効期限の単位（分/時間/日）<br>・[FoxDeeplinkListener](#foxdeeplinklistener) : ディープリンク受診時のコールバック|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、FoxDeeplinkListenerを介してディープリンクを返します。|
-|AdManager|registerDeeplinkCallback ( )|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、ディープリンク先に自動遷移します。遷移のタイミングのコントロールは出来ません。|
+|AdManager|registerDeeplinkCallback ( )|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、ディープリンク先に自動遷移します。|
 |void|sendDeeplinkConversion ( Intent i)<br>・`i` : Activity内で取得できるIntent|onResume()|アプリが初回起動直後に閉じられたり、ランディングページを開くなどでブラウザを起動したのちに、再度アプリがフォアグラウンドに戻った際、取得していたディープリンクのハンドリングを行うために必要となります。また、リエンゲージメント計測を行う場合にも実装が必須です。|
 
 <div id="foxdeeplinklistener"></div>
