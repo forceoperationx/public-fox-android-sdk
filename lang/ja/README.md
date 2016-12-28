@@ -206,8 +206,10 @@ sendConversionの引数には、通常は上記の通り"default"という文字
 * [sendConversionの詳細](./doc/send_conversion/README.md)
 * [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 
+<div id="reengagement_tracking"></div>
+### リエンゲージメント計測
 
-また、リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendDeeplinkConversion`メソッドを実装します。
+リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendDeeplinkConversion`メソッドを実装します。
 
 [![F.O.X](http://img.shields.io/badge/Version-3.5.0%20+-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/blob/master/4.x/lang/ja/README.md)
 
