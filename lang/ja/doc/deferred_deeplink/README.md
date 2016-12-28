@@ -4,6 +4,8 @@
 アプリ内の対象のページに遷移することが可能となります。また、アプリが未インストールの場合でも、インストール後に<br>
 広告のリダイレクト先となるディープリンクに遷移させることが可能となります。
 
+> サポートバージョン：3.5.0以上
+
 
 ### AdManager
 ディファードディープリンクの実装は、初回起動時のsendConversion実行時に以下の`registerDeeplinkCallback`メソッドと`sendDeeplinkConversion`メソッドを使用します。
@@ -22,6 +24,8 @@
 |void|onFailed ( ) |クリック情報が存在しない場合、或いはディープリンクを受信出来なかった(端末がオフライン時や通信に失敗した)場合に呼ばれます。|
 
 ### 実装例
+
+以下の例に従って、いずれかを実装してください。
 
 #### 例1 ディープリンクを取得してハンドリングする
 
@@ -52,7 +56,7 @@ public void onCreate(Bundle savedInstanceState) {
 protected void onResume() {
     super.onResume();
     AdManager ad = new AdManager(this);
-    ad.sendReengagementConversion(getIntent());
+    ad.sendDeeplinkConversion(getIntent());
 }
 ```
 
@@ -75,7 +79,7 @@ public void onCreate(Bundle savedInstanceState) {
 protected void onResume() {
     super.onResume();
     AdManager ad = new AdManager(this);
-    ad.sendReengagementConversion(getIntent());
+    ad.sendDeeplinkConversion(getIntent());
 }
 ```
 
