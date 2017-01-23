@@ -1,30 +1,31 @@
-[TOP](../../README.md)　>　最新バージョンへのマイグレーションについて
+[TOP](../../README.md)　>　升级更新到最新版本
 
 ---
 
-# 最新バージョンへのマイグレーションについて
+# 升级更新到最新版本
 
-以前のF.O.X SDKが導入されたアプリに最新のSDKを導入する際に必要な手順は以下の通りです。
+以前导入过旧版F.O.X SDK的APP中导入最新SDK时，请按照以下的顺序进行。
 
-## 1. SDKの入れ替え
+## 1. SDK的替换
 
-**[Eclipseの場合]**
+**[Eclipse环境**
 
-1. 以前のバージョンの FOX_Android_SDK_{VERSION}.jarがプロジェクトに組み込まれていれば、それらを削除
-2. [最新のSDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jarファイルをプロジェクトのlibsに追加
-3. Eclipse の「プロジェクト」→「クリーン」を実行
+1. 如果项目中安装了旧版FOX_Android_SDK_{VERSION}.jar，将其删除。
+2. 将[最新版SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jar文件添加到项目的libs中。
+3. Eclips［项目］→实行［clean］
 
-**[AndroidStudioの場合]**
+**[AndroidStudio环境]**
 
-1.&nbsp;&nbsp;以前のバージョンの *FOX_Android_SDK_{VERSION}.jar* を削除する。また、アプリプロジェクトの`build.gradle`のdependenciesに以下の指定が記述されていれば削除する。<br>
+1.&nbsp;&nbsp;删除旧版 *FOX_Android_SDK_{VERSION}.jar* 。APP项目`build.gradle`中的依赖关系(dependencies)里有以下记载内容的话，请删除。<br>
 
-**[削除]**
+**[删除]**
 
 ```
     compile 'co.jp.cyberz.fox:sdk-android:{VERSION}'
 ```
 
-2.&nbsp;&nbsp;アプリプロジェクトの`build.gradle`に以下のdependencyを追記する。
+2.&nbsp;&nbsp;在APP项目的`build.gradle`中追加下面的依赖关系(dependency)。
+
 
 **[追加]**
 
@@ -32,15 +33,15 @@
     compile 'co.cyberz.fox:track-core:{VERSION}'
 ```
 
-3.&nbsp;&nbsp;Gradle Buildを実行
+3.&nbsp;&nbsp;执行Gradle Build
 
-## 2. 設定の変更
+## 2. 更改设置
 
-### 2.1 設定必須パラメータの変更
+### 2.1 修改设定所需的参数
 
-これまでAndroidManifest.xmlに記述していた以下のmeta-dataの設定箇所が不要となり、Application継承クラスのonCreate内での設定となります。
+目前为止AndroidManifest.xml中不需要以下meta-data的设置，在Application继承Class的onCreate中做设置。
 
-**[削除]**
+**[消除]**
 
 ```xml
 <meta-data
@@ -57,55 +58,53 @@
     android:value="ZZZZZZZZZZZZZZZZZZZZZZZZZZ" />
 ```
 
-**[必須パラメータの設定箇所]**
+**[所需参数的设置位置]**
 
-|必須パラメータ|〜3.3.0|4.0.0〜|
+|所需参数|〜3.3.0|4.0.0〜|
 |:---:|:---:|:---:|
-|APPADFORCE_APP_ID|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
-|APPADFORCE_SERVER_URL|AndroidManifest.xml|不要|
-|APPADFORCE_CRYPTO_SALT|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
-|ANALYTICS_APP_KEY|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|APPADFORCE_APP_ID|AndroidManifest.xml|Application継承Class内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|APPADFORCE_SERVER_URL|AndroidManifest.xml|不需要|
+|APPADFORCE_CRYPTO_SALT|AndroidManifest.xml|Application継承Class内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|ANALYTICS_APP_KEY|AndroidManifest.xml|Application継承Class内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
 
-### 2.2 設定の見直し
+### 2.2 设置的重估
 
-* 「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/ja/)」が未実施の場合には対応をご検討ください。
-* 「[（オプション）外部ストレージを利用した重複排除設定](../external_storage/ja/)」が未実施の場合には対応をご検討ください。
+* 未实行「[（可选项）为使用广告ID的Google Play Services导入](../google_play_services/ja/)」的情况，请考虑该选项。
+* 未实行「[（选项）使用外部储存设置排除重复](../external_storage/ja/)」的情况，请考虑该选项。
 
-※ SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
+※ SDK 更新后，必须测试计测效果，并确认计测及APP运行没有问题。
 
+## 3. 更新旧版本(4.0.0以下)的执行方法
 
-## 3. 旧バージョン(4.0.0未満)からの実装方法を更新
+### 3.1 升级过渡时的注意点
 
-### 3.1 マイグレーション時の注意
+* 必须将旧版本从项目中删除后再进行导入。
+* APP项目中请不要将SDK和旧版本(不足4.0.0版本)混淆。会发生编译错误。
 
-* 必ず旧バージョンはプロジェクト内から削除した上で導入してください。
-* アプリケーションのプロジェクトにSDKは旧バージョン(4.0.0未満)とを混在しないようにしてください。ビルドエラーが発生します。
+### 3.2 不同计测的API适用表
 
-
-### 3.2 計測別のAPI対応表
-
-|種別| `〜 3.3.0` の実装 | `4.0.0 〜` の実装|
+|种别| `〜 3.3.0` 的实际安装 | `4.0.0 〜` 的实际安装|
 |:---:|:---|:---|
-|[アクティベーション](../../README.md#activate_sdk_into_app)|**AndroidManifest.xml**<br>&lt;meta-data&gt;<br>・APPADFORCE_APP_ID<br>・APPADFORCE_CRYPTO_SALT<br>・ANALYTICS_APP_KEY|[FoxConfig](../sdk_api/README.md#foxconfig) config = <br>new [FoxConfig](../sdk_api/README.md#foxconfig)("*APPADFORCE_APP_ID*", "*APPADFORCE_CRYPTO_SALT*", "ANALYTICS_APP_KEY");<br>config.activate();|
-|[インストール計測](../../README.md#tracking_install)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("default");|[Fox](../sdk_api/README.md#fox).trackInstall();|
-|[インストール計測<br>(オプション付)](../track_install/README.md#track_install_optional)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("*https://redirectSite.com*", "USER_0001");|[FoxTrackOption](../sdk_api/README.md#foxtrackoption) opt = new [FoxTrackOption](../sdk_api/README.md#foxtrackoption)();<br>opt.addRedirectUrl("*https://redirectSite.com*");<br>opt.addBuid("USER_0001")<br>[Fox](../sdk_api/README.md#fox).trackInstall(opt);|
-|[外部ブラウザでイベント計測](../track_events/README.md#track_by_browser)|AdManager ad = new AdManager(this);<br>LtvManager ltv = new LtvManager(ad);<br>ltv.ltvOpenBrowser("*http://yourhost.com/*");|[Fox](../sdk_api/README.md#fox).trackEventByBrowser("*http://yourhost.com/*");|
-|[アプリ内WebViewでイベント計測](../track_events/README.md#track_by_webview)|AdManager ad = new AdManager(*Context*);<br>LtvManager ltv = new LtvManager(ad);<br>WebView mWebView = (WebView) findViewById(R.id.webview);<br>ltv.setLtvCookie(mWebView);<br>webView.loadUrl("*http://yourhost.com/*");|WebView webView = (WebView) findViewById(R.id.webview);<br>[Fox](../sdk_api/README.md#fox).trackEventByWebView(webView);<br>webView.loadUrl("*http://yourhost.com/*");|
-|[リエンゲージメント計測](../../README.md#tracking_reengagement)|AdManager ad = new AdManager( Context );<br>ad.sendReengagementConversion(Intent);|[Fox](../sdk_api/README.md#fox).trackDeeplinkLaunch(Intent);|
-|[セッション計測](../../README.md#tracking_session)|AnalyticsManager.sendStartSession( Context );|[Fox](../sdk_api/README.md#fox).trackSession();|
-|[イベント計測<br>(課金)](../../README.md#tracking_event_purchase)|// LTV計測による課金計測<br>AdManager ad = new AdManager( Context )<br>LtvManager ltv = new LtvManager( ad );<br>ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");<br>ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");<br>ltv.sendLtvConversion( *成果地点ID* );<br><br>// アクセス解析による課金計測(`※1`)<br>AnalyticsManager.sendEvent(Context, "*イベント名*", action, null, null, orderId, sku, itemName, 9.99, 1, "USD");|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*イベント名*", *成果地点ID*);<br>event.price = 9.99;<br>event.currency = "USD";<br>event.quantity = 1;<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
-|[イベント計測<br>(チュートリアル完了)](../../README.md#tracking_event_tutorial)|AnalyticsManager.sendEvent(Context, "*チュートリアル完了*", null, null, 1);|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*チュートリアル完了*");<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
+|[激活](../../README.md#activate_sdk_into_app)|**AndroidManifest.xml**<br>&lt;meta-data&gt;<br>・APPADFORCE_APP_ID<br>・APPADFORCE_CRYPTO_SALT<br>・ANALYTICS_APP_KEY|[FoxConfig](../sdk_api/README.md#foxconfig) config = <br>new [FoxConfig](../sdk_api/README.md#foxconfig)("*APPADFORCE_APP_ID*", "*APPADFORCE_CRYPTO_SALT*", "ANALYTICS_APP_KEY");<br>config.activate();|
+|[Install计测](../../README.md#tracking_install)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("default");|[Fox](../sdk_api/README.md#fox).trackInstall();|
+|[Install计测<br>(带Option)](../track_install/README.md#track_install_optional)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("*https://redirectSite.com*", "USER_0001");|[FoxTrackOption](../sdk_api/README.md#foxtrackoption) opt = new [FoxTrackOption](../sdk_api/README.md#foxtrackoption)();<br>opt.addRedirectUrl("*https://redirectSite.com*");<br>opt.addBuid("USER_0001")<br>[Fox](../sdk_api/README.md#fox).trackInstall(opt);|
+|[用外部浏览器进行事件计测](../track_events/README.md#track_by_browser)|AdManager ad = new AdManager(this);<br>LtvManager ltv = new LtvManager(ad);<br>ltv.ltvOpenBrowser("*http://yourhost.com/*");|[Fox](../sdk_api/README.md#fox).trackEventByBrowser("*http://yourhost.com/*");|
+|[用APP内WebView进行事件计测](../track_events/README.md#track_by_webview)|AdManager ad = new AdManager(*Context*);<br>LtvManager ltv = new LtvManager(ad);<br>WebView mWebView = (WebView) findViewById(R.id.webview);<br>ltv.setLtvCookie(mWebView);<br>webView.loadUrl("*http://yourhost.com/*");|WebView webView = (WebView) findViewById(R.id.webview);<br>[Fox](../sdk_api/README.md#fox).trackEventByWebView(webView);<br>webView.loadUrl("*http://yourhost.com/*");|
+|[流失唤回广告计测](../../README.md#tracking_reengagement)|AdManager ad = new AdManager( Context );<br>ad.sendReengagementConversion(Intent);|[Fox](../sdk_api/README.md#fox).trackDeeplinkLaunch(Intent);|
+|[Session计测](../../README.md#tracking_session)|AnalyticsManager.sendStartSession( Context );|[Fox](../sdk_api/README.md#fox).trackSession();|
+|[事件计测<br>(付费)](../../README.md#tracking_event_purchase)|// 通过LTV计测的付费计测<br>AdManager ad = new AdManager( Context )<br>LtvManager ltv = new LtvManager( ad );<br>ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");<br>ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");<br>ltv.sendLtvConversion( *成果地点ID* );<br><br>// 依靠流量分析的付费计测(`※1`)<br>AnalyticsManager.sendEvent(Context, "*事件名*", action, null, null, orderId, sku, itemName, 9.99, 1, "USD");|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*事件名*", *成果地点ID*);<br>event.price = 9.99;<br>event.currency = "USD";<br>event.quantity = 1;<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
+|[事件计测<br>(完成新手引导)](../../README.md#tracking_event_tutorial)|AnalyticsManager.sendEvent(Context, "*完成新手引导*", null, null, 1);|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*完成心都引导*");<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
 
-> ※1 バージョン4.0.0以降にマイグレーションする際、これまで旧バージョンで指定していた`イベント名`を変更してしまうと、アクセス解析にて計測してきた集計データが引き継がれなくなりますのでご注意ください。
+> ※1 请注意，迁移到4.0.0以上的版本时如果修改旧版本的`事件名`，将无法继续保留流量分析中计测到的数据。
 
-### 3.3 その他
+### 3.3 其他
 
-#### 3.3.1 BroadcastReceiverの複数指定
+#### 3.3.1 BroadcastReceiver的多选
 
-**[`〜 3.3.0` の実装]**
+**[`〜 3.3.0` 的实际安装]**
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定 -->
+<!-- Receiver Class指定F.O.X SDK的Class -->
 <receiver
     android:name="jp.appAdForce.android.InstallReceiver"
     android:exported="true">
@@ -114,16 +113,16 @@
     </intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述 -->
+<!-- 用 F.O.X SDK呼出其他Receiver Class时信息记录为meta-data -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver" />
 ```
 
-**[`4.0.0 〜` の実装](../install_referrer/README.md)**
+**[`4.0.0 〜` 的实际安装](../install_referrer/README.md)**
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定します -->
+<!-- Receiver Class指定F.O.X SDK的Class -->
 <receiver
     android:name="co.cyberz.fox.FoxInstallReceiver"
     android:exported="true">
@@ -132,16 +131,16 @@
     </intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラスのパスを|(パイプ)区切りで記述します -->
+<!-- 希望用F.O.X SDK呼出其他Receiver Class的路径时用|(竖线)隔开记录 -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver1|com.example.InstallReceiver2|com.example.InstallReceiver3" />
 ```
 
-#### 3.3.2 Proguardの設定
+#### 3.3.2 设定Proguard
 
-<br>**[〜 3.3.0 の実装]**<br>
-**[削除]**
+<br>**[〜 3.3.0 的实际安装]**<br>
+**[删除]**
 
 ```
 -keepattributes *Annotation*
@@ -158,17 +157,17 @@
 -dontwarn com.naef.jnlua.**
 ```
 
-<br>**[4.0.0〜 の実装]**<br>
-**[追加]**
+<br>**[4.0.0〜 的实际安装]**<br>
+**[添加]**
 
 ```
 -keepattributes *Annotation*
 -keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
-# Gradle経由でSDKをインストールしている場合、下記jarファイルの指定は不要です。
+# 通过Gradle安装SDK的情况，不需要指定下述jar文件。
 -libraryjars libs/AppAdForce.jar
 ```
 
 ---
-[トップ](../../README.md)
+[Top](../../README.md)
