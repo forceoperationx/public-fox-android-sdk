@@ -2,16 +2,16 @@
 
 ---
 
-## 複数のINSTALL_REFERRERレシーバーを共存させる場合の設定
+## 使多个INSTALL_REFERRER RECEIVER共存的设置
 
-"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスは一つしか定義することができません。
+"com.android.vending.INSTALL_REFERRER"对应的Receiver Class只能定义一个。
 
-F.O.X以外のSDK等、既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合は、F.O.X SDKが用意しているレシーバークラスから、他のレシーバークラスを呼び出すことで共存させることが可能です。
+F.O.X之外的SDK等，已经定义"com.android.vending.INSTALL_REFERRER"对应的Receiver Class时，可以使用F.O.X SDK的Receiver Class，调出其他Receiver Class来实现共存。
 
-AndroidManifest.xmlを編集し、下記の設定を追加してください。
+请编辑AndroidManifest.xml，添加以下的设置。
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定します -->
+<!-- Receiver Class指定F.O.X SDK的Class -->
 <receiver
 	android:name="co.cyberz.fox.FoxInstallReceiver"
 	android:exported="true">
@@ -20,17 +20,16 @@ AndroidManifest.xmlを編集し、下記の設定を追加してください。
 	</intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述します -->
+<!-- 希望用F.O.X SDK呼出其他Receiver Class时信息记录为meta-data -->
 <meta-data
 		android:name="APPADFORCE_FORWARD_RECEIVER"
 		android:value="com.example.InstallReceiver1|com.example.InstallReceiver2|com.example.InstallReceiver3" />
 ```
 
-> `APPADFORCE_FORWARD_RECEIVER`に指定するクラスはパッケージ付きで指定してください。また、`|`(パイプ)で区切ることで複数のクラスを指定することが可能です。
+> 指定到`APPADFORCE_FORWARD_RECEIVER`的Class请附上Package。另外，可以用`|`(竖线)隔开多个class。
 
-> Proguardを利用する場合、`APPADFORCE_FORWARD_RECEIVER`に指定するクラスは-keep指定でクラス名が変更されないようにしてください。<br>
-Proguardの対象となりますとF.O.X SDKがクラスを探せなくなり正常に動作しませんのでご注意ください。
-
+> 使用Proguard时，APPADFORCE_FORWARD_RECEIVER中的class指定为-keep且不要更改class名称。<br>
+请注意，如果成为Proguard的对象，F.O.X SDK将无法正常搜索class。
 
 ---
-[トップ](../../README.md)
+[Top](../../README.md)
