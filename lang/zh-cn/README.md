@@ -1,65 +1,65 @@
-# Force Operation Xとは
+# 什么是Force Operation X
 
-Force Operation X (以下F.O.X)は、スマートフォンにおける広告効果最適化のためのトータルソリューションプラットフォームです。アプリケーションのダウンロード、ウェブ上でのユーザーアクションの計測はもちろん、スマートフォンユーザーの行動特性に基づいた独自の効果計測基準の元、企業のプロモーションにおける費用対効果を最大化することができます。
+Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告效果的整体解决方案平台。不光是App的下载和网页用户行为的计测，基于智能用户行为特征的独特计测基准，能够实现企业推广的性价比最大化。
 
-本ドキュメントでは、スマートフォンアプリケーションにおける広告効果最大化のためのF.O.X SDK導入手順について説明します。
+本文件是为实现智能手机app中广告效果最大化的安装F.O.X SDK安装说明书。
 
-## 目次
+## 目录
 
-* **[F.O.X SDKとは](#whats_fox_sdk)**
-* **[1. インストール](#install_sdk)**
-	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
-	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
-	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
-	* [旧バージョンからのマイグレーション](./doc/migration/README.md)
-* **[2. 設定](#setting_sdk)**
-	* [2.1 パーミッションの設定](#setting_permission)
-	* [2.2 Proguardの設定](#setting_proguard)
-	* [2.3 インストールリファラ計測の設定](#setting_installreferrer)
-	* [2.4 カスタムURLスキームの設定](#setting_urlscheme)
-	* [2.5 広告IDを利用するためのGoogle Play Servicesの導入](#setting_googleplayservices)
+* **[什么是F.O.X SDK](#whats_fox_sdk)**
+* **[1.导入](#install_sdk)**
+	* [下载SDK](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [AndroidStudio项目导入方法](./doc/integration/android_studio/README.md)
+	* [Eclipse项目导入方法](./doc/integration/eclipse/README.md)
+	* [从旧版本转移](./doc/migration/README.md)
+* **[2. 设置](#setting_sdk)**
+	* [2.1 设置权限](#setting_permission)
+	* [2.2 设置Proguard](#setting_proguard)
+	* [2.3 设置Install Referrer计测](#setting_installreferrer)
+	* [2.4 设置自定义URL SCHEME](#setting_urlscheme)
+	* [2.5 为使用广告ID的Google Play Services导入](#setting_googleplayservices)
 	* [SDK API](./doc/sdk_api/README.md)
-* **[3. F.O.X SDKのアクティベーション](#activate_sdk_into_app)**
-* **[4. インストール計測の実装](#tracking_install)**
-	* [インストール計測の詳細](./doc/track_install/README.md)
-* **[5. リエンゲージメント計測の実装](#tracking_reengagement)**
-* **[6. アプリ内イベントの計測](#tracking_event)**
-	* [6.1 セッション（起動イベント）の計測](#tracking_session)
-	* [6.2 その他のアプリ内イベントの計測](#tracking_other_event)
-	* [イベント計測の詳細 (エンゲージメント計測・ダイナミック配信連携..)](./doc/track_events/README.md)
-* **[7. 最短実装の例](#quickly_integration)**
-* **[8. その他機能の実装](#other_function)**
-	* [オプトアウトの実装](./doc/optout/README.md)
-	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-	* [オートバックアップ機能の利用 (Android M)](./doc/auto_backup/README.md)
-* **[9. 最後に必ずご確認ください](#trouble_shooting)**
+* **[3. 激活F.O.X SDK](#activate_sdk_into_app)**
+* **[4. Install计测的安装](#tracking_install)**
+	* [Install计测的详细](./doc/track_install/README.md)
+* **[5. 流失唤回广告（Reengagement）计测的安装](#tracking_reengagement)**
+* **[6. APP内事件的计测](#tracking_event)**
+	* [6.1 Session（启动事件）的计测](#tracking_session)
+	* [6.2 其他APP内事件的计测](#tracking_other_event)
+	* [事件计测的详细 (Engagement计测・动态投放连动..)](./doc/track_events/README.md)
+* **[7. 最快实际安装案例](#quickly_integration)**
+* **[8. 安装其他功能](#other_function)**
+	* [安装Optout](./doc/optout/README.md)
+	* [利用外部储存排除重复的设定](./doc/external_storage/README.md)
+	* [自动备份功能的使用 (Android M)](./doc/auto_backup/README.md)
+* **[9. 最后的注意事项](#trouble_shooting)**
 
 
 <div id="whats_fox_sdk"></div>
-## F.O.X SDKとは
+## 什么是F.O.X SDK
 
 [![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
 [![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
 
 
-F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
+将F.O.X SDK导入app之后，能够实现以下功能。
 
-* **インストール計測**
+* **Install计测**
 
-広告流入別にインストール数を計測することができます。
+能够计测不同广告带来的安装数。
 
-* **LTV計測**
+* **LTV计测**
 
-流入元広告別にLife Time Valueを計測します。主な成果地点としては、会員登録、チュートリアル突破、課金などがあります。各広告別に登録率、課金率や課金額などを計測することができます。
+可以计测不同广告来源的Life Time Value。主要的成果地点为会员注册、新手引导完成、付费等。能够分别监测各广告的登录率、付费率以及付费金额。
 
-* **アクセス解析**
+* **流量分析**
 
-自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
+比较自然流入和广告流入带来的安装。能够计测App的启动次数和Unique用户数(DAU/MAU)、留存率等。
 
 <div id="install_sdk"></div>
-## 1. インストール
+## 1. 导入
 
-F.O.X SDKモジュールをGradleを用いてインポートする場合、以下の設定をプロジェクトのbuild.gradleに追加してください。
+使用Gradle来导入F.O.X SDK module时，请将以下设置写入项目build.gradle。
 
 ```
 repositories {
@@ -73,30 +73,29 @@ dependencies {
 }
 ```
 
-手動でインストールを行う場合は、リリースページより最新のSDKをダウンロードしてください。
+手动下载时，请从下面的页面下载最新的安定版（Latest release）SDK。
 
-* [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
+* [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-ダウンロードしたSDKを展開し、`libs/foxtrack-core_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
+打开下载的SDK文件、在APP项目中导入`libs/foxtrack-core_{VERSION}.jar`。
 
-**[詳細]**
-* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
-* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
+**[详细信息]**
+* [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
+* [Eclipse项目的导入方法](./doc/integration/eclipse/README.md)
 
-> ※ 既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/migration/README.md)をご参照ください。
+> ※ 如果APP中已经安装了SDK，请参考[最新版本的更新说明](./doc/migration/README.md)
 
 <div id="setting_sdk"></div>
-## 2. 設定
+## 2. 设置
 
-* **SDK設定**
+* **SDK设置**
 
-SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
+在AndroidManifest.xml中添加SDK操作所需设置。
 
 <div id="setting_permission"></div>
-### 2.1 パーミッションの設定
+### 2.1 设置权限
 
-F.O.X SDKでは下記3つのパーミッションを利用します。
-&lt;Manifest&gt;タグ内に次のパーミッションの設定を追加します。
+F.O.X SDK可以使用以下三种权限。 &lt;Manifest&gt;Tag中添加以下权限的设置。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -104,36 +103,36 @@ F.O.X SDKでは下記3つのパーミッションを利用します。
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-パーミッション|Protection Level|必須|概要
+权限|Protection Level|必須|概要
 :---|:---:|:---:|:---
-INTERNET|Normal|必須|F.O.X SDKが通信を行うために必要となります。
-READ_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
-WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重複排除機能向上に必要となります。(※2)
+INTERNET|Normal|必須|F.O.X SDK是进行通信的必要条件。。
+READ_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能。(※2)
+WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能。(※2)
 
-> ※1 READ_EXTERNAL_STORAGE及びWRITE_EXTERNAL_STORAGEパーミッションは、外部ストレージにデータを記録することでアプリの再インストール時により正確にインストール計測を行うために必要ですが、必須ではありません。
+> ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE权限，在外部储存中记录数据可以使APP重新安装时更准确的计测，但不是必须项目。
 
-> ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)をご確認ください。
+> ※2 从Android M开始，使用ProtectionLevel被指定为dangerous并需要权限的功能时，需要用户许可。具体请参考[使用外部储存来优化排除重复功能](./doc/external_storage/README.md)。
 
 <div id="setting_proguard"></div>
-### 2.2 Proguardの設定
-Proguard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
+### 2.2 设置Proguard
+使用Proguard进行APP代码混淆时，为排除F.O.X SDK的调用方法，请添加以下设置。
 
 ```
 -keepattributes *Annotation*
 -keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
-# Gradle経由でSDKをインストールしている場合、下記jarファイルの指定は不要です。
+# 通过Gradle安装SDK时，不需要指定以下jar文件。
 -libraryjars libs/AppAdForce.jar
 ```
 
-また、Google Play Service SDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
+另外，在已安装Google Play Service SDK 的情况下，请确认以下页面中是否已记述keep指定。
 
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+[Google Play Services导入时的Proguard对应](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="setting_installreferrer"></div>
-### 2.3 インストールリファラ計測の設定
-インストールリファラーを用いたインストール計測を行うために下記の設定を&lt;application&gt;タグに追加します。
+### 2.3 设置install referer计测
+使用install referer进行安装计测时，请把以下设置追加到&lt;application&gt;tag里。
 
 ```xml
 <receiver android:name="co.cyberz.fox.FoxInstallReceiver" android:exported="true">
@@ -143,12 +142,12 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 </receiver>
 ```
 
-既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/install_referrer/README.md)をご参照ください。
+"com.android.vending.INSTALL_REFERRER"的Receiver Class已经被定义的情况下，请参照[让多个INSTALL_REFERRER RECEIVER共存的设置](./doc/install_referrer/README.md)。
 
 <div id="setting_urlscheme"></div>
-### 2.4 カスタムURLスキームの設定
+### 2.4 设置自定义URL SCHEME
 
-アプリを外部から起動できるようにするため、起動させる対象の&lt;activity&gt;タグ内に下記の設定を追加してください。<br>
+为了能够从外部启动APP，请在启动对象的&lt;activity&gt;tag中添加下列设置。<br>
 
 ```xml
 <activity
@@ -160,7 +159,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
         <category android:name="android.intent.category.LAUNCHER"/>
     </intent-filter>
 
-    <!-- アプリを起動するためのカスタムURLスキーム設定 -->
+    <!-- app启动时所需的自定义URL SCHEME设置 -->
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -170,51 +169,52 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 </activity>
 ```
 
-<br>主要な例として以下が挙げられます。
+<br>以下为主要案例。
 
-* Cookie計測を行う場合に、ブラウザからアプリ戻る際のActivityに設定
-* [リエンゲージメント計測](#tracking_reengagement)を行うActivityに設定
+* 按照Cookie计测手法时，设置到浏览器返回APP时的Activity里
+设置再营销计测的Activity
+* 设置到进行[流失唤回广告(Reengagement)计测](#tracking_reengagement)的Activity里
 
-> ※ Cookie計測で起動するブラウザからアプリに戻す際、指定するカスタムURLスキームは、[Cookie計測の実装](#tracking_install)を行っているActivityを指定することを推奨します。
+> ※使用Cookie计测手法从浏览器返回APP时，自定义URL SCHEME建议使用执行[Cookie计测的安装](#tracking_install)的Activity
 
-> ※ Cookie計測やリエンゲージメント計測を行う際のActivityの`launchMode`は`singleTop`を推奨します。
+> ※ Cookie计测和流失唤回广告计测时，建议将Activity的`luanchMode`设置为s`ingleTop`。
 
-> ※ 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
+> ※ 根据运行环境，可能会有URL SCHEME的大小写文字不能识别而导致无法迁移的情况。请将URL SCHEME全部设置为小写英数字。
 
-> ※ カスタムURLスキームの詳細は[Android Developers (暗黙的インテントの受信) ](https://developer.android.com/guide/components/intents-filters.html#Receiving)をご確認ください。
+> ※ 自定义URL SCHEME详细请查看[Android Developers（接收隐式Intent）](https://developer.android.com/guide/components/intents-filters.html#Receiving)。
 
 <div id="setting_googleplayservices"></div>
-### 2.5 広告IDを利用するためのGoogle Play Servicesの導入
+### 2.5 为使用广告ID的Google Play Services导入
 
-広告IDを利用するためにはGoogle Play Servicesが導入されている必要があります。<br>
-Gradleで導入する場合、導入先のアプリの`build.gradle`の`dependencies`に以下の設定を追加します。
+为使用广告ID，需先导入Google Play Services。
+使用Gradle进行导入时，在要导入的APP的`build.gradle`的`dependencies`中加入以下设置。
 
 ```
 	compile 'com.google.android.gms:play-services:9.4.0'
 ```
 
-広告IDを取得するためだけにGooglePlayServicesを導入される場合、以下の最小指定で構いません。
+如果仅是为获取广告ID而导入GooglePlayServices，只需要以下的最小指定。
 
 ```
 	compile 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
-> Google Play Services SDKが導入されていない場合でもF.O.X SDKは動作しますが、広告IDが利用されないことで一部広告メニューの計測が行えなかったり、重複判定の精度が低下致します。<br>導入の詳細手順は[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)をご参照ください。
+> 没有导入Google Play Services SDK却启动F.O.X SDK的话，会因为没有使用广告ID导致部分的广告菜单计测无法进行，重复判定的准确率低下。
+导入的具体步骤请参照[为使用广告ID的Google Play Services导入](./doc/google_play_services/README.md)。
 
 
+### AndroidManifest.xml实例
 
-### AndroidManifest.xmlサンプル
-
-[AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
+[AndroidManifest.xml实例](./doc/config_android_manifest/AndroidManifest.xml)
 
 
 <div id="activate_sdk_into_app"></div>
-## 3. F.O.X SDKのアクティベーション
+## 3. 激活F.O.X SDK
 
-F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)クラスをApplicationクラスを継承したクラスのonCreateメソッド内に実装します。<br>
-また、Applicationを継承しているクラスはAndroidManifest.xmlのapplicationタグのname属性に指定する必要があります。
+为激活F.O.X SDK，需在继承了Application class的class的onCreate方法中安装[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)类。
+并且，继承Application的class必须指定AndroidManifest.xml中application tag的name属性。
 
-**AndroidManifestへのApplication継承クラスの設定例**
+**AndroidManifest的Application继承Class的设置实例**
 
 ```mxl
 <application
@@ -228,7 +228,7 @@ F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk
 </application>
 ```
 
-**Application継承クラスの実装**
+**Application继承Class的安装**
 
 ```java
 import android.app.Application;
@@ -239,9 +239,9 @@ public class YourApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        int FOX_APP_ID = 発行されたアプリID;
-        String FOX_APP_KEY = "発行されたAPP_KEY";
-        String FOX_APP_SALT = "発行されたAPP_SALT";
+        int FOX_APP_ID = 发行的APP ID;
+        String FOX_APP_KEY = "发行的APP_KEY";
+        String FOX_APP_SALT = "发行的APP_SALT";
         FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
 				  config.addDebugOption(BuildConfig.DEBUG)
 						.activate();
@@ -252,10 +252,9 @@ public class YourApplication extends Application {
 
 
 <div id="tracking_install"></div>
-## 4. インストール計測の実装
-
-初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。<br>
-以下の[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)メソッドをアプリケーションの起動時に呼び出されるActivityのonCreateメソッド内に実装します。<br>
+## 4. Install计测的安装
+进行初次启动的Install计测，可以计测广告效果。
+在启动APP时呼出的Activity的onCreate方法中安装下面的[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)。<br>
 
 ```java
 import co.cyberz.fox.Fox;
@@ -263,25 +262,24 @@ import co.cyberz.fox.Fox;
 @Override
 protected void onCreate(Bundle savedInstanceState){
 	super.onCreate(savedInstanceState);
-	// インストール計測
+	// Insatll计测
 	Fox.trackInstall();
 }
 ```
 
-> ※ ２回目以降、trackInstallメソッドが呼び出されても動作することはありません。
+> ※ 第二次之后，即使呼出trackInstall方法也不会被执行。
 
-> ※ trackInstallメソッドにはオプションを指定することも可能です。詳細は[インストール計測の詳細](./doc/track_install/README.md)をご確認ください。
+> ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测详细](./doc/track_install/README.md)。
 
-[インストール計測の詳細](./doc/track_install/README.md)
+[Install计测的详细](./doc/track_install/README.md)
 
 <div id="tracking_reengagement"></div>
-## 5. リエンゲージメント計測の実装
+## 5. 流失唤回广告(Reengagement)计测的安装
 
-リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity`のonResume()に[`Fox.trackDeeplinkLaunch`](./doc/sdk_api/README.md#foxconfig)メソッドを実装します。
+为进行流失唤回广告的计测（计测经由URL SCHEME的启动行为）,需在URL SCHEME的全部`Activity`的onResume()中安装[`Fox.trackDeeplinkLaunch`](./doc/sdk_api/README.md#foxconfig)方法。
 
 ```java
 co.cyberz.fox.Fox;
-
 
 @Override
 protected void onNewIntent(Intent intent)
@@ -293,26 +291,26 @@ protected void onNewIntent(Intent intent)
 @Override
 protected void onResume() {
 	super.onResume();
-	// リエンゲージメント計測
+	// 流失唤回广告计测
 	Fox.trackDeeplinkLaunch(this);
 }
 ```
 
-> ※1 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"である場合を考慮し、最新のIntentを受け取るために`onNewIntent`メソッドをoverrideし、`setIntent`メソッドをコールしてください。
+> ※1 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并呼出`setIntent`方法。
 
-> ※2 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityに[カスタムURLスキーム](#setting_urlscheme)が設定されていることが前提となります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
+> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了自定义[URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME呼出Activity来进行流失唤回广告的计测。
 
 <div id="tracking_event"></div>
-## 6. アプリ内イベントの計測
+## 6.  APP内事件(Event)计测
 
-* [イベント計測の詳細](./doc/track_events/README.md)
+* [事件计测的详细](./doc/track_events/README.md)
 
 <div id="tracking_session"></div>
-### 6.1 セッション（起動イベント）の計測
+### 6.1 Session（启动事件）的计测
 
-自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。<br>
+可以计测自然流量和广告流量的安装数对比、APP启动次数和UU数（DAU/MAU)、留存率等。如不需要流量分析，可以忽略本项。
 
-アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResumeメソッド内または、ベースとなるAcitvityのonResumeメソッド内に[`Fox.trackSession`](./doc/sdk_api/README.md#fox)メソッドを実装します。
+为了在app启动或从后台复归时做计测，需在各Activity的onResume方法、以及基本Acitvity的onResume方法中执行[`Fox.trackSession method`](./doc/sdk_api/README.md#fox)。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -322,16 +320,17 @@ public class BaseActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// セッショントラッキング
+		// Session Tracing
 		Fox.trackSession();
 	}
 }
 ```
 
-**[アプリケーション内の全てのActivityに実装する場合]**
+**[安装到APP内所有的Activity]**
 
-[前述のアクティベーション](#activate_sdk_into_app)で紹介したApplication継承クラス内に以下を実装することで、全てのActivityのonResumeメソッドに計測処理を実装する手間を省くことができます。<br>
-但し、[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))を使用する場合、アプリのminSdkVersionが14以上である必要があります。
+[上面的激活章节](#activate_sdk_into_app)中介绍过，Application继承类中执行以下内容，可以节省所有Activity的onResume方法中安装计测计测处理的时间。
+但是，使用[`registerActivityLifecycleCallbacks时`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks)、APP的minSdkVersion需要14以上。
+
 
 ```java
 import android.app.Application;
@@ -344,13 +343,13 @@ public class YourApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // アクティベーション処理
-        private int FOX_APP_ID = 発行されたアプリID;
-        private String FOX_APP_KEY = "発行されたAPP_KEY";
-        private String FOX_APP_SALT = "発行されたAPP_SALT";
+        // 激活处理
+        private int FOX_APP_ID = 发行的APP ID;
+        private String FOX_APP_KEY = "发行的APP_KEY";
+        private String FOX_APP_SALT = "发行的APP_SALT";
         new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
 
-        // アプリケーションのライフサイクルの検知
+        // APP的生命周期的探知
         if (14 <= Build.VERSION.SDK_INT) {
         	registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
         }
@@ -366,7 +365,7 @@ public class YourApplication extends Application {
 
 	    @Override
 	    public void onActivityResumed(Activity activity) {
-	      // セッショントラッキング
+	      // Session Tracking
 	      Fox.trackSession();
 	    }
     ...
@@ -376,12 +375,13 @@ public class YourApplication extends Application {
 ```
 
 <div id="tracking_other_event"></div>
-### 6.2 その他のアプリ内イベントの計測
+### 6.2 其他的app内事件(Event)计测
 
-会員登録、チュートリアル突破、課金など任意の成果地点にイベント計測を実装することで、流入元広告のLTVを測定することができます。<br>イベント計測が不要の場合には、本項目の実装を省略できます。
+在会员注册，完成新手引导，付费等任意成果地点执行事件计测，能够测定广告流入源的LTV。<br>
+不需要事件计测的话，可以忽略本项。
 
 <div id="tracking_event_tutorial"></div>
-**[チュートリアルイベントの計測例]**
+**[新手引导事件的计测实例]**
 
 ```java
 import co.cyberz.fox.service.FoxEvent;
@@ -390,16 +390,16 @@ import co.cyberz.fox.Fox;
  ...
 
 FoxEvent tutorialEvent = new FoxEvent("_tutorial_comp", 成果地点ID);
-tutorialEvent.buid = "ユーザーID";
+tutorialEvent.buid = "用户ID";
 Fox.trackEvent(tutorialEvent);
 ```
 
-> イベント計測を行うためには、各成果地点を識別する`成果地点ID`を指定する必要があります。[`FoxEvent`](./doc/sdk_api/README.md#foxevent)クラスのコンストラクタの引数にイベント名と発行されたIDを指定してください。
+> 进行event计测时、需指定识别成果地点的`成果地点ID`。[`FoxEvent`](./doc/sdk_api/README.md#foxevent) Class的构造函数的参数中请指定事件名称和生成的ID.
 
 <div id="tracking_event_purchase"></div>
-**[課金イベントの計測例]**
+**[付费事件的计测案例]**
 
-課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。
+进行付费计测时，请在付费完成的位置指定付费金额和货币代码。
 
 ```java
 import co.cyberz.fox.service.FoxEvent;
@@ -412,21 +412,19 @@ purchaseEvent.sku = "ITEM_1";
 Fox.trackEvent(purchaseEvent);
 ```
 
-currencyの指定には[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+币种（currency）中请指定[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)认证的货币代码。
 
-[イベント計測の詳細](./doc/track_events/README.md)
+[事件计测的详细](./doc/track_events/README.md)
 
 <div id="quickly_integration"></div>
-## 7. 最短実装の例
+## 7. 最快实际安装案例
 
-以下の実装はApplication継承クラスに次の処理を実装した例となります。
+* 激活F.O.X SDK
+* 首次启动时的Install计测
+* Session事件的计测
+* 流失唤回广告计测
 
-* F.O.X SDKのアクティベーション
-* 初回起動時のインストール計測
-* セッションイベントの計測
-* リエンゲージメント計測
-
-尚、以下は共通化が可能な処理を１箇所に実装した例となるため、その他の各種イベントは、発生の度に実装頂く必要があります。
+以下为同一位置中安装了可共通化处理的案例。其他各类事件，必须在每次发生时执行。
 
 ```java
 import android.app.Application;
@@ -439,13 +437,13 @@ public class YourApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // アクティベーション処理
-        private int FOX_APP_ID = 発行されたアプリID;
-        private String FOX_APP_KEY = "発行されたAPP_KEY";
-        private String FOX_APP_SALT = "発行されたAPP_SALT";
+        // 激活处理
+        private int FOX_APP_ID = 发行的APP ID;
+        private String FOX_APP_KEY = "发行的APP_KEY";
+        private String FOX_APP_SALT = "发行的APP_SALT";
         new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
 
-        // アプリケーションのライフサイクルの検知
+        // Application的生命周期的检查
         if (14 <= Build.VERSION.SDK_INT) {
         	registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
         }
@@ -456,7 +454,7 @@ public class YourApplication extends Application {
 
 	    @Override
 	    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-	      // インストール計測(※1)
+	      // Install计测(※1)
 	      Fox.trackInstall();
 	    }
 
@@ -466,9 +464,9 @@ public class YourApplication extends Application {
 
 	    @Override
 	    public void onActivityResumed(Activity activity) {
-	      // セッショントラッキング
+	      // Session Tracking
 	      Fox.trackSession();
-	      // リエンゲージメント計測
+	      // 流失唤回广告计测
 	      Fox.trackDeeplinkLaunch(activity);
 	    }
 
@@ -490,47 +488,45 @@ public class YourApplication extends Application {
   }
 }
 ```
-> ※1 [`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))を使用する場合、アプリのminSdkVersionが14以上である必要があります。
 
-> ※2 上記の実装でCookieトラッキングを用いてインストール計測を行う場合、アプリケーションの最初のActivityが呼び出されるタイミングでブラウザが起動します。そのため初回のActivityの動作に支障がない場合にご利用ください。<br>
-InstallReferrer計測やFingerprint計測を実施される場合に有効です。
+※1 使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))时、APP的minSdkVersion需要大于或等于14。
 
-> ※3 上記は起動系のイベントのみを計測している実装例となっていますので、チュートリアル完了・課金やアカウント登録などのイベントは別途、発生するActivity内でイベント計測の実装を行う必要があります。
+※2 上述执行中使用Cookie追踪进行安装计测的情况时，APP的首次呼出Activity时会启动浏览器。因此，请在首次Activity动作无误的情况时使用。<br>
+进行InstallReferrer计测和Fingerprint计测时有效。
 
-> ※4 上記の実装でCookie計測を行い、ブラウザからアプリに自動遷移させる際にはAndroidManifest上、mainとなるActivityのカスタムURLスキームをご連絡ください。
+※3 上述仅为计测启动类事件的实际安装案例，新手引导完成・付费及账号注册等事件需要在其他Activity内执行计测。
+
+※4 上述安装中进行Cookie计测，浏览器自动跳转至APP时，请在AndroidManifest里设置主要的Activity自定义URL SCHEME。
 
 
 <div id="other_function"></div>
-## 8. その他機能の実装
+## 8. 安装其他功能
 
-* [オプトアウトの実装](./doc/optout/README.md)
+* [安装Optout](./doc/optout/README.md)
 
-* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
+* [利用外部储存设置重复排除](./doc/external_storage/README.md)
 
-* [オートバックアップ機能の利用 Android M](./doc/auto_backup/README.md)
+* [使用自动备份功能 Android M](./doc/auto_backup/README.md)
 
 <div id="trouble_shooting"></div>
-## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
+## 9. 最后需确认内容（常见问题集）
 
-### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
+### 9.1. 未设置URL SCHEME 进行发布时无法从浏览器跳转至app
 
-Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
+进行Cookie计测启动浏览器时，为了使用URL SCHEME迁移到Application需要设置URL SCHEME。
 
+### 9.2. URL SCHEME中含有大写字母时，无法正常迁移到APP。
 
-### 9.2. URLスキームに大文字が含まれ、正常にアプリに遷移されない
+根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致URL SCHEME 无法正常迁移的情况。请将URL SCHEME 全部设置为小写字母。
 
-環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
+### 9.3. F.O.X中计测的Install数值会大于Google Play Developer Console的数字
 
+F.O.X结合多种方式来进行终端重复安装的检查。当设置无法进行检查重复时，同一终端的再次安装可能会被F.O.X判定为新的安装。
 
-### 9.3. F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
+为提高排查重复的精度，请进行下面的设置。
 
-F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。
-重複検知が行えない設定では、同一端末でも再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。
+* [为使用广告ID的Google Play Services SDK导入](./doc/google_play_services/README.md)
 
-重複検知の精度を向上するために、以下の設定を行ってください。
+* [利用外部储存排除重复的设定](./doc/external_storage/README.md)
 
-* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
-
-* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-
-* [オートバックアップ機能の利用 Android M](./doc/auto_backup/README.md)
+* [使用自动备份功能 Android M](./doc/auto_backup/README.md)
