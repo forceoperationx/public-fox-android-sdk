@@ -1,10 +1,10 @@
-[TOP](../../README.md)　>　[Google Play Servicesの導入](../README.md)　>　Android Studioプロジェクト
+[TOP](../../README.md)　>　[导入Google Play Services](../README.md)　>　Android Studio项目
 
 ---
 
-## Android StudioプロジェクトへのGoogle Play Servicesの導入
+## 在Android Studio项目中导入Google Play Services
 
-アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、下記のように、最新のGoogle Play servicesへのdependenciesの設定を追記します。
+打开APP中Moudle目录里的build.gradle，如下所示，在最新Google Play services中添加依存关系（dependencies）设置。
 
 ```
 dependencies {
@@ -12,12 +12,12 @@ dependencies {
 }
 ```
 
-## メソッド数の上限が64Kの仕様について
+## 关于方法数的上限为64k的式样
 
-Androidアプリでは、保持できるメソッド数に64K(65536)の上限があり、超えるとビルドエラーが発生します。<br>
-そのため多くのメソッドを有しているGooglePlayServicesを、広告IDの取得のためだけに導入されている場合は<br>
-広告IDの取得を目的に切り出された以下のライブラリをお使いください。<br>
-F.O.X SDKではGooglePlayServicesを広告IDの取得を目的に利用しています。
+Android APP持有的方法数上限为64K(65536)，超过后会发生编译错误。
+因此仅为获取广告ID而导入拥有大量方法的GooglePlayServices时，
+请使用下列摒弃广告ID获取目的的类库。
+在F.O.X SDK中用GooglePlayServices来实现获取广告ID的目的
 
 ```
 dependencies {
@@ -25,14 +25,13 @@ dependencies {
 }
 ```
 
-> ※ メソッド数の上限が64Kの仕様についての詳細<br>
+> ※ 方法数上限为64k的式样详情<br>
 [Configure Apps with Over 64K Methods | Android Developers](https://developer.android.com/studio/build/multidex.html)
 
-> ※ Google Play servicesの最新のバージョンはAndroidのデベロッパーサイトにて確認するようにしてください。<br>
+> ※ Google Play services的最新版本请在Android开发网站中确认。<br>
 [Google Play Services | Android Developers](https://developer.android.com/google/play-services/index.html)
 
-
 ---
-[戻る](../README.md)
+[返回](../README.md)
 
-[トップ](../../../README.md)
+[Top](../../../README.md)
