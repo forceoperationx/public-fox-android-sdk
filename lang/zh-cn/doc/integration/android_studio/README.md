@@ -1,12 +1,12 @@
-[TOP](../../../README.md)　>　Android Studioプロジェクトへの導入
+[TOP](../../../README.md)　>　导入到Android Studio项目
 
 ---
 
-# Android Studioプロジェクトへの導入
+# 导入到Android Studio项目
 
-## Gradleを使用して導入する場合
+## 利用Gradle进行导入的情况
 
-build.gradleに下記の設定を適切な場所に追加してください。
+请在build.gradle中适当位置添加下列设置。
 
 ```
 repositories {
@@ -20,16 +20,15 @@ dependencies {
 }
 ```
 
-## 手動で導入する場合
+## 手动导入的情况
 
-Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下の通りです。
+在Android Studio项目中添加AppAdForce.jar。方法如下。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にAppAdForce.jarを配置します。
-
+* 在APP项的中［libs］文件夹中放置AppAdForce.jar。
 
 ![integration01](./img01.png)
 
-アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、foxtrack-core_{VERSION}.jarへのパスを追記します。
+打开APP的Module目录中的build.gradle，添加访问foxtrack-core_{VERSION}.jar的路径。
 
 ```
 dependencies {
@@ -39,6 +38,5 @@ dependencies {
 
 ![integration02](./img02.png)
 
-
 ---
-[トップ](../../../README.md)
+[Top](../../../README.md)
