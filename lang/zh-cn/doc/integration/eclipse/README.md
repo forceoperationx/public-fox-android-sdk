@@ -1,24 +1,21 @@
-[TOP](../../../README.md)　>　Eclipseプロジェクトへの導入
+[TOP](../../../README.md)　>　导入到Eclipse项目
 
 ---
 
-# Eclipseプロジェクトへの導入
+# 导入到Eclipse项目
 
-Eclipseプロジェクトへfoxtrack-core_{VERSION}.jarを外部jarとして追加する方法は以下の通りです。
+在Eclipse项目中，将foxtrack-core_{VERSION}.jar以外部jar包的形式导入的方法如下。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にfoxtrack-core_{VERSION}.jarをコピー
-
+* 复制foxtrack-core_{VERSION}.jar到APP项目的［libs］目录下
 
 ![integration01](./img01.png)
 
-
-* アプリケーションを選択し、右クリック>「プロパティ」を選択するとプロパティウィンドウが立ち上がる
-* プロパティウィンドウの左のメニューから「Javaのビルド・パス」を選択
-* プロパティウィンドウの右側の「ライブラリー」タブを選択し、「Jar追加」を選択します
-* アプリケーションの「libs」フォルダに配置した「foxtrack-core_{VERSION}.jar」を選択する
-
+* 选择APP,右击选择［属性］，弹出属性窗口
+* 属性窗口左侧菜单中选择［Java Build Path]
+* 选中属性窗口右侧的［library］页，点击［添加Jar］
+* 配置刚刚复制到项目中的［foxtrack-core_{VERSION}.jar］到APP的「libs」目录里
 
 ![integration02](./img02.png)
 
 ---
-[トップ](../../../README.md)
+[Top](../../../README.md)
