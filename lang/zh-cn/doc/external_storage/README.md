@@ -1,45 +1,45 @@
-[TOP](../../README.md)　>　外部ストレージを利用した重複排除設定
+[TOP](../../README.md)　>　利用外部储存设置排除重复
 
 ---
 
-# 外部ストレージを利用した重複排除設定
+# 利用外部储存设置排除重复
 
-アプリケーションの初回起動時にSDKが生成した識別IDをローカルストレージまたはSDカードに保存することで、アプリケーション再インストール時に重複判定を行うことができます。
+APP首次启动时，SDK生成的识别ID保存在本地储存或外部SD卡中，可以在APP再次安装时利用该ID进行重复判定。
 
-本設定は必須ではありませんが、アプリケーションの再インストールにおける重複検知の精度が大きく向上するため、実装を推奨しております。
+本设置为可选项目，但为了提高APP再次安装时重复检查的精度，建议使用。
 
-## パーミッションの設定
+## Permission的设置
 
-外部ストレージへのファイル読み書きに必要なパーミッションの設定をAndroidManifest.xmlの<manifest>タグ内に追加します。
+在AndroidManifest.xml的tag中添加读写外部储存必要的权限设置。
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-上記パーミッションが設定されている場合、次のパスに識別IDファイルが保存されます。
+已设置上述权限的情况，ID识别文件会保存在以下路径。
 
 ```
-Environment.getExternalStorageDirectory().getPath()で取得できるパス/アプリのパッケージ名/__FOX_XUNIQ__
+用Environment.getExternalStorageDirectory().getPath()可获取路径/APP的Package名/__FOX_XUNIQ__
 ```
 
-## （任意）保存ディレクトリ及びファイル名の変更
+## （可选）修改保存目录及文件名
 
-保存されるファイルのディレクトリ名は、標準ではパッケージ名で作成されますが、<application>タグ内に以下設定を追加することで、任意のディレクトリ名及びファイル名に変更することができます。
+保存文件的目录名，一般为Package名，在&lt;application&gt;Tag下添加以下设置可以修改目录名以及文件名。
 
 ```xml
-<meta-data android:name="APPADFORCE_ID_DIR" android:value="任意のディレクトリ名" />
-<meta-data android:name="APPADFORCE_ID_FILE" android:value="任意のファイル名" />
+<meta-data android:name="APPADFORCE_ID_DIR" android:value="任意目录名" />
+<meta-data android:name="APPADFORCE_ID_FILE" android:value="任意文件名" />
 ```
 
-> 任意のディレクトリ名やファイル名を指定した場合でも、Environment.getExternalStorageDirectory().getPath()の返り値のパス配下に作成します。Environment.getExternalStorageDirectory().getPath()の返り値は端末やOSバージョンによって異なります。<br>
-> "APPADFORCE_ID_DIR"(任意のディレクトリ名)を指定せず、任意のファイル名のみを指定した場合、アプリのパッケージ名のディレクトリが作成され、その配下に任意のファイル名で保存されます。<br>
-> ※"APPADFORCE_ID_FILE"(任意のファイル名)を指定せず、任意のディレクトリ名のみを指定した場合、任意の名前でディレクトリが作成され、その配下に"__FOX_XUNIQ__"で保存されます。<br>
-通常は設定の必要はありません。
+> 指定其他目录名和文件名时，也是在
+Environment.getExternalStorageDirectory().getPath()的返回值路径下生成。Environment.getExternalStorageDirectory().getPath()的返回值根据终端和OS版本的不同而有所差异。<br>
+> 未指定"APPADFORCE_ID_DIR"(任意目录名)，仅指定文件名时，会生成APP的Package名的目录，并在该路径下保存文件。<br>
+> ※未指定"APPADFORCE_ID_FILE"(任意文件名)，仅指定目录的情况时，会生成指定的目录名，并在该路径下保存为"__FOX_XUNIQ__"。
+通常不需要设置。
 
+## 设置案例
 
-## 設定例
-
-AndroidManifest.xmlの設定例を次に記載します。
+以下是AndroidManifest.xml的设置案例
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -55,31 +55,27 @@ AndroidManifest.xmlの設定例を次に記載します。
 
 ```
 
-上記の例の場合に、保存されるファイルのパスは次になります。
+在上述案例中，文件保存到以下路径
 
 ```
-Environment.getExternalStorageDirectory().getPath()で取得できるパス/fox_id_dir/fox_id_file
+Environment.getExternalStorageDirectory().getPath()可获取路径/fox_id_dir/fox_id_file
 ```
 
-## 外部ストレージの利用停止
+## 停止使用外部储存
 
-Force Operation X SDKによる外部ストレージへのアクセスを停止したい場合には、AndroidManifest.xmlにAPPADFORCE_USE_EXTERNAL_STORAGEの設定を追加してください。
-```xml
+想要通过Force Operation X SDK停止访问外部储存时，请在AndroidManifest.xml中添加APPADFORCE_USE_EXTERNAL_STORAGE的设置。```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
 
-本設定を行うことで外部ストレージに対する記録が停止しますが、アプリケーションの削除によりデータが常に初期化されるため、正確なインストール計測が行われなくなります。
+通过本项设置可以停止对外部储存的记录，但删除APP时会清空数据，可能导致无法进行准确计测。
 
+## 关于Android M(6.0)的注意点
 
-## Android M(6.0)における注意点
+使用protectionLevel为dangerous且需要权限的功能时，必须得到用户许可。 用户拒绝时，数据将无法保存在外部存储区域进而无法进行排除重复设置。之前说到的`READ_EXTERNAL_STORAGE`和`WRITE_EXTERNAL_STORAGE`也为dangerous，需获得用户许可。
 
-protectionLevelがdangerousに指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要となります。
-ユーザーの許可がない場合、ストレージ領域へのデータ保存が行えなくなるため重複排除設定が利用出来なくなります。
-前述の`READ_EXTERNAL_STORAGE`と`WRITE_EXTERNAL_STORAGE`においてもdangerousとなっており、ユーザーに許可を貰うための実装を行う必要があります。
+* [实际安装的参考](https://developer.android.com/training/permissions/requesting.html#perm-request)
 
-* [実装の参考](https://developer.android.com/training/permissions/requesting.html#perm-request)
-
-[実装例]
+[实际安装案例]
 ```java
 package cyberz.jp.co.test;
 
@@ -101,20 +97,20 @@ public class AndroidMMainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    // Mの端末で実行する時に、インストール計測前にcheckSelfPermissionでpermissionsをチェックする
+		// 在M的终端上实行时，Install计测前请用checkSelfPermission检查permissions
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
               && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-        // 既にpermissionを取得出来ている場合
+        // 已经获取permission的情况
         Fox.trackInstall();
       } else {
-        // ユーザーにpermissionを要求する処理
+        // 向用户要求permission处理
         requestPermissions(
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PERMISSION_REQUEST_CODE_FOX);
       }
     } else {
-      // M以外の端末はinstall時にpermissionを取得出来ているため、直ちにinstall計測処理を実行
+			// M以外的终端在安装时已经获取permission，直接执行install计测处理。
       Fox.trackInstall();
     }
   }
@@ -127,7 +123,7 @@ public class AndroidMMainActivity extends AppCompatActivity {
         if (grantResults.length > 1
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-          // ユーザーの承認を得てinstall計測処理を実行
+          // 获取用户许可执行install计测处理
           Fox.trackInstall();
         }
         break;
@@ -139,4 +135,4 @@ public class AndroidMMainActivity extends AppCompatActivity {
 ```
 
 ---
-[トップ](../../README.md)
+[Top](../../README.md)
