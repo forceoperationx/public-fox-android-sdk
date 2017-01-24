@@ -2,7 +2,7 @@
 
 Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告效果的整体解决方案平台。不光是App的下载和网页用户行为的计测，基于智能用户行为特征的独特计测基准，能够实现企业推广的性价比最大化。
 
-本文件是为实现智能手机app中广告效果最大化的安装F.O.X SDK安装说明书。
+本文件是为实现智能手机APP中广告效果最大化的安装F.O.X SDK安装说明书。
 
 ## 目录
 
@@ -42,7 +42,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 [![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
 
 
-将F.O.X SDK导入app之后，能够实现以下功能。
+将F.O.X SDK导入APP之后，能够实现以下功能。
 
 * **Install计测**
 
@@ -54,7 +54,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 * **流量分析**
 
-比较自然流入和广告流入带来的安装。能够计测App的启动次数和Unique用户数(DAU/MAU)、留存率等。
+比较自然流入和广告流入带来的安装。能够计测App的启动次数和唯一用户数(DAU/MAU)、留存率等。
 
 <div id="install_sdk"></div>
 ## 1. 导入
@@ -90,7 +90,7 @@ dependencies {
 
 * **SDK设置**
 
-在AndroidManifest.xml中添加SDK操作所需设置。
+在AndroidManifest.xml中添加SDK运行所需的设置。
 
 <div id="setting_permission"></div>
 ### 2.1 设置权限
@@ -106,8 +106,8 @@ F.O.X SDK可以使用以下三种权限。 &lt;Manifest&gt;Tag中添加以下权
 权限|Protection Level|必須|概要
 :---|:---:|:---:|:---
 INTERNET|Normal|必須|F.O.X SDK是进行通信的必要条件。。
-READ_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能。(※2)
-WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能。(※2)
+READ_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
+WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
 
 > ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE权限，在外部储存中记录数据可以使APP重新安装时更准确的计测，但不是必须项目。
 
@@ -132,7 +132,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 
 <div id="setting_installreferrer"></div>
 ### 2.3 设置install referer计测
-使用install referer进行安装计测时，请把以下设置追加到&lt;application&gt;tag里。
+使用install referer进行install计测时，请把以下设置追加到&lt;application&gt;tag里。
 
 ```xml
 <receiver android:name="co.cyberz.fox.FoxInstallReceiver" android:exported="true">
@@ -142,7 +142,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 </receiver>
 ```
 
-"com.android.vending.INSTALL_REFERRER"的Receiver Class已经被定义的情况下，请参照[让多个INSTALL_REFERRER RECEIVER共存的设置](./doc/install_referrer/README.md)。
+"com.android.vending.INSTALL_REFERRER"的Receiver 类已经被定义的情况下，请参照[让多个INSTALL_REFERRER RECEIVER共存的设置](./doc/install_referrer/README.md)。
 
 <div id="setting_urlscheme"></div>
 ### 2.4 设置自定义URL SCHEME
@@ -159,48 +159,47 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
         <category android:name="android.intent.category.LAUNCHER"/>
     </intent-filter>
 
-    <!-- app启动时所需的自定义URL SCHEME设置 -->
+    <!-- APP启动时所需的自定义URL SCHEME设置 -->
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="任意のURLスキームを記入します" />
+        <data android:scheme="填写任意的URL Scheme" />
     </intent-filter>
 </activity>
 ```
 
 <br>以下为主要案例。
 
-* 按照Cookie计测手法时，设置到浏览器返回APP时的Activity里
-设置再营销计测的Activity
+* 按照Cookie计测手法时，设置到浏览器返回APP时的Activity里设置流失唤回广告计测的Activity
 * 设置到进行[流失唤回广告(Reengagement)计测](#tracking_reengagement)的Activity里
 
-> ※使用Cookie计测手法从浏览器返回APP时，自定义URL SCHEME建议使用执行[Cookie计测的安装](#tracking_install)的Activity
+> ※使用Cookie计测手法从浏览器返回APP时，推荐自定义URL SCHEME指定到[执行Cookie计测](#tracking_install)的Activity上。
 
-> ※ Cookie计测和流失唤回广告计测时，建议将Activity的`luanchMode`设置为s`ingleTop`。
+> ※ Cookie计测和流失唤回广告计测时，建议将Activity的`luanchMode`设置为`singleTop`。
 
-> ※ 根据运行环境，可能会有URL SCHEME的大小写文字不能识别而导致无法迁移的情况。请将URL SCHEME全部设置为小写英数字。
+> ※ 根据运行环境，可能会有URL SCHEME的大小写文字不能识别而导致无法迁移的情况。请将URL SCHEME全部设置为小写英文或数字或小数点。
 
 > ※ 自定义URL SCHEME详细请查看[Android Developers（接收隐式Intent）](https://developer.android.com/guide/components/intents-filters.html#Receiving)。
 
 <div id="setting_googleplayservices"></div>
-### 2.5 为使用广告ID的Google Play Services导入
+### 2.5 导入Google Play Services来使用广告ID
 
-为使用广告ID，需先导入Google Play Services。
+为使用广告ID，需先导入Google Play Services。<br>
 使用Gradle进行导入时，在要导入的APP的`build.gradle`的`dependencies`中加入以下设置。
 
 ```
 	compile 'com.google.android.gms:play-services:9.4.0'
 ```
 
-如果仅是为获取广告ID而导入GooglePlayServices，只需要以下的最小指定。
+如果仅是为获取广告ID而导入GooglePlayServices，使用下面的最小指定就可以。
 
 ```
 	compile 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
-> 没有导入Google Play Services SDK却启动F.O.X SDK的话，会因为没有使用广告ID导致部分的广告菜单计测无法进行，重复判定的准确率低下。
-导入的具体步骤请参照[为使用广告ID的Google Play Services导入](./doc/google_play_services/README.md)。
+> 没有导入Google Play Services SDK却启动F.O.X SDK的话，会因为没有使用广告ID导致部分的广告菜单计测无法进行，重复判定的准确率较低等问题。<br>
+导入的具体步骤请参照[导入Google Play Services来使用广告ID](./doc/google_play_services/README.md)。
 
 
 ### AndroidManifest.xml实例
@@ -211,10 +210,10 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 <div id="activate_sdk_into_app"></div>
 ## 3. 激活F.O.X SDK
 
-为激活F.O.X SDK，需在继承了Application class的class的onCreate方法中安装[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)类。
-并且，继承Application的class必须指定AndroidManifest.xml中application tag的name属性。
+为激活F.O.X SDK，需在继承了Application类的onCreate方法中安装[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)类。
+并且，继承Application的类必须指定AndroidManifest.xml中Application Tag的name属性。
 
-**AndroidManifest的Application继承Class的设置实例**
+**AndroidManifest的Application继承类的设置实例**
 
 ```mxl
 <application
@@ -228,7 +227,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 </application>
 ```
 
-**Application继承Class的安装**
+**Application继承类的安装**
 
 ```java
 import android.app.Application;
@@ -253,8 +252,8 @@ public class YourApplication extends Application {
 
 <div id="tracking_install"></div>
 ## 4. Install计测的安装
-进行初次启动的Install计测，可以计测广告效果。
-在启动APP时呼出的Activity的onCreate方法中安装下面的[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)。<br>
+进行初次启动的Install计测，可以计测广告效果。<br>
+在启动APP时调用的Activity的onCreate方法中安装下面的[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)。<br>
 
 ```java
 import co.cyberz.fox.Fox;
@@ -267,7 +266,7 @@ protected void onCreate(Bundle savedInstanceState){
 }
 ```
 
-> ※ 第二次之后，即使呼出trackInstall方法也不会被执行。
+> ※ 第二次启动及以后，即使调用trackInstall方法也不会被执行。
 
 > ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测详细](./doc/track_install/README.md)。
 
@@ -296,9 +295,9 @@ protected void onResume() {
 }
 ```
 
-> ※1 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并呼出`setIntent`方法。
+> ※1 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并调用`setIntent`方法。
 
-> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了自定义[URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME呼出Activity来进行流失唤回广告的计测。
+> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了自定义[URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
 
 <div id="tracking_event"></div>
 ## 6.  APP内事件(Event)计测
@@ -310,7 +309,7 @@ protected void onResume() {
 
 可以计测自然流量和广告流量的安装数对比、APP启动次数和UU数（DAU/MAU)、留存率等。如不需要流量分析，可以忽略本项。
 
-为了在app启动或从后台复归时做计测，需在各Activity的onResume方法、以及基本Acitvity的onResume方法中执行[`Fox.trackSession method`](./doc/sdk_api/README.md#fox)。
+为了在APP启动或从后台恢复到前台时做计测，需在各Activity的onResume方法、以及基本Acitvity的onResume方法中执行[`Fox.trackSession方法`](./doc/sdk_api/README.md#fox)。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -328,8 +327,8 @@ public class BaseActivity extends Activity {
 
 **[安装到APP内所有的Activity]**
 
-[上面的激活章节](#activate_sdk_into_app)中介绍过，Application继承类中执行以下内容，可以节省所有Activity的onResume方法中安装计测计测处理的时间。
-但是，使用[`registerActivityLifecycleCallbacks时`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks)、APP的minSdkVersion需要14以上。
+[上面的激活章节](#activate_sdk_into_app)中介绍过，Application继承类中执行以下内容，可以节省所有Activity的onResume方法中安装计测处理的时间。
+但是，使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks)时候、APP的minSdkVersion需要14及以上。
 
 
 ```java
@@ -349,7 +348,7 @@ public class YourApplication extends Application {
         private String FOX_APP_SALT = "发行的APP_SALT";
         new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
 
-        // APP的生命周期的探知
+        // APP的生命周期的检查
         if (14 <= Build.VERSION.SDK_INT) {
         	registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
         }
@@ -375,7 +374,7 @@ public class YourApplication extends Application {
 ```
 
 <div id="tracking_other_event"></div>
-### 6.2 其他的app内事件(Event)计测
+### 6.2 其他的APP内事件(Event)计测
 
 在会员注册，完成新手引导，付费等任意成果地点执行事件计测，能够测定广告流入源的LTV。<br>
 不需要事件计测的话，可以忽略本项。
@@ -394,7 +393,7 @@ tutorialEvent.buid = "用户ID";
 Fox.trackEvent(tutorialEvent);
 ```
 
-> 进行event计测时、需指定识别成果地点的`成果地点ID`。[`FoxEvent`](./doc/sdk_api/README.md#foxevent) Class的构造函数的参数中请指定事件名称和生成的ID.
+> 进行事件计测时、需指定识别成果地点的`成果地点ID`。[`FoxEvent`](./doc/sdk_api/README.md#foxevent) 类的构造函数的参数中请指定事件名称和生成的ID.
 
 <div id="tracking_event_purchase"></div>
 **[付费事件的计测案例]**
@@ -417,7 +416,7 @@ Fox.trackEvent(purchaseEvent);
 [事件计测的详细](./doc/track_events/README.md)
 
 <div id="quickly_integration"></div>
-## 7. 最快实际安装案例
+## 7. 最简单的实际安装案例
 
 * 激活F.O.X SDK
 * 首次启动时的Install计测
@@ -491,7 +490,7 @@ public class YourApplication extends Application {
 
 ※1 使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))时、APP的minSdkVersion需要大于或等于14。
 
-※2 上述执行中使用Cookie追踪进行安装计测的情况时，APP的首次呼出Activity时会启动浏览器。因此，请在首次Activity动作无误的情况时使用。<br>
+※2 上述执行中使用Cookie追踪进行Install计测的情况时，APP的首次调用Activity时会启动浏览器。因此，请在首次Activity动作无误的情况时使用。<br>
 进行InstallReferrer计测和Fingerprint计测时有效。
 
 ※3 上述仅为计测启动类事件的实际安装案例，新手引导完成・付费及账号注册等事件需要在其他Activity内执行计测。
@@ -504,20 +503,20 @@ public class YourApplication extends Application {
 
 * [安装Optout](./doc/optout/README.md)
 
-* [利用外部储存设置重复排除](./doc/external_storage/README.md)
+* [利用外部储存优化重复排除](./doc/external_storage/README.md)
 
 * [使用自动备份功能 Android M](./doc/auto_backup/README.md)
 
 <div id="trouble_shooting"></div>
 ## 9. 最后需确认内容（常见问题集）
 
-### 9.1. 未设置URL SCHEME 进行发布时无法从浏览器跳转至app
+### 9.1. 未设置URL SCHEME 进行发布时无法从浏览器跳转至APP
 
 进行Cookie计测启动浏览器时，为了使用URL SCHEME迁移到Application需要设置URL SCHEME。
 
 ### 9.2. URL SCHEME中含有大写字母时，无法正常迁移到APP。
 
-根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致URL SCHEME 无法正常迁移的情况。请将URL SCHEME 全部设置为小写字母。
+根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致URL SCHEME 无法正常迁移的情况。请将URL SCHEME 全部设置为半角小写英文或数字或小数点。
 
 ### 9.3. F.O.X中计测的Install数值会大于Google Play Developer Console的数字
 
@@ -527,6 +526,6 @@ F.O.X结合多种方式来进行终端重复安装的检查。当设置无法进
 
 * [为使用广告ID的Google Play Services SDK导入](./doc/google_play_services/README.md)
 
-* [利用外部储存排除重复的设定](./doc/external_storage/README.md)
+* [利用外部储存优化重复排除](./doc/external_storage/README.md)
 
 * [使用自动备份功能 Android M](./doc/auto_backup/README.md)
