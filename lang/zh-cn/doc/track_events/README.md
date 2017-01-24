@@ -2,22 +2,22 @@
 
 ---
 
-# イベント計測の詳細
+# 事件计测的详细
 
-以下、各種イベントを実装する際の詳細を説明します。<br>
-エンゲージメント計測やダイナミック配信連携を行う際に必要となる実装も含まれます。本実装を行うことで、媒体を横断したイベント計測連携が可能となります。
+以下为实际安装各类事件时的详细说明。<br>
+包含一般广告计测及动态投放连动时所需的执行任务。通过本章的安装作业可以进行跨媒体事件监测。
 
-* **[1. アプリ内の各種イベント実装例](#each_event_sample)**
-* **[2. 旧バージョンでの実装の置き換え(エンゲージメント計測)](#continuity)**
-* **[3. タグを利用したイベント計測について](#track_by_tag)**
+* **[1. APP内各类事件的安装案例](#each_event_sample)**
+* **[2. 替换旧版里的处理代码（一般广告计测）](#continuity)**
+* **[3. 使用Tag进行事件计测](#track_by_tag)**
 
 <div id="each_event_sample"></div>
-## 1. アプリ内の各種イベント実装例
+## 1. APP内各类事件的安装案例
 
-#### 　1.1 会員登録イベント計測 実装例
+#### 　1.1 会员登录事件的安装案例
 
 ```java
-// 会員登録イベント計測
+// 会员登录事件计测
 Button registerBtn = (Button) findViewById(R.id.ltv_register);
 registerBtn.setOnClickListener(new OnClickListener() {
 
@@ -30,19 +30,19 @@ registerBtn.setOnClickListener(new OnClickListener() {
 });
 ```
 
-#### 　1.2 チュートリアル完了イベント計測 実装例
+#### 　1.2 完成新手引导事件计测的安装实例
 
 ```java
-// チュートリアル完了ベント計測
+// 完成新手引导事件计测
 FoxEvent tutorialComp = new FoxEvent("_tutorial_comp", 456);
 tutorialComp.buid = "USER_A001";
 Fox.trackEvent(tutorialComp);
 ```
 
-#### 　1.3 課金イベント計測 実装例
+#### 　1.3 付费事件计测的安装实例
 
 ```java
-// 課金イベント計測
+// 付费事件计测
 FoxEvent purchaseEvent = new FoxEvent("_purchase", 123);
 purchaseEvent.price = 1.2;
 purchaseEvent.currency = "USD";
@@ -53,10 +53,12 @@ Fox.trackEvent(purchaseEvent);
 ```
 
 <div id="continuity"></div>
-## 2. 旧バージョンでの実装の置き換え(エンゲージメント計測)
+## 2. 替换旧版里的处理代码（一般广告计测）
 
 これまでのF.O.X Android SDK 3.0.0以下で行っていた実装方法を継続することも可能となっています。<br>
 下記は課金イベントのエンゲージメント計測の実装例です。
+可沿用F.O.X Android SDK 3.0.0及之前版本的执行方式。<br>
+以下为付费计测的执行说明。
 
 **実装例**
 
@@ -104,18 +106,18 @@ purchaseEvent.eventInfo = eventInfo;
 Fox.trackEvent(purchaseEvent);
 ```
 
-> ※ 各種アプリ内イベントの媒体連携計測を行う場合、[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)を利用することで、実装するコード量を削減することが可能となります。
+> ※ 对各类APP内事件的媒体连动计测时，通过使用[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)可以减少执行代码量。
 
 <div id="track_by_tag"></div>
-## 3. タグを利用したイベント計測について
+## 3. 使用Tag进行事件计测
 
-会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
-F.O.Xのイベント計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合には[`trackEventByBrowser`](../sdk_api/README.md#fox)メソッド、アプリ内WebViewの場合には[`trackEventByWebView`](../sdk_api/README.md#fox)メソッドを利用することで、F.O.Xがイベント計測に必要な情報をブラウザのCookieに記録します。
+在网页上发生会员登录及商品购买等行为时，可以使用img tag来进行事件测量。
+F.O.X的事件计测适用于外部浏览器和APP内WebView。外部浏览器使用[`trackEventByBrowser`](../sdk_api/README.md#fox)方法，APP内WebView使用[`trackEventByWebView`](../sdk_api/README.md#fox)方法，F.O.X会在页面Cookie中记录事件计测所需的信息。
 
 <div id="track_by_browser"></div>
-### 3.1 外部ブラウザによるイベント計測
+### 3.1 使用外部浏览器进行事件计测
 
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、`trackEventByBrowser`メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
+从APP跳转至外部浏览器，利用跳转的网页进行tag计测时，请使用`trackEventByBrowser`方法来启动外部浏览器。并在参数中用字符串指定要跳转的URL。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -125,9 +127,9 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 ```
 
 <div id="track_by_webview"></div>
-### 3.2 アプリ内WebViewでのイベント計測について
+### 3.2 APP内WebView的事件计测
 
-ユーザーの遷移がWebView内で行われる場合には、`trackEventByWebView`を用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度に`trackEventByWebView`が実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
+在WebView内进行用户跳转的情况时，可以使用`trackEventByWebView`来进行测量。请在加载WebView的位置执行下列代码。WebView多次加载・加载错误时，请务必在每次加载时执行`trackEventByWebView`。内部将会通过android.webkit.CookieManager和android.webkit.CookieSyncManager来设置Cookie。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -138,7 +140,7 @@ Fox.trackEventByWebView(webView);
 webView.loadUrl("https://www.yoursite.com/tagpage");
 ```
 
-> ※ Android LよりサードパーティCookieがデフォルトでOFFとなります。 そのためtrackEventByWebViewメソッドでは引数にWebViewを持たせることで、内部ではCookieManager.setAccesptThirdPartyCookiesを用いてサードパーティCookieの書込みを行っております。
+> ※ Android L中第三方Cookie默认为OFF。 因此通过trackEventByWebView方法，在参数中设置WebView，内部便可以用CookieManager.setAccesptThirdPartyCookies来写入第三方Cookie了。
 
 ---
-[トップ](../../README.md)
+[Top](../../README.md)
