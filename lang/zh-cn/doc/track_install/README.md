@@ -1,20 +1,20 @@
-[TOP](../../README.md)　>　インストール計測の詳細
+[TOP](../../README.md)　>　Install计测的详细
 
 ---
 
-# インストール計測の詳細
+# Install计测的详细
 
-* [1. インストール計測の実装](#track_install_basic)
-* [2. インストール計測の実装(オプション指定)](#track_install_optional)
-* [3. その他のインストール計測実装例](#track_install_other)
-* [4. Webタグを用いた計測](#track_webtag)
+* [1. Install计测的安装](#track_install_basic)
+* [2. Install计测的安装(指定选项)](#track_install_optional)
+* [3. 其他的Install计测安装案例](#track_install_other)
+* [4. 使用Web Tag的计测](#track_webtag)
 
 <div id="track_install_basic"></div>
-## 1. インストール計測の実装
+## 1. Install计测的安装
 
-onLaunchメソッドを利用することで、インストール計測を行うことができます。Cookie計測を利用する場合には、外部ブラウザが起動されます。この際、外部ブラウザの遷移先をonLaunchの引数にURL文字列を指定することができます。
+使用onLaunch方法可以进行Install计测。使用Cookie计测手法时会弹跳出外部浏览器。外部浏览器的迁移目的地可以通过在onLaunch的参数中指定URL字符串来实现。
 
-プロジェクトのソースコードを編集し、アプリケーションの起動時に呼び出されるActivityに対して、次の通り実装を行ってください。
+编辑项目中的代码，针对APP启动时呼出的Activity，请按照以下内容来编码。
 
 
 ```java
@@ -26,17 +26,17 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-> ※ 引数を指定せずtrackInstallメソッドを呼び出すと、F.O.X管理画面上での設定内容が優先されます。Cookie計測の際のリダイレクト先URLを実装内で指定する場合は、本項以降の説明をご確認ください。
+> ※ 未指定参数调用trackInstall方法时，将优先使用F.O.X管理页面上的设置内容。在编写代码当中指定Cookie计测手法时跳转目的地URL时，请参考本章以后的说明。
 
-> ※ trackInstallメソッドは、特に理由がない限りはアプリケーションの起動時に呼び出されるActivityのonCreateメソッド内に実装してください。それ以外の箇所に実装された場合にはインストール数が正確に計測できない場合があります。<br>
-アプリケーションの起動時に呼び出されるMainのActivityのonCreateメソッド内に実装していない状態でインストール成果型の広告を実施する際には、必ず広告代理店もしくは媒体社の担当にその旨を伝えてください。正確に計測が行えない状態でインストール成果型の広告を実施された際には、計測されたインストール数以上の広告費の支払いを求められる恐れがあります。
+> ※ 没有特殊理由的情况下，请在启动APP时呼出Activity的onCreate方法中编码实现trackInstall方法。在其他位置编码可能会导致Install数无法正确计测。<br>
+APP启动时呼出Main的Activity的onCreate方法中未编码的状态下实行Install成果型广告时，必须向广告代理店或媒体单位进行说明。未正确进行计测就开始投放Install成果型广告，可能会产生超过计测Install数的广告费用。
 
 ![sendConversion01](./img01.png)
 
 <div id="track_install_optional"></div>
-## 2. インストール計測の実装(オプション指定)
+## 2. Install计测的安装(指定选项)
 
-インストール計測が完了したことをコールバックで受け取りたい場合、特定のURLヘ遷移させる場合や、アプリケーションで動的にURLを生成したい場合には、以下の[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)クラスを使用します。<br>
+想要用Callback来获取Install计测完成后的信息、跳转到特定的URL、用APP动态生成URL时，请使用下面的[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)类。<br>
 
 ```java
 import co.cyberz.fox.FoxTrackOption;
@@ -46,7 +46,7 @@ import co.cyberz.fox.Fox;
 public void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
 
-  // 初回起動のインストール計測
+  // 初次启动的Install计测
   FoxTrackOption option = new FoxTrackOption();
   option.setRedirectUrl("myapp://top")
         .setBuid(getUserId())
@@ -61,18 +61,20 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-> 上記のサンプルコードでは、リダイレクト先・BUID・オプトアウトの有無・計測完了のコールバックを受け取る処理の実装例となっています。<br>TrackingStateListernerをセットした上で計測処理が完了するとonCompleteメソッドが呼ばれますので、インストール計測完了直後に実行したい処理はこちらに実装してください。
+> 上述示例代码是一个，跳转目的地・BUID・有无optout・计测完成的callback受理的编码案例。<br>设置TrackingStateListerner后完成计测处理时会调用onComplete方法，请在Install计测完成后再次做编码处理。
 
-> オプトアウトを有効にした場合、その後そのユーザーを広告の配信対象から外すことが可能です。<br>
-尚、オプトアウトはユーザーに対しオプトアウトの意思表示を選択させるような機能をアプリ内で実装している場合に有効です。
+> optout为有效时，可以将用户从广告投放对象中移除。<br>另外，optout仅在APP中已有用户可选optout功能的情况下有效。
 
-> F.O.X SDKのAPI仕様は[こちら](../sdk_api/README.md)でご確認ください。
+> F.O.X SDK的API式样说明请确认[这里](../sdk_api/README.md)。
 
 <div id="track_install_other"></div>
-## 3. その他のインストール計測実装例
+## 3. 其他的Install计测安装案例
 
 `Fox.trackInstall()`をApplication継承クラスに実装することで、起動計測系の処理を集約することが可能となります。<br>
 但し、Activityが呼ばれる前に動作するためFoxTrackOptionを用いたBUIDの指定やオプトアウトの指定は難しい場合があります。そのため、Fingerprint計測やInstallReferrer計測などのCookie計測を行わない場合に有効です。
+
+在Application继承类中执行`Fox.trackInstall()`，可以将启动计测方面的处理集中汇总。<br>
+但由于在调用Activity前进行处理，很难使用FoxTrackOption进行指定BUID或指定Optout。因此，在Fingerprint计测和InstallReferrer计测等Cookie计测手法以外时有效。
 
 ```java
 import android.app.Application;
@@ -85,13 +87,13 @@ public class YourApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // アクティベーション処理
+        // 激活处理
         private int FOX_APP_ID = 発行されたアプリID;
         private String FOX_APP_KEY = "発行されたAPP_KEY";
         private String FOX_APP_SALT = "発行されたAPP_SALT";
         new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
 
-        // アプリケーションのライフサイクルの検知
+        // APP的生命周期的检查
         registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
     }
 
@@ -100,7 +102,7 @@ public class YourApplication extends Application {
 
 	    @Override
 	    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-	      // インストール計測
+	      // Install计测
 	      Fox.trackInstall();
 	    }
 
@@ -110,9 +112,9 @@ public class YourApplication extends Application {
 
 	    @Override
 	    public void onActivityResumed(Activity activity) {
-	      // セッショントラッキング
+	      // Session tracking
 	      Fox.trackSession();
-	      // リエンゲージメント計測
+	      // 流失唤回广告计测
 	      Fox.trackDeeplinkLaunch(activity);
 	    }
 
@@ -136,16 +138,16 @@ public class YourApplication extends Application {
 ```
 
 <div id="track_webtag"></div>
-## 4. Webタグを用いたLTV計測
+## 4. 使用Web Tag的计测
 
-会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してLTV計測を利用することができます。<br>
+在网页上进行会员登录和商品购买等行为时，可以使用img Tag来进行LTV计测。<br>
 <br>
-F.O.XのLTV計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合にはtrackEventByBrowserメソッド、アプリ内WebViewの場合にはtrackEventByWebViewメソッドを利用することで、F.O.XがLTV計測に必要な情報をブラウザのCookieに記録します。
+F.O.X的LTV计测适用于外部浏览器和App内WebView。外部浏览器使用trackEventByBrowser方法，App内WebView使用trackEventByWebView方法，F.O.X会在LTV计测中将必要的信息记录在浏览器的Cookie里。
 
-### 4.1 外部ブラウザでのLTV計測
+### 4.1 使用外部浏览器进行LTV计测
 
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合には、trackEventByBrowserメソッドを利用して外部ブラウザを起動してください。<br>
-引数には外部ブラウザでアクセスするURLを文字列で指定します。
+从APP跳转至外部浏览器，在外部浏览器的网页中进行tag计测时，请使用trackEventByBrowser方法启动外部浏览器。<br>
+参数中用字符串指定外部浏览器要跳转的URL。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -155,10 +157,10 @@ import co.cyberz.fox.Fox;
 Fox.trackEventByBrowser("http://www.mysite.com/event/");
 ```
 
-### 4.2 アプリ内WebViewでのLTV計測
+### 4.2 使用App内WebView进行LTV计测
 
-ユーザーの遷移がWebView内で行われる場合には、trackEventByWebViewメソッドを用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にtrackEventByWebViewメソッドが実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。<br>
-また、Android LよりWebViewインスタンスごとにサードパーティCookieの書き込みの許可を行うため引数にWebViewを必須としています。
+用户在WebView内进行跳转时，可以使用trackEventWebView方法进行计测。请在生成WebView的位置运行下列代码。多次生成・废除WebView时，必须每次运行trackEventByWebView方法。内部会用android.webkit.CookieManager和android.webkit.CookieSyncManager设置Cookie。<br>
+另外，Android L版本中为了在每个WebView实例中获得写入第三方Cookie的许可，参数中必须传递WebView。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -173,20 +175,20 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### 4.3 タグの実装
+### 4.3 Tag的安装
 
-LTVの成果地点となるページに計測タグを実装してください。計測タグは弊社管理者より連絡致します。<br>
-タグに利用するパラメータは以下の通りです。
+请在LTV成果地点的页面中埋入计测tag。计测tag由本公司管理员联系提供。<br>
+Tag中可使用的参数如下。
 
-|パラメータ名|必須|備考|
+|参数名|必须|备注|
 |:-----|:-----|:-----|
-|_buyer|必須|広告主を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_cvpoint|必須|成果地点を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_price|オプション|課金額。課金計測時に設定してください。|
-|_currency|オプション|半角英字3文字の通貨コード。<br />課金計測時に設定してください。<br />通貨が設定されていない場合、_priceをJPY(日本円)として扱います。|
-|_buid|オプション|半角英数字64文字まで。<br />会員IDなどユーザー毎にユニークな値を保持する場合にご使用ください。|
+|_buyer|必須|识别广告主的ID。<br />由管理员联系提供，请输入提供的值。|
+|_cvpoint|必須|成果地点を識別するID。<br />由管理员联系提供，请输入提供的值。|
+|_price|可选|付费额。付费计测时请指定。|
+|_currency|可选|半角英文数字的3文字的货币代码。<br />付费计测时请指定。<br />没指定的时候，_price会默认为JPY(日元)。|
+|_buid|可选|最大64个半角英文数字。<br />保持会员ID等用户唯一值时请使用。|
 
-> _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+> _currency请指定[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)里定义的货币代码。
 
 ---
-[トップ](../../README.md)
+[Top](../../README.md)
