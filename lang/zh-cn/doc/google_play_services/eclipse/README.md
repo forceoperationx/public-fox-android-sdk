@@ -1,4 +1,4 @@
-[TOP](../../README.md)　>　[Google Play Servicesの導入](../README.md)　>　Eclipseプロジェクト
+[TOP](../../README.md)　>　[导入Google Play Services](../README.md)　>　Eclipse项目
 
 ---
 

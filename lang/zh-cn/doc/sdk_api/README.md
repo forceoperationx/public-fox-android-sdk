@@ -20,9 +20,9 @@ public class FoxConfig
 |:---:|:---|:---|
 |void|**activate** ( )|在内部保存设置的必要信息|
 |FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : 是否输出Debug日志|设置发生错误时的消息和堆栈轨迹（Stack Trace）输出到Logcat<br>默认： false|
-|FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : Deliver服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL SETTER方法<br>※必须由管理员指定权限后才能使用|
-|FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : 流量分析服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL SETTER方法<br>※必须由管理员指定权限后才能使用。|
-|FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : Dahlia服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL SETTER方法<br>※必须由管理员指定权限后才能使用。|
+|FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : Deliver服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用|
+|FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : 流量分析服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用。|
+|FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : Dahlia服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用。|
 
 <div id="fox"></div>
 # Fox

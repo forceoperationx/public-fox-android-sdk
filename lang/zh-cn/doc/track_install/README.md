@@ -5,7 +5,7 @@
 # Install计测的详细
 
 * [1. Install计测的安装](#track_install_basic)
-* [2. Install计测的安装(指定选项)](#track_install_optional)
+* [2. Install计测的安装(指定option)](#track_install_optional)
 * [3. 其他的Install计测安装案例](#track_install_other)
 * [4. 使用Web Tag的计测](#track_webtag)
 
@@ -34,7 +34,7 @@ APP启动时呼出Main的Activity的onCreate方法中未编码的状态下实行
 ![sendConversion01](./img01.png)
 
 <div id="track_install_optional"></div>
-## 2. Install计测的安装(指定选项)
+## 2. Install计测的安装(指定option)
 
 想要用Callback来获取Install计测完成后的信息、跳转到特定的URL、用APP动态生成URL时，请使用下面的[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)类。<br>
 
@@ -70,9 +70,6 @@ public void onCreate(Bundle savedInstanceState) {
 <div id="track_install_other"></div>
 ## 3. 其他的Install计测安装案例
 
-`Fox.trackInstall()`をApplication継承クラスに実装することで、起動計測系の処理を集約することが可能となります。<br>
-但し、Activityが呼ばれる前に動作するためFoxTrackOptionを用いたBUIDの指定やオプトアウトの指定は難しい場合があります。そのため、Fingerprint計測やInstallReferrer計測などのCookie計測を行わない場合に有効です。
-
 在Application继承类中执行`Fox.trackInstall()`，可以将启动计测方面的处理集中汇总。<br>
 但由于在调用Activity前进行处理，很难使用FoxTrackOption进行指定BUID或指定Optout。因此，在Fingerprint计测和InstallReferrer计测等Cookie计测手法以外时有效。
 
@@ -88,9 +85,9 @@ public class YourApplication extends Application {
         super.onCreate();
 
         // 激活处理
-        private int FOX_APP_ID = 発行されたアプリID;
-        private String FOX_APP_KEY = "発行されたAPP_KEY";
-        private String FOX_APP_SALT = "発行されたAPP_SALT";
+        private int FOX_APP_ID = 发行的APP ID;
+        private String FOX_APP_KEY = "发行的APP KEY";
+        private String FOX_APP_SALT = "发行的APP SALT";
         new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
 
         // APP的生命周期的检查

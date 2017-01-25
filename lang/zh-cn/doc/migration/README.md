@@ -70,7 +70,7 @@
 ### 2.2 设置的重估
 
 * 未实行「[（任意）导入Google Play Services来使用广告ID](../google_play_services//README.md)」的情况，请考虑该选项。
-* 未实行「[（任意）使用外部储存设置排除重复](../external_storage/README.md)」的情况，请考虑该选项。
+* 未实行「[（任意）使用外部储存优化排除重复](../external_storage/README.md)」的情况，请考虑该选项。
 
 ※ SDK 更新后，必须测试计测效果，并确认计测及APP运行没有问题。
 
@@ -104,7 +104,7 @@
 **[`〜 3.3.0` 的实际安装]**
 
 ```xml
-<!-- Receiver Class指定F.O.X SDK的Class -->
+<!-- Receiver类指定F.O.X SDK的Class -->
 <receiver
     android:name="jp.appAdForce.android.InstallReceiver"
     android:exported="true">
@@ -113,7 +113,7 @@
     </intent-filter>
 </receiver>
 
-<!-- 用 F.O.X SDK呼出其他Receiver Class时信息记录为meta-data -->
+<!-- 用 F.O.X SDK呼出其他Receiver类时信息记录为meta-data -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver" />
@@ -122,7 +122,7 @@
 **[`4.0.0 〜` 的实际安装](../install_referrer/README.md)**
 
 ```xml
-<!-- Receiver Class指定F.O.X SDK的Class -->
+<!-- Receiver类指定F.O.X SDK的Class -->
 <receiver
     android:name="co.cyberz.fox.FoxInstallReceiver"
     android:exported="true">
@@ -131,7 +131,7 @@
     </intent-filter>
 </receiver>
 
-<!-- 希望用F.O.X SDK呼出其他Receiver Class的路径时用|(竖线)隔开记录 -->
+<!-- 希望用F.O.X SDK呼出其他Receiver类的路径时用|(竖线)隔开记录 -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver1|com.example.InstallReceiver2|com.example.InstallReceiver3" />

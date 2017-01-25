@@ -37,7 +37,7 @@
         </receiver>
 
         <!-- 可选项:让两个INSTALL_REFERRER Receiver共存的设定 -->
-        <!-- 记载了让value共存的Receiver Class的path -->
+        <!-- 记载了让value共存的Receiver类的path -->
         <meta-data android:name="APPADFORCE_FORWARD_RECEIVER"
             android:value="com.other.sample.InstallReferrerReceiver1|com.other.sample.InstallReferrerReceiver2|com.other.sample.InstallReferrerReceiver3" />
 

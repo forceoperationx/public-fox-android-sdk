@@ -55,8 +55,6 @@ Fox.trackEvent(purchaseEvent);
 <div id="continuity"></div>
 ## 2. 替换旧版里的处理代码（一般广告计测）
 
-これまでのF.O.X Android SDK 3.0.0以下で行っていた実装方法を継続することも可能となっています。<br>
-下記は課金イベントのエンゲージメント計測の実装例です。
 可沿用F.O.X Android SDK 3.0.0及之前版本的执行方式。<br>
 以下为付费计测的执行说明。
 

@@ -34,7 +34,7 @@ APP首次启动时，SDK生成的识别ID保存在本地储存或外部SD卡中�
 > 指定其他目录名和文件名时，也是在
 Environment.getExternalStorageDirectory().getPath()的返回值路径下生成。Environment.getExternalStorageDirectory().getPath()的返回值根据终端和OS版本的不同而有所差异。<br>
 > 未指定"APPADFORCE_ID_DIR"(任意目录名)，仅指定文件名时，会生成APP的Package名的目录，并在该路径下保存文件。<br>
-> ※未指定"APPADFORCE_ID_FILE"(任意文件名)，仅指定目录的情况时，会生成指定的目录名，并在该路径下保存为'__FOX_XUNIQ__'。
+> ※未指定"APPADFORCE_ID_FILE"(任意文件名)，仅指定目录的情况时，会生成指定的目录名，并在该路径下保存为__FOX_XUNIQ__。
 通常不需要设置。
 
 ## 设置案例
