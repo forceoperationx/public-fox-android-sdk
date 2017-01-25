@@ -2,15 +2,15 @@
 
 Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告效果的整体解决方案平台。不光是App的下载和网页用户行为的计测，基于智能用户行为特征的独特计测基准，能够实现企业推广的性价比最大化。
 
-本文件是为实现智能手机APP中广告效果最大化的安装F.O.X SDK安装说明书。
+本文件是为实现智能手机APP中广告效果最大化的F.O.X SDK导入与安装的说明书。
 
 ## 目录
 
 * **[什么是F.O.X SDK](#whats_fox_sdk)**
 * **[1.导入](#install_sdk)**
 	* [下载SDK](https://github.com/cyber-z/public_fox_android_sdk/releases)
-	* [AndroidStudio项目导入方法](./doc/integration/android_studio/README.md)
-	* [Eclipse项目导入方法](./doc/integration/eclipse/README.md)
+	* [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
+	* [Eclipse项目的导入方法](./doc/integration/eclipse/README.md)
 	* [从旧版本转移](./doc/migration/README.md)
 * **[2. 设置](#setting_sdk)**
 	* [2.1 设置权限](#setting_permission)
@@ -83,7 +83,7 @@ dependencies {
 * [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
 * [Eclipse项目的导入方法](./doc/integration/eclipse/README.md)
 
-> ※ 如果APP中已经安装了SDK，请参考[最新版本的更新说明](./doc/migration/README.md)
+> ※ 如果APP中已经安装了SDK，请参考[升级更新到最新版本](./doc/migration/README.md)
 
 <div id="setting_sdk"></div>
 ## 2. 设置
@@ -105,7 +105,7 @@ F.O.X SDK可以使用以下三种权限。 &lt;Manifest&gt;Tag中添加以下权
 
 权限|Protection Level|必須|概要
 :---|:---:|:---:|:---
-INTERNET|Normal|必須|F.O.X SDK是进行通信的必要条件。。
+INTERNET|Normal|必須|F.O.X SDK进行通信的必要条件。
 READ_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
 
@@ -174,11 +174,11 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 * 按照Cookie计测手法时，设置到浏览器返回APP时的Activity里设置流失唤回广告计测的Activity
 * 设置到进行[流失唤回广告(Reengagement)计测](#tracking_reengagement)的Activity里
 
-> ※使用Cookie计测手法从浏览器返回APP时，推荐自定义URL SCHEME指定到[执行Cookie计测](#tracking_install)的Activity上。
+> ※使用Cookie计测手法从浏览器返回APP时，推荐自定义URL SCHEME指定到[安装实现Cookie计测](#tracking_install)的Activity上。
 
-> ※ Cookie计测和流失唤回广告计测时，建议将Activity的`luanchMode`设置为`singleTop`。
+> ※ Cookie计测和流失唤回广告计测时，建议将Activity的`launchMode`设置为`singleTop`。
 
-> ※ 根据运行环境，可能会有URL SCHEME的大小写文字不能识别而导致无法迁移的情况。请将URL SCHEME全部设置为小写英文或数字或小数点。
+> ※ 根据运行环境，可能会有URL SCHEME的大小写文字不能识别而导致无法迁移的情况。请将URL SCHEME全部设置为半角小写英文数字或小数点。
 
 > ※ 自定义URL SCHEME详细请查看[Android Developers（接收隐式Intent）](https://developer.android.com/guide/components/intents-filters.html#Receiving)。
 
@@ -198,7 +198,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 	compile 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
-> 没有导入Google Play Services SDK却启动F.O.X SDK的话，会因为没有使用广告ID导致部分的广告菜单计测无法进行，重复判定的准确率较低等问题。<br>
+> 如果没有导入Google Play Services SDK却启动F.O.X SDK，会因为没有使用广告ID导致部分的广告菜单计测无法进行，或重复判定的准确率较低等问题。<br>
 导入的具体步骤请参照[导入Google Play Services来使用广告ID](./doc/google_play_services/README.md)。
 
 
@@ -268,7 +268,7 @@ protected void onCreate(Bundle savedInstanceState){
 
 > ※ 第二次启动及以后，即使调用trackInstall方法也不会被执行。
 
-> ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测详细](./doc/track_install/README.md)。
+> ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测的详细](./doc/track_install/README.md)。
 
 [Install计测的详细](./doc/track_install/README.md)
 
@@ -297,7 +297,7 @@ protected void onResume() {
 
 > ※1 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并调用`setIntent`方法。
 
-> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了自定义[URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
+> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了[自定义URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
 
 <div id="tracking_event"></div>
 ## 6.  APP内事件(Event)计测
@@ -319,7 +319,7 @@ public class BaseActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// Session Tracing
+		// Session Tracking
 		Fox.trackSession();
 	}
 }
@@ -328,7 +328,7 @@ public class BaseActivity extends Activity {
 **[安装到APP内所有的Activity]**
 
 [上面的激活章节](#activate_sdk_into_app)中介绍过，Application继承类中执行以下内容，可以节省所有Activity的onResume方法中安装计测处理的时间。
-但是，使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks)时候、APP的minSdkVersion需要14及以上。
+但是，使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))时候、APP的minSdkVersion需要14及以上。
 
 
 ```java
@@ -510,13 +510,13 @@ public class YourApplication extends Application {
 <div id="trouble_shooting"></div>
 ## 9. 最后需确认内容（常见问题集）
 
-### 9.1. 未设置URL SCHEME 进行发布时无法从浏览器跳转至APP
+### 9.1. 未设置URL SCHEME 进行发布后无法从浏览器跳转至APP
 
 进行Cookie计测启动浏览器时，为了使用URL SCHEME迁移到Application需要设置URL SCHEME。
 
 ### 9.2. URL SCHEME中含有大写字母时，无法正常迁移到APP。
 
-根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致URL SCHEME 无法正常迁移的情况。请将URL SCHEME 全部设置为半角小写英文或数字或小数点。
+根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致使用URL SCHEME无法正常迁移的情况。请将URL SCHEME全部设置为半角小写英文数字或小数点。
 
 ### 9.3. F.O.X中计测的Install数值会大于Google Play Developer Console的数字
 
@@ -524,7 +524,7 @@ F.O.X结合多种方式来进行终端重复安装的检查。当设置无法进
 
 为提高排查重复的精度，请进行下面的设置。
 
-* [为使用广告ID的Google Play Services SDK导入](./doc/google_play_services/README.md)
+* [导入Google Play Services SDK来使用广告ID](./doc/google_play_services/README.md)
 
 * [利用外部储存优化重复排除](./doc/external_storage/README.md)
 

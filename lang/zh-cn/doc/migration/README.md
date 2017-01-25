@@ -11,7 +11,7 @@
 **[Eclipse环境**
 
 1. 如果项目中安装了旧版FOX_Android_SDK_{VERSION}.jar，将其删除。
-2. 将[最新版SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jar文件添加到项目的libs中。
+2. 将[最新安定版(Latest release)SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jar文件添加到项目的libs中。
 3. Eclips［项目］→实行［clean］
 
 **[AndroidStudio环境]**
@@ -69,8 +69,8 @@
 
 ### 2.2 设置的重估
 
-* 未实行「[（可选项）为使用广告ID的Google Play Services导入](../google_play_services/ja/)」的情况，请考虑该选项。
-* 未实行「[（选项）使用外部储存设置排除重复](../external_storage/ja/)」的情况，请考虑该选项。
+* 未实行「[（任意）导入Google Play Services来使用广告ID](../google_play_services//README.md)」的情况，请考虑该选项。
+* 未实行「[（任意）使用外部储存设置排除重复](../external_storage/README.md)」的情况，请考虑该选项。
 
 ※ SDK 更新后，必须测试计测效果，并确认计测及APP运行没有问题。
 
