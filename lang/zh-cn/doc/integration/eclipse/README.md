@@ -12,8 +12,8 @@
 
 * 选择APP,右击选择［属性］，弹出属性窗口
 * 属性窗口左侧菜单中选择［Java Build Path]
-* 选中属性窗口右侧的［library］页，点击［添加Jar］
-* 配置刚刚复制到项目中的［foxtrack-core_{VERSION}.jar］到APP的「libs」目录里
+* 选中属性窗口右侧的［libraries］页，点击［添加JARs］
+* 选择刚刚复制到APP的「libs」目录里的「foxtrack-core_{VERSION}.jar」
 
 ![integration02](./img02.png)
 
