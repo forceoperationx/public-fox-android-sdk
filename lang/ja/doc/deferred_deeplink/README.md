@@ -88,6 +88,43 @@ protected void onResume() {
 
 > ※ ディープリンクに記号や特殊な文字を含む場合には、画面遷移の処理を本SDKに委譲せず`FoxDeeplinkListener`を用いて実装されることを推奨します。
 
+<div id="with_thirdparty"></div>
+### 他社ツールのディファードディープリンクを利用する
+
+#### Facebook SDKの場合
+
+以下の例では、F.O.X SDK のインストール計測完了のコールバック内で`FacebookSDK`のディファードディープリンク処理を記述しています。Cookie計測時のブラウザ立ち上げが完了した後にディファードディープリンクによる遷移が行われ、Cookie計測が正常に行われます。
+
+```java
+import jp.appAdForce.android.AdManager;
+import jp.appAdForce.android.TrackingStateListener;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+			AdManager ad = new AdManager(this);
+			ad.setTrackingStateListener(new TrackingStateListener() {
+				@Override
+				public void onComplete() {
+					// Facebook SDK でのディファードディープリンク処理を実行
+
+				}
+			}).sendConversion("default");
+	}
+
+	@Override
+	protected void onResume() {
+			super.onResume();
+			AdManager ad = new AdManager(this);
+      ad.sendDeeplinkConversion(getIntent());
+	}
+```
+
+> ※　Facebookの公式ドキュメントによると、FacebookSDKを導入する際に、下記のコードを記述するように促されます。<br>F.O.X SDK を導入しているアプリに、この関数を記述すると、 Facebook の管理画面においてインストール数が二重にカウントされる可能性があります。
+```java
+AppEventsLogger.activateApp(this);
+```
+また、上記関数を取り除いても、Facebook SDK でのディファードディープリンクは問題なく機能します。
+
 
 ---
 [トップ](/lang/ja/README.md)
