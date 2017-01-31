@@ -115,7 +115,7 @@ import jp.appAdForce.android.TrackingStateListener;
 	protected void onResume() {
 			super.onResume();
 			AdManager ad = new AdManager(this);
-      ad.sendDeeplinkConversion(getIntent());
+			ad.sendDeeplinkConversion(getIntent());
 	}
 ```
 
