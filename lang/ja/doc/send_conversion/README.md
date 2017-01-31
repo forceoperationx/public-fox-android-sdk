@@ -37,5 +37,35 @@ ad.sendConversion("default", "your unique id");
 ```
 > sendConversionは起動直後の処理として実装される必要があるため、ログインIDなどのユーザーアクションが伴う値を引数として渡すことはできません。
 
+### インストール計測完了のコールバックを受け取る
+
+次の実装のように`TrackingStateListener`を用いることで、インストール計測完了のコールバックを受け取ることができます。
+
+```java
+import jp.appAdForce.android.AdManager;
+import jp.appAdForce.android.TrackingStateListener;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+			AdManager ad = new AdManager(this);
+			ad.setTrackingStateListener(new TrackingStateListener() {
+				@Override
+				public void onComplete() {
+					Toast.makeText(ThisActivity.this, "Complete the tracking", Toast.LENGTH_LONG).show();
+				}
+			}).sendConversion("default");
+	}
+
+	@Override
+	protected void onResume() {
+			super.onResume();
+			AdManager ad = new AdManager(this);
+      ad.sendDeeplinkConversion(getIntent());
+	}
+```
+
+> ※ Cookie計測を行う場合のブラウザ起動後、アプリがフォアグラウンドに復帰した直後に`onComplete`メソッドが呼び出されます。また、アプリに復帰した際、ActivityのonResumeには必ず`sendDeeplinkConversion`メソッドを実装してください。
+
+
 ---
 [トップ](/lang/ja/README.md)
