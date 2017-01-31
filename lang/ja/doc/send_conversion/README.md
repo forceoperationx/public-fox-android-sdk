@@ -64,9 +64,7 @@ import jp.appAdForce.android.TrackingStateListener;
 	}
 ```
 
-> ※ Cookie計測を行う場合はブラウザ起動後、アプリがフォアグラウンドに復帰した直後に`onComplete`メソッドが呼び出されます。
-
-
+> ※ Cookie計測を行う場合のブラウザ起動後、アプリがフォアグラウンドに復帰した直後に`onComplete`メソッドが呼び出されます。また、アプリに復帰した際、ActivityのonResumeには必ず`sendDeeplinkConversion`メソッドを実装してください。
 
 
 ---

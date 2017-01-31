@@ -119,12 +119,7 @@ import jp.appAdForce.android.TrackingStateListener;
 	}
 ```
 
-> ※　Facebookの公式ドキュメントによると、FacebookSDKを導入する際に、下記のコードを記述するように促されます。<br>F.O.X SDK を導入しているアプリに、この関数を記述すると、 Facebook の管理画面においてインストール数が二重にカウントされる可能性があります。
-```java
-AppEventsLogger.activateApp(this);
-```
-また、上記関数を取り除いても、Facebook SDK でのディファードディープリンクは問題なく機能します。
-
+> Facebook SDKの実装に関しては[公式ドキュメント](https://developers.facebook.com/docs/app-ads/deep-linking#deferred-deep-linking)を参照ください。
 
 ---
 [トップ](/lang/ja/README.md)
