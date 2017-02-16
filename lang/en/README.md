@@ -1,6 +1,6 @@
 # About the Force Operation X
 
-Force Operation X (Hereinafter referred to as F.O.X) is total solution platform optimizing the ad effectiveness on Smartphone. Including downloading application and the calculation of user's' actions, it is able to maximize the price-performance ratio of companies' promotion according to criteria of original effective measurements based on behavior characteristics of Smartphone users.
+Force Operation X (Hereinafter referred to as F.O.X) is total solution platform optimizing the ad effectiveness on Smartphone. Including downloading application and the calculation of user's actions, it is able to maximize the price-performance ratio of companies' promotion according to criteria of original effective measurements based on behavior characteristics of Smartphone users.
 
 This documents instructs the integration procedures of F.O.X. SDK to maximize the ad effectiveness on Smartphone application.
 
