@@ -1,8 +1,8 @@
 ## LTV tracking by using tag
 
-LTV tracking can be performed using img tag when member registration, product purchase, etc. are done on a web page.
+LTV tracking can be performed using &lt;img&gt; tag when member registration, product purchase, etc. are done on a web page.
 
-F.O.X's LTV measurement supports both browsers and in-app WebViews. F.O. X records necessary information for LTV tracking in the browser's cookie.
+F.O.X's LTV measurement supports both browsers and in-app WebViews. F.O.X records necessary information for LTV tracking in the browser's cookie.
 
 ### LTV tracking by using browser.
 

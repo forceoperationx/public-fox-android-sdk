@@ -1,6 +1,6 @@
 ## Purchase-event tracking by using access analytics
 
-Using the access analysis function, it is possible to measure respectively events and sales both organic and non-organic user. To conduct event measurement and billing measurement by access analysis, implement next sendEvent method.
+Using the access analytics function, it is possible to measure respectively events and sales both organic and non-organic user. To conduct event measurement and billing measurement by access analytics, implement next sendEvent method.
 
 ```java
 public static void sendEvent(Context context, String eventName,String action, String label, String orderId, String sku, String itemName, double price, int quantity, String currency);
@@ -22,7 +22,7 @@ Specification of the arguments of the `sendEvent` is as follows.
 
 > Specify the currency code defined by [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) for currency.
 
-In the case of setting billing as result points in LTV measurement, implement measurement management of each LTV and access analysis at same place.
+In the case of setting billing as result points in LTV measurement, implement measurement management of each LTV and access analytics at same place.
 
 As a sample, the example of implementation is noted below and it is an example of 9.99 American dollars.
 

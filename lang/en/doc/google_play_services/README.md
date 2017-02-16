@@ -8,7 +8,7 @@ To use the advertisement ID, Google Play Services SDK needs to be incorporated. 
 
 [Setting Up Google Play Services | Android Developers](https://developer.android.com/google/play-services/setup.html)
 
-## installation of Google Play Services SDK
+## Installation of Google Play Services SDK
 
 Below, the method of implementing Google Play Services SDK is noted at December, 2014.
 

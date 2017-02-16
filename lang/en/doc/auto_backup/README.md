@@ -7,7 +7,7 @@ If you don't need this function, you can omit the implementation of this item.
 
 * It is the case of restoration of backup data from Android M terminal to more above than Android M terminal.
 * It is necessary to have the same Google account when backup and restoration.
-* When migrating data, like following pictures, it is mandatory that setting of terminal is available by users.
+* When migrating data, like following pictures, it is required that setting of terminal is available by users.
 
 ![Setting](./img01.png)
 

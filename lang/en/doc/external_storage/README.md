@@ -1,12 +1,12 @@
 ## Setting of deduplication using external storages
 
-By preserving identification ID, that SDK created when first starting of application, into local storage or, SD card, it is able to conduct deduplication when reinstalling application.
+By preserving identification ID, that SDK created when first launching of application, into local storage or, SD card, it is able to conduct deduplication when reinstalling application.
 
 This setting is optional, however, it helps improving the accuracy of duplicating detection when reinstalling application, so we recommend the implementation.
 
 ### Setting of permission
 
-Add the following permissions for reading and writing file to external storage into <manifest> tag of AndroidManifest.xml.
+Add the following permissions for reading and writing file to external storage into &lt;manifest&gt; tag of AndroidManifest.xml.
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,7 +20,7 @@ In the case of setting the above permission, identification ID file is preserved
 
 ### （Optional）Change of preserved directory and file name
 
-The directory name of the file to be saved is the same as package name by default, however, you can change it to an arbitrary directory name and file name by adding the following setting in the <application> tag.
+The directory name of the file to be saved is the same as package name by default, however, you can change it to an arbitrary directory name and file name by adding the following setting in the &lt;application&gt; tag.
 
 ```xml
 <meta-data android:name="APPADFORCE_ID_DIR" android:value="Arbitrary directory name" />
@@ -28,7 +28,9 @@ The directory name of the file to be saved is the same as package name by defaul
 ```
 
 > Even in the case of specifying the arbitrary directory name and filename, it is created under the path of the return value of Environment.getExternalStorageDirectory().getPath(). The return value of Environment.getExternalStorageDirectory().getPath() changes depending on the terminal, ot OS version.
+
 > In the case of specifying the arbitrary file name without specifying APPADFORCE_ID_DIR(arbitrary directory name), directory with package name will be created and preserved with arbitrary file name under it.
+
 > ※ In the case of specifying directory name without specifying APPADFORCE_ID_FILE(arbitrary file name), directory with arbitrary name will be created, and directory with the name FOX_XUNIQ will be preserved under it.
 Normally, this setting is not necessary.
 

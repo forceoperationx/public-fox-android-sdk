@@ -276,7 +276,7 @@ Please specify the currency code defined in [ISO 4217](http://en.wikipedia.org/w
 <div id="tracking_analytics"></div>
 ## 5. Implement access analytics
 
-You can measure comparison of Installation number of organic and non-organic, the number of the of activating application and unique users (DAU / MAU), user retention and so on. When the access analysis is not required, you can omit the implementation of this item.
+You can measure comparison of Installation number of organic and non-organic, the number of the of activating application and unique users (DAU / MAU), user retention and so on. When the access analytics is not required, you can omit the implementation of this item.
 
 To measure application launch and return from background, add `AnalyticsManager.sendStartSession` to onResume() of all activities.
 
