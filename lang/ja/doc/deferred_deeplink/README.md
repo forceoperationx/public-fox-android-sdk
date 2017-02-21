@@ -23,7 +23,7 @@ public class FoxTrackOption<br>
 |:---:|:---|:---:|:---|
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)|onCreate|本メソッドをコールすることでインストール計測の際に、サーバへディファードディープリンクを問い合わせる処理が実行されます。|
 
-<div id="deeplinkhandler"></di>
+<div id="deeplinkhandler"></div>
 ## DeeplinkHandler
 
 public static abstract class DeeplinkHandler
@@ -35,12 +35,14 @@ public static abstract class DeeplinkHandler
 
 |返り値|タイプ|メソッド|実装箇所|説明|
 |:---:|:---:|:---|:---:|:---|
-|void|abstract|**onReceived** (JSONObject jObject)|onCreate|ディファードディープリンクを受信した際に受け取るためのメソッド。ディファードディープリンクが存在しない場合や、端末が通信に失敗する場合にはnullを返します。|
+|DeeplinkHandler|-|**getDefault** ()|onCreate|デフォルト処理を実行するDeeplinkHandlerを返します。ディファードディープリンクを受信した後に、自動で紐づくActivityに遷移したい場合に利用します。<br>※遷移の際のIntentにはパラメータを追加することはできません。|
+|void|abstract|**onReceived** (JSONObject jObject)<br><br>`jObject` : 受信したディープリンク情報を格納したJSONObject|onCreate|ディファードディープリンクを受信した際に受け取るためのメソッド。ディファードディープリンクが存在しない場合や、端末が通信に失敗する場合にはnullを返します。|
 |long|-|**getDuration** ()|DeeplinkHandler拡張クラス内|[オプション]ディファードディープリンクをサーバに問い合わせる際に、対象となるラストクリックの対象期間(秒)（どれだけ遡るかを秒数で指定）<br>デフォルト : 86400 (1日)|
 
 ### 受信するJSONObjectの形式
 
-上記、DeeplinkHandlerのonReceivedメソッドの引数で受け取るJsonの形式は以下の通りです。
+DeeplinkHandlerのonReceivedメソッドの引数で受け取るJsonは以下のような形式となっています。<br>
+※ 値のディープリンクは例です。
 
 ```json
 {
@@ -63,10 +65,41 @@ protected void onResume() {
 }
 ```
 
-
 ### 実装例1
 
-デフォルトのDeeplinkHandlerでディープリンク情報を受信し、該当するActivityに遷移する処理の実装例となります。
+ディープリンクを受信後、紐づく画面に自動遷移する実装例となります。<br>
+有効なディープリンクでない場合、遷移せず画面はそのままの状態となります。
+
+```java
+import co.cyberz.fox.Fox;
+import co.cyberz.fox.FoxTrackOption;
+...
+
+public class SampleActivity extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        FoxTrackOption mFoxTrackOption = new FoxTrackOption();
+        mFoxTrackOption.registerDeeplinkHandler(FoxTrackOption.DeeplinkHandler.getDefault());
+        Fox.trackInstall(mFoxTrackOption);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 必ず呼んでください
+        Fox.trackDeeplinkLaunch(this);
+    }
+
+}
+```
+
+### 実装例2
+
+DeeplinkHandlerのonReceivedメソッド内に任意の処理を実装を行う例となります。<br>
+以下は、ディープリンク情報を受信し、該当するActivityに遷移する処理を行っています。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -110,7 +143,7 @@ public class SampleActivity extends Activity {
 }
 ```
 
-### 実装例2
+### 実装例3
 
 以下は`DeeplinkHandler`クラスを拡張し、durationに３日を指定している実装例となります。
 
