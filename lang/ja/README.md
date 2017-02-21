@@ -22,6 +22,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[3. F.O.X SDKのアクティベーション](#activate_sdk_into_app)**
 * **[4. インストール計測の実装](#tracking_install)**
 	* [インストール計測の詳細](./doc/track_install/README.md)
+	* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 * **[5. リエンゲージメント計測の実装](#tracking_reengagement)**
 * **[6. アプリ内イベントの計測](#tracking_event)**
 	* [6.1 セッション（起動イベント）の計測](#tracking_session)
@@ -272,7 +273,9 @@ protected void onCreate(Bundle savedInstanceState){
 
 > ※ trackInstallメソッドにはオプションを指定することも可能です。詳細は[インストール計測の詳細](./doc/track_install/README.md)をご確認ください。
 
-[インストール計測の詳細](./doc/track_install/README.md)
+* [インストール計測の詳細](./doc/track_install/README.md)
+
+* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 
 <div id="tracking_reengagement"></div>
 ## 5. リエンゲージメント計測の実装

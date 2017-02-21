@@ -59,14 +59,31 @@ public void onCreate(Bundle savedInstanceState) {
         });
   Fox.trackInstall(option);
 }
+
+@Override
+protected void onResume() {
+    super.onResume();
+    // 必ず呼んでください
+    Fox.trackDeeplinkLaunch(this);
+}
 ```
 
-> 上記のサンプルコードでは、リダイレクト先・BUID・オプトアウトの有無・計測完了のコールバックを受け取る処理の実装例となっています。<br>TrackingStateListernerをセットした上で計測処理が完了するとonCompleteメソッドが呼ばれますので、インストール計測完了直後に実行したい処理はこちらに実装してください。
+> ※ 上記のサンプルコードでは、リダイレクト先・BUID・オプトアウトの有無・計測完了のコールバックを受け取る処理の実装例となっています。<br>TrackingStateListernerをセットした上で計測処理が完了するとonCompleteメソッドが呼ばれますので、インストール計測完了直後に実行したい処理はこちらに実装してください。
 
-> オプトアウトを有効にした場合、その後そのユーザーを広告の配信対象から外すことが可能です。<br>
+> ※ Cookie計測が有効な場合、TrackingStateListernerのonCompleteメソッドは、ブラウザからアプリに復帰した後に呼ばれます。その復帰したActivityのonResumeには必ず`Fox.trackDeeplinkLaunch`メソッドを実装してください。<br>実装していない場合、onCompleteメソッドが呼ばれません。
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+    // 必ず呼んでください
+    Fox.trackDeeplinkLaunch(this);
+}
+```
+
+> ※ オプトアウトを有効にした場合、その後そのユーザーを広告の配信対象から外すことが可能です。<br>
 尚、オプトアウトはユーザーに対しオプトアウトの意思表示を選択させるような機能をアプリ内で実装している場合に有効です。
 
-> F.O.X SDKのAPI仕様は[こちら](../sdk_api/README.md)でご確認ください。
+> ※ F.O.X SDKのAPI仕様は[こちら](../sdk_api/README.md)でご確認ください。
 
 <div id="track_install_other"></div>
 ## 3. その他のインストール計測実装例
