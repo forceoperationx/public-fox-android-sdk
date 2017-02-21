@@ -19,7 +19,7 @@ public class FoxConfig
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
 |void|**activate** ( )|設定した必須情報を内部で保存する|
-|FoxConfig|**addDebugEnabled** (boolean isDebug)<br><br>`isDebug` : デバッグログの出力有無|エラー時のメッセージやスタックトレースをLogcatに出力させる<br>`デフォルト : false`|
+|FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : デバッグログの出力有無|エラー時のメッセージやスタックトレースをLogcatに出力させる<br>`デフォルト : false`|
 |FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : DeliverサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
 |FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : アクセス解析サーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
 |FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : DahliaサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
