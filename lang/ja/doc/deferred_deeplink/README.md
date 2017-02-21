@@ -80,8 +80,7 @@ public class SampleActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         FoxTrackOption mFoxTrackOption = new FoxTrackOption();
-        mFoxTrackOption.addBuid(USER_ID)
-                       .registerDeeplinkHandler(new FoxTrackOption.DeeplinkHandler() {
+        mFoxTrackOption.registerDeeplinkHandler(new FoxTrackOption.DeeplinkHandler() {
                             @Override
                             public void onReceived(JSONObject deeplinkInfo) {
                                 // 以下、受信したディープリンク情報の操作例
@@ -98,7 +97,7 @@ public class SampleActivity extends Activity {
                                 }
                             }
                         });
-        Fox.mFoxTrackOption(foxTrackOption);
+        Fox.trackInstall(mFoxTrackOption);
     }
 
     @Override
@@ -130,7 +129,7 @@ public class SampleActivity extends Activity {
         FoxTrackOption mFoxTrackOption = new FoxTrackOption();
         mFoxTrackOption.addBuid(USER_ID)
                        .registerDeeplinkHandler(new CustomDeeplinkHandler());
-        Fox.mFoxTrackOption(foxTrackOption);
+        Fox.trackInstall(mFoxTrackOption);
     }
 
     @Override
@@ -153,7 +152,7 @@ public class SampleActivity extends Activity {
       @Override
       public void onReceived(@Nullable JSONObject deeplinkInfo) {
           if (deeplinkInfo != null) {
-              String ddl = deeplinkInfo.optString("deeplink", "blank");
+              String deeplinkStr = deeplinkInfo.optString("deeplink", "blank");
               Toast.makeText(ThisActivity.this, deeplinkStr, 0).show();
               if (!"blank".equals(deeplinkStr)) {
                   Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(deeplinkStr));
