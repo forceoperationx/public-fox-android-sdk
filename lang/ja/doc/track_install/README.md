@@ -7,7 +7,6 @@
 * [1. インストール計測の実装](#track_install_basic)
 * [2. インストール計測の実装(オプション指定)](#track_install_optional)
 * [3. その他のインストール計測実装例](#track_install_other)
-* [4. Webタグを用いた計測](#track_webtag)
 
 <div id="track_install_basic"></div>
 ## 1. インストール計測の実装
@@ -151,59 +150,6 @@ public class YourApplication extends Application {
   }
 }
 ```
-
-<div id="track_webtag"></div>
-## 4. Webタグを用いたLTV計測
-
-会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してLTV計測を利用することができます。<br>
-<br>
-F.O.XのLTV計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合にはtrackEventByBrowserメソッド、アプリ内WebViewの場合にはtrackEventByWebViewメソッドを利用することで、F.O.XがLTV計測に必要な情報をブラウザのCookieに記録します。
-
-### 4.1 外部ブラウザでのLTV計測
-
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合には、trackEventByBrowserメソッドを利用して外部ブラウザを起動してください。<br>
-引数には外部ブラウザでアクセスするURLを文字列で指定します。
-
-```java
-import co.cyberz.fox.Fox;
-
-...
-
-Fox.trackEventByBrowser("http://www.mysite.com/event/");
-```
-
-### 4.2 アプリ内WebViewでのLTV計測
-
-ユーザーの遷移がWebView内で行われる場合には、trackEventByWebViewメソッドを用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にtrackEventByWebViewメソッドが実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。<br>
-また、Android LよりWebViewインスタンスごとにサードパーティCookieの書き込みの許可を行うため引数にWebViewを必須としています。
-
-```java
-import co.cyberz.fox.Fox;
-
-@Override
-public void onCreate(Bundle savedInstanceState) {
-  super.onCreate(savedInstanceState);
-
-  WebView mWebView = (WebView) findViewById(R.id.sample_webview);
-	Fox.trackEventByWebView(mWebView);
-	mWebView.loadUrl("http://www.mysite.com/event/");
-}
-```
-
-### 4.3 タグの実装
-
-LTVの成果地点となるページに計測タグを実装してください。計測タグは弊社管理者より連絡致します。<br>
-タグに利用するパラメータは以下の通りです。
-
-|パラメータ名|必須|備考|
-|:-----|:-----|:-----|
-|_buyer|必須|広告主を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_cvpoint|必須|成果地点を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_price|オプション|課金額。課金計測時に設定してください。|
-|_currency|オプション|半角英字3文字の通貨コード。<br />課金計測時に設定してください。<br />通貨が設定されていない場合、_priceをJPY(日本円)として扱います。|
-|_buid|オプション|半角英数字64文字まで。<br />会員IDなどユーザー毎にユニークな値を保持する場合にご使用ください。|
-
-> _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
 
 ---
 [トップ](../../README.md)
