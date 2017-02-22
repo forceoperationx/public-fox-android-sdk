@@ -9,7 +9,7 @@ import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.sendLtvConversion(成果地点ID);
+ltv.sendLtvConversion(成果地點ID);
 ```
 
 > **成果地點ID(必須)** : 請輸入Force Operation X管理員告知的值。
