@@ -12,16 +12,24 @@
 
 |返り値|メソッド|実装箇所|説明|
 |:---:|:---|:---:|:---|
-|AdManager|registerDeeplinkCallback (int expire, <br>TimeUnit timeUnit, <br>[FoxDeeplinkListener](#foxdeeplinklistener) listener)<br><br>・`expire` : ラストクリックの有効期限<br>・`timeUnit` : 有効期限の単位（分/時間/日）<br>・[FoxDeeplinkListener](#foxdeeplinklistener) : ディープリンク受診時のコールバック|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、FoxDeeplinkListenerを介してディープリンクを返します。|
-|AdManager|registerDeeplinkCallback ( )|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、ディープリンク先に自動遷移します。|
-|void|sendDeeplinkConversion ( Intent i)<br>・`i` : Activity内で取得できるIntent|onResume()|アプリが初回起動直後に閉じられたり、ランディングページを開くなどでブラウザを起動したのちに、再度アプリがフォアグラウンドに戻った際、取得していたディープリンクのハンドリングを行うために必要となります。また、リエンゲージメント計測を行う場合にも実装が必須です。|
+|AdManager|**registerDeeplinkCallback** (int expire, <br>TimeUnit timeUnit, <br>[FoxDeeplinkListener](#foxdeeplinklistener) listener)<br><br>・`expire` : ラストクリックの有効期限<br>・`timeUnit` : 有効期限の単位（分/時間/日）<br>・[`listener`](#foxdeeplinklistener) : ディープリンク受信時のコールバック|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、FoxDeeplinkListenerを介してディープリンクを返します。|
+|AdManager|**registerDeeplinkCallback** ( )|onCreate()|初回起動時に引数で指定した時間以内に発生したラストクリックをサーバーに問い合わせ、クリック情報が存在した場合、ディープリンク先に自動遷移します。|
+|AdManager|**setTrackingStateListener** (TrackingStateListener listener) <br><br>[`listener`]() : インストール計測処理完了時のコールバック|onCreate()|初回起動時のインストール計測処理が完了したタイミングを検知するためのコールバックを受け取ることができます。|
+|void|**sendDeeplinkConversion** ( Intent i)<br>・`i` : Activity内で取得できるIntent|onResume()|アプリが初回起動直後に閉じられたり、ランディングページを開くなどでブラウザを起動したのちに、再度アプリがフォアグラウンドに戻った際、取得していたディープリンクのハンドリングを行うために必要となります。また、リエンゲージメント計測を行う場合にも実装が必須です。|
 
 <div id="foxdeeplinklistener"></div>
 ### FoxDeeplinkListener
 |返り値|メソッド|説明|
 |:---:|:---|:---|
-|void|onReceived (String deeplink) <br>・`deeplink` : 受信したディープリンク|クリック情報が存在し、ディープリンクを受信した際に呼ばれます。引数のdeeplinkには入稿時に設定したディープリンクを返します。（URLデコード等の編集も行いません）|
-|void|onFailed ( ) |クリック情報が存在しない場合、或いはディープリンクを受信出来なかった(端末がオフライン時や通信に失敗した)場合に呼ばれます。|
+|void|**onReceived** (String deeplink) <br>・`deeplink` : 受信したディープリンク|クリック情報が存在し、ディープリンクを受信した際に呼ばれます。引数のdeeplinkには入稿時に設定したディープリンクを返します。（URLデコード等の編集も行いません）|
+|void|**onFailed** ( ) |クリック情報が存在しない場合、或いはディープリンクを受信出来なかった(端末がオフライン時や通信に失敗した)場合に呼ばれます。|
+
+<div id="trackingstatelistener"></div>
+### TrackingStateListener
+|返り値|メソッド|説明|
+|:---:|:---|:---|
+|void|**onComplete** ( )|アプリの初回起動のインストール計測が完了したタイミングを検知した際に呼ばれます。Cookie計測の場合、ブラウザ起動からアプリに復帰したタイミングで`onComplete()`が呼ばれます。<br>※ 本コールバックを受け取るためには、`"ブラウザ起動から復帰したActivityのonResume()"`に`sendDeeplinkConversionメソッド`を実装することが必須となります。|
+
 
 ### 実装例
 
