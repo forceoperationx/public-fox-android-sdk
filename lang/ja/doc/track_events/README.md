@@ -112,6 +112,20 @@ Fox.trackEvent(purchaseEvent);
 会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
 F.O.Xのイベント計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合には[`trackEventByBrowser`](../sdk_api/README.md#fox)メソッド、アプリ内WebViewの場合には[`trackEventByWebView`](../sdk_api/README.md#fox)メソッドを利用することで、F.O.Xがイベント計測に必要な情報をブラウザのCookieに記録します。
 
+LTVの成果地点となるWebページに計測用HTMLタグを設置してください。計測用HTMLタグは弊社管理者より連絡致します。<br>
+HTMLタグに利用するパラメータは以下の通りです。
+
+|パラメータ名|必須|備考|
+|:-----|:-----|:-----|
+|_buyer|必須|広告主を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
+|_cvpoint|必須|成果地点を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
+|_price|オプション|課金額。課金計測時に設定してください。|
+|_currency|オプション|半角英字3文字の通貨コード。<br />課金計測時に設定してください。<br />通貨が設定されていない場合、_priceをJPY(日本円)として扱います。|
+|_buid|オプション|半角英数字64文字まで。<br />会員IDなどユーザー毎にユニークな値を保持する場合にご使用ください。|
+
+> _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+
+
 <div id="track_by_browser"></div>
 ### 3.1 外部ブラウザによるイベント計測
 
@@ -133,12 +147,19 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 import co.cyberz.fox.Fox;
 
 // ...
-WebView webView = findViewById(R.id.sample_webview);
-Fox.trackEventByWebView(webView);
-webView.loadUrl("https://www.yoursite.com/tagpage");
+@Override
+public void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+
+  WebView mWebView = (WebView) findViewById(R.id.sample_webview);
+	Fox.trackEventByWebView(mWebView);
+	mWebView.loadUrl("http://www.mysite.com/event/");
+}
 ```
 
 > ※ Android LよりサードパーティCookieがデフォルトでOFFとなります。 そのためtrackEventByWebViewメソッドでは引数にWebViewを持たせることで、内部ではCookieManager.setAccesptThirdPartyCookiesを用いてサードパーティCookieの書込みを行っております。
+
+
 
 ---
 [トップ](../../README.md)
