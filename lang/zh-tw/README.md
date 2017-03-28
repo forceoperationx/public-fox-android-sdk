@@ -50,6 +50,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 能夠在APP內部表示互動推廣廣告。如果不需要顯示該廣告，可以省略本章節的安裝。
 
 <div id="install_sdk"></div>
+
 ## 1. 導入
 
 請把下面代碼添加到項目的build.gradle裡。
@@ -79,6 +80,7 @@ dependencies {
 > ※ 如果已經在APP裡導入了SDK，請參考[有關更新到最新版本](./doc/update/README.md)。
 
 <div id="setting_sdk"></div>
+
 ## 2. 設定
 
 * **SDK設定**
@@ -179,6 +181,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|利用外部存儲提高重複排�
 [AndroidManifest.xml實例](./doc/config_android_manifest/AndroidManifest.xml)
 
 <div id="tracking_install"></div>
+
 ## 3. Install計測的安裝
 
 安裝了初次啟動時的Install計測處理，就能夠測定廣告效果了。請編輯項目的源代碼，請仿照下面的例子來安裝。
@@ -227,6 +230,7 @@ protected void onNewIntent(Intent intent)
 > ※1 為了計測Reengagement廣告，需要在AndroidManifest.xml定義的Acitvity裡定義定制化的URL Scheme。該計測是利用定制URL Scheme調用Activity的方法來進行Reengagement計測的。
 
 <div id="tracking_ltv"></div>
+
 ## 4. LTV計測的安裝
 
 通過在會員登錄，教程突破，消費等任意的成果地點安裝LTV計測，能夠測定不同廣告流入的LTV。如果不做LTV計測，可以省略本項目的安裝。
@@ -258,6 +262,7 @@ ltv.sendLtvConversion(成果地点ID);
 [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
 
 <div id="tracking_analytics"></div>
+
 ## 5. 流量分析的安裝
 
 自然流入和廣告流入的安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。如果不做流量分析，可以省略本項目的安裝。
@@ -288,6 +293,7 @@ public class MainActivity extends Activity {
 [關於Engagement廣告投放](./doc/fox_engagement/README.md)
 
 <div id="use_proguard"></div>
+
 ## 6. 使用ProGuard
 
 如果沒有使用ProGuard功能，可以跳過本節。
@@ -316,6 +322,7 @@ public class MainActivity extends Activity {
 [導入Google Play Services時的Proguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="integration_test"></div>
+
 ## 7. 進行疏通測試
 
 在APP上架申請以前，在導入SDK的狀態請做充分的測試，以確保APP的動作沒有問題。
@@ -346,11 +353,13 @@ public class MainActivity extends Activity {
 [Reengagement計測時的疏通測試](./doc/reengagement_test/README.md)
 
 <div id="other_function"></div>
+
 ## 8. 其他機能的安裝
 
 * [Opt-Out的安裝](./doc/optout/README.md)
 
 <div id="trouble_shooting"></div>
+
 ## 9. 最後請務必確認（到現在發生過的問題集）
 
 ### 9.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
