@@ -22,6 +22,7 @@ public class FoxTrackOption<br>
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)|onCreate|本メソッドをコールすることでインストール計測の際に、サーバへディファードディープリンクを問い合わせる処理が実行されます。|
 
 <div id="deeplinkhandler"></div>
+
 ## DeeplinkHandler
 
 public static abstract class DeeplinkHandler

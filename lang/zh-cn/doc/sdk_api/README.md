@@ -1,6 +1,7 @@
 # Fox SDK API
 
 <div id="foxconfig"></div>
+
 # FoxConfig
 
 public class FoxConfig
@@ -25,6 +26,7 @@ public class FoxConfig
 |FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : Dahlia服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用。|
 
 <div id="fox"></div>
+
 # Fox
 
 public class Fox<br>
@@ -49,6 +51,7 @@ public class Fox<br>
 |JSONObject|static|**getUserInfo** ( )|用setUserInfo设置了用户信息时，可以获取该用户信息|
 
 <div id="foxtrackoption"></div>
+
 # FoxTrackOption
 
 public class FoxTrackOption<br>
@@ -66,6 +69,7 @@ public class FoxTrackOption<br>
 
 
 <div id="foxevent"></div>
+
 # FoxEvent
 
 public class FoxEvent<br>
