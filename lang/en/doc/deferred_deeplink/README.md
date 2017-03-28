@@ -6,7 +6,6 @@
 
 > サポートバージョン：3.5.0以上
 
-
 ### AdManager
 ディファードディープリンクの実装は、初回起動時のsendConversion実行時に以下の`registerDeeplinkCallback`メソッドと`sendDeeplinkConversion`メソッドを使用します。
 
@@ -17,7 +16,9 @@
 |void|sendDeeplinkConversion ( Intent i)<br>・`i` : Activity内で取得できるIntent|onResume()|アプリが初回起動直後に閉じられたり、ランディングページを開くなどでブラウザを起動したのちに、再度アプリがフォアグラウンドに戻った際、取得していたディープリンクのハンドリングを行うために必要となります。また、リエンゲージメント計測を行う場合にも実装が必須です。|
 
 <div id="foxdeeplinklistener"></div>
+
 ### FoxDeeplinkListener
+
 |返り値|メソッド|説明|
 |:---:|:---|:---|
 |void|onReceived (String deeplink) <br>・`deeplink` : 受信したディープリンク|クリック情報が存在し、ディープリンクを受信した際に呼ばれます。引数のdeeplinkには入稿時に設定したディープリンクを返します。（URLデコード等の編集も行いません）|
@@ -89,6 +90,7 @@ protected void onResume() {
 > ※ ディープリンクに記号や特殊な文字を含む場合には、画面遷移の処理を本SDKに委譲せず`FoxDeeplinkListener`を用いて実装されることを推奨します。
 
 <div id="with_thirdparty"></div>
+
 ### 他社ツールのディファードディープリンクを利用する
 
 #### Facebook SDKの場合

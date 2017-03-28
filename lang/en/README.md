@@ -45,6 +45,7 @@ It measures Life Time Value for each advertisements of influx sources. Primary c
 It measure comparison of Installation number of organic and non-organic, the number of the of activating application and unique users (DAU / MAU), user retention and so on.
 
 <div id="install_sdk"></div>
+
 ## 1. Install SDK
 
 Add this to your project's build.gradle file.
@@ -72,6 +73,7 @@ If you are not using Gradle, download latest SDK from below link and add the `li
 > ※ If you integrate old version of F.O.X SDK, please check [Updating to latest version of F.O.X SDK](./doc/update/README.md).
 
 <div id="setting_sdk"></div>
+
 ## 2. Settings
 
 * **AndroidManifest.xml**
@@ -171,6 +173,7 @@ Please refer to [The implementation of Google Play Services SDK to use advertise
 
 
 <div id="tracking_install"></div>
+
 ## 3. Implement install tracking
 
 By implementing install tracking , it is able to start the effectiveness measurements of advertisement. Please implement in a order following.
@@ -244,6 +247,7 @@ protected void onNewIntent(Intent intent)
 > For measurement of re-engagement advertisement, a custom URL scheme must be set for Acitvity defined in AndroidManifest.xml. Re-engagement measurement is performed by launching Activity by custom URL scheme.
 
 <div id="tracking_ltv"></div>
+
 ## 4. Implement LTV tracking
 
 By implementing LTV measurements at arbitrary conversion points such as membership registration, completion of tutorial, billing and etc, It measures Life Time Value for each advertisements of influx sources. In the case that LTV measurement is not necessary, it is able to omit this implementation.
@@ -274,6 +278,7 @@ Please specify the currency code defined in [ISO 4217](http://en.wikipedia.org/w
 [LTV tracking by using tag](./doc/ltv_browser/README.md)
 
 <div id="tracking_analytics"></div>
+
 ## 5. Implement access analytics
 
 You can measure comparison of Installation number of organic and non-organic, the number of the of activating application and unique users (DAU / MAU), user retention and so on. When the access analytics is not required, you can omit the implementation of this item.
@@ -302,6 +307,7 @@ public class MainActivity extends Activity {
 [Purchase-event tracking by using access analytics](./doc/analytics_purchase/README.md)
 
 <div id="use_proguard"></div>
+
 ## 6. In case of using ProGuard
 
 In case of using proguard, set up as below to avoid warning notice.
@@ -327,6 +333,7 @@ Please check whether “keep” setting like below link, if you use Google Play 
 [ProGuard configuration for using Google Play Services](https://developers.google.com/android/guides/setup#Proguard)
 
 <div id="integration_test"></div>
+
 ## 7. Integration test
 
 Until the application to market, test enough in a state where the the SDK has been introduced, and make sure that there is no problem in the operation of the application.
@@ -355,12 +362,14 @@ Please tell the time of 3,6,7,9 to us. We will see if measurement has been succe
 [Integration test for measurement reengagement](./doc/reengagement_test/README.md)
 
 <div id="other_function"></div>
+
 ## 8. Implementation of other function
 
 * [Implement opt out](./doc/optout/README.md)
 * [Improvement of duplicated installation determination accuracy using auto backup in Android M(6.0)](./doc/auto_backup/README.md)
 
 <div id="trouble_shooting"></div>
+
 ## 9. Trouble shooting
 
 ### 9.1. Application is released without setting of URL scheme and it does not transit to application from browser.
