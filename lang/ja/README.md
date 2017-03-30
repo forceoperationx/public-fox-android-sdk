@@ -57,6 +57,7 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 アプリ内に相互集客広告を表示させることができます。尚、広告表示が不要の場合には、本項目の実装を省略できます。
 
 <div id="install_sdk"></div>
+
 ## 1. インストール
 
 プロジェクトのbuild.gradleに以下を追加してください。
@@ -86,8 +87,8 @@ dependencies {
 > ※ 既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/update/README.md)をご参照ください。
 
 <div id="setting_sdk"></div>
-## 2. 設定
 
+## 2. 設定
 
 * **SDK設定**
 
@@ -146,6 +147,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 
 ### インストールリファラ計測の設定
+
 インストールリファラーを用いたインストール計測を行うために下記の設定を<application>タグに追加します。
 
 ```xml
@@ -184,6 +186,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 
 
 <div id="tracking_install"></div>
+
 ## 3. インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。プロジェクトのソースコードを編集し、次の通り実装を行ってください。
@@ -208,6 +211,7 @@ sendConversionの引数には、通常は上記の通り"default"という文字
 * [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 
 <div id="reengagement_tracking"></div>
+
 ### リエンゲージメント計測
 
 リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity(※1)`のonResume()に`sendDeeplinkConversion`メソッドを実装します。
@@ -266,6 +270,7 @@ protected void onNewIntent(Intent intent)
 > ※1 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityにカスタムURLスキームが設定されている必要があります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
 
 <div id="tracking_ltv"></div>
+
 ## 4. LTV計測の実装
 
 会員登録、チュートリアル突破、課金など任意の成果地点にLTV計測を実装することで、流入元広告のLTVを測定することができます。LTV計測が不要の場合には、本項目の実装を省略できます。
@@ -297,6 +302,7 @@ LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4
 * [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
 
 <div id="tracking_analytics"></div>
+
 ## 5. アクセス解析の実装
 
 自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。
@@ -327,6 +333,7 @@ public class MainActivity extends Activity {
 [エンゲージメント配信について](./doc/fox_engagement/README.md)
 
 <div id="use_proguard"></div>
+
 ## 6. ProGuardを利用する場合
 
 ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
@@ -352,6 +359,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="integration_test"></div>
+
 ## 7. 疎通テストの実施
 
 マーケットへの申請までに、SDKを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
@@ -381,6 +389,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
 
 <div id="other_function"></div>
+
 ## 8. その他機能の実装
 
 * [プッシュ通知の実装](./doc/notify/README.md)
@@ -388,17 +397,16 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 * [オプトアウトの実装](./doc/optout/README.md)
 
 <div id="trouble_shooting"></div>
+
 ## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
 
 ### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
 
 Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
 
-
 ### 9.2. URLスキームに大文字が含まれ、正常にアプリに遷移されない
 
 環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
-
 
 ### 9.3. F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
 
