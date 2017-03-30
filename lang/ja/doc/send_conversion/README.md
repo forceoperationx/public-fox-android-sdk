@@ -30,7 +30,7 @@ sendConversionの引数には、通常は上記の通り"default"という文字
 ad.sendConversion("http://yourhost.com/yourpage.html");
 ```
 
-sendConversionメソッドの第二引数に広告主端末IDを渡すことができます。例えば、アプリ起動時にUUIDを生成し、初回起動の成果と紐付けて管理したい場合等に、利用できます。
+sendConversionメソッドの第二引数にBuid(広告主端末ID)を渡すことができます。例えば、アプリ起動時にUUIDを生成し、初回起動の成果と紐付けて管理したい場合等に、利用できます。
 
 ```java
 ad.sendConversion("default", "your unique id");

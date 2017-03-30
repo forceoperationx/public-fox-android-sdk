@@ -13,6 +13,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[2. 設定](#setting_sdk)**
 * **[3. インストール計測の実装](#tracking_install)**
 	* [sendConversionの詳細](./doc/send_conversion/README.md)
+	* [リエンゲージメント計測](#reengagement_tracking)
 	* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 * **[4. LTV計測の実装](#tracking_ltv)**
 	* [タグを利用したLTV計測について](./doc/ltv_browser/README.md)
@@ -224,10 +225,15 @@ protected void onResume() {
 }
 ```
 
-> SDKバージョン3.4.0まではリエンゲージメント計測に`sendReengagementConversion`メソッドを実装していましたが<br>
+> ※ SDKバージョン3.4.0まではリエンゲージメント計測に`sendReengagementConversion`メソッドを実装していましたが<br>
 バージョン3.5.0より[ディファードディープリンク](./doc/deferred_deeplink/README.md)のサポートに伴い`sendDeeplinkConversion`メソッドを実装します。
 
+> ※ バージョン3.7.0より`sendDeeplinkConversion`の第二引数にBuid(広告主端末ID(アプリ内でのユーザーID等))を指定することで、リエンゲージメント計測でもBuidを計測することが可能となっています。
+
+---
+
 [![F.O.X](http://img.shields.io/badge/Version-〜%203.4.0-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/blob/master/4.x/lang/ja/README.md)
+[![F.O.X](http://img.shields.io/badge/3.5.0+-Depricated-red.svg?style=flat)](#reengagement_tracking)
 
 ```java
 import jp.appAdForce.android.AdManager;
@@ -241,6 +247,10 @@ protected void onResume() {
 ```
 
 > SDKバージョン3.5.0以降、`sendReengagementConversion`メソッドはDepricatedとなっておりますのでご注意ください。
+
+---
+
+[![F.O.X](http://img.shields.io/badge/Version-ALL-yellow.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/blob/master/4.x/lang/ja/README.md)
 
 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"の場合は、URLスキーム経由でパラメータを受け取るために`onNewIntent`メソッドをoverrideし、以下のように`setIntent`メソッドをコールしてください。
 
