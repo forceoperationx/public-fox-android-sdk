@@ -1,5 +1,6 @@
 # Force Operation X Android SDK Integration Guide
 
-###LANGUAGE
+### LANGUAGE
+
 * [Japanese](./lang/ja/README.md)
 * [Chinese(Simplified)](./lang/zh-cn/README.md)

@@ -37,6 +37,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 
 <div id="whats_fox_sdk"></div>
+
 ## F.O.X SDKとは
 
 [![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
@@ -58,6 +59,7 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
 
 <div id="install_sdk"></div>
+
 ## 1. インストール
 
 F.O.X SDKモジュールをGradleを用いてインポートする場合、以下の設定をプロジェクトのbuild.gradleに追加してください。
@@ -87,6 +89,7 @@ dependencies {
 > ※ 既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/migration/README.md)をご参照ください。
 
 <div id="setting_sdk"></div>
+
 ## 2. 設定
 
 * **SDK設定**
@@ -94,6 +97,7 @@ dependencies {
 SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 
 <div id="setting_permission"></div>
+
 ### 2.1 パーミッションの設定
 
 F.O.X SDKでは下記3つのパーミッションを利用します。
@@ -116,6 +120,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|ストレージを利用した重�
 > ※2 Android MよりProtectionLevelが`dangerous`に指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要になります。詳細は[外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)をご確認ください。
 
 <div id="setting_proguard"></div>
+
 ### 2.2 Proguardの設定
 Proguard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
 
@@ -133,6 +138,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="setting_installreferrer"></div>
+
 ### 2.3 インストールリファラ計測の設定
 インストールリファラーを用いたインストール計測を行うために下記の設定を&lt;application&gt;タグに追加します。
 
@@ -147,6 +153,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/install_referrer/README.md)をご参照ください。
 
 <div id="setting_urlscheme"></div>
+
 ### 2.4 カスタムURLスキームの設定
 
 アプリを外部から起動できるようにするため、起動させる対象の&lt;activity&gt;タグ内に下記の設定を追加してください。<br>
@@ -185,6 +192,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 > ※ カスタムURLスキームの詳細は[Android Developers (暗黙的インテントの受信) ](https://developer.android.com/guide/components/intents-filters.html#Receiving)をご確認ください。
 
 <div id="setting_googleplayservices"></div>
+
 ### 2.5 広告IDを利用するためのGoogle Play Servicesの導入
 
 広告IDを利用するためにはGoogle Play Servicesが導入されている必要があります。<br>
@@ -210,6 +218,7 @@ Gradleで導入する場合、導入先のアプリの`build.gradle`の`dependen
 
 
 <div id="activate_sdk_into_app"></div>
+
 ## 3. F.O.X SDKのアクティベーション
 
 F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)クラスをApplicationクラスを継承したクラスのonCreateメソッド内に実装します。<br>
@@ -253,6 +262,7 @@ public class YourApplication extends Application {
 
 
 <div id="tracking_install"></div>
+
 ## 4. インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。<br>
@@ -278,6 +288,7 @@ protected void onCreate(Bundle savedInstanceState){
 * [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
 
 <div id="tracking_reengagement"></div>
+
 ## 5. リエンゲージメント計測の実装
 
 リエンゲージメント広告の計測（URLスキーム経由の起動を計測）するために、`URLスキームが設定されている全てのActivity`のonResume()に[`Fox.trackDeeplinkLaunch`](./doc/sdk_api/README.md#foxconfig)メソッドを実装します。
@@ -306,11 +317,13 @@ protected void onResume() {
 > ※2 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityに[カスタムURLスキーム](#setting_urlscheme)が設定されていることが前提となります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
 
 <div id="tracking_event"></div>
+
 ## 6. アプリ内イベントの計測
 
 * [イベント計測の詳細](./doc/track_events/README.md)
 
 <div id="tracking_session"></div>
+
 ### 6.1 セッション（起動イベント）の計測
 
 自然流入と広告流入のインストール数比較、アプリケーションの起動数やユニークユーザー数(DAU/MAU)、継続率等を計測することができます。アクセス解析が不要の場合には、本項目の実装を省略できます。<br>
@@ -379,6 +392,7 @@ public class YourApplication extends Application {
 ```
 
 <div id="tracking_other_event"></div>
+
 ### 6.2 その他のアプリ内イベントの計測
 
 会員登録、チュートリアル突破、課金など任意の成果地点にイベント計測を実装することで、流入元広告のLTVを測定することができます。<br>イベント計測が不要の場合には、本項目の実装を省略できます。
@@ -420,6 +434,7 @@ currencyの指定には[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定�
 [イベント計測の詳細](./doc/track_events/README.md)
 
 <div id="quickly_integration"></div>
+
 ## 7. 最短実装の例
 
 以下の実装はApplication継承クラスに次の処理を実装した例となります。
@@ -504,6 +519,7 @@ InstallReferrer計測やFingerprint計測を実施される場合に有効です
 
 
 <div id="other_function"></div>
+
 ## 8. その他機能の実装
 
 * [オプトアウトの実装](./doc/optout/README.md)
@@ -513,6 +529,7 @@ InstallReferrer計測やFingerprint計測を実施される場合に有効です
 * [オートバックアップ機能の利用 Android M](./doc/auto_backup/README.md)
 
 <div id="trouble_shooting"></div>
+
 ## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
 
 ### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
