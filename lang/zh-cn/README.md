@@ -283,7 +283,7 @@ protected void onCreate(Bundle savedInstanceState){
 
 * [Install计测的详细](./doc/track_install/README.md)
 
-* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
+* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
 
 <div id="tracking_reengagement"></div>
 
