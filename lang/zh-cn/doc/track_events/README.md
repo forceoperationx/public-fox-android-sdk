@@ -12,6 +12,7 @@
 * **[3. 使用Tag进行事件计测](#track_by_tag)**
 
 <div id="each_event_sample"></div>
+
 ## 1. APP内各类事件的安装案例
 
 #### 　1.1 会员登录事件的安装案例
@@ -53,6 +54,7 @@ Fox.trackEvent(purchaseEvent);
 ```
 
 <div id="continuity"></div>
+
 ## 2. 替换旧版里的处理代码（一般广告计测）
 
 可沿用F.O.X Android SDK 3.0.0及之前版本的执行方式。<br>
@@ -107,12 +109,14 @@ Fox.trackEvent(purchaseEvent);
 > ※ 对各类APP内事件的媒体连动计测时，通过使用[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)可以减少执行代码量。
 
 <div id="track_by_tag"></div>
+
 ## 3. 使用Tag进行事件计测
 
 在网页上发生会员登录及商品购买等行为时，可以使用img tag来进行事件测量。
 F.O.X的事件计测适用于外部浏览器和APP内WebView。外部浏览器使用[`trackEventByBrowser`](../sdk_api/README.md#fox)方法，APP内WebView使用[`trackEventByWebView`](../sdk_api/README.md#fox)方法，F.O.X会在页面Cookie中记录事件计测所需的信息。
 
 <div id="track_by_browser"></div>
+
 ### 3.1 使用外部浏览器进行事件计测
 
 从APP跳转至外部浏览器，利用跳转的网页进行tag计测时，请使用`trackEventByBrowser`方法来启动外部浏览器。并在参数中用字符串指定要跳转的URL。
@@ -125,6 +129,7 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 ```
 
 <div id="track_by_webview"></div>
+
 ### 3.2 APP内WebView的事件计测
 
 在WebView内进行用户跳转的情况时，可以使用`trackEventByWebView`来进行测量。请在加载WebView的位置执行下列代码。WebView多次加载・加载错误时，请务必在每次加载时执行`trackEventByWebView`。内部将会通过android.webkit.CookieManager和android.webkit.CookieSyncManager来设置Cookie。

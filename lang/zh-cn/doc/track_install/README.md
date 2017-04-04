@@ -10,6 +10,7 @@
 * [4. 使用Web Tag的计测](#track_webtag)
 
 <div id="track_install_basic"></div>
+
 ## 1. Install计测的安装
 
 使用onLaunch方法可以进行Install计测。使用Cookie计测手法时会弹跳出外部浏览器。外部浏览器的迁移目的地可以通过在onLaunch的参数中指定URL字符串来实现。
@@ -34,6 +35,7 @@ APP启动时呼出Main的Activity的onCreate方法中未编码的状态下实行
 ![sendConversion01](./img01.png)
 
 <div id="track_install_optional"></div>
+
 ## 2. Install计测的安装(指定option)
 
 想要用Callback来获取Install计测完成后的信息、跳转到特定的URL、用APP动态生成URL时，请使用下面的[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)类。<br>
@@ -68,6 +70,7 @@ public void onCreate(Bundle savedInstanceState) {
 > F.O.X SDK的API式样说明请确认[这里](../sdk_api/README.md)。
 
 <div id="track_install_other"></div>
+
 ## 3. 其他的Install计测安装案例
 
 在Application继承类中执行`Fox.trackInstall()`，可以将启动计测方面的处理集中汇总。<br>
@@ -135,6 +138,7 @@ public class YourApplication extends Application {
 ```
 
 <div id="track_webtag"></div>
+
 ## 4. 使用Web Tag的计测
 
 在网页上进行会员登录和商品购买等行为时，可以使用img Tag来进行LTV计测。<br>
