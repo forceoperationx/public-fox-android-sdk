@@ -22,7 +22,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 * **[3. 激活F.O.X SDK](#activate_sdk_into_app)**
 * **[4. Install计测的安装](#tracking_install)**
 	* [Install计测的详细](./doc/track_install/README.md)
-	* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
+	* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
 * **[5. 流失唤回广告（Reengagement）计测的安装](#tracking_reengagement)**
 * **[6. APP内事件的计测](#tracking_event)**
 	* [6.1 Session（启动事件）的计测](#tracking_session)
