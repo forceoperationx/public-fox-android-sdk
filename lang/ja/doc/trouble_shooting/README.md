@@ -19,11 +19,11 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 重複検知の精度を向上するために、以下の設定を行ってください。
 
-* [広告IDを利用するためのGoogle Play Services SDKの導入](../doc/google_play_services/README.md)
+* [広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/README.md)
 
-* [外部ストレージを利用した重複判定設定](../doc/external_storage/README.md)
+* [外部ストレージを利用した重複判定設定](../external_storage/README.md)
 
-* [Android M(6.0) オートバックアップ機能の利用](../doc/auto_backup/README.md)
+* [Android M(6.0) オートバックアップ機能の利用](../auto_backup/README.md)
 
 
 ## 注意事項
@@ -40,7 +40,7 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 F.O.Xとは別のツールでINSTALL_REFERRERレシーバーの設定が必要な場合に、F.O.Xの設定を消してしまい計測できなくなってしまった事例がございます。複数のツールでINSTALL_REFERRERレシーバーを共存させる場合は下記を参照ください。
 
-[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](../doc/install_referrer/README.md)
+[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](../install_referrer/README.md)
 
 ### ProGuardを利用する場合は、F.O.Xのメソッドが対象にならないように設定してください
 
