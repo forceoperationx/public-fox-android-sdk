@@ -34,6 +34,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
 	* [オートバックアップ機能の利用 (Android M)](./doc/auto_backup/README.md)
 * **[9. 最後に必ずご確認ください](#trouble_shooting)**
+	* [FAQ・注意事項](./doc/trouble_shooting/README.md)
 
 
 <div id="whats_fox_sdk"></div>
@@ -532,25 +533,4 @@ InstallReferrer計測やFingerprint計測を実施される場合に有効です
 
 ## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
 
-### 9.1. URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
-
-Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
-
-
-### 9.2. URLスキームに大文字が含まれ、正常にアプリに遷移されない
-
-環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
-
-
-### 9.3. F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
-
-F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。
-重複検知が行えない設定では、同一端末でも再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。
-
-重複検知の精度を向上するために、以下の設定を行ってください。
-
-* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)
-
-* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-
-* [オートバックアップ機能の利用 Android M](./doc/auto_backup/README.md)
+* [FAQ・注意事項](./doc/trouble_shooting/README.md)
