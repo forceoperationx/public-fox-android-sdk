@@ -19,7 +19,7 @@ sendEvent方法的參數說明如下。
 
 
 |參數|型|概要|
-|:------|:------:|:------:|:------|
+|:------|:------|:------|
 |context|Context|設定為MainActivity.this|
 |eventName|String|設定能夠識別計測Event的任意名稱。|
 |action|String|設定屬於Event的Action名。可以自由設定。可以為null。|
