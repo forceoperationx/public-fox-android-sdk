@@ -81,7 +81,7 @@ dependencies {
 
 * [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-ダウンロードしたSDKを展開し、`libs/foxtrack-core_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
+ダウンロードしたSDKを展開し、`libs/FOX_Android_SDK_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
 
 **[詳細]**
 * [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
@@ -131,7 +131,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
 # Gradle経由でSDKをインストールしている場合、下記jarファイルの指定は不要です。
--libraryjars libs/AppAdForce.jar
+-libraryjars libs/FOX_Android_SDK_{VERSION}.jar
 ```
 
 また、Google Play Service SDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。

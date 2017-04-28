@@ -79,7 +79,7 @@ dependencies {
 
 * [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-打开下载的SDK文件、在APP项目中导入`libs/foxtrack-core_{VERSION}.jar`。
+打开下载的SDK文件、在APP项目中导入`libs/FOX_Android_SDK_{VERSION}.jar`。
 
 **[详细信息]**
 * [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
@@ -128,7 +128,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
 # 通过Gradle安装SDK时，不需要指定以下jar文件。
--libraryjars libs/AppAdForce.jar
+-libraryjars libs/FOX_Android_SDK_{VERSION}.jar
 ```
 
 另外，在已安装Google Play Service SDK 的情况下，请确认以下页面中是否已记述keep指定。
