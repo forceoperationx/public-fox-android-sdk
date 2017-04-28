@@ -213,7 +213,8 @@ ltv.sendLtvConversion(성과지점ID);
 
 LtvManager.URL_PARAM_CURRENCYには[ISO 4217](https://ko.wikipedia.org/wiki/ISO_4217)에 정의된 통화 코드를 지정해 주십시오.
 
-[태그를 이용한 LTV 계측에 대해서](./doc/ltv_browser/README.md)
+* [sendLtvConversion의 상세](./doc/send_ltv_conversion/README.md)
+* [태그를 이용한 LTV 계측에 대해서](./doc/ltv_browser/README.md)
 
 ## 5. 액세스 해석의 구현
 
