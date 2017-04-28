@@ -7,7 +7,6 @@
 * [1. Install计测的安装](#track_install_basic)
 * [2. Install计测的安装(指定option)](#track_install_optional)
 * [3. 其他的Install计测安装案例](#track_install_other)
-* [4. 使用Web Tag的计测](#track_webtag)
 
 <div id="track_install_basic"></div>
 
@@ -61,13 +60,31 @@ public void onCreate(Bundle savedInstanceState) {
         });
   Fox.trackInstall(option);
 }
+
+@Override
+protected void onResume() {
+    super.onResume();
+    // 请一定调用
+    Fox.trackDeeplinkLaunch(this);
+}
 ```
 
-> 上述示例代码是一个，跳转目的地・BUID・有无optout・计测完成的callback受理的编码案例。<br>设置TrackingStateListerner后完成计测处理时会调用onComplete方法，请在Install计测完成后再次做编码处理。
+> ※ 上述示例代码是一个跳转目的地・BUID・有无optout・计测完成的回调函数受理的编码案例。<br>设置TrackingStateListerner后完成计测处理时会调用onComplete方法，因此请在Install计测完成后马上想处理的内容请编写代码到此处。
 
-> optout为有效时，可以将用户从广告投放对象中移除。<br>另外，optout仅在APP中已有用户可选optout功能的情况下有效。
+> ※ Cookie计测有效的时候、从浏览器跳转回APP之后调用TrackingStateListerner的onComplete方法。请一定在恢复回来的Activity的onResume里面执行`Fox.trackDeeplinkLaunch`方法。<br>不执行的话，不会调用onComplete方法。
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+    // 请一定调用
+    Fox.trackDeeplinkLaunch(this);
+}
+```
 
-> F.O.X SDK的API式样说明请确认[这里](../sdk_api/README.md)。
+> ※ optout为有效时，可以将用户从广告投放对象中移除。<br>
+另外，optout仅在APP中已有用户可选optout功能的情况下有效。
+
+> ※ F.O.X SDK的API式样说明请确认[这里](../sdk_api/README.md)。
 
 <div id="track_install_other"></div>
 
@@ -136,60 +153,6 @@ public class YourApplication extends Application {
   }
 }
 ```
-
-<div id="track_webtag"></div>
-
-## 4. 使用Web Tag的计测
-
-在网页上进行会员登录和商品购买等行为时，可以使用img Tag来进行LTV计测。<br>
-<br>
-F.O.X的LTV计测适用于外部浏览器和App内WebView。外部浏览器使用trackEventByBrowser方法，App内WebView使用trackEventByWebView方法，F.O.X会在LTV计测中将必要的信息记录在浏览器的Cookie里。
-
-### 4.1 使用外部浏览器进行LTV计测
-
-从APP跳转至外部浏览器，在外部浏览器的网页中进行tag计测时，请使用trackEventByBrowser方法启动外部浏览器。<br>
-参数中用字符串指定外部浏览器要跳转的URL。
-
-```java
-import co.cyberz.fox.Fox;
-
-...
-
-Fox.trackEventByBrowser("http://www.mysite.com/event/");
-```
-
-### 4.2 使用App内WebView进行LTV计测
-
-用户在WebView内进行跳转时，可以使用trackEventWebView方法进行计测。请在生成WebView的位置运行下列代码。多次生成・废除WebView时，必须每次运行trackEventByWebView方法。内部会用android.webkit.CookieManager和android.webkit.CookieSyncManager设置Cookie。<br>
-另外，Android L版本中为了在每个WebView实例中获得写入第三方Cookie的许可，参数中必须传递WebView。
-
-```java
-import co.cyberz.fox.Fox;
-
-@Override
-public void onCreate(Bundle savedInstanceState) {
-  super.onCreate(savedInstanceState);
-
-  WebView mWebView = (WebView) findViewById(R.id.sample_webview);
-	Fox.trackEventByWebView(mWebView);
-	mWebView.loadUrl("http://www.mysite.com/event/");
-}
-```
-
-### 4.3 Tag的安装
-
-请在LTV成果地点的页面中埋入计测tag。计测tag由本公司管理员联系提供。<br>
-Tag中可使用的参数如下。
-
-|参数名|必须|备注|
-|:-----|:-----|:-----|
-|_buyer|必須|识别广告主的ID。<br />由管理员联系提供，请输入提供的值。|
-|_cvpoint|必須|成果地点を識別するID。<br />由管理员联系提供，请输入提供的值。|
-|_price|可选|付费额。付费计测时请指定。|
-|_currency|可选|半角英文数字的3文字的货币代码。<br />付费计测时请指定。<br />没指定的时候，_price会默认为JPY(日元)。|
-|_buid|可选|最大64个半角英文数字。<br />保持会员ID等用户唯一值时请使用。|
-
-> _currency请指定[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)里定义的货币代码。
 
 ---
 [Top](../../README.md)
