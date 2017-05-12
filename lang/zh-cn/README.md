@@ -72,11 +72,13 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:4.0.0'
+    compile 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
 
-手动下载时，请从下面的页面下载最新的安定版（Latest release）SDK。
+
+dependencies中指定的SDK版本号与下面下载页面中一致。<br>
+如果使用本地jar来安装的话，请从release页面下载相应版本的zip文件。
 
 * [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
