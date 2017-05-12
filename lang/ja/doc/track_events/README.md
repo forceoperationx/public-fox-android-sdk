@@ -12,6 +12,7 @@
 * **[3. タグを利用したイベント計測について](#track_by_tag)**
 
 <div id="each_event_sample"></div>
+
 ## 1. アプリ内の各種イベント実装例
 
 #### 　1.1 会員登録イベント計測 実装例
@@ -53,6 +54,7 @@ Fox.trackEvent(purchaseEvent);
 ```
 
 <div id="continuity"></div>
+
 ## 2. 旧バージョンでの実装の置き換え(エンゲージメント計測)
 
 これまでのF.O.X Android SDK 3.0.0以下で行っていた実装方法を継続することも可能となっています。<br>
@@ -107,6 +109,7 @@ Fox.trackEvent(purchaseEvent);
 > ※ 各種アプリ内イベントの媒体連携計測を行う場合、[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)を利用することで、実装するコード量を削減することが可能となります。
 
 <div id="track_by_tag"></div>
+
 ## 3. タグを利用したイベント計測について
 
 会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
@@ -127,6 +130,7 @@ HTMLタグに利用するパラメータは以下の通りです。
 
 
 <div id="track_by_browser"></div>
+
 ### 3.1 外部ブラウザによるイベント計測
 
 アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、`trackEventByBrowser`メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
@@ -139,6 +143,7 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 ```
 
 <div id="track_by_webview"></div>
+
 ### 3.2 アプリ内WebViewでのイベント計測について
 
 ユーザーの遷移がWebView内で行われる場合には、`trackEventByWebView`を用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度に`trackEventByWebView`が実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。

@@ -12,6 +12,7 @@
 * **[3. 使用Tag进行事件计测](#track_by_tag)**
 
 <div id="each_event_sample"></div>
+
 ## 1. APP内各类事件的安装案例
 
 #### 　1.1 会员登录事件的安装案例
@@ -53,6 +54,7 @@ Fox.trackEvent(purchaseEvent);
 ```
 
 <div id="continuity"></div>
+
 ## 2. 替换旧版里的处理代码（一般广告计测）
 
 可沿用F.O.X Android SDK 3.0.0及之前版本的执行方式。<br>
@@ -107,12 +109,30 @@ Fox.trackEvent(purchaseEvent);
 > ※ 对各类APP内事件的媒体连动计测时，通过使用[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)可以减少执行代码量。
 
 <div id="track_by_tag"></div>
+
 ## 3. 使用Tag进行事件计测
 
 在网页上发生会员登录及商品购买等行为时，可以使用img tag来进行事件测量。
 F.O.X的事件计测适用于外部浏览器和APP内WebView。外部浏览器使用[`trackEventByBrowser`](../sdk_api/README.md#fox)方法，APP内WebView使用[`trackEventByWebView`](../sdk_api/README.md#fox)方法，F.O.X会在页面Cookie中记录事件计测所需的信息。
 
+请在Web页面里设置计测LTV成果地点的HTML标签。计测使用的HTML标签由鄙公司的管理员通知。<br>
+利用HTML标签的参数如下表所示。
+
+|参数名|必须|备注|
+|:-----|:-----|:-----|
+|_buyer|必须|识别广告主的ID。<br />请输入管理员告知的值。|
+|_cvpoint|必須|识别成果地点的ID。<br />请输入管理员告知的值。|
+|_price|任意|付费额。计测付费时请设置。|
+|_currency|任意|半角英文3文字的货币代码。<br />计测付费时请设置。<br />币种没有被设置的话，_price默认为JPY(日元)。|
+|_buid|任意|半角英文数字64个文字以内。<br />为不同用户保持像会员ID等这样的唯一ID的时候使用。|
+
+> 请在_currency里设置[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)定义的货币代码。
+
+
+
+
 <div id="track_by_browser"></div>
+
 ### 3.1 使用外部浏览器进行事件计测
 
 从APP跳转至外部浏览器，利用跳转的网页进行tag计测时，请使用`trackEventByBrowser`方法来启动外部浏览器。并在参数中用字符串指定要跳转的URL。
@@ -125,6 +145,7 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 ```
 
 <div id="track_by_webview"></div>
+
 ### 3.2 APP内WebView的事件计测
 
 在WebView内进行用户跳转的情况时，可以使用`trackEventByWebView`来进行测量。请在加载WebView的位置执行下列代码。WebView多次加载・加载错误时，请务必在每次加载时执行`trackEventByWebView`。内部将会通过android.webkit.CookieManager和android.webkit.CookieSyncManager来设置Cookie。
@@ -133,9 +154,14 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 import co.cyberz.fox.Fox;
 
 // ...
-WebView webView = findViewById(R.id.sample_webview);
-Fox.trackEventByWebView(webView);
-webView.loadUrl("https://www.yoursite.com/tagpage");
+@Override
+public void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+
+  WebView mWebView = (WebView) findViewById(R.id.sample_webview);
+	Fox.trackEventByWebView(mWebView);
+	mWebView.loadUrl("http://www.mysite.com/event/");
+}
 ```
 
 > ※ Android L中第三方Cookie默认为OFF。 因此通过trackEventByWebView方法，在参数中设置WebView，内部便可以用CookieManager.setAccesptThirdPartyCookies来写入第三方Cookie了。

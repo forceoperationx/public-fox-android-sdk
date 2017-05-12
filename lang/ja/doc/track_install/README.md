@@ -9,6 +9,7 @@
 * [3. その他のインストール計測実装例](#track_install_other)
 
 <div id="track_install_basic"></div>
+
 ## 1. インストール計測の実装
 
 onLaunchメソッドを利用することで、インストール計測を行うことができます。Cookie計測を利用する場合には、外部ブラウザが起動されます。この際、外部ブラウザの遷移先をonLaunchの引数にURL文字列を指定することができます。
@@ -33,6 +34,7 @@ public void onCreate(Bundle savedInstanceState) {
 ![sendConversion01](./img01.png)
 
 <div id="track_install_optional"></div>
+
 ## 2. インストール計測の実装(オプション指定)
 
 インストール計測が完了したことをコールバックで受け取りたい場合、特定のURLヘ遷移させる場合や、アプリケーションで動的にURLを生成したい場合には、以下の[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)クラスを使用します。<br>
@@ -85,6 +87,7 @@ protected void onResume() {
 > ※ F.O.X SDKのAPI仕様は[こちら](../sdk_api/README.md)でご確認ください。
 
 <div id="track_install_other"></div>
+
 ## 3. その他のインストール計測実装例
 
 `Fox.trackInstall()`をApplication継承クラスに実装することで、起動計測系の処理を集約することが可能となります。<br>

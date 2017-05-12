@@ -22,6 +22,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 * **[3. 激活F.O.X SDK](#activate_sdk_into_app)**
 * **[4. Install计测的安装](#tracking_install)**
 	* [Install计测的详细](./doc/track_install/README.md)
+	* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
 * **[5. 流失唤回广告（Reengagement）计测的安装](#tracking_reengagement)**
 * **[6. APP内事件的计测](#tracking_event)**
 	* [6.1 Session（启动事件）的计测](#tracking_session)
@@ -36,6 +37,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 
 <div id="whats_fox_sdk"></div>
+
 ## 什么是F.O.X SDK
 
 [![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
@@ -57,6 +59,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 比较自然流入和广告流入带来的安装。能够计测App的启动次数和唯一用户数(DAU/MAU)、留存率等。
 
 <div id="install_sdk"></div>
+
 ## 1. 导入
 
 使用Gradle来导入F.O.X SDK module时，请将以下设置写入项目build.gradle。
@@ -77,7 +80,7 @@ dependencies {
 
 * [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-打开下载的SDK文件、在APP项目中导入`libs/foxtrack-core_{VERSION}.jar`。
+打开下载的SDK文件、在APP项目中导入`libs/FOX_Android_SDK_{VERSION}.jar`。
 
 **[详细信息]**
 * [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
@@ -86,6 +89,7 @@ dependencies {
 > ※ 如果APP中已经安装了SDK，请参考[升级更新到最新版本](./doc/migration/README.md)
 
 <div id="setting_sdk"></div>
+
 ## 2. 设置
 
 * **SDK设置**
@@ -93,6 +97,7 @@ dependencies {
 在AndroidManifest.xml中添加SDK运行所需的设置。
 
 <div id="setting_permission"></div>
+
 ### 2.1 设置权限
 
 F.O.X SDK可以使用以下三种权限。 &lt;Manifest&gt;Tag中添加以下权限的设置。
@@ -114,6 +119,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 > ※2 从Android M开始，使用ProtectionLevel被指定为dangerous并需要权限的功能时，需要用户许可。具体请参考[使用外部储存来优化排除重复功能](./doc/external_storage/README.md)。
 
 <div id="setting_proguard"></div>
+
 ### 2.2 设置Proguard
 使用Proguard进行APP代码混淆时，为排除F.O.X SDK的调用方法，请添加以下设置。
 
@@ -123,7 +129,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
 # 通过Gradle安装SDK时，不需要指定以下jar文件。
--libraryjars libs/AppAdForce.jar
+-libraryjars libs/FOX_Android_SDK_{VERSION}.jar
 ```
 
 另外，在已安装Google Play Service SDK 的情况下，请确认以下页面中是否已记述keep指定。
@@ -131,6 +137,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 [Google Play Services导入时的Proguard对应](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 <div id="setting_installreferrer"></div>
+
 ### 2.3 设置install referer计测
 使用install referer进行install计测时，请把以下设置追加到&lt;application&gt;tag里。
 
@@ -145,6 +152,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 "com.android.vending.INSTALL_REFERRER"的Receiver 类已经被定义的情况下，请参照[让多个INSTALL_REFERRER RECEIVER共存的设置](./doc/install_referrer/README.md)。
 
 <div id="setting_urlscheme"></div>
+
 ### 2.4 设置自定义URL SCHEME
 
 为了能够从外部启动APP，请在启动对象的&lt;activity&gt;tag中添加下列设置。<br>
@@ -183,6 +191,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 > ※ 自定义URL SCHEME详细请查看[Android Developers（接收隐式Intent）](https://developer.android.com/guide/components/intents-filters.html#Receiving)。
 
 <div id="setting_googleplayservices"></div>
+
 ### 2.5 导入Google Play Services来使用广告ID
 
 为使用广告ID，需先导入Google Play Services。<br>
@@ -208,6 +217,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 
 
 <div id="activate_sdk_into_app"></div>
+
 ## 3. 激活F.O.X SDK
 
 为激活F.O.X SDK，需在继承了Application类的onCreate方法中安装[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)类。
@@ -251,6 +261,7 @@ public class YourApplication extends Application {
 
 
 <div id="tracking_install"></div>
+
 ## 4. Install计测的安装
 进行初次启动的Install计测，可以计测广告效果。<br>
 在启动APP时调用的Activity的onCreate方法中安装下面的[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)。<br>
@@ -270,9 +281,12 @@ protected void onCreate(Bundle savedInstanceState){
 
 > ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测的详细](./doc/track_install/README.md)。
 
-[Install计测的详细](./doc/track_install/README.md)
+* [Install计测的详细](./doc/track_install/README.md)
+
+* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
 
 <div id="tracking_reengagement"></div>
+
 ## 5. 流失唤回广告(Reengagement)计测的安装
 
 为进行流失唤回广告的计测（计测经由URL SCHEME的启动行为）,需在URL SCHEME的全部`Activity`的onResume()中安装[`Fox.trackDeeplinkLaunch`](./doc/sdk_api/README.md#foxconfig)方法。
@@ -300,11 +314,13 @@ protected void onResume() {
 > ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了[自定义URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
 
 <div id="tracking_event"></div>
+
 ## 6.  APP内事件(Event)计测
 
 * [事件计测的详细](./doc/track_events/README.md)
 
 <div id="tracking_session"></div>
+
 ### 6.1 Session（启动事件）的计测
 
 可以计测自然流量和广告流量的安装数对比、APP启动次数和UU数（DAU/MAU)、留存率等。如不需要流量分析，可以忽略本项。
@@ -374,6 +390,7 @@ public class YourApplication extends Application {
 ```
 
 <div id="tracking_other_event"></div>
+
 ### 6.2 其他的APP内事件(Event)计测
 
 在会员注册，完成新手引导，付费等任意成果地点执行事件计测，能够测定广告流入源的LTV。<br>
@@ -416,6 +433,7 @@ Fox.trackEvent(purchaseEvent);
 [事件计测的详细](./doc/track_events/README.md)
 
 <div id="quickly_integration"></div>
+
 ## 7. 最简单的实际安装案例
 
 * 激活F.O.X SDK
@@ -499,6 +517,7 @@ public class YourApplication extends Application {
 
 
 <div id="other_function"></div>
+
 ## 8. 安装其他功能
 
 * [安装Optout](./doc/optout/README.md)
@@ -508,6 +527,7 @@ public class YourApplication extends Application {
 * [使用自动备份功能 Android M](./doc/auto_backup/README.md)
 
 <div id="trouble_shooting"></div>
+
 ## 9. 最后需确认内容（常见问题集）
 
 ### 9.1. 未设置URL SCHEME 进行发布后无法从浏览器跳转至APP
