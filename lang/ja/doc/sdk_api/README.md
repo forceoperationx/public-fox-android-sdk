@@ -103,5 +103,20 @@ public class FoxEvent<br>
 |int|quantity|quantityをセット|
 |JSONObject|eventInfo|eventInfoをセット|
 
+<div id="ids"></div>
+# Ids
+
+public class Ids
+
+[java.lang.Object](https://developer.android.com/reference/java/lang/Object.html)<br>
+&nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.extra.Ids
+
+### Public methods
+
+|**Return**|**Method**|**Details**|
+|:---:|:---|:---|
+|String|*static*<br>**get** ( Context context, String key)|keyには取得するID名を指定します。<br>例：`get(getApplicationContext(), "xuniq")`|
+
+
 ---
 [トップ](../../README.md)
