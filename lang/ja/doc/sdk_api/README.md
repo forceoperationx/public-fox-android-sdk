@@ -110,6 +110,7 @@ public class FoxEvent<br>
 |JSONObject|eventInfo|eventInfoをセット|
 
 <div id="ids"></div>
+
 # Ids
 
 public class Ids
