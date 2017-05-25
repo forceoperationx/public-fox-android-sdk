@@ -4,6 +4,11 @@
 
 ## FAQ
 
+### サポート対象のAndroid APIレベルはいくつですか？
+
+F.O.X Android SDK ver 3.x以前のSDKは、Android API Level 9以上をサポートしています。
+F.O.X Android SDK ver 4.0.0以降のSDKは、Android API Level 14以上をサポートしています。
+
 ### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
 
 Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
