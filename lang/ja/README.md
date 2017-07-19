@@ -342,7 +342,6 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 ```
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar
 -keep interface jp.appAdForce.** { *; }
 -keep class jp.appAdForce.** { *; }
 -keep class jp.co.dimage.** { *; }
@@ -353,6 +352,8 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 -dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
+# Gradle経由でSDKをインストールしている場合、下記jarファイルの指定は不要です。
+-libraryjars libs/FOX_Android_SDK_{VERSION}.jar
 ```
 
 また、Google Play Service SDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
