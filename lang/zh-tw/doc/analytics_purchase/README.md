@@ -1,6 +1,6 @@
-## 依靠流量分析進行消費計測
+## 依靠流量分析進行付費計測
 
-利用流量分析機能，能夠計測不同廣告流入和自然流入的用戶消費狀況。為了依靠流量分析進行消費計測，請安裝下面的sendEvent方法。
+利用流量分析機能，能夠計測不同廣告流入和自然流入的用戶付費狀況。為了依靠流量分析進行付費計測，請安裝下面的sendEvent方法。
 
 ```java
 public static void sendEvent(Context context, String eventName,String action, String label, String orderId, String sku, String itemName, double price, int quantity, String currency);
@@ -20,24 +20,24 @@ sendEvent方法的參數說明如下。
 |quantity|int|指定數量。按price * quantity的銷售金額來計算在內。|
 |currency|String|指定貨幣代碼。null的場合默認指定為"JPY"。|
 
-如果希望在LTV計測地點也做消費計測，請在同一個地點安裝LTV和流量分析的各自的計測處理代碼。
+如果希望在LTV計測地點也做付費計測，請在同一個地點安裝LTV和流量分析的各自的計測處理代碼。
 
-下面是一個計測消費9.99美元的安裝實例。
+下面是一個計測付費9.99美元的安裝實例。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
 
 public class MainActivity extends Activity {
 
-	//APP内消費成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
+	//APP内付費成功時	public void payment(String orderId, String sku, String itemName, double price, int quantity) {
 		//...
-		// LTV計測形式的消費計測
+		// LTV計測形式的付費計測
 		LtvManager ltv = new LtvManager(ad);
 		ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
 		ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
 		ltv.sendLtvConversion(成果地点ID);
 
-		// 流量分析形式的消費計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
+		// 流量分析形式的付費計測		AnalyticsManager.sendEvent(this, action, null, null, orderId, sku, itemName, 9.99, 1, "USD");	}}
 ```
 
 ---

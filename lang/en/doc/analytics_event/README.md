@@ -18,7 +18,7 @@ int value);
 Specification of the arguments of the `sendEvent` is as follows.
 
 |Parameter|Type|Outline|
-|:------|:------:|:------:|:------|
+|:------|:------|:------|
 |eventName|String|Set the arbitrary name identifying event conducting tracking. It is able to set event name freely.|
 |action|String|Set the action name belonging to event. It is able to set action name freely. If not specifying, null is acceptable.|
 |label|String|Set the label name belonging to action. It is able to set label name freely. If not specifying, null is acceptable.|

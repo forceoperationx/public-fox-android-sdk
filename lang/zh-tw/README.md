@@ -14,10 +14,11 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 * **[3. Install計測的安裝](#tracking_install)**
 	* [sendConversion的詳細](./doc/send_conversion/README.md)
 * **[4. LTV計測的安裝](#tracking_ltv)**
+	* [sendLtvConversion的詳細](./doc/send_ltv_conversion/README.md)
 	* [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
 * **[5. 流量分析的安裝](#tracking_analytics)**
 	* [依靠流量分析進行事件計測](./doc/analytics_event/README.md)
-	* [依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
+	* [依靠流量分析進行付費計測](./doc/analytics_purchase/README.md)
 	* [關於Rngagement廣告投放](./doc/fox_engagement/README.md)
 * **[6. 使用ProGuard](#use_proguard)**
 * **[7. 進行疏通測試](#integration_test)**
@@ -39,7 +40,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 * **LTV計測**
 
-按不同的廣告流入来計測Life Time Value。作為主要的成果地點，有會員登錄，教程突破，消费等。能夠按照不同廣告来監測登錄率，消費率和消費額等。
+按不同的廣告流入来計測Life Time Value。作為主要的成果地點，有會員登錄，教程突破，消费等。能夠按照不同廣告来監測登錄率，付費率和付費額等。
 
 * **流量分析**
 
@@ -233,19 +234,19 @@ protected void onNewIntent(Intent intent)
 
 ## 4. LTV計測的安裝
 
-通過在會員登錄，教程突破，消費等任意的成果地點安裝LTV計測，能夠測定不同廣告流入的LTV。如果不做LTV計測，可以省略本項目的安裝。
+通過在會員登錄，教程突破，付費等任意的成果地點安裝LTV計測，能夠測定不同廣告流入的LTV。如果不做LTV計測，可以省略本項目的安裝。
 
 ```java
 import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.sendLtvConversion(成果地点ID);
+ltv.sendLtvConversion(成果地點ID);
 ```
 
 為了進行LTV計測，必須指定識別各成果地點的成果地點ID。請在`sendLtvConversion`方法的參數裡指定發行的ID。
 
-進行消費計測的時候，請仿照下面的例子在完成消費處理的地方指定消費額和貨幣代碼。
+進行付費計測的時候，請仿照下面的例子在完成付費處理的地方指定付費額和貨幣代碼。
 
 
 ```java
@@ -254,10 +255,12 @@ import jp.appAdForce.android.LtvManager;
 LtvManager ltv = new LtvManager(ad);
 ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
 ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
-ltv.sendLtvConversion(成果地点ID);
+ltv.sendLtvConversion(成果地點ID);
 ```
 
 在LtvManager.URL_PARAM_CURRENCY裡請按[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)定義的貨幣代碼來指定。
+
+[sendLtvConversion的詳細](./doc/send_ltv_conversion/README.md)
 
 [有關利用Tag的LTV計測](./doc/ltv_browser/README.md)
 
@@ -288,7 +291,7 @@ public class MainActivity extends Activity {
 
 [依靠流量分析進行事件計測](./doc/analytics_event/README.md)
 
-[依靠流量分析進行消費計測](./doc/analytics_purchase/README.md)
+[依靠流量分析進行付費計測](./doc/analytics_purchase/README.md)
 
 [關於Engagement廣告投放](./doc/fox_engagement/README.md)
 
