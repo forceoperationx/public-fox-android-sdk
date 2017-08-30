@@ -4,9 +4,13 @@
 
 # 自動計測の詳細
 
-* **[1. 自動計測について](#autotracking)**
+* **[1. 自動計測について](#about_autotracking)**
 * **[2. アクティベーションと自動計測の有効化](#autotracking_enable)**
 * **[3. 自動計測オプション](#autotracking_option)**
+ * [3.1 FoxTrackOptionを用いてオプションを指定する](#autotracking_with_option)
+ * [3.2 特定の計測種別を手動実装する](#autotracking_with_manual)
+
+<div id="about_autotracking"></div>
 
 ## 1. 自動計測について
 
@@ -18,6 +22,8 @@
   * ディファードディープリンキング
 * その他の課金等のアプリ内イベントの計測は従来通りの実装となります。
 * 一部の計測を手動で実装することも可能です。
+
+<div id="autotracking_enable"></div>
 
 ## 2. アクティベーションと自動計測の有効化
 
@@ -82,6 +88,8 @@ public class YourApplication extends Application {
 
 ## 3. 自動計測オプション
 
+<div id="autotracking_with_option"></div>
+
 ### 3.1 FoxTrackOptionを用いてオプションを指定する
 
 自動計測における計測オプションは、[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)を使用します。
@@ -111,7 +119,10 @@ public class YourApplication extends Application {
 ```
 
 > ※ 初回起動計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、個別に別途`Fox.trackInstall()`を実装する必要があります。実装先は従来と同様にMainとなるActivityのonCreate()となります。
+>
 > ※ リエンゲージメント計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、個別に別途`Fox.trackDeeplinkLaunch`を実装する必要があります。
+
+<div id="autotracking_with_manual"></div>
 
 ### 3.2 特定の計測種別を手動実装する
 
@@ -119,7 +130,7 @@ public class YourApplication extends Application {
 
 #### 3.2.1 アノテーションでFoxConfigを定義している場合
 
-co.cyberz.fox.annotation.FoxConfigの以下３つの設定を行います。いずれもデフォルトでtrueです。
+co.cyberz.fox.annotation.FoxConfigの以下３つのフィールドを用いて設定を行います。いずれもデフォルトでtrueです。
 * `isAutoInstallTracking` : 初回起動計測の自動計測実行有無の設定
 * `isAutoSessionTracking` : セッション計測の自動計測実行有無の設定
 * `isAutoDeeplinkTracking` : ディープリンク系の計測の自動計測実行有無の設定
