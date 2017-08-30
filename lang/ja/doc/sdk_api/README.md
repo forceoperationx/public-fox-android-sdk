@@ -25,14 +25,43 @@ public class FoxConfig
 |FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : アクセス解析サーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
 |FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : DahliaサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
 
+<div id="annotation_foxconfig"></div>
+
+# FoxConfig
+
+public interface FoxConfig
+
+Added in 4.3.0
+
+必須情報をアノテーションで定義するインターフェース
+
+### Public methods
+
+|Type|Field|Details|
+|:---:|:---|:---|
+|int|appId|アプリIDの指定|
+|String|appKey|AnalyticsAppKeyの指定|
+|String|appSalt|AppSaltの指定|
+|String|serverUrl|サーバーURLの指定(デバッグ用)|
+|String|aServerUrl|アクセス解析用サーバーURLの指定(デバッグ用)|
+|boolean|isDebug|デバッグモードの有効化<br>デフォルトはfalse|
+|boolean|isAutoInstallTracking|初回起動計測の自動化の設定<br>デフォルトはtrue|
+|boolean|isAutoDeeplinkTracking|ディープリンク経由での計測の自動化の設定<br>デフォルトはtrue|
+|boolean|isAutoSessionTracking|アクセス解析のセッション計測の自動化の設定<br>デフォルトはtrue|
+
 <div id="fox"></div>
 
 # Fox
 
-public class Fox<br>
+public enum Fox<br>
 
 [java.lang.Object](https://developer.android.com/reference/java/lang/Object.html)<br>
-&nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.Fox
+&nbsp;&nbsp;&nbsp;↳&nbsp;	java.lang.Enum&lt;E extends [java.lang.Enum](https://developer.android.com/reference/java/lang/Enum.html)&lt;E&gt;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.Fox
+
+### Public instance
+
+* **`AUTOMATOR`** : 自動計測機能を実装する場合に使用 &nbsp;(Added in 4.3.0)
 
 ### Public methods
 
@@ -51,6 +80,16 @@ public class Fox<br>
 |void|static|trackDeeplinkLaunch (Activity activity, String buid)<br><br>`activity` : カスタムURLスキームで起動するActivity<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
 |void|static|**setUserInfo** (JSONObject userInfo)<br><br>`userInfo` : ユーザー情報・属性|計測する際のユーザー情報・属性等を設定する|
 |JSONObject|static|**getUserInfo** ( )|setUserInfoでユーザー情報をセットしてある場合に、その情報を取得することができる|
+|Fox|-|**init** ( Context context )|アノテーションで必須情報を設定した場合に呼び出すイニシャライズメソッド<br>(Added in 4.3.0)|
+|Fox|-|**init** ( [FoxConfig](#foxconfig) config )|手動でイニシャライズ処理を実行する。<br>※アノテーションによる必須情報設定との併用不可。<br>(Added in 4.3.0)|
+|-|-|**startTrack** ( ) |自動計測を開始するメソッド<br>(Added in 4.3.0)|
+|-|-|**startTrack** ( FoxTrackOption option ) |計測オプションを指定し自動計測を開始する。<br>(Added in 4.3.0)|
+|Fox|-|**setManualInstallTrackingEnable** ( boolean manualInstallTracking ) <br><br>`manualInstallTracking` : インストール計測の手動実行有無フラグ|個別に手動でインストール計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
+|boolean|-|**isManualInstallTrackingEnable** ( ) |インストール計測の手動実行有無取得<br>(Added in 4.3.0)|
+|Fox|-|**setManualDeeplinkTrackingEnable** ( boolean manualDeeplinkTracking ) <br><br>`manualDeeplinkTracking` : ディープリンク経由計測の手動実行有無フラグ|個別に手動でディープリンク経由計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
+|boolean|-|**isManualDeeplinkTrackingEnable** ( ) |ディープリンク経由計測の手動実行有無取得<br>(Added in 4.3.0)|
+|Fox|-|**setManualSessionTrackingEnable** ( boolean manualSessionTracking ) <br><br>`manualSessionTracking` : セッション計測の手動実行有無フラグ|個別に手動でセッション計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
+|boolean|-|**isManualSessionTrackingEnable** ( ) |セッション計測の手動実行有無取得<br>(Added in 4.3.0)|
 
 <div id="foxtrackoption"></div>
 

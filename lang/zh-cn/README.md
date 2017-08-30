@@ -40,8 +40,9 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 ## 什么是F.O.X SDK
 
-[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
 [![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
+[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
+[![Android](http://img.shields.io/badge/support-API_Level_14+-green.svg?style=flat)](https://developer.android.com)
 
 
 将F.O.X SDK导入APP之后，能够实现以下功能。
