@@ -8,7 +8,7 @@
 * **[2. アクティベーションと自動計測の有効化](#autotracking_enable)**
 * **[3. 自動計測オプション](#autotracking_option)**
 	* [3.1 FoxTrackOptionを用いてオプションを指定する](#autotracking_with_option)
-	* [3.2 特定の計測種別を手動実装する](#autotracking_with_manual)
+	* [3.2 特定の計測種別を個別に実装する](#autotracking_with_manual)
 
 <div id="about_autotracking"></div>
 
