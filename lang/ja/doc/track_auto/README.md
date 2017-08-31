@@ -2,6 +2,8 @@
 
 ---
 
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)
+
 # 自動計測の詳細
 
 * **[1. 自動計測について](#about_autotracking)**
@@ -191,7 +193,8 @@ public class YourApplication extends Application {
 
 ### 3.2 特定の計測種別を個別に実装する
 
-自動計測対象から外して個別に計測の実装をすることが可能です。
+自動計測対象から外して個別に計測の実装をすることが可能です。<br>
+開発方法に応じて以下２パターンからお選びください。
 
 <div id="define_foxconfig_annotation"></div>
 
