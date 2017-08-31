@@ -6,9 +6,20 @@
 
 * **[1. 自動計測について](#about_autotracking)**
 * **[2. アクティベーションと自動計測の有効化](#autotracking_enable)**
+	* [2.1 FoxConfigインスタンス](#foxconfig_instance)
+	* [2.2 FoxConfigアノテーション](#foxconfig_annotation)
 * **[3. 自動計測オプション](#autotracking_option)**
 	* [3.1 FoxTrackOptionを用いてオプションを指定する](#autotracking_with_option)
 	* [3.2 特定の計測種別を個別に実装する](#autotracking_with_manual)
+		* [3.2.1 アノテーションでFoxConfigを定義している場合](#define_foxconfig_annotation)
+			* [初回起動計測の自動計測をOFFにする](#off_annotation_auto_install_tracking)
+			* [セッション計測の自動計測をOFFにする](#off_annotation_auto_session_tracking)
+			* [ディープリンクによる計測の自動計測をOFFにする](#off_annotation_auto_deeplink_tracking)
+		* [3.2.2 FoxConfigインスタンスを定義している場合](#define_foxconfig_instance)
+			* [初回起動計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
+			* [セッション計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
+			* [ディープリンクによる計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
+
 
 <div id="about_autotracking"></div>
 
@@ -22,12 +33,16 @@
 * その他の課金等のアプリ内イベントの計測は従来通りの実装となります。
 * 一部の計測を手動で実装することも可能です。
 * ディファードディープリンキングとの併用が可能です。
+* セッション計測は、従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。
+
 
 <div id="autotracking_enable"></div>
 
 ## 2. アクティベーションと自動計測の有効化
 
 アクティベーションには以下いずれかの`FoxConfig`を使用します。
+
+<div id="foxconfig_instance"></div>
 
 ### **2.1 FoxConfigインスタンス**
 &nbsp;&nbsp;&nbsp;[co.cyberz.fox.FoxConfig](../sdk_api/README.md#foxconfig)を使用します。<br>
@@ -55,12 +70,14 @@ public class YourApplication extends Application {
 }
 ```
 
+<div id="foxconfig_annotation"></div>
+
 ### **2.2 FoxConfigアノテーション**
 &nbsp;&nbsp;&nbsp;[co.cyberz.fox.annotation.FoxConfig](../sdk_api/README.md#annotation_foxconfig)を使用します。<br>
 &nbsp;&nbsp;&nbsp;4.3.0より追加されたアノテーションで必須情報を定義するためのコンフィギュレーションクラスです。<br>
 &nbsp;&nbsp;&nbsp;[FoxConfig API詳細](../sdk_api/README.md#annotation_foxconfig)
 
-> * `co.cyberz.fox.FoxConfig`と`co.cyberz.fox.annotation.FoxConfig`を併用は出来ません。
+> * `co.cyberz.fox.FoxConfig`と`co.cyberz.fox.annotation.FoxConfig`の併用は出来ません。
 
 [&nbsp;**FoxConfigアノテーションで実装する例**&nbsp;]
 
@@ -130,12 +147,16 @@ public class YourApplication extends Application {
 
 自動計測対象から外して個別に計測の実装をすることが可能です。
 
+<div id="define_foxconfig_annotation"></div>
+
 #### 3.2.1 アノテーションでFoxConfigを定義している場合
 
 co.cyberz.fox.annotation.FoxConfigの以下３つのフィールドを用いて設定を行います。いずれもデフォルトでtrueです。
 * `isAutoInstallTracking` : 初回起動計測の自動計測実行有無の設定
 * `isAutoSessionTracking` : セッション計測の自動計測実行有無の設定
 * `isAutoDeeplinkTracking` : ディープリンク系の計測の自動計測実行有無の設定
+
+<div id="off_annotation_auto_install_tracking"></div>
 
 **初回起動計測の自動計測をOFFにする**
 
@@ -161,6 +182,8 @@ public class YourActivity extends Activity {
 ```
 > 従来通り、アプリの最初に起動するActivityのonCreateに[`Fox.trackInstall()`](../track_install/README.md)を実装します。
 
+<div id="off_annotation_auto_session_tracking"></div>
+
 **セッション計測の自動計測をOFFにする**
 
 `isAutoSessionTracking`をfalseに設定し、個別に実装します。
@@ -184,6 +207,8 @@ public class YourActivity extends Activity {
 ...
 ```
 > 従来通り、各ActivityのonResumeに`Fox.trackSession()`を実装します。
+
+<div id="off_annotation_auto_deeplink_tracking"></div>
 
 **ディープリンクによる計測の自動計測をOFFにする**
 
@@ -209,6 +234,7 @@ public class YourActivity extends Activity {
 ```
 > 従来通り、MainとなるActivityのonResumeに`Fox.trackDeeplinkLaunch()`を実装します。
 
+<div id="define_foxconfig_instance"></div>
 
 #### 3.2.2 FoxConfigインスタンスを定義している場合
 
@@ -217,6 +243,8 @@ co.cyberz.fox.Fox.AUTOMATORの以下３つの設定を行います。いずれ�
 * `setManualInstallTracking` : 初回起動計測の自動計測実行有無の設定
 * `setManualSessionTracking` : セッション計測の自動計測実行有無の設定
 * `setManualDeeplinkTracking` : ディープリンク系の計測の自動計測実行有無の設定
+
+<div id="off_instance_auto_install_tracking"></div>
 
 **初回起動計測の自動計測をOFFにする**
 
@@ -251,6 +279,7 @@ public class YourActivity extends Activity {
 ```
 > 従来通り、アプリの最初に起動するActivityのonCreateに[`Fox.trackInstall()`](../track_install/README.md)を実装します。
 
+<div id="off_instance_auto_session_tracking"></div>
 
 **セッション計測の自動計測をOFFにする**
 
@@ -284,6 +313,8 @@ public class YourActivity extends Activity {
 ...
 ```
 > 従来通り、各ActivityのonResumeに`Fox.trackSession()`を実装します。
+
+<div id="off_instance_auto_deeplink_tracking"></div>
 
 **ディープリンクによる計測の自動計測をOFFにする**
 
