@@ -268,6 +268,8 @@ public class YourApplication extends Application {
 
 ```
 
+> 上記のコードはアクティベーションと自動計測の両方を実行しています。既に従来のバージョンが導入済みの場合、必ず[自動計測の詳細](./doc/track_auto/README.md)をご確認ください。
+
 * [自動計測の詳細](./doc/track_auto/README.md)
 
 <div id="old_activation"></div>
