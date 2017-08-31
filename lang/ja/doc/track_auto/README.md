@@ -17,8 +17,8 @@
 			* [ディープリンクによる計測の自動計測をOFFにする](#off_annotation_auto_deeplink_tracking)
 		* [3.2.2 FoxConfigインスタンスを定義している場合](#define_foxconfig_instance)
 			* [初回起動計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
-			* [セッション計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
-			* [ディープリンクによる計測の自動計測をOFFにする](#off_instance_auto_install_tracking)
+			* [セッション計測の自動計測をOFFにする](#off_instance_auto_session_tracking)
+			* [ディープリンクによる計測の自動計測をOFFにする](#off_instance_auto_deeplink_tracking)
 
 
 <div id="about_autotracking"></div>
