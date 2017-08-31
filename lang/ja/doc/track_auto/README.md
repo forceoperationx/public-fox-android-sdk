@@ -7,21 +7,21 @@
 * **[1. 自動計測について](#about_autotracking)**
 * **[2. アクティベーションと自動計測の有効化](#autotracking_enable)**
 * **[3. 自動計測オプション](#autotracking_option)**
- * [3.1 FoxTrackOptionを用いてオプションを指定する](#autotracking_with_option)
- * [3.2 特定の計測種別を手動実装する](#autotracking_with_manual)
+	* [3.1 FoxTrackOptionを用いてオプションを指定する](#autotracking_with_option)
+	* [3.2 特定の計測種別を手動実装する](#autotracking_with_manual)
 
 <div id="about_autotracking"></div>
 
 ## 1. 自動計測について
 
-* 本機能はF.O.X Android SDK 4.3.0からのサポートとなります。
+* 本機能は**F.O.X Android SDK 4.3.0からのサポート**となります。
 * 対象となる計測種類は以下3種類となります。
   * 初回起動計測
   * セッション計測
   * リエンゲージメント計測
-  * ディファードディープリンキング
 * その他の課金等のアプリ内イベントの計測は従来通りの実装となります。
 * 一部の計測を手動で実装することも可能です。
+* ディファードディープリンキングとの併用が可能です。
 
 <div id="autotracking_enable"></div>
 
@@ -30,7 +30,7 @@
 アクティベーションには以下いずれかの`FoxConfig`を使用します。
 
 ### **2.1 FoxConfigインスタンス**
-&nbsp;&nbsp;&nbsp;co.cyberz.fox.FoxConfigを使用します。<br>
+&nbsp;&nbsp;&nbsp;[co.cyberz.fox.FoxConfig](../sdk_api/README.md#foxconfig)を使用します。<br>
 &nbsp;&nbsp;&nbsp;〜 4.2.1まで使われてきたコンフィギュレーションクラスです。ここでの利用方法は省略します。<br>
 &nbsp;&nbsp;&nbsp;詳細は[従来のアクティベーション](../README.md#old_activation)または[FoxConfig](../sdk_api/README.md#foxconfig)をご参照ください。
 
@@ -38,6 +38,7 @@
 
 ```java
 import android.app.Application;
+import co.cyberz.fox.Fox;
 import co.cyberz.fox.annotation.FoxConfig;
 
 public class YourApplication extends Application {
@@ -55,16 +56,17 @@ public class YourApplication extends Application {
 ```
 
 ### **2.2 FoxConfigアノテーション**
-&nbsp;&nbsp;&nbsp;co.cyberz.fox.annotation.FoxConfigを使用します。<br>
+&nbsp;&nbsp;&nbsp;[co.cyberz.fox.annotation.FoxConfig](../sdk_api/README.md#annotation_foxconfig)を使用します。<br>
 &nbsp;&nbsp;&nbsp;4.3.0より追加されたアノテーションで必須情報を定義するためのコンフィギュレーションクラスです。<br>
 &nbsp;&nbsp;&nbsp;[FoxConfig API詳細](../sdk_api/README.md#annotation_foxconfig)
 
-> * co.cyberz.fox.FoxConfigとco.cyberz.fox.annotation.FoxConfigは併用出来ません。
+> * `co.cyberz.fox.FoxConfig`と`co.cyberz.fox.annotation.FoxConfig`を併用は出来ません。
 
 [&nbsp;**FoxConfigアノテーションで実装する例**&nbsp;]
 
 ```java
 import android.app.Application;
+import co.cyberz.fox.Fox;
 import co.cyberz.fox.annotation.FoxConfig;
 
 @FoxConfig(appId = 発行されたアプリID, appKey = "発行されたAPP_KEY", appSalt = "発行されたAPP_SALT", isDebug = BuildConfig.DEBUG)
@@ -80,7 +82,7 @@ public class YourApplication extends Application {
 }
 ```
 
-> * FoxConfigアノテーションはApplicationクラスを継承したクラスに定義します。
+> * FoxConfigアノテーションは必ずApplication継承クラスに定義してください。
 >
 > * Fox.AUTOMATORはApplication継承クラス内で実装してください。
 
@@ -118,13 +120,13 @@ public class YourApplication extends Application {
 }
 ```
 
-> ※ 初回起動計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、個別に別途`Fox.trackInstall()`を実装する必要があります。実装先は従来と同様にMainとなるActivityのonCreate()となります。
+> ※ 初回起動計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、別途`Fox.trackInstall()`を実装すること可能です。。実装先は従来と同様にMainとなるActivityのonCreate()となります。
 >
-> ※ リエンゲージメント計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、個別に別途`Fox.trackDeeplinkLaunch`を実装する必要があります。
+> ※ リエンゲージメント計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、別途`Fox.trackDeeplinkLaunch`を実装する必要があります。
 
 <div id="autotracking_with_manual"></div>
 
-### 3.2 特定の計測種別を手動実装する
+### 3.2 特定の計測種別を個別に実装する
 
 自動計測対象から外して個別に計測の実装をすることが可能です。
 
@@ -157,7 +159,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通りアプリの最初に起動するActivityのonCreateに`[Fox.trackInstall()](../track_install/README.md)`を実装します。
+> 従来通り、アプリの最初に起動するActivityのonCreateに[`Fox.trackInstall()`](../track_install/README.md)を実装します。
 
 **セッション計測の自動計測をOFFにする**
 
@@ -181,7 +183,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通り各ActivityのonResumeに`Fox.trackSession()`を実装します。
+> 従来通り、各ActivityのonResumeに`Fox.trackSession()`を実装します。
 
 **ディープリンクによる計測の自動計測をOFFにする**
 
@@ -205,7 +207,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通りMainとなるActivityのonResumeに`Fox.trackDeeplinkLaunch()`を実装します。
+> 従来通り、MainとなるActivityのonResumeに`Fox.trackDeeplinkLaunch()`を実装します。
 
 
 #### 3.2.2 FoxConfigインスタンスを定義している場合
@@ -247,7 +249,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通りアプリの最初に起動するActivityのonCreateに`[Fox.trackInstall()](../track_install/README.md)`を実装します。
+> 従来通り、アプリの最初に起動するActivityのonCreateに[`Fox.trackInstall()`](../track_install/README.md)を実装します。
 
 
 **セッション計測の自動計測をOFFにする**
@@ -281,7 +283,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通り各ActivityのonResumeに`Fox.trackSession()`を実装します。
+> 従来通り、各ActivityのonResumeに`Fox.trackSession()`を実装します。
 
 **ディープリンクによる計測の自動計測をOFFにする**
 
@@ -314,7 +316,7 @@ public class YourActivity extends Activity {
   }
 ...
 ```
-> 従来通りMainとなるActivityのonResumeに`Fox.trackDeeplinkLaunch()`を実装します。
+> 従来通り、MainとなるActivityのonResumeに`Fox.trackDeeplinkLaunch()`を実装します。
 
 
 ---
