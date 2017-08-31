@@ -5,7 +5,8 @@
 # 自動計測の詳細
 
 * **[1. 自動計測について](#about_autotracking)**
-* **[2. アクティベーションと自動計測の有効化](#autotracking_enable)**
+	* [1.1 旧バージョンからのマイグレーション](#migration)
+* **[2. SDKのアクティベーションと自動計測の有効化](#autotracking_enable)**
 	* [2.1 FoxConfigインスタンス](#foxconfig_instance)
 	* [2.2 FoxConfigアノテーション](#foxconfig_annotation)
 * **[3. 自動計測オプション](#autotracking_option)**
@@ -33,12 +34,57 @@
 * その他の課金等のアプリ内イベントの計測は従来通りの実装となります。
 * 一部の計測を手動で実装することも可能です。
 * ディファードディープリンキングとの併用が可能です。
-* セッション計測は、従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。
 
+<div id="migration"></div>
+
+### 1.1 旧バージョンからのマイグレーション
+
+F.O.X Android SDK 4.X.Xをお使いで自動計測に変更される場合は以下を参考に変更ください。新規で導入される場合、本項はご参照されなくても結構です。<br>
+それまでF.O.X Android SDK 3.X.Xを利用されていた場合はまず[最新バージョンへのマイグレーションについて](../migration/README.md)をご参照ください。<br>
+以下、自動計測の対象となる3つの計測種別について説明します。
+
+#### [&nbsp;初回起動計測&nbsp;]
+
+アプリが起動したタイミングで自動で初回起動計測が行われます。<br>
+これまでアプリが起動して最初に表示されるActivityのonCreateに実装されていたFox.trackInstall()は削除ししてください。
+
+[&nbsp;削除&nbsp;]
+
+```java
+Fox.trackInstall();
+```
+
+> ※ 初回起動計測のみ自動計測の対象から外したい場合は&nbsp;[`3.2 特定の計測種別を個別に実装する`](#autotracking_with_manual)をご参照ください。
+
+#### [&nbsp;セッション計測&nbsp;]
+
+従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。<br>
+これまで全てのActivityのonResumeに実装されていたFox.trackSession()は削除してください。
+
+[&nbsp;削除&nbsp;]
+
+```java
+Fox.trackSession();
+```
+
+> ※ セッション計測のみ自動計測の対象から外したい場合は&nbsp;[`3.2 特定の計測種別を個別に実装する`](#autotracking_with_manual)をご参照ください。
+
+#### [&nbsp;ディープリンクによる計測&nbsp;]
+
+リエンゲージメント広告の計測を行うためには、従来通りAndroidManifest.xmlに定義されているActivityに[`カスタムURLスキームの設定`](../../README.md#setting_urlscheme)がされていることが前提となります。<br>
+これまでアプリが起動して最初に表示されるActivityのonResume()に実装されていたFox.trackDeeplinkLaunch()は削除してください。
+
+[&nbsp;削除&nbsp;]
+
+```java
+Fox.trackDeeplinkLaunch(this);
+```
+
+> ※ ディープリンクによる計測のみ自動計測の対象から外したい場合は&nbsp;[`3.2 特定の計測種別を個別に実装する`](#autotracking_with_manual)をご参照ください。
 
 <div id="autotracking_enable"></div>
 
-## 2. アクティベーションと自動計測の有効化
+## 2. SDKのアクティベーションと自動計測の有効化
 
 アクティベーションには以下いずれかの`FoxConfig`を使用します。
 
