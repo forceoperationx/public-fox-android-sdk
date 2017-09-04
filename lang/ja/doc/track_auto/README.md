@@ -45,6 +45,8 @@ F.O.X Android SDK 4.X.Xをお使いで自動計測に変更される場合は以
 それまでF.O.X Android SDK 3.X.Xを利用されていた場合はまず[最新バージョンへのマイグレーションについて](../migration/README.md)をご参照ください。<br>
 以下、自動計測の対象となる3つの計測種別について説明します。
 
+<div id="migration_install"></div>
+
 #### [&nbsp;初回起動計測&nbsp;]
 
 アプリが起動したタイミングで自動で初回起動計測が行われます。<br>
@@ -58,6 +60,8 @@ Fox.trackInstall();
 
 > ※ 初回起動計測のみ自動計測の対象から外したい場合は&nbsp;[`3.2 特定の計測種別を個別に実装する`](#autotracking_with_manual)をご参照ください。
 
+<div id="migration_session"></div>
+
 #### [&nbsp;セッション計測&nbsp;]
 
 従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。<br>
@@ -70,6 +74,8 @@ Fox.trackSession();
 ```
 
 > ※ セッション計測のみ自動計測の対象から外したい場合は&nbsp;[`3.2 特定の計測種別を個別に実装する`](#autotracking_with_manual)をご参照ください。
+
+<div id="migration_deeplink"></div>
 
 #### [&nbsp;ディープリンクによる計測&nbsp;]
 
@@ -102,7 +108,7 @@ Fox.trackDeeplinkLaunch(this);
 ```java
 import android.app.Application;
 import co.cyberz.fox.Fox;
-import co.cyberz.fox.annotation.FoxConfig;
+import co.cyberz.fox.FoxConfig;
 
 public class YourApplication extends Application {
 
