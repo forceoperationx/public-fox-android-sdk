@@ -3,7 +3,7 @@
   <groupId>co.jp.cyberz.fox</groupId>
   <artifactId>sdk-android</artifactId>
   <versioning>
-    <release>3.7.0</release>
+    <release>3.7.1</release>
     <versions>
       <version>v2.15.4g</version>
       <version>v2.15.5g</version>
@@ -20,7 +20,8 @@
       <version>3.6.0</version>
       <version>3.6.1</version>
       <version>3.7.0</version>
+      <version>3.7.1</version>
     </versions>
-    <lastUpdated>20170831075717</lastUpdated>
+    <lastUpdated>20170911093301</lastUpdated>
   </versioning>
 </metadata>
