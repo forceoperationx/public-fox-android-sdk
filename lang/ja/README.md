@@ -1,3 +1,7 @@
+[![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
+[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
+[![Android](http://img.shields.io/badge/support-API_Level_14+-green.svg?style=flat)](https://developer.android.com)
+
 # Force Operation Xとは
 
 Force Operation X (以下F.O.X)は、スマートフォンにおける広告効果最適化のためのトータルソリューションプラットフォームです。アプリケーションのダウンロード、ウェブ上でのユーザーアクションの計測はもちろん、スマートフォンユーザーの行動特性に基づいた独自の効果計測基準の元、企業のプロモーションにおける費用対効果を最大化することができます。
@@ -20,6 +24,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [2.5 広告IDを利用するためのGoogle Play Servicesの導入](#setting_googleplayservices)
 	* [SDK API](./doc/sdk_api/README.md)
 * **[3. F.O.X SDKのアクティベーション](#activate_sdk_into_app)**
+	* [自動計測の詳細](./doc/track_auto/README.md)
 * **[4. インストール計測の実装](#tracking_install)**
 	* [インストール計測の詳細](./doc/track_install/README.md)
 	* [ディファードディープリンクの実装](./doc/deferred_deeplink/README.md)
@@ -41,10 +46,6 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 ## F.O.X SDKとは
 
-[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
-[![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
-
-
 F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
 
 * **インストール計測**
@@ -62,6 +63,8 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 <div id="install_sdk"></div>
 
 ## 1. インストール
+
+F.O.X Android SDK 4.0.0〜 は `Android 4.0(API Level 14)` 以上をサポートしています。
 
 F.O.X SDKモジュールをGradleを用いてインポートする場合、以下の設定をプロジェクトのbuild.gradleに追加してください。
 
@@ -242,11 +245,43 @@ F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk
 
 **Application継承クラスの実装**
 
+<div id="new_activation"></div>
+
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーション兼、自動計測の実行&nbsp;]
+
+
 ```java
 import android.app.Application;
-import co.cyberz.common.FoxConfig;
+import co.cyberz.fox.Fox;
+import co.cyberz.fox.annotation.FoxConfig;
+
+@FoxConfig(appId = 発行されたアプリID, appKey = "発行されたAPP_KEY", appSalt = "発行されたAPP_SALT", isDebug = BuildConfig.DEBUG)
+public class YourApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // SDKアクティベーション、自動計測開始
+        Fox.AUTOMATOR.init(this).startTrack();
+    }
+}
+
+```
+
+> 上記のコードはアクティベーションと自動計測の両方を実行しています。既に従来のバージョンが導入済みの場合、必ず[自動計測の詳細](./doc/track_auto/README.md)をご確認ください。
+
+* [自動計測の詳細](./doc/track_auto/README.md)
+
+<div id="old_activation"></div>
+
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-〜%204.2.1-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.2.1)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーションの実行&nbsp;]
+
+```java
+import android.app.Application;
+import co.cyberz.fox.FoxConfig;
 
 public class YourApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -261,7 +296,6 @@ public class YourApplication extends Application {
 }
 
 ```
-
 
 <div id="tracking_install"></div>
 
@@ -282,8 +316,10 @@ protected void onCreate(Bundle savedInstanceState){
 ```
 
 > ※ ２回目以降、trackInstallメソッドが呼び出されても動作することはありません。
-
+>
 > ※ trackInstallメソッドにはオプションを指定することも可能です。詳細は[インストール計測の詳細](./doc/track_install/README.md)をご確認ください。
+>
+> ※ SDKバージョン4.3.0から本実装は省略することが可能です。（自動計測機能をONにしている場合、不要です。）
 
 * [インストール計測の詳細](./doc/track_install/README.md)
 
@@ -314,9 +350,11 @@ protected void onResume() {
 }
 ```
 
-> ※1 URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"である場合を考慮し、最新のIntentを受け取るために`onNewIntent`メソッドをoverrideし、`setIntent`メソッドをコールしてください。
-
-> ※2 リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityに[カスタムURLスキーム](#setting_urlscheme)が設定されていることが前提となります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
+> ※ URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"である場合を考慮し、最新のIntentを受け取るために`onNewIntent`メソッドをoverrideし、`setIntent`メソッドをコールしてください。
+>
+> ※ リエンゲージメント広告の計測を行うためにはAndroidManifest.xmlに定義されているAcitvityに[カスタムURLスキーム](#setting_urlscheme)が設定されていることが前提となります。本計測ではカスタムURLスキームによってActivityが呼び出されることでリエンゲージメント計測を行います。
+>
+> ※ SDKバージョン4.3.0から本実装は省略することが可能です。（自動計測機能をONにしている場合、不要です。）
 
 <div id="tracking_event"></div>
 
@@ -345,6 +383,8 @@ public class BaseActivity extends Activity {
 	}
 }
 ```
+
+> ※ SDKバージョン4.3.0から本実装は省略することが可能です。（自動計測機能をONにしている場合、不要です。）
 
 **[アプリケーション内の全てのActivityに実装する場合]**
 
@@ -400,6 +440,7 @@ public class YourApplication extends Application {
 会員登録、チュートリアル突破、課金など任意の成果地点にイベント計測を実装することで、流入元広告のLTVを測定することができます。<br>イベント計測が不要の場合には、本項目の実装を省略できます。
 
 <div id="tracking_event_tutorial"></div>
+
 **[チュートリアルイベントの計測例]**
 
 ```java
@@ -415,7 +456,9 @@ Fox.trackEvent(tutorialEvent);
 
 > イベント計測を行うためには、各成果地点を識別する`成果地点ID`を指定する必要があります。[`FoxEvent`](./doc/sdk_api/README.md#foxevent)クラスのコンストラクタの引数にイベント名と発行されたIDを指定してください。
 
+
 <div id="tracking_event_purchase"></div>
+
 **[課金イベントの計測例]**
 
 課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。
@@ -439,85 +482,32 @@ currencyの指定には[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定�
 
 ## 7. 最短実装の例
 
-以下の実装はApplication継承クラスに次の処理を実装した例となります。
+以下のサンプルコードを実装することで、以下4点の実装と同等の処理を実行します。
 
 * F.O.X SDKのアクティベーション
 * 初回起動時のインストール計測
 * セッションイベントの計測
 * リエンゲージメント計測
 
-尚、以下は共通化が可能な処理を１箇所に実装した例となるため、その他の各種イベントは、発生の度に実装頂く必要があります。
-
 ```java
 import android.app.Application;
-import co.cyberz.common.FoxConfig;
 import co.cyberz.fox.Fox;
+import co.cyberz.fox.annotation.FoxConfig;
 
+@FoxConfig(appId = 発行されたアプリID, appKey = "発行されたAPP_KEY", appSalt = "発行されたAPP_SALT")
 public class YourApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // アクティベーション処理
-        private int FOX_APP_ID = 発行されたアプリID;
-        private String FOX_APP_KEY = "発行されたAPP_KEY";
-        private String FOX_APP_SALT = "発行されたAPP_SALT";
-        new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
-
-        // アプリケーションのライフサイクルの検知
-        if (14 <= Build.VERSION.SDK_INT) {
-        	registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
-        }
+        // SDKアクティベーション、自動計測開始
+        Fox.AUTOMATOR.init(this).startTrack();
     }
-
-
-    private static final class ApplicationLifeCycleCallbacks implements ActivityLifecycleCallbacks {
-
-	    @Override
-	    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-	      // インストール計測(※1)
-	      Fox.trackInstall();
-	    }
-
-	    @Override
-	    public void onActivityStarted(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivityResumed(Activity activity) {
-	      // セッショントラッキング
-	      Fox.trackSession();
-	      // リエンゲージメント計測
-	      Fox.trackDeeplinkLaunch(activity);
-	    }
-
-	    @Override
-	    public void onActivityPaused(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivityStopped(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-	    }
-
-	    @Override
-	    public void onActivityDestroyed(Activity activity) {
-	    }
-  }
 }
+
 ```
-> ※1 [`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))を使用する場合、アプリのminSdkVersionが14以上である必要があります。
 
-> ※2 上記の実装でCookieトラッキングを用いてインストール計測を行う場合、アプリケーションの最初のActivityが呼び出されるタイミングでブラウザが起動します。そのため初回のActivityの動作に支障がない場合にご利用ください。<br>
-InstallReferrer計測やFingerprint計測を実施される場合に有効です。
-
-> ※3 上記は起動系のイベントのみを計測している実装例となっていますので、チュートリアル完了・課金やアカウント登録などのイベントは別途、発生するActivity内でイベント計測の実装を行う必要があります。
-
-> ※4 上記の実装でCookie計測を行い、ブラウザからアプリに自動遷移させる際にはAndroidManifest上、mainとなるActivityのカスタムURLスキームをご連絡ください。
+> ※ 上記の実装でCookie計測を行い、ブラウザからアプリに自動遷移させる際にはAndroidManifest上、mainとなるActivityのカスタムURLスキームをご連絡ください。
 
 
 <div id="other_function"></div>

@@ -52,7 +52,7 @@ public void onCreate(Bundle savedInstanceState) {
   option.setRedirectUrl("myapp://top")
         .setBuid(getUserId())
         .setOptOut(true)
-        .setTrackingStateListener(new FoxTrackOption.TrackingStateListerner() {
+        .setTrackingStateListener(new FoxTrackOption.TrackingStateListener() {
            @Override
            public void onComplete() {
              showTutorialDialog();
@@ -69,9 +69,9 @@ protected void onResume() {
 }
 ```
 
-> ※ 上記のサンプルコードでは、リダイレクト先・BUID・オプトアウトの有無・計測完了のコールバックを受け取る処理の実装例となっています。<br>TrackingStateListernerをセットした上で計測処理が完了するとonCompleteメソッドが呼ばれますので、インストール計測完了直後に実行したい処理はこちらに実装してください。
+> ※ 上記のサンプルコードでは、リダイレクト先・BUID・オプトアウトの有無・計測完了のコールバックを受け取る処理の実装例となっています。<br>TrackingStateListenerをセットした上で計測処理が完了するとonCompleteメソッドが呼ばれますので、インストール計測完了直後に実行したい処理はこちらに実装してください。
 
-> ※ Cookie計測が有効な場合、TrackingStateListernerのonCompleteメソッドは、ブラウザからアプリに復帰した後に呼ばれます。その復帰したActivityのonResumeには必ず`Fox.trackDeeplinkLaunch`メソッドを実装してください。<br>実装していない場合、onCompleteメソッドが呼ばれません。
+> ※ Cookie計測が有効な場合、TrackingStateListenerのonCompleteメソッドは、ブラウザからアプリに復帰した後に呼ばれます。その復帰したActivityのonResumeには必ず`Fox.trackDeeplinkLaunch`メソッドを実装してください。<br>実装していない場合、onCompleteメソッドが呼ばれません。
 ```java
 @Override
 protected void onResume() {
