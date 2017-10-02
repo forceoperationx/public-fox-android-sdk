@@ -107,14 +107,12 @@ F.O.X SDK可以使用以下三种权限。 &lt;Manifest&gt;Tag中添加以下权
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
 权限|Protection Level|必須|概要
 :---|:---:|:---:|:---
 INTERNET|Normal|必須|F.O.X SDK进行通信的必要条件。
-READ_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除重复功能时必须设置。(※2)
 
 > ※1 READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE权限，在外部储存中记录数据可以使APP重新安装时更准确的计测，但不是必须项目。
