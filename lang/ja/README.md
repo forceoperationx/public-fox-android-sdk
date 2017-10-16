@@ -20,7 +20,6 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[5. アクセス解析の実装](#tracking_analytics)**
 	* [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
-	* [エンゲージメント配信について](./doc/fox_engagement/README.md)
 * **[6. ProGuardを利用する場合](#use_proguard)**
 * **[7. 疎通テストの実施](#integration_test)**
 	* [リエンゲージメント計測を行う場合のテスト手順](./doc/reengagement_test/README.md)
@@ -330,8 +329,6 @@ public class MainActivity extends Activity {
 [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
 
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
-
-[エンゲージメント配信について](./doc/fox_engagement/README.md)
 
 <div id="use_proguard"></div>
 
