@@ -480,6 +480,8 @@ currencyの指定には[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定�
 
 ## 7. 最短実装の例
 
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
+
 以下のサンプルコードを実装することで、以下4点の実装と同等の処理を実行します。
 
 * F.O.X SDKのアクティベーション
