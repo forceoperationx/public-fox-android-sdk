@@ -102,7 +102,7 @@ Fox.trackDeeplinkLaunch(this);
 ### **2.1 FoxConfig实例**
 &nbsp;&nbsp;&nbsp;使用[co.cyberz.fox.FoxConfig](../sdk_api/README.md#foxconfig)。<br>
 &nbsp;&nbsp;&nbsp;这是到4.2.1为止使用的Configuration Class。在此省略说明使用方法。<br>
-&nbsp;&nbsp;&nbsp;详情请查看[以往的激活方式](../README.md#old_activation)或者[FoxConfig](../sdk_api/README.md#foxconfig)。
+&nbsp;&nbsp;&nbsp;详情请查看[以往的激活方式](../../README.md#old_activation)或者[FoxConfig](../sdk_api/README.md#foxconfig)。
 
 [&nbsp;**使用实例来定义FoxConfig的例子**&nbsp;]
 
