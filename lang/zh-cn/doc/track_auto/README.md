@@ -374,7 +374,7 @@ public class YourActivity extends Activity {
 
 **Deeplink经由计测的自动计测设置为OFF**
 
-`setManualDeeplinkTracking`にtrueを指定し、個別に実装します。
+把`setManualDeeplinkTracking`设置为true、做个别执行。
 
 [&nbsp;Application&nbsp;]
 ```java
