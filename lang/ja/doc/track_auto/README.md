@@ -101,7 +101,7 @@ Fox.trackDeeplinkLaunch(this);
 ### **2.1 FoxConfigインスタンス**
 &nbsp;&nbsp;&nbsp;[co.cyberz.fox.FoxConfig](../sdk_api/README.md#foxconfig)を使用します。<br>
 &nbsp;&nbsp;&nbsp;〜 4.2.1まで使われてきたコンフィギュレーションクラスです。ここでの利用方法は省略します。<br>
-&nbsp;&nbsp;&nbsp;詳細は[従来のアクティベーション](../README.md#old_activation)または[FoxConfig](../sdk_api/README.md#foxconfig)をご参照ください。
+&nbsp;&nbsp;&nbsp;詳細は[従来のアクティベーション](../../README.md#old_activation)または[FoxConfig](../sdk_api/README.md#foxconfig)をご参照ください。
 
 [&nbsp;**FoxConfigインスタンスで実装する例**&nbsp;]
 
