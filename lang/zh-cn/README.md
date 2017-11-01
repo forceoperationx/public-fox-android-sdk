@@ -1,3 +1,7 @@
+[![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
+[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
+[![Android](http://img.shields.io/badge/support-API_Level_14+-green.svg?style=flat)](https://developer.android.com)
+
 # 什么是Force Operation X
 
 Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告效果的整体解决方案平台。不光是App的下载和网页用户行为的计测，基于智能用户行为特征的独特计测基准，能够实现企业推广的性价比最大化。
@@ -20,6 +24,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 	* [2.5 为使用广告ID的Google Play Services导入](#setting_googleplayservices)
 	* [SDK API](./doc/sdk_api/README.md)
 * **[3. 激活F.O.X SDK](#activate_sdk_into_app)**
+	* [自动计测的详细](./doc/track_auto/README.md)
 * **[4. Install计测的安装](#tracking_install)**
 	* [Install计测的详细](./doc/track_install/README.md)
 	* [Deferred Deeplink的执行](./doc/deferred_deeplink/README.md)
@@ -34,16 +39,12 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 	* [利用外部储存排除重复的设定](./doc/external_storage/README.md)
 	* [自动备份功能的使用 (Android M)](./doc/auto_backup/README.md)
 * **[9. 最后的注意事项](#trouble_shooting)**
+	* [FAQ・注意事项](./doc/trouble_shooting/README.md)
 
 
 <div id="whats_fox_sdk"></div>
 
 ## 什么是F.O.X SDK
-
-[![Language](http://img.shields.io/badge/language-java-red.svg?style=flat)](https://java.com)
-[![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
-[![Android](http://img.shields.io/badge/support-API_Level_14+-green.svg?style=flat)](https://developer.android.com)
-
 
 将F.O.X SDK导入APP之后，能够实现以下功能。
 
@@ -63,6 +64,8 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 ## 1. 导入
 
+F.O.X Android SDK 4.0.0〜 支持`Android 4.0(API Level 14)` 及以上版本。
+
 使用Gradle来导入F.O.X SDK module时，请将以下设置写入项目build.gradle。
 
 ```
@@ -78,8 +81,8 @@ dependencies {
 ```
 
 
-dependencies中指定的SDK版本号与下面下载页面中一致。<br>
-如果使用本地jar来安装的话，请从release页面下载相应版本的zip文件。
+dependencies中指定的SDK版本号与下面下载页面中一致，请在下载页面去确认后下载<br>
+如果是使用本地jar来手动安装的话，请从release页面下载最新版本的zip文件。
 
 * [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
@@ -240,16 +243,48 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 
 **Application继承类的安装**
 
+<div id="new_activation"></div>
+
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;激活兼自动计测的执行&nbsp;]
+
+
 ```java
 import android.app.Application;
-import co.cyberz.common.FoxConfig;
+import co.cyberz.fox.Fox;
+import co.cyberz.fox.annotation.FoxConfig;
+
+@FoxConfig(appId = 发行的APPID, appKey = "发行的APP_KEY", appSalt = "发行的APP_SALT", isDebug = BuildConfig.DEBUG)
+public class YourApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // SDK激活和自动计测的开始
+        Fox.AUTOMATOR.init(this).startTrack();
+    }
+}
+
+```
+
+> 上面的代码可以同时执行激活和自动计测。已经导入了旧版本的话，请务必去确认[自动计测的详细](./doc/track_auto/README.md)的内容。
+
+* [自动计测的详细](./doc/track_auto/README.md)
+
+<div id="old_activation"></div>
+
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-〜%204.2.1-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.2.1)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;激活的执行&nbsp;]
+
+```java
+import android.app.Application;
+import co.cyberz.fox.FoxConfig;
 
 public class YourApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        int FOX_APP_ID = 发行的APP ID;
+        int FOX_APP_ID = 发行的APPID;
         String FOX_APP_KEY = "发行的APP_KEY";
         String FOX_APP_SALT = "发行的APP_SALT";
         FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
@@ -259,7 +294,6 @@ public class YourApplication extends Application {
 }
 
 ```
-
 
 <div id="tracking_install"></div>
 
@@ -279,8 +313,10 @@ protected void onCreate(Bundle savedInstanceState){
 ```
 
 > ※ 第二次启动及以后，即使调用trackInstall方法也不会被执行。
-
+>
 > ※ 在trackInstall方法中可以指定option参数，具体请查看[Install计测的详细](./doc/track_install/README.md)。
+>
+> ※ 从SDK4.3.0版本开始这部分的代码就可以省略了。（将自动计测功能设置为ON的话、就不需要这个编码处理了。）
 
 * [Install计测的详细](./doc/track_install/README.md)
 
@@ -310,9 +346,11 @@ protected void onResume() {
 }
 ```
 
-> ※1 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并调用`setIntent`方法。
-
-> ※2 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了[自定义URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
+> ※ 考虑到URL SCHEME启动的Activity的launchMode为"singleTask"或"singleInstance"的情况，为接受最新Intent，请重写`onNewIntent`方法，并调用`setIntent`方法。
+>
+> ※ 流失唤回广告计测时，必须确认定义为AndroidManifest.xml的Acitvity中已经设置了[自定义URL SCHEME](#setting_urlscheme)。该计测是通过自定义URL SCHEME调用Activity来进行流失唤回广告的计测。
+>
+> ※ 从SDK4.3.0版本开始这部分的代码就可以省略了。（将自动计测功能设置为ON的话、就不需要这个编码处理了。）
 
 <div id="tracking_event"></div>
 
@@ -341,6 +379,8 @@ public class BaseActivity extends Activity {
 	}
 }
 ```
+
+> ※ 从SDK4.3.0版本开始这部分的代码就可以省略了。（将自动计测功能设置为ON的话、就不需要这个编码处理了。）
 
 **[安装到APP内所有的Activity]**
 
@@ -414,6 +454,7 @@ Fox.trackEvent(tutorialEvent);
 > 进行事件计测时、需指定识别成果地点的`成果地点ID`。[`FoxEvent`](./doc/sdk_api/README.md#foxevent) 类的构造函数的参数中请指定事件名称和生成的ID.
 
 <div id="tracking_event_purchase"></div>
+
 **[付费事件的计测案例]**
 
 进行付费计测时，请在付费完成的位置指定付费金额和货币代码。
@@ -437,84 +478,33 @@ Fox.trackEvent(purchaseEvent);
 
 ## 7. 最简单的实际安装案例
 
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
+
+通过执行下面的案例代码，相当于执行了下面4个部分的代码处理。
+
 * 激活F.O.X SDK
 * 首次启动时的Install计测
 * Session事件的计测
 * 流失唤回广告计测
 
-以下为同一位置中安装了可共通化处理的案例。其他各类事件，必须在每次发生时执行。
-
 ```java
 import android.app.Application;
-import co.cyberz.common.FoxConfig;
 import co.cyberz.fox.Fox;
+import co.cyberz.fox.annotation.FoxConfig;
 
+@FoxConfig(appId = 发行的APPID, appKey = "发行的APP_KEY", appSalt = "发行的APP_SALT")
 public class YourApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // 激活处理
-        private int FOX_APP_ID = 发行的APP ID;
-        private String FOX_APP_KEY = "发行的APP_KEY";
-        private String FOX_APP_SALT = "发行的APP_SALT";
-        new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT).activate();
-
-        // Application的生命周期的检查
-        if (14 <= Build.VERSION.SDK_INT) {
-        	registerActivityLifecycleCallbacks(new ApplicationLifeCycleCallbacks());
-        }
+        // SDK激活、自动计测的开始
+        Fox.AUTOMATOR.init(this).startTrack();
     }
-
-
-    private static final class ApplicationLifeCycleCallbacks implements ActivityLifecycleCallbacks {
-
-	    @Override
-	    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-	      // Install计测(※1)
-	      Fox.trackInstall();
-	    }
-
-	    @Override
-	    public void onActivityStarted(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivityResumed(Activity activity) {
-	      // Session Tracking
-	      Fox.trackSession();
-	      // 流失唤回广告计测
-	      Fox.trackDeeplinkLaunch(activity);
-	    }
-
-	    @Override
-	    public void onActivityPaused(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivityStopped(Activity activity) {
-	    }
-
-	    @Override
-	    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-	    }
-
-	    @Override
-	    public void onActivityDestroyed(Activity activity) {
-	    }
-  }
 }
 ```
 
-※1 使用[`registerActivityLifecycleCallbacks`](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks))时、APP的minSdkVersion需要大于或等于14。
-
-※2 上述执行中使用Cookie追踪进行Install计测的情况时，APP的首次调用Activity时会启动浏览器。因此，请在首次Activity动作无误的情况时使用。<br>
-进行InstallReferrer计测和Fingerprint计测时有效。
-
-※3 上述仅为计测启动类事件的实际安装案例，新手引导完成・付费及账号注册等事件需要在其他Activity内执行计测。
-
-※4 上述安装中进行Cookie计测，浏览器自动跳转至APP时，请在AndroidManifest里设置主要的Activity自定义URL SCHEME。
+※ 上述安装中进行Cookie计测，浏览器自动跳转至APP时，请在AndroidManifest里设置主要的Activity自定义URL SCHEME。
 
 
 <div id="other_function"></div>
@@ -531,22 +521,4 @@ public class YourApplication extends Application {
 
 ## 9. 最后需确认内容（常见问题集）
 
-### 9.1. 未设置URL SCHEME 进行发布后无法从浏览器跳转至APP
-
-进行Cookie计测启动浏览器时，为了使用URL SCHEME迁移到Application需要设置URL SCHEME。
-
-### 9.2. URL SCHEME中含有大写字母时，无法正常迁移到APP。
-
-根据运行环境，会出现因为URL SCHEME 的大小写字母不能判定而导致使用URL SCHEME无法正常迁移的情况。请将URL SCHEME全部设置为半角小写英文数字或小数点。
-
-### 9.3. F.O.X中计测的Install数值会大于Google Play Developer Console的数字
-
-F.O.X结合多种方式来进行终端重复安装的检查。当设置无法进行检查重复时，同一终端的再次安装可能会被F.O.X判定为新的安装。
-
-为提高排查重复的精度，请进行下面的设置。
-
-* [导入Google Play Services SDK来使用广告ID](./doc/google_play_services/README.md)
-
-* [利用外部储存优化重复排除](./doc/external_storage/README.md)
-
-* [使用自动备份功能 Android M](./doc/auto_backup/README.md)
+* [FAQ・注意事项](./doc/trouble_shooting/README.md)
