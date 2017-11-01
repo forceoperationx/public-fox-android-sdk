@@ -191,7 +191,7 @@ public class YourApplication extends Application {
 }
 ```
 
-> ※ 初回起動計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、別途`Fox.trackInstall()`を実装すること可能です。。実装先は従来と同様にMainとなるActivityのonCreate()となります。
+> ※ 初回起動計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、別途`Fox.trackInstall()`を実装すること可能です。実装先は従来と同様にMainとなるActivityのonCreate()となります。
 >
 > ※ リエンゲージメント計測でBuidを指定する必要があり且つ、Application内ではBuid用意出来ない場合、別途`Fox.trackDeeplinkLaunch`を実装する必要があります。
 
