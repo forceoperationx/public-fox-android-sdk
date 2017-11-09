@@ -50,7 +50,7 @@ F.O.X Android SDK 4.X.Xをお使いで自動計測に変更される場合は以
 #### [&nbsp;初回起動計測&nbsp;]
 
 アプリが起動したタイミングで自動で初回起動計測が行われます。<br>
-<font color="Red">これまでアプリが起動して最初に表示されるActivityのonCreateに実装されていたFox.trackInstall()は削除してください。</font>
+**これまでアプリが起動して最初に表示されるActivityのonCreateに実装されていたFox.trackInstall()は削除してください。**
 
 [&nbsp;削除&nbsp;]
 
@@ -65,7 +65,7 @@ Fox.trackInstall();
 #### [&nbsp;セッション計測&nbsp;]
 
 従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。<br>
-<font color="red">これまで全てのActivityのonResumeに実装されていたFox.trackSession()は削除してください。</font>
+**これまで全てのActivityのonResumeに実装されていたFox.trackSession()は削除してください。**
 
 [&nbsp;削除&nbsp;]
 
@@ -80,7 +80,7 @@ Fox.trackSession();
 #### [&nbsp;ディープリンクによる計測&nbsp;]
 
 リエンゲージメント広告の計測を行うためには、従来通りAndroidManifest.xmlに定義されているActivityに[`カスタムURLスキームの設定`](../../README.md#setting_urlscheme)がされていることが前提となります。<br>
-これまでアプリが起動して最初に表示されるActivityのonResume()に実装されていたFox.trackDeeplinkLaunch()は削除してください。
+**これまでアプリが起動して最初に表示されるActivityのonResume()に実装されていたFox.trackDeeplinkLaunch()は削除してください。**
 
 [&nbsp;削除&nbsp;]
 
