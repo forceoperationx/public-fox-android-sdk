@@ -65,7 +65,7 @@ Fox.trackInstall();
 #### [&nbsp;セッション計測&nbsp;]
 
 従来（Activityの遷移時に計測）とは異なり、アプリの起動時・バックグラウンドからの復帰時に自動で行われます。<br>
-これまで全てのActivityのonResumeに実装されていたFox.trackSession()は削除してください。
+<font color="red">これまで全てのActivityのonResumeに実装されていたFox.trackSession()は削除してください。</font>
 
 [&nbsp;削除&nbsp;]
 
