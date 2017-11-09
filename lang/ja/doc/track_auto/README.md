@@ -50,7 +50,7 @@ F.O.X Android SDK 4.X.Xをお使いで自動計測に変更される場合は以
 #### [&nbsp;初回起動計測&nbsp;]
 
 アプリが起動したタイミングで自動で初回起動計測が行われます。<br>
-** <font color="Red">これまでアプリが起動して最初に表示されるActivityのonCreateに実装されていたFox.trackInstall()は削除してください。</font>**
+**<font color="Red">これまでアプリが起動して最初に表示されるActivityのonCreateに実装されていたFox.trackInstall()は削除してください。</font>**
 
 [&nbsp;削除&nbsp;]
 
