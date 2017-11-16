@@ -368,6 +368,8 @@ protected void onResume() {
 
 アプリケーションの起動、及びバックグラウンドからの復帰を計測するために、各ActivityのonResumeメソッド内または、ベースとなるAcitvityのonResumeメソッド内に[`Fox.trackSession`](./doc/sdk_api/README.md#fox)メソッドを実装します。
 
+※セッション（起動イベント）の計測がコールされるタイミングは、[インストール計測](#tracking_install)の後になるように実装してください。
+
 ```java
 import co.cyberz.fox.Fox;
 
@@ -436,6 +438,8 @@ public class YourApplication extends Application {
 ### 6.2 その他のアプリ内イベントの計測
 
 会員登録、チュートリアル突破、課金など任意の成果地点にイベント計測を実装することで、流入元広告のLTVを測定することができます。<br>イベント計測が不要の場合には、本項目の実装を省略できます。
+
+※アプリ内イベントの計測がコールされるタイミングは、[インストール計測](#tracking_install)、[セッション（起動イベント）の計測](#tracking_session)の後になるように実装してください。
 
 <div id="tracking_event_tutorial"></div>
 
