@@ -12,7 +12,8 @@
 
 ## 1. Install计测的安装
 
-使用onLaunch方法可以进行Install计测。使用Cookie计测手法时会弹跳出外部浏览器。外部浏览器的迁移目的地可以通过在onLaunch的参数中指定URL字符串来实现。
+通过使用trackInstall方法可以进行Install计测。使用Cookie计测手法时会弹跳出外部浏览器，这时外部浏览器的迁移目的地可以通过在trackInstall的参数中指定URL字符串来实现。
+
 
 编辑项目中的代码，针对APP启动时呼出的Activity，请按照以下内容来编码。
 
@@ -52,7 +53,7 @@ public void onCreate(Bundle savedInstanceState) {
   option.setRedirectUrl("myapp://top")
         .setBuid(getUserId())
         .setOptOut(true)
-        .setTrackingStateListener(new FoxTrackOption.TrackingStateListerner() {
+        .setTrackingStateListener(new FoxTrackOption.TrackingStateListener() {
            @Override
            public void onComplete() {
              showTutorialDialog();
@@ -69,9 +70,9 @@ protected void onResume() {
 }
 ```
 
-> ※ 上述示例代码是一个跳转目的地・BUID・有无optout・计测完成的回调函数受理的编码案例。<br>设置TrackingStateListerner后完成计测处理时会调用onComplete方法，因此请在Install计测完成后马上想处理的内容请编写代码到此处。
+> ※ 上述示例代码是一个跳转目的地・BUID・有无optout・计测完成的回调函数受理的编码案例。<br>设置TrackingStateListener后完成计测处理时会调用onComplete方法，因此请在Install计测完成后马上想处理的内容请编写代码到此处。
 
-> ※ Cookie计测有效的时候、从浏览器跳转回APP之后调用TrackingStateListerner的onComplete方法。请一定在恢复回来的Activity的onResume里面执行`Fox.trackDeeplinkLaunch`方法。<br>不执行的话，不会调用onComplete方法。
+> ※ Cookie计测有效的时候、从浏览器跳转回APP之后调用TrackingStateListener的onComplete方法。请一定在恢复回来的Activity的onResume里面执行`Fox.trackDeeplinkLaunch`方法。<br>不执行的话，不会调用onComplete方法。
 ```java
 @Override
 protected void onResume() {
