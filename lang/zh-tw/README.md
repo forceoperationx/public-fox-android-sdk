@@ -302,7 +302,6 @@ public class MainActivity extends Activity {
 ```
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar
 -keep interface jp.appAdForce.** { *; }
 -keep class jp.appAdForce.** { *; }
 -keep class jp.co.dimage.** { *; }
@@ -315,6 +314,8 @@ public class MainActivity extends Activity {
 -dontwarn com.adobe.fre.**
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
+# 如果是通过Gradle安装SDK的话，不需要指定下面的jar文件。
+-libraryjars libs/AppAdForce.jar
 ```
 
 如果已導入GooglePlayServiceSDK，請確認下面網頁所記載的keep指定是否有被記述。

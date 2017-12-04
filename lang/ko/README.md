@@ -252,7 +252,6 @@ ProGuard를 이용하여 앱의 코드 난독화 처리를 할 때는 F.O.X SDK�
 ```
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar
 -keep interface jp.appAdForce.** { *; }
 -keep class jp.appAdForce.** { *; }
 -keep class jp.co.dimage.** { *; }
@@ -266,6 +265,9 @@ ProGuard를 이용하여 앱의 코드 난독화 처리를 할 때는 F.O.X SDK�
 -dontwarn com.adobe.fre.FREObject
 -dontwarn com.ansca.**
 -dontwarn com.naef.jnlua.**
+
+# Gradle을 이용하여 SDK를 인스톨한 경우, 아래 jar파일의 지정은 필요없습니다.
+-libraryjars libs/AppAdForce.jar
 ```
 
 또한 Google Play Service SDK설치 되어있는 경우는 다음 페이지에 기재되어 keep 지정이 기술되어 있는지 확인하십시오.
