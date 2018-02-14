@@ -278,6 +278,7 @@ public class YourApplication extends Application {
 }
 
 ```
+> ※ appId、salt、appKeyの値については、アプリ登録後、F.O.X管理画面のアプリ一覧>該当アプリ右上の設定ボタン>SDK導入をご確認ください。
 
 > 上記のコードはアクティベーションと自動計測の両方を実行しています。既に従来のバージョンが導入済みの場合、必ず[自動計測の詳細](./doc/track_auto/README.md)をご確認ください。
 
