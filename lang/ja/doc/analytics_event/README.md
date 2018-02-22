@@ -24,7 +24,7 @@ sendEventメソッドのパラメータの仕様は下記の通りです。
 |label|String|イベントに属するラベル名を設定します。ラベル名は⾃自に設定可能です。nullでも構いません。|
 |value|int|イベント回数を指定します。1でも構いません。|
 
-
+> ※ 管理画面ではeventNameをキーに集計を行います。actionやlabelなどをキーにした集計を行っておりません。計測したいイベント毎にeventNameがユニークになるように設定してください。
 
 ```java
 import jp.appAdForce.android.AnalyticsManager;
