@@ -314,13 +314,13 @@ public class YourApplication extends Application {
 <div id="tracking_install"></div>
 
 ### 3.2 オフラインモード
-F.O.Xの計測機能を停止しトラッキングを無効化する設定です。<br>
+F.O.X SDKの計測機能を停止しトラッキングを無効化する設定です。<br>
 オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。<br>
 
 - ユーザ許諾をもとにオフラインモードの有効無効を設定したい場合、activate()はユーザ許諾後に実行してください。
 - 自動計測ではオフラインモードの設定は非対応となります。手動計測で実装を行ってください。
 - activate()はアプリ起動時に常に呼び出し必要となります。
-- フラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます（Android M以降でautobackupの設定をONにしている場合は再インストール時も設定値が復元されますので、変更したい場合は[`除外設定`](./doc/[`Fox.trackInstall`](./doc/sdk_api/README.md#fox))を行ってください）
+- オフラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます（Android M以降でautobackupの設定をONにしている場合は再インストール時も設定値が復元されますので、変更したい場合は[`除外設定`](./doc/[`Fox.trackInstall`](./doc/sdk_api/README.md#fox))を行ってください）
 
 ```java
 	FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
