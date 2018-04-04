@@ -314,24 +314,21 @@ public class YourApplication extends Application {
 <div id="tracking_install"></div>
 
 ### 3.2 オフラインモード
-F.O.Xの計測機能を停止しトラッキングを無効化する設定です。
-オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。
-オフラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます（Android M以降でautobackupの設定をONにしている場合は再インストール時も設定値が復元されますので、変更したい場合は[`除外設定`](./doc/[`Fox.trackInstall`](./doc/sdk_api/README.md#fox))を行ってください）
-- ユーザ許諾などをもとにオフラインモードの有効無効を設定したい場合、activateの処理はユーザ許諾後に実行してください。
-- 自動計測ではオフラインモードの設定は非対応となります。手動計測での実装をしてください。
+F.O.Xの計測機能を停止しトラッキングを無効化する設定です。<br>
+オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。<br>
+
+- ユーザ許諾をもとにオフラインモードの有効無効を設定したい場合、activate()はユーザ許諾後に実行してください。
+- 自動計測ではオフラインモードの設定は非対応となります。手動計測で実装を行ってください。
+- activate()はアプリ起動時に常に呼び出し必要となります。
+- フラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます（Android M以降でautobackupの設定をONにしている場合は再インストール時も設定値が復元されますので、変更したい場合は[`除外設定`](./doc/[`Fox.trackInstall`](./doc/sdk_api/README.md#fox))を行ってください）
 
 ```java
-@Override
-public void onCreate() {
-	super.onCreate();
-
-	int FOX_APP_ID = 発行されたアプリID;
-	String FOX_APP_KEY = "発行されたAPP_KEY";
-	String FOX_APP_SALT = "発行されたAPP_SALT";
 	FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
-	config.addOfflineModeOption(true);
+	// オフラインモード未設定の場合
+	if (!isUserPermissionSavedByApp) {
+		config.addOfflineModeOption(isOfflineByApp);
+	}
 	config.addDebugOption(BuildConfig.DEBUG).activate();
-}
 ```
 
 ## 4. インストール計測の実装
