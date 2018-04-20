@@ -237,6 +237,8 @@ Gradleで導入する場合、導入先のアプリの`build.gradle`の`dependen
 
 ## 3. F.O.X SDKのアクティベーション
 
+### 3.1 アクティベーション
+
 F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)クラスをApplicationクラスを継承したクラスのonCreateメソッド内に実装します。<br>
 また、Applicationを継承しているクラスはAndroidManifest.xmlのapplicationタグのname属性に指定する必要があります。
 
@@ -286,7 +288,7 @@ public class YourApplication extends Application {
 
 <div id="old_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-〜%204.2.1-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.2.1)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーションの実行&nbsp;]
+&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーションの実行（手動設定）&nbsp;]
 
 ```java
 import android.app.Application;
@@ -311,10 +313,27 @@ public class YourApplication extends Application {
 
 <div id="tracking_install"></div>
 
+### 3.2 オフラインモード
+F.O.X SDKの計測機能を停止しトラッキングを無効化する設定です。<br>
+オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。<br>
+
+- 開発期間などでF.O.Xへデータを送信したくない場合や、配信地域によって計測を停止したい場合などで本機能をご利用ください。
+- ユーザ許諾をもとにオフラインモードの有効無効を設定したい場合、ユーザ許諾後にactivate()を実行してください(activate()はアプリ起動時に常に呼び出し必要となります)
+- 自動計測ではオフラインモードの設定は非対応となります。手動計測での実装を行ってください。
+- オフラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます。
+```java
+	FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
+	// オフラインモード未設定の場合
+	if (!isUserPermissionSavedByApp) {
+		config.addOfflineModeOption(isOfflineByApp); //一度設定するとアプリをアンインストールするまで設定は保存されます
+	}
+	config.addDebugOption(BuildConfig.DEBUG).activate(); //activate()はF.O.Xを有効化するためのメソッドです。アプリ起動の度にに必ず実行してください
+```
+
 ## 4. インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。<br>
-以下の[`Fox.trackInstall`](./doc/sdk_api/README.md#fox)メソッドをアプリケーションの起動時に呼び出されるActivityのonCreateメソッド内に実装します。<br>
+以下の[`Fox.trackInstall`](./doc/auto_backup/README.md)メソッドをアプリケーションの起動時に呼び出されるActivityのonCreateメソッド内に実装します。<br>
 
 ```java
 import co.cyberz.fox.Fox;
