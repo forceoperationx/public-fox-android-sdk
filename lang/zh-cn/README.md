@@ -315,7 +315,6 @@ public class YourApplication extends Application {
 
 ### 3.2 线下模式
 开启线下模式功能，可停止F.O.X SDK的所有监测行为。<br>
-オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。<br>
 将addOfflineModeOption设定为true来开启线下模式，设定为false来关闭线下模式（未设定时默认为关闭线下模式）。
 
 - 在开发期间，如不想将数据发送到F.O.X，或者希望按照投放地域停止计测的时候，可以利用这个功能。
