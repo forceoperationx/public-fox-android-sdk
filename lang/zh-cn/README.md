@@ -400,7 +400,7 @@ protected void onResume() {
 
 为了在APP启动或从后台恢复到前台时做计测，需在各Activity的onResume方法、以及基本Acitvity的onResume方法中执行[`Fox.trackSession方法`](./doc/sdk_api/README.md#fox)。
 
-※请在[Install计测](#tracking_install)之后再调用Session（启动事件）的计测处理。
+※请在进行[Install计测](#tracking_install)之后再调用Session（启动事件）的计测处理。
 
 ```java
 import co.cyberz.fox.Fox;
@@ -473,7 +473,7 @@ public class YourApplication extends Application {
 在会员注册，完成新手引导，付费等任意成果地点执行事件计测，能够测定广告流入源的LTV。<br>
 不需要事件计测的话，可以忽略本项。
 
-※アプリ内イベントの計測がコールされるタイミングは、[インストール計測](#tracking_install)、[セッション（起動イベント）の計測](#tracking_session)の後になるように実装してください。
+※请在进行[Install计测](#tracking_install)和[Session(起动事件)](#tracking_session)的计测处理之后再调用APP内事件的计测处理。
 
 <div id="tracking_event_tutorial"></div>
 **[新手引导事件的计测实例]**
