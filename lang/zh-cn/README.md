@@ -153,12 +153,12 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 </receiver>
 ```
 
-#### Google Play Referrer APIを用いる場合
+#### 使用Google Play Referrer API
 
 [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
 
-以下の[Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)のdependencyをbuild.gradleに追加することで本API経由でのInstallReferrer計測が可能となります。<br>
-(得にSDKの実装は必要ありません)
+通过将下面的[Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)的dependency添加到build.gradle的方式，可以利用此API实现InstallReferrer计测。<br>
+(不需要特意去安装SDK)
 
 ```
 dependencies {
@@ -237,7 +237,7 @@ dependencies {
 
 ## 3. 激活F.O.X SDK
 
-### 3.1 アクティベーション
+### 3.1 激活
 
 为激活F.O.X SDK，需在继承了Application类的onCreate方法中安装[`FoxConfig`](./doc/sdk_api/README.md#foxconfig)类。
 并且，继承Application的类必须指定AndroidManifest.xml中Application Tag的name属性。
@@ -280,7 +280,7 @@ public class YourApplication extends Application {
 }
 
 ```
-> ※ appId、salt、appKeyの値については、アプリ登録後、F.O.X管理画面のアプリ一覧>該当アプリ右上の設定ボタン>SDK導入をご確認ください。
+> ※ APP登录以后，可以在F.O.X管理画面的【APP一览>此APP右上方的设定按钮>导入SDK】的地方来确认appId、salt、appKey的值。
 
 > 上面的代码可以同时执行激活和自动计测。已经导入了旧版本的话，请务必去确认[自动计测的详细](./doc/track_auto/README.md)的内容。
 
@@ -288,7 +288,7 @@ public class YourApplication extends Application {
 
 <div id="old_activation"></div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーションの実行（手動設定）&nbsp;]
+&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;进行激活（手动设定）&nbsp;]
 
 ```java
 import android.app.Application;
@@ -313,21 +313,22 @@ public class YourApplication extends Application {
 
 <div id="tracking_install"></div>
 
-### 3.2 オフラインモード
-F.O.X SDKの計測機能を停止しトラッキングを無効化する設定です。<br>
+### 3.2 线下模式
+开启线下模式功能，可停止F.O.X SDK的所有监测行为。<br>
 オフラインモードを有効にする場合は、addOfflineModeOptionにtrueを、無効にする場合はfalseを設定してください（未設定の場合、オフラインモードは無効のままです）。<br>
+将addOfflineModeOption设定为true来开启线下模式，设定为false来关闭线下模式（未设定时默认为关闭线下模式）。
 
-- 開発期間などでF.O.Xへデータを送信したくない場合や、配信地域によって計測を停止したい場合などで本機能をご利用ください。
-- ユーザ許諾をもとにオフラインモードの有効無効を設定したい場合、ユーザ許諾後にactivate()を実行してください(activate()はアプリ起動時に常に呼び出し必要となります)
-- 自動計測ではオフラインモードの設定は非対応となります。手動計測での実装を行ってください。
-- オフラインモードを設定した場合、アプリをアンイストールするまで設定は反映されます。
+- 在开发期间，如不想将数据发送到F.O.X，或者希望按照投放地域停止计测的时候，可以利用这个功能。
+- 根据用户许可来设定线下模式是否开启时，请确保在用户许可之后执行activate()。(activate()需要在App每次启动时去执行)
+- 自动计测的代码实装方式不适用于线下模式。请按手动计测来实装代码。
+- 设定将保持生效至App被删除。
 ```java
 	FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);
-	// オフラインモード未設定の場合
+	// 如果未开启线下模式
 	if (!isUserPermissionSavedByApp) {
-		config.addOfflineModeOption(isOfflineByApp); //一度設定するとアプリをアンインストールするまで設定は保存されます
+		config.addOfflineModeOption(isOfflineByApp); //一旦开启，设定将保持生效至App被删除。
 	}
-	config.addDebugOption(BuildConfig.DEBUG).activate(); //activate()はF.O.Xを有効化するためのメソッドです。アプリ起動の度にに必ず実行してください
+	config.addDebugOption(BuildConfig.DEBUG).activate(); //activate()是让F.O.X生效的方法。请务必在APP启动的时候执行。
 ```
 
 ## 4. Install计测的安装
@@ -399,7 +400,7 @@ protected void onResume() {
 
 为了在APP启动或从后台恢复到前台时做计测，需在各Activity的onResume方法、以及基本Acitvity的onResume方法中执行[`Fox.trackSession方法`](./doc/sdk_api/README.md#fox)。
 
-※セッション（起動イベント）の計測がコールされるタイミングは、[インストール計測](#tracking_install)の後になるように実装してください。
+※请在[Install计测](#tracking_install)之后再调用Session（启动事件）的计测处理。
 
 ```java
 import co.cyberz.fox.Fox;
