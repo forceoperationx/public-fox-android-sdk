@@ -37,5 +37,31 @@ Android M(6.0)追加的自动备份功能可以提高排除重复的效果。本
 <exclude domain="file" path="__ADMAGE_APP_CONVERSION_COMPLETED__" />
 ```
 
+## F.O.Xの設定値をオートバックアップ対象外にする
+
+**[F.O.Xの設定値をオートバックアップ対象外にする]**
+
+オフラインモードなどF.O.Xの設定値はShared Preferencesのco.cyberz.fox.xmlに保存されます。アプリの再インストール時に設定値を引き継ぎたくない場合などは、以下を参考に除外設定を行ってください。
+
+[Back Up User Data with Auto Backup](https://developer.android.com/guide/topics/data/autobackup.html#IncludingFiles)
+
+**[実装例]**
+
+manifest.xml
+```
+<application ...
+    android:fullBackupContent="@xml/my_backup_rules"
+</app>
+```
+
+my_backup_rules.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="sharedpref" path="co.cyberz.fox.xml"/>
+</full-backup-content>
+
+```
+
 ---
 [Top](../../README.md)
