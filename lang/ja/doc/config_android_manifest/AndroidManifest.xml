@@ -46,7 +46,6 @@
     <!-- 必須: パーミッションの設定 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 推奨: パーミッションの設定 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
