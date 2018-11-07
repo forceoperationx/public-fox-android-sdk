@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aaa"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
+    <application
+        android:name=".YourApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.aaa.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- URL スキームの設定 (sampleapp://) -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sampleapp" />
+            </intent-filter>
+        </activity>
+
+        <!-- インストールリファラー計測の receiver 設定 -->
+        <receiver android:exported="true" android:name="co.cyberz.fox.FoxInstallReceiver" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- オプション: 二つのINSTALL_REFERRER レシーバーを共存させる 設定 -->
+        <!-- valueに共存させたいレシーバークラスのパスを記述します -->
+        <meta-data android:name="APPADFORCE_FORWARD_RECEIVER"
+            android:value="com.other.sample.InstallReferrerReceiver1|com.other.sample.InstallReferrerReceiver2|com.other.sample.InstallReferrerReceiver3" />
+
+    </application>
+
+    <!-- 必須: パーミッションの設定 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 推奨: パーミッションの設定 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+</manifest>
