@@ -4,7 +4,8 @@
 
 # About F.O.X
 
-Force Operation X (Hereinafter referred to as F.O.X) is a total solution platform which measures and optimizes ad effectiveness on smartphone applications. Primary features such as user install tracking, LTV measurement, and CV measurement, will maximize the price-performance ratio of your app's advertising. Find out more about F.O.X at [cyber-z.co.jp](https://cyber-z.co.jp/en/fox).
+Force Operation X (Hereinafter referred to as F.O.X) is a total solution platform which measures and optimizes ad effectiveness on smartphone applications. Primary features such as user install tracking, LTV measurement, and CV measurement, will maximize the price-performance ratio of your app's advertising.<br>
+Find out more about F.O.X at [cyber-z.co.jp](https://cyber-z.co.jp/en/fox).
 
 # Summary
 
@@ -35,7 +36,7 @@ Read this in another language: [日本語](https://github.com/cyber-z/public-fox
 	* [Implementing deferred-deeplink](./doc/deferred_deeplink/README.md)
 * **[5. Re-engagement measurement implementation](#tracking_reengagement)**
 * **[6. LTV measurement](#tracking_event)**
-	* [6.1 Session (start-time) measurement](#tracking_session)
+	* [6.1 Session measurement](#tracking_session)
 	* [6.2 Additional event measurement](#tracking_other_event)
 	* [Event measurement details (engagement measurement, dynamic transmission linkage..)](./doc/track_events/README.md)
 * **[7. Quick Integration Example](#quickly_integration)**
@@ -183,7 +184,7 @@ dependencies {
 
 ### 2.4 Custom URL Scheme Settings
 
-In order to grant an external user agent the capability to launch your app, add the following inside the `activity` tag responsible for launching your application. <br>
+In order to grant an external user agent (browser) the capability to launch your app, add the following inside the `activity` tag responsible for launching your application. <br>
 
 
 ```xml
@@ -244,11 +245,11 @@ If you are only setting up GooglePlayServices to obtain the Google Advertising I
 
 <div id="activate_sdk_into_app"></div>
 
-## 3. F.O.X SDK Initialization
+## 3. F.O.X SDK Activation
 
-### 3.1 Initialization
+### 3.1 Activation
 
-In order to initialize the F.O.X SDK, you must follow these steps:
+In order to activate the F.O.X SDK, you must follow these steps:
 
 * Create or use a class that extends `Application`
 * Find or create the `onCreate` method in your `Application` class and insert the `FoXConfig` class
@@ -273,7 +274,7 @@ Additionally, it is necessary to set the `android:name` value in your `AndroidMa
 
 <div id="new_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;initialization and auto-tracking execution&nbsp;]
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;activation and auto-tracking execution&nbsp;]
 
 
 ```java
@@ -406,7 +407,7 @@ protected void onResume() {
 
 <div id="tracking_session"></div>
 
-### 6.1 Implementing Session-start Measurement
+### 6.1 Implementing Session Measurement
 
 Compare organic and non-organic installs. Track app launches and unique users(DAU/MAU). Measure user retention and so on. When Session-start measurement is not required, you can omit the implementation of this item.
 
@@ -534,8 +535,8 @@ These four functions can be replicated using the following source code:
 
 * F.O.X SDK activation
 * First-time App launch tracking
-* Session-start event tracking
-* Re-engagement tracking
+* Session event tracking
+* Re-engagement measurement
 
 ```java
 import android.app.Application;

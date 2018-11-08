@@ -32,7 +32,7 @@ Instructions for how to migrate from previous versions of the F.O.X SDK
     compile 'co.cyberz.fox:track-core:{VERSION}'
 ```
 
-3.&nbsp;&nbsp;Executing the Gradle Build
+3.&nbsp;&nbsp;Execute the Gradle Build
 
 ## 2. Change Settings
 
@@ -69,43 +69,43 @@ The following meta-data that was formerly set in your AndroidManifest is no long
 ### 2.2 Settings Review
 
 * If you haven't done so already please review and complete our section on [Setting Up Google Play Services for advertisement ID acquisition(Optional)](../google_play_services/en/)
-* If you haven't done so already please review and complete our section on[De-duplication feature enhancement (external storage permission(Optional)](../external_storage/en/)
+* If you haven't done so already please review and complete our section on[De-duplication feature enhancement with external storage permission(Optional)](../external_storage/en/)
 
 ※ Make sure you test for any bugs/abnormalities as well as measurement tests after updating the SDK.
 
 
 ## 3. Implementation changes from previous versions (before 4.0.0)
 
-### 3.1 マイグレーション時の注意
+### 3.1 Migration Warnings
 
-* 必ず旧バージョンはプロジェクト内から削除した上で導入してください。
-* アプリケーションのプロジェクトにSDKは旧バージョン(4.0.0未満)とを混在しないようにしてください。ビルドエラーが発生します。
+* Make sure you delete any previous versions before integrating a new version.
+* Make sure your project doesn't contain any previous versions. Otherwise, a build error will occur.
 
 
-### 3.2 計測別のAPI対応表
+### 3.2 API Changes by Feature
 
-|種別| `〜 3.3.0` の実装 | `4.0.0 〜` の実装|
+|Feature| `〜 3.3.0` and below | `4.0.0 〜` and above|
 |:---:|:---|:---|
-|[アクティベーション](../../README.md#activate_sdk_into_app)|**AndroidManifest.xml**<br>&lt;meta-data&gt;<br>・APPADFORCE_APP_ID<br>・APPADFORCE_CRYPTO_SALT<br>・ANALYTICS_APP_KEY|[FoxConfig](../sdk_api/README.md#foxconfig) config = <br>new [FoxConfig](../sdk_api/README.md#foxconfig)("*APPADFORCE_APP_ID*", "ANALYTICS_APP_KEY", "*APPADFORCE_CRYPTO_SALT*");<br>config.activate();|
-|[インストール計測](../../README.md#tracking_install)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("default");|[Fox](../sdk_api/README.md#fox).trackInstall();|
-|[インストール計測<br>(オプション付)](../track_install/README.md#track_install_optional)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("*https://redirectSite.com*", "USER_0001");|[FoxTrackOption](../sdk_api/README.md#foxtrackoption) opt = new [FoxTrackOption](../sdk_api/README.md#foxtrackoption)();<br>opt.addRedirectUrl("*https://redirectSite.com*");<br>opt.addBuid("USER_0001")<br>[Fox](../sdk_api/README.md#fox).trackInstall(opt);|
-|[外部ブラウザでイベント計測](../track_events/README.md#track_by_browser)|AdManager ad = new AdManager(this);<br>LtvManager ltv = new LtvManager(ad);<br>ltv.ltvOpenBrowser("*http://yourhost.com/*");|[Fox](../sdk_api/README.md#fox).trackEventByBrowser("*http://yourhost.com/*");|
-|[アプリ内WebViewでイベント計測](../track_events/README.md#track_by_webview)|AdManager ad = new AdManager(*Context*);<br>LtvManager ltv = new LtvManager(ad);<br>WebView mWebView = (WebView) findViewById(R.id.webview);<br>ltv.setLtvCookie(mWebView);<br>webView.loadUrl("*http://yourhost.com/*");|WebView webView = (WebView) findViewById(R.id.webview);<br>[Fox](../sdk_api/README.md#fox).trackEventByWebView(webView);<br>webView.loadUrl("*http://yourhost.com/*");|
-|[リエンゲージメント計測](../../README.md#tracking_reengagement)|AdManager ad = new AdManager( Context );<br>ad.sendReengagementConversion(Intent);|[Fox](../sdk_api/README.md#fox).trackDeeplinkLaunch(Intent);|
-|[セッション計測](../../README.md#tracking_session)|AnalyticsManager.sendStartSession( Context );|[Fox](../sdk_api/README.md#fox).trackSession();|
-|[イベント計測<br>(課金)](../../README.md#tracking_event_purchase)|// LTV計測による課金計測<br>AdManager ad = new AdManager( Context )<br>LtvManager ltv = new LtvManager( ad );<br>ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");<br>ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");<br>ltv.sendLtvConversion( *成果地点ID* );<br><br>// アクセス解析による課金計測(`※1`)<br>AnalyticsManager.sendEvent(Context, "*イベント名*", action, null, null, orderId, sku, itemName, 9.99, 1, "USD");|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*イベント名*", *成果地点ID*);<br>event.price = 9.99;<br>event.currency = "USD";<br>event.quantity = 1;<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
-|[イベント計測<br>(チュートリアル完了)](../../README.md#tracking_event_tutorial)|AnalyticsManager.sendEvent(Context, "*チュートリアル完了*", null, null, 1);|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*チュートリアル完了*");<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
+|[Activation](../../README.md#activate_sdk_into_app)|**AndroidManifest.xml**<br>&lt;meta-data&gt;<br>・APPADFORCE_APP_ID<br>・APPADFORCE_CRYPTO_SALT<br>・ANALYTICS_APP_KEY|[FoxConfig](../sdk_api/README.md#foxconfig) config = <br>new [FoxConfig](../sdk_api/README.md#foxconfig)("*APPADFORCE_APP_ID*", "ANALYTICS_APP_KEY", "*APPADFORCE_CRYPTO_SALT*");<br>config.activate();|
+|[Install Tracking](../../README.md#tracking_install)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("default");|[Fox](../sdk_api/README.md#fox).trackInstall();|
+|[Install Tracking<br>(w/ options)](../track_install/README.md#track_install_optional)|AdManager ad = new AdManager( Context );<br>ad.sendConversion("*https://redirectSite.com*", "USER_0001");|[FoxTrackOption](../sdk_api/README.md#foxtrackoption) opt = new [FoxTrackOption](../sdk_api/README.md#foxtrackoption)();<br>opt.addRedirectUrl("*https://redirectSite.com*");<br>opt.addBuid("USER_0001")<br>[Fox](../sdk_api/README.md#fox).trackInstall(opt);|
+|[External Browser Event Tracking](../track_events/README.md#track_by_browser)|AdManager ad = new AdManager(this);<br>LtvManager ltv = new LtvManager(ad);<br>ltv.ltvOpenBrowser("*http://yourhost.com/*");|[Fox](../sdk_api/README.md#fox).trackEventByBrowser("*http://yourhost.com/*");|
+|[WebView Event Tracking](../track_events/README.md#track_by_webview)|AdManager ad = new AdManager(*Context*);<br>LtvManager ltv = new LtvManager(ad);<br>WebView mWebView = (WebView) findViewById(R.id.webview);<br>ltv.setLtvCookie(mWebView);<br>webView.loadUrl("*http://yourhost.com/*");|WebView webView = (WebView) findViewById(R.id.webview);<br>[Fox](../sdk_api/README.md#fox).trackEventByWebView(webView);<br>webView.loadUrl("*http://yourhost.com/*");|
+|[Re-engagement measurement](../../README.md#tracking_reengagement)|AdManager ad = new AdManager( Context );<br>ad.sendReengagementConversion(Intent);|[Fox](../sdk_api/README.md#fox).trackDeeplinkLaunch(Intent);|
+|[Session Measurement](../../README.md#tracking_session)|AnalyticsManager.sendStartSession( Context );|[Fox](../sdk_api/README.md#fox).trackSession();|
+|[Event Tracking<br>(In-App Purchases)](../../README.md#tracking_event_purchase)|// In-App Purchase measurement by LTV<br>AdManager ad = new AdManager( Context )<br>LtvManager ltv = new LtvManager( ad );<br>ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");<br>ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");<br>ltv.sendLtvConversion( *conversion point ID* );<br><br>// In-App purchase measurement by access analytics(`※1`)<br>AnalyticsManager.sendEvent(Context, "*EventName*", action, null, null, orderId, sku, itemName, 9.99, 1, "USD");|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*EventName*", *conversion point ID*);<br>event.price = 9.99;<br>event.currency = "USD";<br>event.quantity = 1;<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
+|[Event Tracking<br>(Tutorial Completion)](../../README.md#tracking_event_tutorial)|AnalyticsManager.sendEvent(Context, "*Tutorial Completion*", null, null, 1);|[FoxEvent](../sdk_api/README.md#foxevent) event = new [FoxEvent](../sdk_api/README.md#foxevent)("*Tutorial Completion*");<br>[Fox](../sdk_api/README.md#fox).trackEvent(event);|
 
-> ※1 バージョン4.0.0以降にマイグレーションする際、これまで旧バージョンで指定していた`イベント名`を変更してしまうと、アクセス解析にて計測してきた集計データが引き継がれなくなりますのでご注意ください。
+> `※1` <strong>WARNING:</strong> When migrating from any version before 4.0.0, be sure not to change the `event name` used for measuring In-App purchases. If such a change occurs, any data collected before the migration will lose its integrity.
 
-### 3.3 その他
+### 3.3 Additional Information
 
-#### 3.3.1 BroadcastReceiverの複数指定
+#### 3.3.1 Enabling multiple BroadcastReceivers
 
-**[`〜 3.3.0` の実装]**
+**Integrations before `〜 3.3.0`**
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定 -->
+<!-- Set the receiver class to the F.O.X SDK's class -->
 <receiver
     android:name="jp.appAdForce.android.InstallReceiver"
     android:exported="true">
@@ -114,16 +114,16 @@ The following meta-data that was formerly set in your AndroidManifest is no long
     </intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述 -->
+<!-- Add any other receiver classes you might want the F.O.X SDK to call as meta-data -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver" />
 ```
 
-**[`4.0.0 〜` の実装](../install_referrer/README.md)**
+**[Integrations after `4.0.0 〜`](../install_referrer/README.md)**
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定します -->
+<!-- Set the receiver class to the F.O.X SDK's class -->
 <receiver
     android:name="co.cyberz.fox.FoxInstallReceiver"
     android:exported="true">
@@ -132,16 +132,16 @@ The following meta-data that was formerly set in your AndroidManifest is no long
     </intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラスのパスを|(パイプ)区切りで記述します -->
+<!-- Pipe the paths of any other receiver classes you might want the F.O.X SDK to call as meta-data -->
 <meta-data
         android:name="APPADFORCE_FORWARD_RECEIVER"
         android:value="com.example.InstallReceiver1|com.example.InstallReceiver2|com.example.InstallReceiver3" />
 ```
 
-#### 3.3.2 Proguardの設定
+#### 3.3.2 Proguard Settings
 
-<br>**[〜 3.3.0 の実装]**<br>
-**[削除]**
+<br>**Integrations before `〜 3.3.0`**<br>
+**[DELETE]**
 
 ```
 -keepattributes *Annotation*
@@ -158,17 +158,17 @@ The following meta-data that was formerly set in your AndroidManifest is no long
 -dontwarn com.naef.jnlua.**
 ```
 
-<br>**[4.0.0〜 の実装]**<br>
-**[追加]**
+<br>**Integrations after `4.0.0 〜`**<br>
+**[ADD]**
 
 ```
 -keepattributes *Annotation*
 -keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
-# Gradle経由でSDKをインストールしている場合、下記jarファイルの指定は不要です。
+### If you installed the SDK through Gradle, you may omit the following .jar file. ###
 -libraryjars libs/AppAdForce.jar
 ```
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)
