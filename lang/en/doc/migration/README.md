@@ -1,46 +1,46 @@
-[TOP](../../README.md)　>　最新バージョンへのマイグレーションについて
+[TOP](../../README.md)　>　Migrating to the latest version
 
 ---
 
-# 最新バージョンへのマイグレーションについて
+# Migrating to the latest version
 
-以前のF.O.X SDKが導入されたアプリに最新のSDKを導入する際に必要な手順は以下の通りです。
+Instructions for how to migrate from previous versions of the F.O.X SDK
 
-## 1. SDKの入れ替え
+## 1. SDK Reinstallation
 
-**[Eclipseの場合]**
+**[For Eclipse]**
 
-1. 以前のバージョンの FOX_Android_SDK_{VERSION}.jarがプロジェクトに組み込まれていれば、それらを削除
-2. [最新のSDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jarファイルをプロジェクトのlibsに追加
-3. Eclipse の「プロジェクト」→「クリーン」を実行
+1. Delete any previous versions of FOX_Android_SDK_{VERSION}.jar files in your project build
+2. Add the [Latest SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) to your project's list of jar files
+3. Clean your Eclipse project
 
-**[AndroidStudioの場合]**
+**[For AndroidStudio]**
 
-1.&nbsp;&nbsp;以前のバージョンの *FOX_Android_SDK_{VERSION}.jar* を削除する。また、アプリプロジェクトの`build.gradle`のdependenciesに以下の指定が記述されていれば削除する。<br>
+1.&nbsp;&nbsp;Delete any previous versions of *FOX_Android_SDK_{VERSION}.jar* files.
 
-**[削除]**
+**[REMOVE]**
 
 ```
     compile 'co.jp.cyberz.fox:sdk-android:{VERSION}'
 ```
 
-2.&nbsp;&nbsp;アプリプロジェクトの`build.gradle`に以下のdependencyを追記する。
+2.&nbsp;&nbsp;Then, add the following to your `build.gradle` dependency list.
 
-**[追加]**
+**[ADD]**
 
 ```
     compile 'co.cyberz.fox:track-core:{VERSION}'
 ```
 
-3.&nbsp;&nbsp;Gradle Buildを実行
+3.&nbsp;&nbsp;Executing the Gradle Build
 
-## 2. 設定の変更
+## 2. Change Settings
 
-### 2.1 設定必須パラメータの変更
+### 2.1 New Parameter Settings
 
-これまでAndroidManifest.xmlに記述していた以下のmeta-dataの設定箇所が不要となり、Application継承クラスのonCreate内での設定となります。
+The following meta-data that was formerly set in your AndroidManifest is no longer necessary. Please set it inside your Application class' onCreate method.
 
-**[削除]**
+**[DELETE]**
 
 ```xml
 <meta-data
@@ -57,24 +57,24 @@
     android:value="ZZZZZZZZZZZZZZZZZZZZZZZZZZ" />
 ```
 
-**[必須パラメータの設定箇所]**
+**[New Parameter Settings Overview]**
 
-|必須パラメータ|〜3.3.0|4.0.0〜|
+|Parameters|〜3.3.0|4.0.0〜|
 |:---:|:---:|:---:|
-|APPADFORCE_APP_ID|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
-|APPADFORCE_SERVER_URL|AndroidManifest.xml|不要|
-|APPADFORCE_CRYPTO_SALT|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
-|ANALYTICS_APP_KEY|AndroidManifest.xml|Application継承クラス内<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|APPADFORCE_APP_ID|AndroidManifest.xml|Within your App class' onCreate method<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|APPADFORCE_SERVER_URL|AndroidManifest.xml|N/A|
+|APPADFORCE_CRYPTO_SALT|AndroidManifest.xml|Within your App class' onCreate method<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
+|ANALYTICS_APP_KEY|AndroidManifest.xml|Within your App class' onCreate method<br>[FoxConfig](../sdk_api/README.md#foxconfig).java|
 
-### 2.2 設定の見直し
+### 2.2 Settings Review
 
-* 「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/ja/)」が未実施の場合には対応をご検討ください。
-* 「[（オプション）外部ストレージを利用した重複排除設定](../external_storage/ja/)」が未実施の場合には対応をご検討ください。
+* If you haven't done so already please review and complete our section on [Setting Up Google Play Services for advertisement ID acquisition(Optional)](../google_play_services/en/)
+* If you haven't done so already please review and complete our section on[De-duplication feature enhancement (external storage permission(Optional)](../external_storage/en/)
 
-※ SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
+※ Make sure you test for any bugs/abnormalities as well as measurement tests after updating the SDK.
 
 
-## 3. 旧バージョン(4.0.0未満)からの実装方法を更新
+## 3. Implementation changes from previous versions (before 4.0.0)
 
 ### 3.1 マイグレーション時の注意
 

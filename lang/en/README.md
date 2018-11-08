@@ -2,27 +2,31 @@
 [![Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat)](https://developer.android.com)
 [![Android](http://img.shields.io/badge/support-API_Level_14+-green.svg?style=flat)](https://developer.android.com)
 
-# About Force Operation X
+# About F.O.X
 
-Force Operation X (Hereinafter referred to as F.O.X) is a total solution platform which measures and optimizes ad effectiveness on smartphone applications. Not only does it include features such as measuring user downloads and user actions, it can maximize the price-performance ratio of companies' promotions.
+Force Operation X (Hereinafter referred to as F.O.X) is a total solution platform which measures and optimizes ad effectiveness on smartphone applications. Primary features such as user install tracking, LTV measurement, and CV measurement, will maximize the price-performance ratio of your app's advertising. Find out more about F.O.X at [cyber-z.co.jp](https://cyber-z.co.jp/en/fox).
 
-The purpose of this document is to describe the integration process for the ad effectiveness optimization solution tool, F.O.X.
+# Summary
+
+This is the Android SDK for F.O.X.
+
+Read this in another language: [日本語](https://github.com/cyber-z/public-fox-android-sdk/blob/4.x/lang/ja/README.md),[中文](https://github.com/cyber-z/public-fox-android-sdk/blob/4.x/lang/zh-cn/README.md).
 
 
 ## Table of Contents
 
 * **[About F.O.X SDK](#whats_fox_sdk)**
-* **[1. Installing the SDK](#install_sdk)**
-	* [SDK download](https://github.com/cyber-z/public_fox_android_sdk/releases)
-	* [How to install for an AndroidStudio project](./doc/integration/android_studio/README.md)
-	* [How to install for an Eclipse project](./doc/integration/eclipse/README.md)
+* **[1. Setting up the SDK](#install_sdk)**
+	* [Adding the SDK to your project](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [AndroidStudio projects](./doc/integration/android_studio/README.md)
+	* [Eclipse projects](./doc/integration/eclipse/README.md)
 	* [Migrating from a previous version](./doc/migration/README.md)
 * **[2. Initial Settings](#setting_sdk)**
 	* [2.1 Permission Settings](#setting_permission)
 	* [2.2 Proguard Settings](#setting_proguard)
-	* [2.3 InstallReferrer Settings](#setting_installreferrer)
+	* [2.3 Install Referrer Settings](#setting_installreferrer)
 	* [2.4 Custom URL Scheme Settings](#setting_urlscheme)
-	* [2.5 Installing Google Play Services for advertisement ID acquisition](#setting_googleplayservices)
+	* [2.5 Setting Up Google Play Services](#setting_googleplayservices)
 	* [SDK API](./doc/sdk_api/README.md)
 * **[3. F.O.X SDK Activation](#activate_sdk_into_app)**
 	* [auto-tracking details](./doc/track_auto/README.md)
@@ -67,7 +71,7 @@ Compare organic and non-organic installs. Track app launches and unique users(DA
 
 F.O.X Android SDK 4.0.0〜 supports versions `Android 4.0(API Level 14)` and above.
 
-When importing the F.O.X SDK module into a gradle project, add the following to your project's build.gradle file.
+When integrating the F.O.X SDK into a gradle project, add the following to your project's build.gradle file.
 
 ```
 repositories {
@@ -80,18 +84,16 @@ dependencies {
     compile 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
-For the exact sdk version please consult our sdk release page listed below.
-Also, when installing manually please download the most recent SDK from the release page.
+For the exact sdk version please see our sdk [release page](https://github.com/cyber-z/public_fox_android_sdk/releases). <br>
+※ For manual installs, please download the most recent SDK.
 
-* [SDK Release Page](https://github.com/cyber-z/public_fox_android_sdk/releases)
-
-Unzip the downloaded SDK and add `libs/FOX_Android_SDK_{VERSION}.jar` to the project.
+Unzip the SDK and add `libs/FOX_Android_SDK_{VERSION}.jar` to the project.
 
 **[additional details]**
-* [How to install for an AndroidStudio project](./doc/integration/android_studio/README.md)
-* [How to install for an Eclipse project](./doc/integration/eclipse/README.md)
+* [How to integrate for an AndroidStudio project](./doc/integration/android_studio/README.md)
+* [How to integrate for an Eclipse project](./doc/integration/eclipse/README.md)
 
-> ※ In the case where the SDK is already integrated into your application, see [Updating to latest version of F.O.X SDK](./doc/migration/README.md) for more information.
+> ※ If F.O.X is already integrated into your application, see [Migrating to the latest version of F.O.X SDK](./doc/migration/README.md) for more information.
 
 
 <div id="setting_sdk"></div>
@@ -107,7 +109,7 @@ Some settings must be added to the AndroidManifest.xml file in order for the SDK
 ### 2.1 Version Settings
 
 The F.O.X SDK utilizes the following two permissions.
-Add the following permissions inside the &lt;Manifest&gt; tags.
+Add them inside the &lt;Manifest&gt; tags.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -119,7 +121,7 @@ Permission|Protection Level|Necessity|Summary
 INTERNET|Normal|Necessary|Used to maintain the SDK's connection.
 WRITE_EXTERNAL_STORAGE ※1|Dangerous|Optional|Used to improve de-duplication features.(※2)
 
-> ※1 READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions are used to read and write data to external storage. On application reinstallation, these permissions are used to more accurately reflect such a user action. However, these permissions are not necessary for the SDK to function.
+> ※1 READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions are used to read and write data to external storage. User actions such as app re-installs are more easily tracked by having these permissions. However, these permissions are not necessary for the SDK to function.
 
 > ※2 Beginning with Android Marshmallow(6.0), in order to use permissions with the ProtectionLevel of `dangerous`, users must accept those permissions at a prompt. See [De-duplication with external storage settings](./doc/external_storage/README.md) for more details.
 
@@ -134,7 +136,7 @@ receive warnings.
 -keep class co.cyberz.** { *; }
 -keep class com.google.android.gms.ads.identifier.* { *; }
 -dontwarn co.cyberz.**
-# If you installed the SDK through Gradle, you may omit the following .jar file.
+### If you installed the SDK through Gradle, you may omit the following .jar file. ###
 -libraryjars libs/FOX_Android_SDK_{VERSION}.jar
 ```
 Additionally, if you have implemented the Google Play Services SDK, please follow the keep definitions listed in the link below.
@@ -145,7 +147,11 @@ Additionally, if you have implemented the Google Play Services SDK, please follo
 <div id="setting_installreferrer"></div>
 
 ### 2.3 Install Referrer Settings
-In order to track ~~measure?~~ installs using the Install Referrer, add the following inside the &lt;application&gt; tags.
+In order to accurately attribute an install of your app to its source, F.O.X needs information about the <strong>install referrer</strong>. This can be obtained through the <strong>Google Play Referrer API</strong> or by catching the <strong>Google Play Store intent</strong> with a broadcast receiver.
+
+<strong>Note:</strong> The Google Play Store intent is temporarily existing in parallel with the Google Play Referrer API but is set to be deprecated in the future. We highly recommend that you support The Google Play Referrer API in your app.
+
+If you want to use a broadcast receiver, add the following `receiver` tag inside the `application` tag in your `AndroidManifest.xml`.
 
 ```xml
 <receiver android:name="co.cyberz.fox.FoxInstallReceiver" android:exported="true">
@@ -155,12 +161,16 @@ In order to track ~~measure?~~ installs using the Install Referrer, add the foll
 </receiver>
 ```
 
+#### Using a broadcast receiver
+
+If your application already defines a receiver class which corresponds to "com.android.vending.INSTALL_REFERRER", see
+[Enabling multiple INSTALL_REFERRER receivers](./doc/install_referrer/README.md).
+
 #### Using the Google Play Referrer API
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
+This feature is supported for [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
 
-
-You can perform InstallReferrer tracking ~~measurement~~ by adding the [Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html) dependency to your build.gradle file, as shown below. <br>
+You can attribute app installs by adding the [Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html) dependency to your build.gradle file, as shown below. <br>
 (There is no need to run the SDK)
 
 ```
@@ -168,14 +178,12 @@ dependencies {
     compile 'com.android.installreferrer:installreferrer:1.0'
 }
 ```
-If your application already defines a receiver class which corresponds to "com.android.vending.INSTALL_REFERRER", see
-[Enabling multiple INSTALL_REFERRER Receivers](./doc/install_referrer/README.md).
 
 <div id="setting_urlscheme"></div>
 
 ### 2.4 Custom URL Scheme Settings
 
-In order to enable user agent application launch capabilities, add the following inside the &lt;activity&gt; tags responsible for launching your application. <br>
+In order to grant an external user agent the capability to launch your app, add the following inside the `activity` tag responsible for launching your application. <br>
 
 
 ```xml
@@ -198,7 +206,7 @@ In order to enable user agent application launch capabilities, add the following
 </activity>
 ```
 
-<br>Important examples are shown below.
+Please confirm the following.
 
 * When performing cookie tracking, set the scheme to the activity in which the browser resumes your application
 * Set the scheme to the activity performing [re-engagement measuring](#tracking_reengagement)
@@ -207,27 +215,27 @@ In order to enable user agent application launch capabilities, add the following
 
 > ※ We recommend setting the `launch mode` of your re-engagement measuring/cookie tracking activity to `singleTop`.
 
-> ※ Depending on your production environment, there are times when capitalized URL schemes are not recognized. In order to avoid this, please set your URL scheme in lower case alphanumeric characters.
+> ※ Depending on your production environment, there are cases where capitalized URL schemes are not recognized. In order to avoid this, please set your URL scheme in lower case alphanumeric characters.
 
 > ※ For more details on Custom URL settings, please refer to the [Android Developers (see implicit intents) ](https://developer.android.com/guide/components/intents-filters.html#Receiving) page.
 
 <div id="setting_googleplayservices"></div>
 
-### 2.5 Implementing Google Play Services to use an AdID
+### 2.5 Setting Up Google Play Services
 
-An application has to have the Google Play Services SDK set up in order to obtain an AdID. <br>
+As of August 1st, 2014, apps in the Google PLay Store are required to use the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) to uniquely identify devices. In order for F.O.X to use the Google Advertising ID, you must integrate [Google Play Services](https://developers.google.com/android/guides/setup) into your app.
 If it is set up through gradle, add the following `dependencies` to your `build.gradle` file.
 ```
 	compile 'com.google.android.gms:play-services:9.4.0'
 ```
 
-If you are only setting up GooglePlayServices to obtain an AdID, only add the following.
+If you are only setting up GooglePlayServices to obtain the Google Advertising ID, only add the following.
 
 ```
 	compile 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
-> The F.O.X SDK will still run, even if the Google Play Services SDK is not set up. However, because the AdID cannot be obtained, some advertisement menus on the tool cannot be used, and the deduplication function's accuracy will decline. <br> For more detailed instructions, see [How to obtain an AdID through Google Play Services SDK](./doc/google_play_services/README.md).
+> The F.O.X SDK will still run, even if the Google Play Services SDK is not set up. However, because the Google Advertising ID cannot be obtained, some advertisement menus on the tool cannot be used, and the deduplication function's accuracy will decline. <br> For more detailed instructions, see [Google Play Services and the Google Advertising ID](./doc/google_play_services/README.md).
 
 ### AndroidManifest.xml Sample
 
@@ -236,12 +244,16 @@ If you are only setting up GooglePlayServices to obtain an AdID, only add the fo
 
 <div id="activate_sdk_into_app"></div>
 
-## 3. F.O.X SDK Activation
+## 3. F.O.X SDK Initialization
 
-### 3.1 Activation
+### 3.1 Initialization
 
-In order to activate the F.O.X SDK, you must set up the `FoXConfig` class in the onCreate method of the class which inherits from the `Application` class (Your application). <br>
-Additionally, it is necessary to set the `android:name` value in your AndroidManifest.xml file to the name of your application as shown below.
+In order to initialize the F.O.X SDK, you must follow these steps:
+
+* Create or use a class that extends `Application`
+* Find or create the `onCreate` method in your `Application` class and insert the `FoXConfig` class
+<br> <br>
+Additionally, it is necessary to set the `android:name` value in your `AndroidManifest.xml` to the name of your application prefixed by a dot as shown below.
 
 **Sample Manifest Settings**
 
@@ -257,11 +269,11 @@ Additionally, it is necessary to set the `android:name` value in your AndroidMan
 </application>
 ```
 
-**Setting up the Application inheriting class**
+**Setting up the `Application` class**
 
 <div id="new_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;activation and auto-tracking execution&nbsp;]
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;initialization and auto-tracking execution&nbsp;]
 
 
 ```java
@@ -394,7 +406,7 @@ protected void onResume() {
 
 <div id="tracking_session"></div>
 
-### 6.1 Implement Session-start Measurement
+### 6.1 Implementing Session-start Measurement
 
 Compare organic and non-organic installs. Track app launches and unique users(DAU/MAU). Measure user retention and so on. When Session-start measurement is not required, you can omit the implementation of this item.
 
@@ -469,7 +481,7 @@ public class YourApplication extends Application {
 
 ### 6.2 Additional event measurement
 
-By measuring app events such as member registrations, tutorial completions, point of sales(billing) and other such conversion points, you can track the LTV of individual advertisements. <br>
+By measuring app events such as member registrations, tutorial completions, In-App Purchases and other such conversion points, you can track the LTV of individual advertisements. <br>
 When LTV tracking is not required, you can omit the implementation of this item.
 
 
@@ -493,11 +505,9 @@ Fox.trackEvent(tutorialEvent);
 
 <div id="tracking_event_purchase"></div>
 
-**[billing measurement example]**
+**[In-App Purchase example]**
 
-When measuring billing events, please specify the billing amount and currency code at the point where the transaction completes as follows:
-
-~~課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。~~
+When measuring purchase events, please specify the purchase amount and currency code at the point where the transaction completes as follows:
 
 ```java
 import co.cyberz.fox.service.FoxEvent;
@@ -510,7 +520,7 @@ purchaseEvent.sku = "ITEM_1";
 Fox.trackEvent(purchaseEvent);
 ```
 
-Please specify the currency code as defined in [ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)
+Please specify the currency code as defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 
 [LTV Measurement Details](./doc/track_events/README.md)
 
@@ -520,7 +530,7 @@ Please specify the currency code as defined in [ISO 4217](http://ja.wikipedia.or
 
 [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
 
-These four implementations ~~functions~~ can be replicated using the following source code:
+These four functions can be replicated using the following source code:
 
 * F.O.X SDK activation
 * First-time App launch tracking
@@ -546,8 +556,6 @@ public class YourApplication extends Application {
 ```
 
 > ※ Please share the custom URL Scheme you set in your AndroidManifest and main Activity with the F.O.X team when performing cookie measurement. (when implementing a browser user agent)
-
-~~> ※ 上記の実装でCookie計測を行い、ブラウザからアプリに自動遷移させる際にはAndroidManifest上、mainとなるActivityのカスタムURLスキームをご連絡ください。~~
 
 
 <div id="other_function"></div>
