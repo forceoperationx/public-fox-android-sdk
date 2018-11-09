@@ -44,7 +44,7 @@ Fox.trackEvent(tutorialComp);
 #### 　1.3 In-App Purchase Event Tracking example
 
 ```java
-// In-App purchase event tracking課金イベント計測
+// In-App purchase event tracking
 FoxEvent purchaseEvent = new FoxEvent("_purchase", 123);
 purchaseEvent.price = 1.2;
 purchaseEvent.currency = "USD";
@@ -115,24 +115,25 @@ For external browsers, see the [`trackEventByBrowser`](../sdk_api/README.md#fox)
 For web views, see the [`trackEventByWebView`](../sdk_api/README.md#fox) method.
 By using either of these two methods, F.O.X can insert the data it needs in the cookies of the browser.
 
-LTVの成果地点となるWebページに計測用HTMLタグを設置してください。計測用HTMLタグは弊社管理者より連絡致します。<br>
-HTMLタグに利用するパラメータは以下の通りです。
+F.O.X will provide an html tag for you. Please insert this tag in the web page that you will use to measure LTV. <br>
+Find the HTML tag parameters below.
 
-|パラメータ名|必須|備考|
+|Parameter Name|Necessity|Comments|
 |:-----|:-----|:-----|
-|_buyer|必須|広告主を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_cvpoint|必須|成果地点を識別するID。<br />管理者より連絡しますので、その値を入力してください。|
-|_price|オプション|課金額。課金計測時に設定してください。|
-|_currency|オプション|半角英字3文字の通貨コード。<br />課金計測時に設定してください。<br />通貨が設定されていない場合、_priceをJPY(日本円)として扱います。|
-|_buid|オプション|半角英数字64文字まで。<br />会員IDなどユーザー毎にユニークな値を保持する場合にご使用ください。|
+|_buyer|necessary|This is your Advertiser ID.<br />F.O.X will provide you with the value to enter here.|
+|_cvpoint|necessary|This is a conversion point ID<br/>F.O.X will provide you with the value to enter here.|
+|_price|optional|This is the purchase price.<br> Please set this during transactions.|
+|_currency|optional|Enter a 3 character alphanumeric currency code.<br>Please set this during transactions.<br />If this value is not set、the default currency for _price will be in JPY(yen).|
+|_buid|optional|Up to 64 alphanumeric characters.<br />Use this parameter when you want to attach a unique ID to each individual member.|
 
-> _currencyには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
+> Please specify the currency code for `_currency` as defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 
 
 <div id="track_by_browser"></div>
 
-### 3.1 外部ブラウザによるイベント計測
+### 3.1 Event Measurement by external browser
 
+When performing event measurement by external browsers, 
 アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、`trackEventByBrowser`メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
 
 ```java

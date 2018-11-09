@@ -184,7 +184,7 @@ dependencies {
 
 ### 2.4 Custom URL Scheme Settings
 
-In order to grant an external user agent (browser) the capability to launch your app, add the following inside the `activity` tag responsible for launching your application. <br>
+In order to grant an external browser the capability to launch your app, add the following inside the `activity` tag responsible for launching your application. <br>
 
 
 ```xml
