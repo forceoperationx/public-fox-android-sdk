@@ -133,8 +133,9 @@ Find the HTML tag parameters below.
 
 ### 3.1 Event Measurement by external browser
 
-When performing event measurement by external browsers, 
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、`trackEventByBrowser`メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
+When using tags to track events in an external browser launched by your app, use the `trackEventByBrowser` method to launch the external browser.<br>
+The arguments will be composed of strings from the external browser's URL.
+~~引数には、外部ブラウザで表示するURLを文字列で指定します。~~
 
 ```java
 import co.cyberz.fox.Fox;
@@ -145,9 +146,10 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 
 <div id="track_by_webview"></div>
 
-### 3.2 アプリ内WebViewでのイベント計測について
+### 3.2 Event Measurement by web view
 
-ユーザーの遷移がWebView内で行われる場合には、`trackEventByWebView`を用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度に`trackEventByWebView`が実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
+When managing user screen transitions with a web view, use the `trackEventByWebView` method to track events. Run the following code when initializing the web view.
+Make sure that `trackEventByWebView` is run every time a web view is created or destroyed. Cookies will be set using android.webkit.CookieManager and android.webkit.CookieSyncManager internally.
 
 ```java
 import co.cyberz.fox.Fox;
@@ -162,9 +164,7 @@ public void onCreate(Bundle savedInstanceState) {
 	mWebView.loadUrl("http://www.mysite.com/event/");
 }
 ```
-
-> ※ Android LよりサードパーティCookieがデフォルトでOFFとなります。 そのためtrackEventByWebViewメソッドでは引数にWebViewを持たせることで、内部ではCookieManager.setAccesptThirdPartyCookiesを用いてサードパーティCookieの書込みを行っております。
-
+> ※ Third party cookies are turned off by default starting from Android L. Therefore, by having the WebView as an argument in the trackEventByWebView method, we use CookieManager.setAccesptThirdPartyCookies internally to write third party cookies.
 
 
 ---
