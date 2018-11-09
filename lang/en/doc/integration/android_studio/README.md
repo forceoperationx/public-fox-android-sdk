@@ -1,12 +1,12 @@
-[TOP](../../../README.md)　>　Android Studioプロジェクトへの導入
+[TOP](../../../README.md)　>　AndroidStudio projects
 
 ---
 
-# Android Studioプロジェクトへの導入
+# AndroidStudio projects
 
-## Gradleを使用して導入する場合
+## Integrating when using Gradle
 
-build.gradleに下記の設定を適切な場所に追加してください。
+When integrating the F.O.X SDK into a gradle project, add the following to your project's build.gradle file.
 
 ```
 repositories {
@@ -20,16 +20,16 @@ dependencies {
 }
 ```
 
-## 手動で導入する場合
+## Manual Installation
 
-Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下の通りです。
+These are instructions for adding `AppAdForce.jar` to your Android Studio project
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にAppAdForce.jarを配置します。
+* Insert the `AppAdForce.jar` to your project's libs folder.
 
 
 ![integration01](./img01.png)
 
-アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、foxtrack-core_{VERSION}.jarへのパスを追記します。
+Open the `build.gradle` file in your application's module directory and add the path to the `foxtrack-core_{VERSION}.jar` under dependencies.
 
 ```
 dependencies {
@@ -41,4 +41,4 @@ dependencies {
 
 
 ---
-[トップ](../../../README.md)
+[Return to Top](../../../README.md)

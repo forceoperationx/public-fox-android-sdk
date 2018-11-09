@@ -1,24 +1,25 @@
-[TOP](../../README.md)　>　イベント計測の詳細
+[TOP](../../README.md)　>　Event measurement details
 
 ---
 
-# イベント計測の詳細
+# Event measurement details
 
-以下、各種イベントを実装する際の詳細を説明します。<br>
-エンゲージメント計測やダイナミック配信連携を行う際に必要となる実装も含まれます。本実装を行うことで、媒体を横断したイベント計測連携が可能となります。
+These are the instructions for implementing additional details. <br>
+Implementation instructions for engagement measurement and dynamic transmission linkage are included. By implementing the following, your app will be able to attribute events to specific individual digital mediums.
+~~エンゲージメント計測やダイナミック配信連携を行う際に必要となる実装も含まれます。本実装を行うことで、媒体を横断したイベント計測連携が可能となります。~~
 
-* **[1. アプリ内の各種イベント実装例](#each_event_sample)**
-* **[2. 旧バージョンでの実装の置き換え(エンゲージメント計測)](#continuity)**
-* **[3. タグを利用したイベント計測について](#track_by_tag)**
+* **[1. Examples of each app event](#each_event_sample)**
+* **[2. Changing Implementation from a previous version(Engagement measurement)](#continuity)**
+* **[3. Tracking events by tag](#track_by_tag)**
 
 <div id="each_event_sample"></div>
 
-## 1. アプリ内の各種イベント実装例
+## 1. Examples of each app event
 
-#### 　1.1 会員登録イベント計測 実装例
+#### 　1.1 Member registration tracking example
 
 ```java
-// 会員登録イベント計測
+// member registration event tracking
 Button registerBtn = (Button) findViewById(R.id.ltv_register);
 registerBtn.setOnClickListener(new OnClickListener() {
 
@@ -31,19 +32,19 @@ registerBtn.setOnClickListener(new OnClickListener() {
 });
 ```
 
-#### 　1.2 チュートリアル完了イベント計測 実装例
+#### 　1.2 Tutorial completion event tracking example
 
 ```java
-// チュートリアル完了ベント計測
+// Tutorial completion event tracking
 FoxEvent tutorialComp = new FoxEvent("_tutorial_comp", 456);
 tutorialComp.buid = "USER_A001";
 Fox.trackEvent(tutorialComp);
 ```
 
-#### 　1.3 課金イベント計測 実装例
+#### 　1.3 In-App Purchase Event Tracking example
 
 ```java
-// 課金イベント計測
+// In-App purchase event tracking課金イベント計測
 FoxEvent purchaseEvent = new FoxEvent("_purchase", 123);
 purchaseEvent.price = 1.2;
 purchaseEvent.currency = "USD";
@@ -55,12 +56,10 @@ Fox.trackEvent(purchaseEvent);
 
 <div id="continuity"></div>
 
-## 2. 旧バージョンでの実装の置き換え(エンゲージメント計測)
+## 2. Changing Implementation from a previous version(Engagement measurement)
 
-これまでのF.O.X Android SDK 3.0.0以下で行っていた実装方法を継続することも可能となっています。<br>
-下記は課金イベントのエンゲージメント計測の実装例です。
-
-**実装例**
+It is possible to continue using the same methods for engagement measurement as versions before 4.0.0.<br>
+See the In-App purchase event engagement measurement implementation below.
 
 ```java
 import org.json.JSONObject;
@@ -106,14 +105,15 @@ purchaseEvent.eventInfo = eventInfo;
 Fox.trackEvent(purchaseEvent);
 ```
 
-> ※ 各種アプリ内イベントの媒体連携計測を行う場合、[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)を利用することで、実装するコード量を削減することが可能となります。
-
 <div id="track_by_tag"></div>
 
-## 3. タグを利用したイベント計測について
+## 3. Tracking events by tag
 
-会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してイベント計測を利用することができます。<br>
-F.O.Xのイベント計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合には[`trackEventByBrowser`](../sdk_api/README.md#fox)メソッド、アプリ内WebViewの場合には[`trackEventByWebView`](../sdk_api/README.md#fox)メソッドを利用することで、F.O.Xがイベント計測に必要な情報をブラウザのCookieに記録します。
+When membership registration, product purchase, etc. are completed on a web page, event measurement can be performed using an `img` tag.<br>
+There are two ways for doing this.
+For external browsers, see the [`trackEventByBrowser`](../sdk_api/README.md#fox) method.
+For web views, see the [`trackEventByWebView`](../sdk_api/README.md#fox) method.
+By using either of these two methods, F.O.X can insert the data it needs in the cookies of the browser.
 
 LTVの成果地点となるWebページに計測用HTMLタグを設置してください。計測用HTMLタグは弊社管理者より連絡致します。<br>
 HTMLタグに利用するパラメータは以下の通りです。
@@ -167,4 +167,4 @@ public void onCreate(Bundle savedInstanceState) {
 
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

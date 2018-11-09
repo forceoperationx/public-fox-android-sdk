@@ -1,10 +1,10 @@
-[TOP](../../README.md)　>　[Google Play Servicesの導入](../README.md)　>　Eclipseプロジェクト
+[TOP](../../README.md)　>　[Setting up Google Play Services](../README.md)　>　Eclipse Projects
 
 ---
 
-## EclipseプロジェクトへのGoogle Play Servicesの導入
+## Setting Up Google Play Services for Eclipse Projects
+From the Eclipse menu, select File > Import > Android > Existing Android Code into Workspace.
 
-Eclipseのメニューの「ファイル」>「インポート」から、「Android」>「Existing Android Code into Workspace」を選択します。
 
 
 ![googlePlayServices01](./img01.png)
@@ -12,20 +12,17 @@ Eclipseのメニューの「ファイル」>「インポート」から、「And
 
 ![googlePlayServices01](./img02.png)
 
-
-<android-sdk>/extras/google/google_play_services/libproject/google-play-services_lib/にあるGoogle Play Servicesのライブラリプロジェクトをインポートします。
+Import the Google Play Services library project at <android-sdk> / extras / google / google_play_services / libproject / google-play-services_lib.
 
 
 ![googlePlayServices01](./img03.png)
 
-
-アプリケーションのプロジェクトを右クリックし、「プロパティ」を選択。左のメニューから「Android」を選択します。右側のライブラリの「
-追加」ボタンから、先程インポートしたGoogle Play Servicesのライブラリプロジェクトをアプリケーションから参照できるようにします。
+Right-click on the application project and select "Properties". Select "Android" from the menu on the left. From the right-hand side, Select "Add" and then select the Google Play Services library project you just imported.
 
 
 ![googlePlayServices01](./img04.png)
 
 ---
-[戻る](../README.md)
+[Go back](../README.md)
 
-[トップ](../../../README.md)
+[Return to Top](../../../README.md)

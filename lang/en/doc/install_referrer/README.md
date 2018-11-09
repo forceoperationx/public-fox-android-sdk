@@ -1,17 +1,18 @@
-[TOP](../../README.md)　>　複数のINSTALL_REFERRERレシーバーを共存させる場合の設定
+[TOP](../../README.md)　>　Enabling multiple INSTALL_REFERRER receivers
 
 ---
 
-## 複数のINSTALL_REFERRERレシーバーを共存させる場合の設定
+## Enabling multiple INSTALL_REFERRER receivers
 
-"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスは一つしか定義することができません。
+Only one receiver class that catches the Google Play Store `install receiver` can be defined.
 
-F.O.X以外のSDK等、既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合は、F.O.X SDKが用意しているレシーバークラスから、他のレシーバークラスを呼び出すことで共存させることが可能です。
+If your application already contains another broadcast receiver, please add the following code to enable
+the F.O.X SDK to call your receiver class(es). This way, multiple receiver classes can be defined.
 
-AndroidManifest.xmlを編集し、下記の設定を追加してください。
+Edit your `AndroidManifest.xml` as follows.
 
 ```xml
-<!-- レシーバークラスはF.O.X SDKのクラスを指定します -->
+<!-- set the receiver class to the F.O.X SDK's install receiver -->
 <receiver
 	android:name="co.cyberz.fox.FoxInstallReceiver"
 	android:exported="true">
@@ -20,17 +21,15 @@ AndroidManifest.xmlを編集し、下記の設定を追加してください。
 	</intent-filter>
 </receiver>
 
-<!-- F.O.X SDKから呼び出したい他のレシーバークラス情報をmeta-dataとして記述します -->
+<!-- Add any install receivers you want F.O.X to call to your meta-data -->
 <meta-data
 		android:name="APPADFORCE_FORWARD_RECEIVER"
 		android:value="com.example.InstallReceiver1|com.example.InstallReceiver2|com.example.InstallReceiver3" />
 ```
+> include the package name when you set install receivers in your `APPADFORCE_FORWARD_RECEIVER` meta-data. You can add multiple receivers with the `|`(pipe) symbol.
 
-> `APPADFORCE_FORWARD_RECEIVER`に指定するクラスはパッケージ付きで指定してください。また、`|`(パイプ)で区切ることで複数のクラスを指定することが可能です。
-
-> Proguardを利用する場合、`APPADFORCE_FORWARD_RECEIVER`に指定するクラスは-keep指定でクラス名が変更されないようにしてください。<br>
-Proguardの対象となりますとF.O.X SDKがクラスを探せなくなり正常に動作しませんのでご注意ください。
-
+> If your app uses Proguard, use `-keep` to prevent the class name from changing in the `APPADFORCE_FORWARD_RECEIVER`. <br>
+If the F.O.X SDK is targeted by Proguard, then it will not be able to search for the class, and will not function correctly.
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

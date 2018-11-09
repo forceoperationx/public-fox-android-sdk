@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- URL スキームの設定 (sampleapp://) -->
+            <!-- URL Scheme Settings (sampleapp://) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -29,23 +29,23 @@
             </intent-filter>
         </activity>
 
-        <!-- インストールリファラー計測の receiver 設定 -->
+        <!-- Install referrer receiver settings -->
         <receiver android:exported="true" android:name="co.cyberz.fox.FoxInstallReceiver" >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
 
-        <!-- オプション: 二つのINSTALL_REFERRER レシーバーを共存させる 設定 -->
-        <!-- valueに共存させたいレシーバークラスのパスを記述します -->
+        <!-- Optional: Adding multiple install receivers -->
+        <!-- enter your additional receivers as the value for [android:value] -->
         <meta-data android:name="APPADFORCE_FORWARD_RECEIVER"
             android:value="com.other.sample.InstallReferrerReceiver1|com.other.sample.InstallReferrerReceiver2|com.other.sample.InstallReferrerReceiver3" />
 
     </application>
 
-    <!-- 必須: パーミッションの設定 -->
+    <!-- Necessary: Permission Settings -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 推奨: パーミッションの設定 -->
+    <!-- Recommended: Permission Settings -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

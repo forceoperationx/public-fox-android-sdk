@@ -1,45 +1,46 @@
-[TOP](../../README.md)　>　外部ストレージを利用した重複排除設定
+[TOP](../../README.md)　>　De-duplication feature settings (external storage permissions)
 
 ---
 
-# 外部ストレージを利用した重複排除設定
+# De-duplication feature settings (external storage permissions)
 
-アプリケーションの初回起動時にSDKが生成した識別IDをローカルストレージまたはSDカードに保存することで、アプリケーション再インストール時に重複判定を行うことができます。
+External storage permissions are used to read and write data to external storage. Having these permissions enabled allows F.O.X's de-duplication feature to function optimally.
 
-本設定は必須ではありませんが、アプリケーションの再インストールにおける重複検知の精度が大きく向上するため、実装を推奨しております。
+While these permissions are not necessary for the SDK to function, because it allows F.O.X to track app reinstall with greater accuracy, we recommend you enable these settings in your app.
 
-## パーミッションの設定
+## Permission Settings
 
-外部ストレージへのファイル読み書きに必要なパーミッションの設定をAndroidManifest.xmlの<manifest>タグ内に追加します。
+The F.O.X SDK utilizes the following two permissions.
+Add them inside your `Manifest` tags.
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-上記パーミッションが設定されている場合、次のパスに識別IDファイルが保存されます。
+By having the above two permissions set, a unique ID can be saved in the following path.
 
 ```
-Environment.getExternalStorageDirectory().getPath()で取得できるパス/アプリのパッケージ名/__FOX_XUNIQ__
+Path_acquired_by_Environment.getExternalStorageDirectory().getPath()/App_Package_Name/__FOX_XUNIQ__
 ```
 
-## （任意）保存ディレクトリ及びファイル名の変更
+## Directory and Filename Settings (Optional)
 
-保存されるファイルのディレクトリ名は、標準ではパッケージ名で作成されますが、<application>タグ内に以下設定を追加することで、任意のディレクトリ名及びファイル名に変更することができます。
+The filename and directory name are set by the package name by default, but you may manually select them by including the following within your `Application` tag.
 
 ```xml
-<meta-data android:name="APPADFORCE_ID_DIR" android:value="任意のディレクトリ名" />
-<meta-data android:name="APPADFORCE_ID_FILE" android:value="任意のファイル名" />
+<meta-data android:name="APPADFORCE_ID_DIR" android:value="yourdirectoryname" />
+<meta-data android:name="APPADFORCE_ID_FILE" android:value="yourfilename" />
 ```
+> Even when manually selecting a directory/filename, they will be stored under the path designated by the return value of Environment.getExternalStorageDirectory().getPath(). This returned path can change depending on the version of your OS.<br>
 
-> 任意のディレクトリ名やファイル名を指定した場合でも、Environment.getExternalStorageDirectory().getPath()の返り値のパス配下に作成します。Environment.getExternalStorageDirectory().getPath()の返り値は端末やOSバージョンによって異なります。<br>
-> "APPADFORCE_ID_DIR"(任意のディレクトリ名)を指定せず、任意のファイル名のみを指定した場合、アプリのパッケージ名のディレクトリが作成され、その配下に任意のファイル名で保存されます。<br>
-> ※"APPADFORCE_ID_FILE"(任意のファイル名)を指定せず、任意のディレクトリ名のみを指定した場合、任意の名前でディレクトリが作成され、その配下に"__FOX_XUNIQ__"で保存されます。<br>
-通常は設定の必要はありません。
+> If you do not explicitly set a directory name value, setting only a filename, a default directory named after your package name will be created.
 
+> If you do not explicitly set a file name value, setting only a directory name, a default file named "__FOX_XUNIQ__" will be created.
+Typically, these settings are not necessary.
 
-## 設定例
+## Example Settings
 
-AndroidManifest.xmlの設定例を次に記載します。
+Here is an example `AndroidManifest.xml`
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -55,31 +56,32 @@ AndroidManifest.xmlの設定例を次に記載します。
 
 ```
 
-上記の例の場合に、保存されるファイルのパスは次になります。
+If you use the above example source, the file's save path will be as follows.
 
 ```
-Environment.getExternalStorageDirectory().getPath()で取得できるパス/fox_id_dir/fox_id_file
+Path_acquired_by_Environment.getExternalStorageDirectory().getPath()/fox_id_dir/fox_id_file
 ```
 
-## 外部ストレージの利用停止
+## Disabling External Storage Use
 
-Force Operation X SDKによる外部ストレージへのアクセスを停止したい場合には、AndroidManifest.xmlにAPPADFORCE_USE_EXTERNAL_STORAGEの設定を追加してください。
+If you want to prevent F.O.X from accessing external storage, please set `APPADFORCE_USE_EXTERNAL_STORAGE` as follows.
+
 ```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
 
-本設定を行うことで外部ストレージに対する記録が停止しますが、アプリケーションの削除によりデータが常に初期化されるため、正確なインストール計測が行われなくなります。
+By establishing the above settings you can stop the use of external storage, but any data recorded up until then will persist. Because of this, the data will always be loaded, and you will not be able to perform install tracking.
 
+## Warnings for Android M(6.0)
 
-## Android M(6.0)における注意点
+Beginning with Android Marshmallow(6.0), in order to use permissions with the ProtectionLevel of `dangerous`, users must accept those permissions at a prompt.
+If the app cannot obtain user permissions, F.O.X cannot save the appropriate data to external storage, thus lowering the accuracy of the de-duplication feature.
+The two permissions`READ_EXTERNAL_STORAGE`と`WRITE_EXTERNAL_STORAGE` written above are designated as `dangerous` and therefore must be accepted at a user prompt. <br>
+The settings for this are as follows.
 
-protectionLevelがdangerousに指定されているパーミッションを必要とする機能を利用するには、ユーザーの許可が必要となります。
-ユーザーの許可がない場合、ストレージ領域へのデータ保存が行えなくなるため重複排除設定が利用出来なくなります。
-前述の`READ_EXTERNAL_STORAGE`と`WRITE_EXTERNAL_STORAGE`においてもdangerousとなっており、ユーザーに許可を貰うための実装を行う必要があります。
+* [Android Developers Reference](https://developer.android.com/training/permissions/requesting.html#perm-request)
 
-* [実装の参考](https://developer.android.com/training/permissions/requesting.html#perm-request)
-
-[実装例]
+[Example]
 ```java
 package cyberz.jp.co.test;
 
@@ -101,20 +103,20 @@ public class AndroidMMainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    // Mの端末で実行する時に、インストール計測前にcheckSelfPermissionでpermissionsをチェックする
+    // When running on a Marsmallow device, the checkSelfPermission method checks permissions before install tracking
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
               && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-        // 既にpermissionを取得出来ている場合
+        // if permissions are already granted
         Fox.trackInstall();
       } else {
-        // ユーザーにpermissionを要求する処理
+        // request user permissions
         requestPermissions(
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PERMISSION_REQUEST_CODE_FOX);
       }
     } else {
-      // M以外の端末はinstall時にpermissionを取得出来ているため、直ちにinstall計測処理を実行
+      // Permissions for devices besides Marshmallow are granted at install time, so we perform install tracking
       Fox.trackInstall();
     }
   }
@@ -127,7 +129,7 @@ public class AndroidMMainActivity extends AppCompatActivity {
         if (grantResults.length > 1
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-          // ユーザーの承認を得てinstall計測処理を実行
+          // gain user permissions and perform install tracking
           Fox.trackInstall();
         }
         break;
@@ -139,4 +141,4 @@ public class AndroidMMainActivity extends AppCompatActivity {
 ```
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

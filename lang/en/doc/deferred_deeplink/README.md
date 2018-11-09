@@ -1,16 +1,16 @@
-[TOP](../../README.md)　>　ディファードディープリンクの実装
+[TOP](../../README.md)　>　Deferred Deeplink Implementation
 
 ---
 
 [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.1.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.1.0)
 
-# ディファードディープリンクの実装
+# Deferred Deeplink Implementation
 
-ディファードディープリンクを実装することで、広告をクリックした際に紐付いているディープリンクにリダイレクトしアプリ内の対象のページに遷移することが可能となります。また、アプリが未インストールの場合でも、インストール後に広告のリダイレクト先となるディープリンクに遷移させることが可能となります。
+Deferred Deep Linking occurs when a user clicks on a F.O.X tracker URL with a deep_link parameter in it, but does not have the app installed on the device at click time. This allows users to access a page within an app, without having it installed. Afterwards, the user will be redirected to the Play Store to download and install your app. After opening it for the first time, the deep_link parameter content will be delivered to your app.
 
-> サポートバージョン : 4.1.0以上
+> Supported Versions: 4.1.0 and above
 
-以下、ディファードディープリンクの実装に必要なクラス及び、メソッド情報のみを説明しています。
+Below is an explanation of the required classes and methods for deferred deep linking.
 
 ## FoxTrackOption
 
@@ -19,9 +19,9 @@ public class FoxTrackOption<br>
 [java.lang.Object](https://developer.android.com/reference/java/lang/Object.html)<br>
 &nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.FoxTrackOption
 
-|返り値|メソッド|実装箇所|説明|
+|Return Value|Method|Target Area|Explanation|
 |:---:|:---|:---:|:---|
-|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)|onCreate|本メソッドをコールすることでインストール計測の際に、サーバへディファードディープリンクを問い合わせる処理が実行されます。|
+|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)|onCreate|This method is called and queries the server for a deferred deep link when called.|
 
 <div id="deeplinkhandler"></div>
 
@@ -32,18 +32,18 @@ public static abstract class DeeplinkHandler
 [java.lang.Object](https://developer.android.com/reference/java/lang/Object.html)<br>
 &nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.FoxTrackOption$DeeplinkHandler
 
-本クラスはFoxTrackOptionクラスのインナークラスとなります。
+This class is the FoxTrackOption class' inner class.
 
-|返り値|タイプ|メソッド|実装箇所|説明|
+|Return Value|Type|Method|Target Area|Explanation|
 |:---:|:---:|:---|:---:|:---|
-|DeeplinkHandler|-|**getDefault** ()|onCreate|デフォルト処理を実行するDeeplinkHandlerを返します。ディファードディープリンクを受信した後に、自動で紐づくActivityに遷移したい場合に利用します。<br>※遷移の際のIntentにはパラメータを追加することはできません。|
-|void|abstract|**onReceived** (JSONObject jObject)<br><br>`jObject` : 受信したディープリンク情報を格納したJSONObject|onCreate|ディファードディープリンクを受信した際に受け取るためのメソッド。ディファードディープリンクが存在しない場合や、端末が通信に失敗する場合にはnullを返します。|
-|long|-|**getDuration** ()|DeeplinkHandler拡張クラス内|[オプション]ディファードディープリンクをサーバに問い合わせる際に、対象となるラストクリックの対象期間(秒)（どれだけ遡るかを秒数で指定）<br>デフォルト : 86400 (1日)|
+|DeeplinkHandler|-|**getDefault** ()|onCreate|Returns the DeeplinkHandler which executes the default process. This is used when you want to seamlessly transition to the linked activity after receiving the deferred deep link.<br>※You cant add parameters to the Intent when transitioning|
+|void|abstract|**onReceived** (JSONObject jObject)<br><br>`jObject` : A JSONObject which contains the received deep link data|onCreate|A method for receiving the deferred deep link. Thi method returns null of the is no deferred deep link or if the device has a communication failure|
+|long|-|**getDuration** ()|DeeplinkHandler extension class|[Optional]When querying the deferred deep link to the server, this method returns the duration (in seconds) of the most recent click.  <br>Default: 86400 seconds (1 day)|
 
-### 受信するJSONObjectの形式
+### The received JSON Object's Structure
 
-DeeplinkHandlerのonReceivedメソッドの引数で受け取るJsonは以下のような形式となっています。<br>
-※ 値のディープリンクは例です。
+The Json obejct received in the argument of the DeeplinkHandler's onReceived method has the following structure. <br>
+※ The entered value is simply an example.
 
 ```json
 {
@@ -51,25 +51,25 @@ DeeplinkHandlerのonReceivedメソッドの引数で受け取るJsonは以下の
 }
 ```
 
-## 注意事項
+## Warnings
 
-* **Cookie計測の場合**<br><br>
-Cookie計測においてブラウザ起動が行われる際、registerDeeplinkHandlerを実行していた場合には<br>
-ブラウザからアプリに戻ってきてから`onReceived`メソッドが呼ばれます。<br>
-この場合、ブラウザから復帰した際のActivityの`onResume`には必ず以下のように`Fox.trackDeeplinkLaunch`メソッドの実装を行ってください。<br>実装されていない場合、`onReceived`メソッドが呼ばれません。
+* **Cookie Tracking**<br><br>
+
+When browsers are started during cookie measurement, if registerDeeplinkHandler is executed, the `onReceived` method is called after returning from the browser to the application.<br>
+In this case, please implement the `Fox.trackDeeplinkLaunch` method in the `onResume` method of `Activity` when returning from the browser. If this is not implemented, the `onReceived` method will not be called.
+
 ```java
 @Override
 protected void onResume() {
     super.onResume();
-    // 必ず呼んでください
+    // Call this
     Fox.trackDeeplinkLaunch(this);
 }
 ```
 
-### 実装例1
+### Example 1
 
-ディープリンクを受信後、紐づく画面に自動遷移する実装例となります。<br>
-有効なディープリンクでない場合、遷移せず画面はそのままの状態となります。
+This is a scenario where a user is automatically transitioned to the linked screen after the deep link is received. <br> If it is not a valid deep link, the screen will not change.
 
 ```java
 import co.cyberz.fox.Fox;
@@ -90,17 +90,18 @@ public class SampleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        // 必ず呼んでください
+        // Call this
         Fox.trackDeeplinkLaunch(this);
     }
 
 }
 ```
 
-### 実装例2
+### Example 2
 
-DeeplinkHandlerのonReceivedメソッド内に任意の処理を実装を行う例となります。<br>
-以下は、ディープリンク情報を受信し、該当するActivityに遷移する処理を行っています。
+This is a scenario where your app can implement whatever processing you set in the `onReceived` method of the `DeeplinkHandler`.
+<br>
+Here is the process of receiving deep link information and transitioning to the corresponding Activity.
 
 ```java
 import co.cyberz.fox.Fox;
@@ -117,7 +118,7 @@ public class SampleActivity extends Activity {
         mFoxTrackOption.registerDeeplinkHandler(new FoxTrackOption.DeeplinkHandler() {
                             @Override
                             public void onReceived(JSONObject deeplinkInfo) {
-                                // 以下、受信したディープリンク情報の操作例
+                                // This is some deep link example processing
                                 if (deeplinkInfo != null) {
                                     String deeplinkStr = deeplinkInfo.optString("deeplink", "blank");
                                     Toast.makeText(SampleActivity.this, deeplinkStr, 0).show();
@@ -137,16 +138,16 @@ public class SampleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        // 必ず呼んでください
+        // Call this
         Fox.trackDeeplinkLaunch(this);
     }
 
 }
 ```
 
-### 実装例3
+### Example 3
 
-以下は`DeeplinkHandler`クラスを拡張し、durationに３日を指定している実装例となります。
+This is a scenario where the `DeeplinkHandler` is extended and specifies three days as the click duration.
 
 ```java
 
@@ -169,12 +170,12 @@ public class SampleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        // 必ず呼んでください
+        Call this
         Fox.trackDeeplinkLaunch(this);
     }
 
     /*
-     * DeeplinkHandlerの拡張クラス
+     * DeeplinkHandler extending class
      */
     class CustomDeeplinkHandler extends FoxTrackOption.DeeplinkHandler {
 
@@ -202,4 +203,4 @@ public class SampleActivity extends Activity {
 ```
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

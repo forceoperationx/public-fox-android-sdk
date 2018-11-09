@@ -1,14 +1,15 @@
-[TOP](../../README.md)　>　オプトアウトの実装
+[TOP](../../README.md)　>　Enabling opt-out feature
 
 ---
 
-# （オプション）オプトアウトの実装
+# （Optional）Enabling opt-out feature
 
-広告会社によってターゲティング広告に利用されないことをユーザーに選択させることが可能です。アプリケーションの起動時において、プライバシーポリシーや利用規約を表示するダイアログでユーザーがオプトアウトを選択した場合、効果測定の結果の通知と共に、F.O.Xが広告会社に対してそのユーザーがオプトアウトを選択したことを通知します。
-オプトアウトに対応する場合は、以下の通り「[インストールの計測の実装](../track_install/README.md#track_install_optional)」で実装する際の[`FoxTrackOption`](../sdk_api/README.md#foxtrackoption)で`OptOutをtrue`に設定を行ってください。
+It is possible for users to opt out of targeted advertisements by advertising companies. When the user selects opt-out in the dialog displaying the privacy policy and the usage agreement at the time of starting the application FOX notifies the advertising company that the user has decided to opt out along with advertisement measurement results.
+
+For more information on how to enable opt-out functionality see the [`FoxTrackOption`](../sdk_api/README.md#foxtrackoption) section of 「[Install tracking](../track_install/README.md#track_install_optional)」 and run the `setOptOut` method with the argument, `true` as shown below.
 
 ```java
-// 初回起動のインストール計測
+// First time launch install tracking
 FoxTrackOption option = new FoxTrackOption();
 option.setRedirectUrl("myapp://top")
 			.setBuid(getUserId())
@@ -17,4 +18,4 @@ Fox.trackInstall(option);
 ```
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)
