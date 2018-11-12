@@ -118,7 +118,7 @@ public class SampleActivity extends Activity {
         mFoxTrackOption.registerDeeplinkHandler(new FoxTrackOption.DeeplinkHandler() {
                             @Override
                             public void onReceived(JSONObject deeplinkInfo) {
-                                // This is some deep link example processing
+                                // A deep link example process
                                 if (deeplinkInfo != null) {
                                     String deeplinkStr = deeplinkInfo.optString("deeplink", "blank");
                                     Toast.makeText(SampleActivity.this, deeplinkStr, 0).show();

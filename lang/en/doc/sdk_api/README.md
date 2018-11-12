@@ -13,17 +13,17 @@ public class FoxConfig
 
 |**Constructor**|**Details**|
 |:---|:---|
-|**FoxConfig** (Context c, int appId, String appKey, String appSalt)<br><br>`c` : Context (ApplicationContext可)<br>`appId` : 管理画面で発行されたアプリID<br>`appKey` : 管理画面で発行されたアプリKEY<br>`appSalt` : 管理画面で発行されたソルト|FOX SDKを動作させるための必須パラメータをセット|
+|**FoxConfig** (Context c, int appId, String appKey, String appSalt)<br><br>`c` : Context (ApplicationContext allowed)<br>`appId` : issued App ID<br>`appKey` : issued App KEY<br>`appSalt` : issued Salt|Setting the minimal parameters necessary for F.O.X to operate|
 
 ### Public methods
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|void|**activate** ( )|設定した必須情報を内部で保存する|
-|FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : デバッグログの出力有無|エラー時のメッセージやスタックトレースをLogcatに出力させる<br>`デフォルト : false`|
-|FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : DeliverサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
-|FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : アクセス解析サーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
-|FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : DahliaサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
+|void|**activate** ( )|saves predetermined necessary information in the App|
+|FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : enable/disable debug log output|outputs error messages and stack traces to Logcat<br>`default : false`|
+|FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : DeliverServer encrypted string URL|used for debugging, and setting URLs when switching between HTTPS/HTTP. <br> ※not used unless an admin sets it.|
+|FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : Access analytics Server encrypted string URL|used for debugging, and setting URLs when switching between HTTPS/HTTP.<br> ※not used unless an admin sets it.|
+|FoxConfig|**addDServerUrlOption** (String url)<br><br>`url` : Dahlia Server encrypted string URL|used for debugging, and setting URLs when switching between HTTPS/HTTP.<br> ※not used unless an admin sets it.|
 
 <div id="annotation_foxconfig"></div>
 
@@ -33,21 +33,21 @@ public interface FoxConfig
 
 Added in 4.3.0
 
-必須情報をアノテーションで定義するインターフェース
+This interface defines some necessary information by annotation
 
 ### Public methods
 
 |Type|Field|Details|
 |:---:|:---|:---|
-|int|appId|アプリIDの指定|
-|String|appKey|AnalyticsAppKeyの指定|
-|String|appSalt|AppSaltの指定|
-|String|serverUrl|サーバーURLの指定(デバッグ用)|
-|String|aServerUrl|アクセス解析用サーバーURLの指定(デバッグ用)|
-|boolean|isDebug|デバッグモードの有効化<br>デフォルトはfalse|
-|boolean|isAutoInstallTracking|初回起動計測の自動化の設定<br>デフォルトはtrue|
-|boolean|isAutoDeeplinkTracking|ディープリンク経由での計測の自動化の設定<br>デフォルトはtrue|
-|boolean|isAutoSessionTracking|アクセス解析のセッション計測の自動化の設定<br>デフォルトはtrue|
+|int|appId|AppID value|
+|String|appKey|AnalyticsAppKey value|
+|String|appSalt|AppSalt value|
+|String|serverUrl|server URL value(for debug)|
+|String|aServerUrl|access analytics server URL value(for debug)|
+|boolean|isDebug|enable/disable debug mode<br>※default is false|
+|boolean|isAutoInstallTracking|enable/disable automatic install tracking<br>※default is true|
+|boolean|isAutoDeeplinkTracking|enable/disable automatic deeplink tracking<br>※default is true|
+|boolean|isAutoSessionTracking|enable/disable access analytics automatic session tracking<br>※default is true|
 
 <div id="fox"></div>
 
@@ -61,35 +61,35 @@ public enum Fox<br>
 
 ### Public instance
 
-* **`AUTOMATOR`** : 自動計測機能を実装する場合に使用 &nbsp;(Added in 4.3.0)
+* **`AUTOMATOR`** : Used when implementing auto-tracking features &nbsp;(Added in 4.3.0)
 
 ### Public methods
 
 |**Return**|**Type**|**Method**|**Details**|
 |:---:|:---:|:---|:---|
-|void|static|**trackInstall** ( )|インストール後の初回起動計測用メソッド。管理画面で設定した通りに動作する。|
-|void|static|**trackInstall** ([FoxTrackOption](#foxtrackoption) option)<br><br>`option` : 計測に指定するオプション|インストール後の初回起動計測用メソッド。FoxOptionに設定した計測オプションに従い動作する。|
-|void|static|**trackSession** ( )|onResumeに実装しセッション計測を行う。|
-|void|static|**trackEvent** ([FoxEvent](#foxevent) event)<br><br>`event` : イベント計測に必要な各種パラメータの設定クラス|アプリ内のイベント計測を実行|
-|void|static|**trackEventByBrowser** (String url)<br><br>`url` : イベントタグを埋め込んだ外部のWebページのURL|イベントタグを設置した外部のWebページのイベント計測|
-|void|static|**trackEventByWebView** (WebView webView)<br><br>`webView` : LTVが発生するWebページにアクセスするWebView|WebViewによるタグ計測。Android L以降、WebViewへサードパーティCookieの編集を行う場合には許可が必要なため引数にWebViewを必要としている。|
-|boolean|static|**isConversionCompleted** ( )|インストール計測が完了しているかをbooleanで返す|
-|void|static|trackDeeplinkLaunch (Intent intent)<br><br>`intent` : カスタムURLスキームで起動した際のIntent|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
-|void|static|trackDeeplinkLaunch (Intent intent, String buid)<br><br>`intent` : カスタムURLスキームで起動した際のIntent<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
-|void|static|trackDeeplinkLaunch (Activity activity)<br><br>`activity` : カスタムURLスキームで起動するActivity|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
-|void|static|trackDeeplinkLaunch (Activity activity, String buid)<br><br>`activity` : カスタムURLスキームで起動するActivity<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
-|void|static|**setUserInfo** (JSONObject userInfo)<br><br>`userInfo` : ユーザー情報・属性|計測する際のユーザー情報・属性等を設定する|
-|JSONObject|static|**getUserInfo** ( )|setUserInfoでユーザー情報をセットしてある場合に、その情報を取得することができる|
-|Fox|-|**init** ( Context context )|アノテーションで必須情報を設定した場合に呼び出すイニシャライズメソッド<br>(Added in 4.3.0)|
-|Fox|-|**init** ( [FoxConfig](#foxconfig) config )|手動でイニシャライズ処理を実行する。<br>※アノテーションによる必須情報設定との併用不可。<br>(Added in 4.3.0)|
-|-|-|**startTrack** ( ) |自動計測を開始するメソッド<br>(Added in 4.3.0)|
-|-|-|**startTrack** ( FoxTrackOption option ) |計測オプションを指定し自動計測を開始する。<br>(Added in 4.3.0)|
-|Fox|-|**setManualInstallTrackingEnable** ( boolean manualInstallTracking ) <br><br>`manualInstallTracking` : インストール計測の手動実行有無フラグ|個別に手動でインストール計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
-|boolean|-|**isManualInstallTrackingEnable** ( ) |インストール計測の手動実行有無取得<br>(Added in 4.3.0)|
-|Fox|-|**setManualDeeplinkTrackingEnable** ( boolean manualDeeplinkTracking ) <br><br>`manualDeeplinkTracking` : ディープリンク経由計測の手動実行有無フラグ|個別に手動でディープリンク経由計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
-|boolean|-|**isManualDeeplinkTrackingEnable** ( ) |ディープリンク経由計測の手動実行有無取得<br>(Added in 4.3.0)|
-|Fox|-|**setManualSessionTrackingEnable** ( boolean manualSessionTracking ) <br><br>`manualSessionTracking` : セッション計測の手動実行有無フラグ|個別に手動でセッション計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
-|boolean|-|**isManualSessionTrackingEnable** ( ) |セッション計測の手動実行有無取得<br>(Added in 4.3.0)|
+|void|static|**trackInstall** ( )|tracks first launch post install.<br> executes as specified in the F.O.X management portal.|
+|void|static|**trackInstall** ([FoxTrackOption](#foxtrackoption) option)<br><br>`option` :user defined options|tracks first launch post install. <br>executes according to `option`s specified|
+|void|static|**trackSession** ( )|initalized in `onResume`, then tracks session|
+|void|static|**trackEvent** ([FoxEvent](#foxevent) event)<br><br>`event` : class that sets multiple parameters needed for tracking events|tracks App events.|
+|void|static|**trackEventByBrowser** (String url)<br><br>`url` : web page URL embedded with an event tag|tracks events with an event tag embedded into a web page URL.|
+|void|static|**trackEventByWebView** (WebView webView)<br><br>`webView` : Webview which accesses an LTV tracking webpage|LTV tracking by Webview. As of Android L, editing third party cookies into a webview requires user permission, thereby requiring a webview argument.|
+|boolean|static|**isConversionCompleted** ( )|returns a boolean value determining whether install tracking has been completed.|
+|void|static|trackDeeplinkLaunch (Intent intent)<br><br>`intent` : Intent launched by a custom URL Scheme| ・Re-engagement tracking <br> ・Detects first time launch tracking completion <br>・Controls receipt of deferred deeplink|
+|void|static|trackDeeplinkLaunch (Intent intent, String buid)<br><br>`intent` : Intent launched by a custom URL Scheme<br>`buid` : advertiser device ID (e.g. user ID)|・Re-engagement tracking <br> ・Detects first time launch tracking completion <br>・Controls receipt of deferred deeplink|
+|void|static|trackDeeplinkLaunch (Activity activity)<br><br>`activity` : Intent launched by a custom URL Scheme|・Re-engagement tracking <br> ・Detects first time launch tracking completion <br>・Controls receipt of deferred deeplink|
+|void|static|trackDeeplinkLaunch (Activity activity, String buid)<br><br>`activity` : Intent launched by a custom URL Scheme<br>`buid` : advertiser device ID (e.g. user ID)|・Re-engagement tracking <br> ・Detects first time launch tracking completion <br>・Controls receipt of deferred deeplink|
+|void|static|**setUserInfo** (JSONObject userInfo)<br><br>`userInfo` : user information/traits|sets the desired trackable user information/traits|
+|JSONObject|static|**getUserInfo** ( )|getter for setUserInfo|
+|Fox|-|**init** ( Context context )|an init method that is called when required information is set by annotation.<br>(Added in 4.3.0)|
+|Fox|-|**init** ( [FoxConfig](#foxconfig) config )|manually calls init method<br>※cannot be used in conjuction with setting annotated data<br>(Added in 4.3.0)|
+|-|-|**startTrack** ( ) |runs auto-tracking<br>(Added in 4.3.0)|
+|-|-|**startTrack** ( FoxTrackOption option ) |runs auto-tracking with options<br>(Added in 4.3.0)|
+|Fox|-|**setManualInstallTrackingEnable** ( boolean manualInstallTracking ) <br><br>`manualInstallTracking` : flag for manual install tracking execution|use when performing manual install tracking. <br> default : false(auto-tracking enabled)<br>(Added in 4.3.0)|
+|boolean|-|**isManualInstallTrackingEnable** ( ) |returns a boolean determining whether manual install tracking has been enabled<br>(Added in 4.3.0)|
+|Fox|-|**setManualDeeplinkTrackingEnable** ( boolean manualDeeplinkTracking ) <br><br>`manualDeeplinkTracking` : flag for manual deeplink tracking execution|use when performing manual deeplink tracking <br> default : false(auto-tracking enabled)<br>(Added in 4.3.0)|
+|boolean|-|**isManualDeeplinkTrackingEnable** ( ) |returns a boolean determining whether manual deeplink tracking has been enabled <br>(Added in 4.3.0)|
+|Fox|-|**setManualSessionTrackingEnable** ( boolean manualSessionTracking ) <br><br>`manualSessionTracking` : flag for manual session tracking execution| use when performing manual session tracking <br> default : false(auto-tracking enabled)<br>(Added in 4.3.0)|
+|boolean|-|**isManualSessionTrackingEnable** ( ) |returns a boolean determining whether manual session tracking has been enabled<br>(Added in 4.3.0)|
 
 <div id="foxtrackoption"></div>
 
@@ -102,12 +102,12 @@ public class FoxTrackOption<br>
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|init|**FoxTrackOption** ()|コンストラクタ|
-|FoxTrackOption|**setRedirectUrl** (String redirectTo)<br><br>`redirectTo` : ブラウザ起動後のリダイレクト先|Cookie計測を実施する場合のブラウザ起動後のリダイレクト先を指定する。URL/URLスキーム|
-|FoxTrackOption|**setBuid** (String buid)|Buidのセッター|
-|FoxTrackOption|**setOptOut** (boolean optOut)|OptOut有無のセッター<br>※デフォルト : false|
-|void|**setTrackingStateListener** (TrackingStateListener listener)|初回起動計測が成功した際のコールバック。onCompleteメソッドをOverrideする|
-|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : ディファードディープリンクを受信するためのハンドラ|ディファードディープリンクを利用する際にコールします。|
+|init|**FoxTrackOption** ()|Constructor|
+|FoxTrackOption|**setRedirectUrl** (String redirectTo)<br><br>`redirectTo` : redirect destination after browser launch|sets the URL/URL Scheme which will be used as a redirect destination from a browser when performing Cookie tracking.|
+|FoxTrackOption|**setBuid** (String buid)|Buid setter|
+|FoxTrackOption|**setOptOut** (boolean optOut)|OptOut toggler<br>※default : false|
+|void|**setTrackingStateListener** (TrackingStateListener listener)|Postback method which runs when a first time install is successfully tracked. Overrides the `onComplete` method.|
+|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : handler for receiving deferred deeplinks|called when using deferred deeplink.|
 
 
 <div id="foxevent"></div>
@@ -123,30 +123,30 @@ public class FoxEvent<br>
 
 |**Constructor**|**Details**|
 |:---|:---|
-|**FoxEvent** (String eventName)|アクセス解析のイベント計測を行う|
-|**FoxEvent** (String eventName, int ltvPointId)|LTV計測とアクセス解析のイベント計測を行う|
+|**FoxEvent** (String eventName)|measures access analytics events|
+|**FoxEvent** (String eventName, int ltvPointId)|measures access analytics events and conversion points|
 
 ### Public methods
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット|
-|HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得|
-|JSONObject|**getEventInfo** ( )|エンゲージメント計測にて`eventInfo`に入れたJSONObjectを返す|
+|FoxEvent|**addExtraInfo** (String key, String val)|set an arbitrary key/value pair|
+|HashMap<String, String>|**getExtraInfo** ( )|gets a HashMap containing any key/value pairs added with addExtraInfo|
+|JSONObject|**getEventInfo** ( )|returns a JSON object containted within `eventInfo` during engagement measurement.|
 
 ### Public variables
 
 |**Type**|**Variable**|**Details**|
 |:---:|:---|:---|
-|String|buid|Buidをセット|
-|double|price|金額をセット|
-|String|currency|通貨をセット|
-|String|sku|skuをセット|
-|String|value|valueをセット|
-|String|label|labelをセット|
-|String|orderId|orderIdをセット|
-|int|quantity|quantityをセット|
-|JSONObject|eventInfo|eventInfoをセット|
+|String|buid|sets Buid|
+|double|price|sets price|
+|String|currency|sets currency|
+|String|sku|sets sku|
+|String|value|sets value|
+|String|label|sets label|
+|String|orderId|sets orderId|
+|int|quantity|sets quantity|
+|JSONObject|eventInfo|sets eventInfo|
 
 <div id="ids"></div>
 
@@ -161,8 +161,8 @@ public class Ids
 
 |**Type**|**Return**|**Method**|**Details**|
 |:---:|:---:|:---|:---|
-|static|String|*static*<br>**get** ( Context context, String key)|keyには取得するID名を指定します。<br>例：`get(getApplicationContext(), "xuniq")`|
+|static|String|*static*<br>**get** ( Context context, String key)|insert an arbitrary ID name for `key` <br>例：`get(getApplicationContext(), "xuniq")`|
 
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

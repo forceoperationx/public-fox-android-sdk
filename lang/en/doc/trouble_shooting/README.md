@@ -1,62 +1,62 @@
-[TOP](../../README.md)　>　FAQ・注意事項
+[TOP](../../README.md)　>　FAQ・Notes
 
-これまで発生したトラブルや質問事項、実装時における注意事項を纏めましたので必ずご確認ください。
+The following is a compilation of common issues, questions, and important information to note.
 
-### サポート対象のAndroid APIレベルはいくつですか？
+### What Android API levels does F.O.X support?
 
-F.O.X Android SDK ver 3.x以前のSDKは、Android API Level 9以上をサポートしています。
-F.O.X Android SDK ver 4.0.0以降のSDKは、Android API Level 14以上をサポートしています。
+F.O.X Android SDK ver 3.x and below supports Android API Level 9 and above.
+F.O.X Android SDK ver 4.0.0 and above supports Android API level 14 and above.
 
+### We released our app without specifying a URL scheme, and now we can't return from the browser to our app.
 
-### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
-
-Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
-
-
-### URLスキームに大文字が含まれ、正常にアプリに遷移されない
-
-環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
+When performing Cookie tracking the URL scheme is used to transition from the browser to your app. As such, it is necessary to have a custom URL scheme specified.
 
 
-### F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
+### Our URL scheme contains uppercase letters, preventing the browser from transitioning to our app.
 
-F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。
-重複検知が行えない設定では、同一端末でも再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。
-
-重複検知の精度を向上するために、以下の設定を行ってください。
-
-* [広告IDを利用するためのGoogle Play Services SDKの導入](../google_play_services/README.md)
-
-* [外部ストレージを利用した重複排除設定](../external_storage/README.md)
-
-* [オートバックアップ機能の利用 Android M](../auto_backup/README.md)
+Depending on your production environment, there are cases where capitalized URL schemes are not recognized. In order to avoid this, please set your URL scheme in lower case alphanumeric characters.
 
 
-## 注意事項
+### The number of installs displayed on the F.O.X management portal is greater than the number displayed on the Google Play Developer Console.
 
-### FOX_APP_ID等のアプリ毎に割り当てられたパラメータは必ず指定された値を設定してください
+F.O.X undertakes multiple measures in detecting duplicate installs.
+If de-duplication feature settings are not properly calibrated, then F.O.X will count installs occurring on the same device as new installs.
 
-異なる値を入れてしまったり、コピー＆ペーストの際にスペースや改行が紛れ込んでしまったりことにより、正常に計測できなくなってしまった事例がございます。
+For more information on improving F.O.X's de-duplication features, change the following settings.
 
-### インストールリファラ計測を利用する場合は必ずINSTALL_REFERRERレシーバーの設定をしてください
+* [Setting Up Google Play Services](../google_play_services/README.md)
 
-インストールリファラ計測の設定は下記を参照ください。
+* [De-duplication feature settings (external storage permissions)](../external_storage/README.md)
 
-[インストールリファラ計測の設定](../../README.md#23-インストールリファラ計測の設定)
+* [De-duplication feature settings (auto-backup for Android M)](../auto_backup/README.md)
 
-F.O.Xとは別のツールでINSTALL_REFERRERレシーバーの設定が必要な場合に、F.O.Xの設定を消してしまい計測できなくなってしまった事例がございます。複数のツールでINSTALL_REFERRERレシーバーを共存させる場合は下記を参照ください。
 
-[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](../install_referrer/README.md)
+## NOTES
 
-### ProGuardを利用する場合は、F.O.Xのメソッドが対象にならないように設定してください
+### Make sure you set each parameter you are issued to the relevant location in your app
 
-F.O.X SDKのメソッドを難読化の対象から除外しない場合、正常動作しなくなります。詳細な設定は下記を参照ください。
+There have been cases where tracking information was incomplete/incorrect when these parameters included a space or carriage return or were incorrectly specified.
 
-[ProGuardを利用する場合](../../README.md#setting_proguard)
+### If you are using install referrer tracking, make sure you use the `INSTALL_RECEIVER` receiver.
 
-### アプリの新規リリース、またはアップデートの際には必ず弊社の疎通テスト確認画面にて正常に計測が取れていることを確認してください
+See the following link for proper settings with install referrer tracking.
 
-マーケットへの申請までに、SDKを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
+[Install Referrer Settings](../../README.md#setting_installreferrer)
+
+There have been cases where an app needed to use the `INSTALL_REFERRER` receiver class with a tool besides F.O.X, where the settings for F.O.X were changed. Because of this, F.O.X was unable to properly perform any tracking.
+For information on how to enable multiple receiver classes see the following.
+
+[Install Referrer Settings](../install_referrer/README.md)
+
+### If your app uses Proguard, make sure F.O.X is whitelisted
+
+F.O.X will not function properly if its methods are obfuscated by Proguard. See below for more details.
+
+[ProGuard Settings](../../README.md#setting_proguard)
+
+### Whenever your app has a new release or update, make sure you perform the connection tests on our management portal to ensure tracking is functioning properly.
+
+Be sure to test thoroughly with our SDK implemented into your app and make sure there are no operational issues before releasing your app to the marketplace.
 
 ---
-[トップ](../../README.md)
+[Return to Top](../../README.md)

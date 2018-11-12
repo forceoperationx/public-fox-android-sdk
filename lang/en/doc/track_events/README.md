@@ -6,7 +6,6 @@
 
 These are the instructions for implementing additional details. <br>
 Implementation instructions for engagement measurement and dynamic transmission linkage are included. By implementing the following, your app will be able to attribute events to specific individual digital mediums.
-~~エンゲージメント計測やダイナミック配信連携を行う際に必要となる実装も含まれます。本実装を行うことで、媒体を横断したイベント計測連携が可能となります。~~
 
 * **[1. Examples of each app event](#each_event_sample)**
 * **[2. Changing Implementation from a previous version(Engagement measurement)](#continuity)**
@@ -135,7 +134,6 @@ Find the HTML tag parameters below.
 
 When using tags to track events in an external browser launched by your app, use the `trackEventByBrowser` method to launch the external browser.<br>
 The arguments will be composed of strings from the external browser's URL.
-~~引数には、外部ブラウザで表示するURLを文字列で指定します。~~
 
 ```java
 import co.cyberz.fox.Fox;
