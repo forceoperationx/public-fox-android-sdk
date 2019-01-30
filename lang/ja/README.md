@@ -143,6 +143,22 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 <div id="setting_installreferrer"></div>
 
 ### 2.3 インストールリファラ計測の設定
+
+#### Google Play Referrer APIを用いる場合（推奨）
+
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
+
+以下の[Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)のdependencyをbuild.gradleに追加することで本API経由でのInstallReferrer計測が可能となります。<br>
+(特にSDKの実装は必要ありません)
+
+```
+dependencies {
+    compile 'com.android.installreferrer:installreferrer:1.0'
+}
+```
+
+#### 従来のインストールリファラを用いる場合（非推奨）
+
 インストールリファラーを用いたインストール計測を行うために下記の設定を&lt;application&gt;タグに追加します。
 
 ```xml
@@ -153,18 +169,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 </receiver>
 ```
 
-#### Google Play Referrer APIを用いる場合
-
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
-
-以下の[Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)のdependencyをbuild.gradleに追加することで本API経由でのInstallReferrer計測が可能となります。<br>
-(得にSDKの実装は必要ありません)
-
-```
-dependencies {
-    compile 'com.android.installreferrer:installreferrer:1.0'
-}
-```
+#### 複数のインストールリファラレシーバを設定する場合
 
 既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/install_referrer/README.md)をご参照ください。
 
