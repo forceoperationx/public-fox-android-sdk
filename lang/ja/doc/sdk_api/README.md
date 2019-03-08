@@ -109,7 +109,7 @@ public class FoxTrackOption<br>
 |FoxTrackOption|**setOptOut** (boolean optOut)|OptOut有無のセッター<br>※デフォルト : false|
 |void|**setTrackingStateListener** (TrackingStateListener listener)|初回起動計測が成功した際のコールバック。onCompleteメソッドをOverrideする|
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : ディファードディープリンクを受信するためのハンドラ|ディファードディープリンクを利用する際にコールします。|
-|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録不可``|
+|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録不可`|
 |HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得|
 
 
@@ -134,7 +134,7 @@ public class FoxEvent<br>
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
 |FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット|
-|HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得|
+|HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得<br><br>`接頭辞が'_'のKeyは登録不可`|
 |JSONObject|**getEventInfo** ( )|エンゲージメント計測にて`eventInfo`に入れたJSONObjectを返す|
 
 ### Public variables
