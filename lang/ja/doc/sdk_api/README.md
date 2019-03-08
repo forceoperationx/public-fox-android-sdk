@@ -20,6 +20,7 @@ public class FoxConfig
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
 |void|**activate** ( )|設定した必須情報を内部で保存する|
+|void|**addOfflineModeOption** (boolean isOffline )<br><br>`isOffline` : オフラインモードの有効無効|F.O.X SDKの計測機能を停止しトラッキングを無効化する<br>`デフォルト : false`|
 |FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : デバッグログの出力有無|エラー時のメッセージやスタックトレースをLogcatに出力させる<br>`デフォルト : false`|
 |FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : DeliverサーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
 |FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : アクセス解析サーバーURL暗号化文字列|デバッグ用、またはHTTPS/HTTPを切り替える用のURLのセッター<br>※管理者から指定されない限り使用することはありません。|
@@ -108,6 +109,8 @@ public class FoxTrackOption<br>
 |FoxTrackOption|**setOptOut** (boolean optOut)|OptOut有無のセッター<br>※デフォルト : false|
 |void|**setTrackingStateListener** (TrackingStateListener listener)|初回起動計測が成功した際のコールバック。onCompleteメソッドをOverrideする|
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : ディファードディープリンクを受信するためのハンドラ|ディファードディープリンクを利用する際にコールします。|
+|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録不可``|
+|HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得|
 
 
 <div id="foxevent"></div>
