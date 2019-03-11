@@ -40,7 +40,8 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
   * [サードパーティーツールとの連携](./doc/integration/thirdparty_tools/README.md)
 * **[9. 最後に必ずご確認ください](#trouble_shooting)**
 	* [FAQ・注意事項](./doc/trouble_shooting/README.md)
-* **[SDK API](#sdk_api)**
+* **[10. SDK API](#sdk_api)**
+
 
 
 
@@ -570,6 +571,6 @@ public class YourApplication extends Application {
 
 <div id="sdk_api"></div>
 
-## SDK API
+## 10. SDK API
 
 * [SDK API](./doc/sdk_api/README.md)
