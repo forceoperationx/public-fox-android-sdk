@@ -109,7 +109,7 @@ public class FoxTrackOption<br>
 |FoxTrackOption|**setOptOut** (boolean optOut)|OptOut有無のセッター<br>※デフォルト : false|
 |void|**setTrackingStateListener** (TrackingStateListener listener)|初回起動計測が成功した際のコールバック。onCompleteメソッドをOverrideする|
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : ディファードディープリンクを受信するためのハンドラ|ディファードディープリンクを利用する際にコールします。|
-|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録不可`|
+|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録しないでください.`<br><br>F.O.Xの予約語と重複しない名称にしてください。予約語は[こちら](#reserved_parameters)からご確認ください。|
 |HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得|
 
 
@@ -133,8 +133,7 @@ public class FoxEvent<br>
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット|
-|HashMap<String, String>|**getExtraInfo** ( )|addExtraInfoで追加したkey/valueをHashMapで取得<br><br>`接頭辞が'_'のKeyは登録不可`|
+|FoxEvent|**addExtraInfo** (String key, String val)|任意のkey/valueをセット<br><br>`接頭辞が'_'のKeyは登録しないでください.`<br><br>F.O.Xの予約語と重複しない名称にしてください。予約語は[こちら](#reserved_parameters)からご確認ください。|
 |JSONObject|**getEventInfo** ( )|エンゲージメント計測にて`eventInfo`に入れたJSONObjectを返す|
 
 ### Public variables
@@ -166,6 +165,11 @@ public class Ids
 |:---:|:---:|:---|:---|
 |static|String|*static*<br>**get** ( Context context, String key)|keyには取得するID名を指定します。<br>例：`get(getApplicationContext(), "xuniq")`|
 
+<div id="reserved_parameters"></div>
+
+### F.O.X Reserved Parameters List
+
+[F.O.X Reserved Parameters List](./doc/reserved_parameters/README.md)
 
 ---
 [トップ](../../README.md)

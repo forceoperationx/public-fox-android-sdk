@@ -22,7 +22,6 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 	* [2.3 インストールリファラ計測の設定](#setting_installreferrer)
 	* [2.4 カスタムURLスキームの設定](#setting_urlscheme)
 	* [2.5 広告IDを利用するためのGoogle Play Servicesの導入](#setting_googleplayservices)
-	* [SDK API](./doc/sdk_api/README.md)
 * **[3. F.O.X SDKのアクティベーション](#activate_sdk_into_app)**
 	* [自動計測の詳細](./doc/track_auto/README.md)
 * **[4. インストール計測の実装](#tracking_install)**
@@ -41,6 +40,9 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
   * [サードパーティーツールとの連携](./doc/integration/thirdparty_tools/README.md)
 * **[9. 最後に必ずご確認ください](#trouble_shooting)**
 	* [FAQ・注意事項](./doc/trouble_shooting/README.md)
+* **[SDK API](#sdk_api)**
+
+
 
 
 <div id="whats_fox_sdk"></div>
@@ -565,3 +567,9 @@ public class YourApplication extends Application {
 ## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
 
 * [FAQ・注意事項](./doc/trouble_shooting/README.md)
+
+<div id="sdk_api"></div>
+
+## SDK API
+
+* [SDK API](./doc/sdk_api/README.md)
