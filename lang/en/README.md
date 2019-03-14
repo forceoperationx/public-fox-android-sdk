@@ -28,7 +28,6 @@ Read this in another language: [日本語](https://github.com/cyber-z/public-fox
 	* [2.3 Install Referrer Settings](#setting_installreferrer)
 	* [2.4 Custom URL Scheme Settings](#setting_urlscheme)
 	* [2.5 Setting Up Google Play Services](#setting_googleplayservices)
-	* [SDK API](./doc/sdk_api/README.md)
 * **[3. F.O.X SDK Activation](#activate_sdk_into_app)**
 	* [Auto-Tracking](./doc/track_auto/README.md)
 * **[4. Implementing the install tracking feature](#tracking_install)**
@@ -46,6 +45,7 @@ Read this in another language: [日本語](https://github.com/cyber-z/public-fox
 	* [De-duplication feature settings (auto-backup for Android M)](./doc/auto_backup/README.md)
 * **[9. Frequent Troubleshooting Issues](#trouble_shooting)**
 	* [FAQ・Notes](./doc/trouble_shooting/README.md)
+* **[10. SDK API](#sdk_api)**
 
 
 <div id="whats_fox_sdk"></div>
@@ -150,22 +150,7 @@ Additionally, if you have implemented the Google Play Services SDK, please follo
 ### 2.3 Install Referrer Settings
 In order to accurately attribute an install of your app to its source, F.O.X needs information about the <strong>install referrer</strong>. This can be obtained through the <strong>Google Play Referrer API</strong> or by catching the <strong>Google Play Store intent</strong> with a broadcast receiver.
 
-<strong>Note:</strong> The Google Play Store intent is temporarily existing in parallel with the Google Play Referrer API but is set to be deprecated in the future. We highly recommend that you support The Google Play Referrer API in your app.
 
-If you want to use a broadcast receiver, add the following `receiver` tag inside the `application` tag in your `AndroidManifest.xml`.
-
-```xml
-<receiver android:name="co.cyberz.fox.FoxInstallReceiver" android:exported="true">
-	<intent-filter>
-		<action android:name="com.android.vending.INSTALL_REFERRER" />
-	</intent-filter>
-</receiver>
-```
-
-#### Using a broadcast receiver
-
-If your application already defines a receiver class which corresponds to "com.android.vending.INSTALL_REFERRER", see
-[Enabling multiple INSTALL_REFERRER receivers](./doc/install_referrer/README.md).
 
 #### Using the Google Play Referrer API
 
@@ -180,7 +165,25 @@ dependencies {
 }
 ```
 
+#### Using multiple INSTALL REFERRER receiver
+
+If your application already defines a receiver class which corresponds to "com.android.vending.INSTALL_REFERRER", see
+[Enabling multiple INSTALL_REFERRER receivers](./doc/install_referrer/README.md).
+
 <div id="setting_urlscheme"></div>
+
+#### F.O.X SDK < 4.4.0
+
+If you want to use a broadcast receiver, add the following `receiver` tag inside the `application` tag in your `AndroidManifest.xml`.
+
+```xml
+<receiver android:name="co.cyberz.fox.FoxInstallReceiver" android:exported="true">
+	<intent-filter>
+		<action android:name="com.android.vending.INSTALL_REFERRER" />
+	</intent-filter>
+</receiver>
+```
+
 
 ### 2.4 Custom URL Scheme Settings
 
@@ -574,3 +577,9 @@ public class YourApplication extends Application {
 ## 9. Frequent Troubleshooting Issues
 
 * [FAQ・Notes](./doc/trouble_shooting/README.md)
+
+<div id="sdk_api"></div>
+
+## 10. SDK API
+
+* [SDK API](./doc/sdk_api/README.md)
