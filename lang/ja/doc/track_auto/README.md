@@ -177,7 +177,7 @@ public class YourApplication extends Application {
 
       FoxTrackOption option = new FoxTrackOption();
       option.setRedirectUrl("myapp://top")
-            .setBuid(getUserId())
+            .addBuid(getUserId())
             .setTrackingStateListener(new FoxTrackOption.TrackingStateListener() {
                @Override
                public void onComplete() {
