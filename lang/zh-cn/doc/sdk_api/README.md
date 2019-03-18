@@ -20,6 +20,7 @@ public class FoxConfig
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
 |void|**activate** ( )|在内部保存设置的必要信息|
+|void|**addOfflineModeOption** (boolean isOffline )<br><br>`isOffline` : 是否开启offline模式|开启/关闭F.O.X SDK的offline模式以停止计测| 
 |FoxConfig|**addDebugOption** (boolean isDebug)<br><br>`isDebug` : 是否输出Debug日志|设置发生错误时的消息和堆栈轨迹（Stack Trace）输出到Logcat<br>默认： false|
 |FoxConfig|**addServerUrlOption** (String url)<br><br>`url` : Deliver服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用|
 |FoxConfig|**addAServerUrlOption** (String url)<br><br>`url` : 流量分析服务器URL加密字符串|用于debug或用于切换HTTPS/HTTP的URL&nbsp;SETTER方法<br>※必须由管理员指定权限后才能使用。|
@@ -108,6 +109,8 @@ public class FoxTrackOption<br>
 |FoxTrackOption|**setOptOut** (boolean optOut)|设置OptOut有无的setter方法<br>※默认 : false|
 |void|**setTrackingStateListener** (TrackingStateListener listener)|首次启动计测成功时的回调函数。重写onComplete方法。|
 |FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : 为了获得DeferredDeeplink的handler|利用DeferredDeeplink的时候调用。|
+|FoxEvent|**addExtraInfo** (String key, String val)|添加自定义键值对<br><br>`请勿使用下划线'_'作为键名前缀`<br><br>自定义键名不应与F.O.X保留字重复，F.O.X保留字可参考[此处](#reserved_parameters)|
+|HashMap<String, String>|**getExtraInfo** ( )|获取已添加的自定义键值对|
 
 
 <div id="foxevent"></div>
@@ -130,8 +133,8 @@ public class FoxEvent<br>
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|FoxEvent|**addExtraInfo** (String key, String val)|设置任意的key/value|
-|HashMap<String, String>|**getExtraInfo** ( )|用addExtraInfo添加的key/value可以用HashMap取得|
+|FoxEvent|**addExtraInfo** (String key, String val)|添加自定义键值对<br><br>`请勿使用下划线'_'作为键名前缀`<br><br>自定义键名不应与F.O.X保留字重复，F.O.X保留字可参考[此处](#reserved_parameters)|
+|HashMap<String, String>|**getExtraInfo** ( )|获取已添加的自定义键值对|
 |JSONObject|**getEventInfo** ( )|流失唤回广告计测时返回放入`eventInfo`里的JSONObject|
 
 ### Public variables
@@ -163,6 +166,11 @@ public class Ids
 |:---:|:---:|:---|:---|
 |static|String|*static*<br>**get** ( Context context, String key)|在key里指定取得的ID名。<br>例：`get(getApplicationContext(), "xuniq")`|
 
+<div id="reserved_parameters"></div>
+
+# F.O.X Reserved Parameters List
+
+[F.O.X Reserved Parameters List](./doc/reserved_parameters/README.md)
 
 ---
 [Top](../../README.md)
