@@ -22,7 +22,6 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 	* [2.3 设置Install Referrer计测](#setting_installreferrer)
 	* [2.4 设置自定义URL SCHEME](#setting_urlscheme)
 	* [2.5 为使用广告ID的Google Play Services导入](#setting_googleplayservices)
-	* [SDK API](./doc/sdk_api/README.md)
 * **[3. 激活F.O.X SDK](#activate_sdk_into_app)**
 	* [自动计测的详细](./doc/track_auto/README.md)
 * **[4. Install计测的安装](#tracking_install)**
@@ -40,6 +39,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 	* [自动备份功能的使用 (Android M)](./doc/auto_backup/README.md)
 * **[9. 最后的注意事项](#trouble_shooting)**
 	* [FAQ・注意事项](./doc/trouble_shooting/README.md)
+* **[10. SDK API](#sdk_api)**
 
 
 <div id="whats_fox_sdk"></div>
@@ -559,3 +559,9 @@ public class YourApplication extends Application {
 ## 9. 最后需确认内容（常见问题集）
 
 * [FAQ・注意事项](./doc/trouble_shooting/README.md)
+
+<div id="sdk_api"></div>
+
+## 10. SDK API
+
+* [SDK API](./doc/sdk_api/README.md)
