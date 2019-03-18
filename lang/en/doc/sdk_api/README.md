@@ -104,10 +104,13 @@ public class FoxTrackOption<br>
 |:---:|:---|:---|
 |init|**FoxTrackOption** ()|Constructor|
 |FoxTrackOption|**setRedirectUrl** (String redirectTo)<br><br>`redirectTo` : redirect destination after browser launch|sets the URL/URL Scheme which will be used as a redirect destination from a browser when performing Cookie tracking.|
-|FoxTrackOption|**setBuid** (String buid)|Buid setter|
+|FoxTrackOption|**addBuid** (String buid)|Buid setter|
 |FoxTrackOption|**setOptOut** (boolean optOut)|OptOut toggler<br>※default : false|
 |void|**setTrackingStateListener** (TrackingStateListener listener)|Postback method which runs when a first time install is successfully tracked. Overrides the `onComplete` method.|
-|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : handler for receiving deferred deeplinks|called when using deferred deeplink.|
+|FoxTrackOption|**registerDeeplinkHandler** ([DeeplinkHandler](#deeplinkhandler) handler)<br><br>`handler` : handler for receiving deferred deeplinks|called when using deferred deeplink |
+|FoxEvent|**addExtraInfo** (String key, String val)|set an arbitrary key/value pair<br><br>Do not use _ prefix in parameters name. <br><br>A parameter duplicated with F.O.X parameter will not be sent. All F.O.X parameters are listed [here](#reserved_parameters) prefix '_'. |
+|HashMap<String, String>|**getExtraInfo** ( )|gets a HashMap containing any key/value pairs added with addExtraInfo|
+
 
 
 <div id="foxevent"></div>
@@ -130,7 +133,7 @@ public class FoxEvent<br>
 
 |**Return**|**Method**|**Details**|
 |:---:|:---|:---|
-|FoxEvent|**addExtraInfo** (String key, String val)|set an arbitrary key/value pair|
+|FoxEvent|**addExtraInfo** (String key, String val)|set an arbitrary key/value pair<br><br>Do not use _ prefix in parameters name. <br><br>A parameter duplicated with F.O.X parameter will not be sent. All F.O.X parameters are listed [here](#reserved_parameters) prefix '_'. |
 |HashMap<String, String>|**getExtraInfo** ( )|gets a HashMap containing any key/value pairs added with addExtraInfo|
 |JSONObject|**getEventInfo** ( )|returns a JSON object containted within `eventInfo` during engagement measurement.|
 
@@ -163,6 +166,12 @@ public class Ids
 |:---:|:---:|:---|:---|
 |static|String|*static*<br>**get** ( Context context, String key)|insert an arbitrary ID name for `key` <br>例：`get(getApplicationContext(), "xuniq")`|
 
+
+<div id="reserved_parameters"></div>
+
+# F.O.X Reserved Parameters List
+
+[F.O.X Reserved Parameters List](../reserved_parameters/README.md)
 
 ---
 [Return to Top](../../README.md)
