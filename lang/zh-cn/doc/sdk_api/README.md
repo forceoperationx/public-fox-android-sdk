@@ -170,7 +170,7 @@ public class Ids
 
 # F.O.X Reserved Parameters List
 
-[F.O.X Reserved Parameters List](./doc/reserved_parameters/README.md)
+[F.O.X Reserved Parameters List](../reserved_parameters/README.md)
 
 ---
 [Top](../../README.md)
