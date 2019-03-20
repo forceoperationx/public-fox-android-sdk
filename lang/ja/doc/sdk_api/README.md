@@ -76,9 +76,7 @@ public enum Fox<br>
 |void|static|**trackEventByWebView** (WebView webView)<br><br>`webView` : LTVが発生するWebページにアクセスするWebView|WebViewによるタグ計測。Android L以降、WebViewへサードパーティCookieの編集を行う場合には許可が必要なため引数にWebViewを必要としている。|
 |boolean|static|**isConversionCompleted** ( )|インストール計測が完了しているかをbooleanで返す|
 |void|static|trackDeeplinkLaunch (Intent intent)<br><br>`intent` : カスタムURLスキームで起動した際のIntent|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
-|void|static|trackDeeplinkLaunch (Intent intent, String 
-
-)<br><br>`intent` : カスタムURLスキームで起動した際のIntent<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
+|void|static|trackDeeplinkLaunch (Intent intent, String )<br><br>`intent` : カスタムURLスキームで起動した際のIntent<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
 |void|static|trackDeeplinkLaunch (Activity activity)<br><br>`activity` : カスタムURLスキームで起動するActivity|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
 |void|static|trackDeeplinkLaunch (Activity activity, String buid)<br><br>`activity` : カスタムURLスキームで起動するActivity<br>`buid` : 広告主端末ID(ユーザーIDなど)|リエンゲージメント計測・初回起動計測の完了検知・ディファードディープリンクの受信のコントロールを行います。|
 |void|static|**setUserInfo** (JSONObject userInfo)<br><br>`userInfo` : ユーザー情報・属性|計測する際のユーザー情報・属性等を設定する|
@@ -93,6 +91,7 @@ public enum Fox<br>
 |boolean|-|**isManualDeeplinkTrackingEnable** ( ) |ディープリンク経由計測の手動実行有無取得<br>(Added in 4.3.0)|
 |Fox|-|**setManualSessionTrackingEnable** ( boolean manualSessionTracking ) <br><br>`manualSessionTracking` : セッション計測の手動実行有無フラグ|個別に手動でセッション計測の実装を行う場合に使用します。デフォルト : false(自動計測有効)<br>(Added in 4.3.0)|
 |boolean|-|**isManualSessionTrackingEnable** ( ) |セッション計測の手動実行有無取得<br>(Added in 4.3.0)|
+
 
 <div id="foxtrackoption"></div>
 
