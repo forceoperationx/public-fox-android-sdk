@@ -165,6 +165,7 @@ public class Ids
 |**Type**|**Return**|**Method**|**Details**|
 |:---:|:---:|:---|:---|
 |static|String|*static*<br>**get** ( Context context, String key)|keyには取得するID名を指定します。<br>例：`get(getApplicationContext(), "xuniq")`|
+|static|String|*static*<br>**getInstallId** ()|InstallIdを返す。<br>activate()実行前はNULLを返します。|
 
 <div id="reserved_parameters"></div>
 
