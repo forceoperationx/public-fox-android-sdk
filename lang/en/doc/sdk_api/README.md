@@ -165,6 +165,7 @@ public class Ids
 |**Type**|**Return**|**Method**|**Details**|
 |:---:|:---:|:---|:---|
 |static|String|*static*<br>**get** ( Context context, String key)|insert an arbitrary ID name for `key` <br>例：`get(getApplicationContext(), "xuniq")`|
+|static|String|*static*<br>**getInstallId** ( )|get InstallId.<br>It returns null before executing activate (). |
 
 
 <div id="reserved_parameters"></div>
