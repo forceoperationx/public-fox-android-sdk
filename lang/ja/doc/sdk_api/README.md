@@ -121,7 +121,7 @@ public class FoxTrackOption<br>
 public class FoxEvent<br>
 
 [java.lang.Object](https://developer.android.com/reference/java/lang/Object.html)<br>
-&nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.FoxEvent
+&nbsp;&nbsp;&nbsp;↳&nbsp;co.cyberz.fox.service.FoxEvent
 
 ### Public constructors
 
@@ -145,8 +145,7 @@ public class FoxEvent<br>
 |double|price|金額をセット|
 |String|currency|通貨をセット|
 |String|sku|skuをセット|
-|String|value|valueをセット|
-|String|label|labelをセット|
+|int|value|valueをセット|
 |String|orderId|orderIdをセット|
 |int|quantity|quantityをセット|
 |JSONObject|eventInfo|eventInfoをセット|
