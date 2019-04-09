@@ -146,6 +146,57 @@ Fox.trackEventByBrowser("https://www.yoursite.com/tagpage");
 
 ### 3.2 アプリ内WebViewでのイベント計測について
 
+#### WebViewからネイティブAPIをコールする
+
+WebViewが提供する機構を使い、JavaScript経由でネイティブAPIを実行します。
+
+参考:https://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object,%20java.lang.String)
+
+
+ネイティブ側のサンプルコード
+
+```java
+import co.cyberz.fox.Fox;
+
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState)
+    WebView mWebView = (WebView) findViewById(R.id.sample_webview);
+    mWebView.setWebViewClient(new WebViewClient());
+
+    // WebViewからNativeCallでtrackEventを実行
+    class NativeBridge {
+        @JavascriptInterface
+        public void sendFoxEvent(String event_name, int ltvId) {
+            FoxEvent event = new FoxEvent(event_name, ltvId);
+            Fox.trackEvent(event);
+        }
+    }
+    mWebView.getSettings().setJavaScriptEnabled(true);
+    mWebView.addJavascriptInterface(new NativeBridge(), "NativeBridge");
+}
+```
+
+JavaScript側のサンプルコード
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<script type="text/javascript">
+  var event_name = 'foxEvent'
+  var ltvId = 00000
+  NativeBridge.sendFoxEvent(event_name, ltvId);
+</script>
+</body>
+</html>
+```
+
+
+#### WevViewでタグ計測を行う
+
 ユーザーの遷移がWebView内で行われる場合には、`trackEventByWebView`を用いることで計測することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度に`trackEventByWebView`が実行されるようにしてください。内部的にandroid.webkit.CookieManagerとandroid.webkit.CookieSyncManagerを利用してCookieをセットします。
 
 ```java
