@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:{VERSION}'
+    implementation 'co.cyberz.fox:track-core:{VERSION}'
 }
 ```
 
@@ -33,7 +33,7 @@ Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下�
 
 ```
 dependencies {
-	compile files('libs/foxtrack-core_{VERSION}.jar')
+	implementation files('libs/foxtrack-core_{VERSION}.jar')
 }
 ```
 

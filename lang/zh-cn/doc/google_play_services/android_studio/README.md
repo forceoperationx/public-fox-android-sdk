@@ -8,7 +8,7 @@
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 }
 ```
 
@@ -21,7 +21,7 @@ Android APP持有的方法数上限为64K(65536)，超过后会发生编译错�
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 }
 ```
 

@@ -8,7 +8,7 @@
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 }
 ```
 
@@ -21,7 +21,7 @@ F.O.X SDKではGooglePlayServicesを広告IDの取得を目的に利用してい
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 }
 ```
 
