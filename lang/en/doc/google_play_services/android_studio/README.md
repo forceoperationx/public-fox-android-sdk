@@ -8,7 +8,7 @@ Open the build.gradle in the module directory of your application and add the la
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 }
 ```
 
@@ -20,7 +20,7 @@ In the F.O. X SDK, Google Play Services is used to acquire advertisement ID.
 
 ```
 dependencies {
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 }
 ```
 

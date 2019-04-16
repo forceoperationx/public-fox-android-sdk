@@ -76,7 +76,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:4.x.x'
+    implementation 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
 
@@ -162,7 +162,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 
 ```
 dependencies {
-    compile 'com.android.installreferrer:installreferrer:1.0'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
 }
 ```
 
@@ -215,13 +215,13 @@ dependencies {
 使用Gradle进行导入时，在要导入的APP的`build.gradle`的`dependencies`中加入以下设置。
 
 ```
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 ```
 
 如果仅是为获取广告ID而导入GooglePlayServices，使用下面的最小指定就可以。
 
 ```
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
 > 如果没有导入Google Play Services SDK却启动F.O.X SDK，会因为没有使用广告ID导致部分的广告菜单计测无法进行，或重复判定的准确率较低等问题。<br>

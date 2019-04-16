@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:{VERSION}'
+    implementation 'co.cyberz.fox:track-core:{VERSION}'
 }
 ```
 
@@ -32,7 +32,7 @@ dependencies {
 
 ```
 dependencies {
-	compile files('libs/foxtrack-core_{VERSION}.jar')
+	implementation files('libs/foxtrack-core_{VERSION}.jar')
 }
 ```
 

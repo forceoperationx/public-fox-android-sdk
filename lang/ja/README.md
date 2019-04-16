@@ -80,7 +80,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:4.x.x'
+    implementation 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
 
@@ -154,7 +154,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 
 ```
 dependencies {
-    compile 'com.android.installreferrer:installreferrer:1.0'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
 }
 ```
 
@@ -224,13 +224,13 @@ SDKバージョン 4.4.0未満の場合、インストールリファラーを�
 Gradleで導入する場合、導入先のアプリの`build.gradle`の`dependencies`に以下の設定を追加します。
 
 ```
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 ```
 
 広告IDを取得するためだけにGooglePlayServicesを導入される場合、以下の最小指定で構いません。
 
 ```
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
 > Google Play Services SDKが導入されていない場合でもF.O.X SDKは動作しますが、広告IDが利用されないことで一部広告メニューの計測が行えなかったり、重複判定の精度が低下致します。<br>導入の詳細手順は[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/README.md)をご参照ください。

@@ -82,7 +82,7 @@ repositories {
 }
 
 dependencies {
-    compile 'co.cyberz.fox:track-core:4.x.x'
+    implementation 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
 For the exact sdk version please see our sdk [release page](https://github.com/cyber-z/public_fox_android_sdk/releases). <br>
@@ -161,7 +161,7 @@ You can attribute app installs by adding the [Google Play Referrer API](https://
 
 ```
 dependencies {
-    compile 'com.android.installreferrer:installreferrer:1.0'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
 }
 ```
 
@@ -230,13 +230,13 @@ Please confirm the following.
 As of August 1st, 2014, apps in the Google PLay Store are required to use the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) to uniquely identify devices. In order for F.O.X to use the Google Advertising ID, you must integrate [Google Play Services](https://developers.google.com/android/guides/setup) into your app.
 If it is set up through gradle, add the following `dependencies` to your `build.gradle` file.
 ```
-	compile 'com.google.android.gms:play-services:9.4.0'
+	implementation 'com.google.android.gms:play-services:9.4.0'
 ```
 
 If you are only setting up GooglePlayServices to obtain the Google Advertising ID, only add the following.
 
 ```
-	compile 'com.google.android.gms:play-services-ads:9.4.0'
+	implementation 'com.google.android.gms:play-services-ads:9.4.0'
 ```
 
 > The F.O.X SDK will still run, even if the Google Play Services SDK is not set up. However, because the Google Advertising ID cannot be obtained, some advertisement menus on the tool cannot be used, and the deduplication function's accuracy will decline. <br> For more detailed instructions, see [Google Play Services and the Google Advertising ID](./doc/google_play_services/README.md).

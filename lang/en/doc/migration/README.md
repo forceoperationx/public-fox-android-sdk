@@ -29,7 +29,7 @@ Instructions for how to migrate from previous versions of the F.O.X SDK
 **[ADD]**
 
 ```
-    compile 'co.cyberz.fox:track-core:{VERSION}'
+    implementation 'co.cyberz.fox:track-core:{VERSION}'
 ```
 
 3.&nbsp;&nbsp;Execute the Gradle Build
