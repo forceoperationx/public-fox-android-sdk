@@ -412,7 +412,7 @@ protected void onResume() {
 
 ### 6.1 Implementing Session Measurement
 
-Compare organic and non-organic installs. Track app launches and unique users(DAU/MAU). Measure user retention and so on. When Session-start measurement is not required, you can omit the implementation of this item.
+Compare organic and non-organic installs. Track app launches and unique users(DAU/MAU). Measure user retention and so on.
 
 To measure application launches and returns from the background, add the [`Fox.trackSession`](./doc/sdk_api/README.md#fox) method to each onCreate method in each activity, or add it to your BaseActivity.
 
