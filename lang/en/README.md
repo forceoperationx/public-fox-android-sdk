@@ -485,8 +485,7 @@ public class YourApplication extends Application {
 
 ### 6.2 Additional event measurement
 
-By measuring app events such as member registrations, tutorial completions, In-App Purchases and other such conversion points, you can track the LTV of individual advertisements. <br>
-When LTV tracking is not required, you can omit the implementation of this item.
+By measuring app events such as member registrations, tutorial completions, In-App Purchases and other such conversion points, you can track the LTV of individual advertisements. 
 
 
 ※ Make sure application event tracking  (trackSession) gets called after [Install Tracking](#tracking_install) and [Session-start Measurement](#tracking_session)
