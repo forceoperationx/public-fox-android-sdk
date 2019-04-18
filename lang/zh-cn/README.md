@@ -470,7 +470,6 @@ public class YourApplication extends Application {
 ### 6.2 其他的APP内事件(Event)计测
 
 在会员注册，完成新手引导，付费等任意成果地点执行事件计测，能够测定广告流入源的LTV。<br>
-不需要事件计测的话，可以忽略本项。
 
 ※请在进行[Install计测](#tracking_install)和[Session(起动事件)](#tracking_session)的计测处理之后再调用APP内事件的计测处理。
 
