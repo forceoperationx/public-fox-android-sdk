@@ -12,7 +12,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 * **[F.O.X SDKとは](#whats_fox_sdk)**
 * **[1. インストール](#install_sdk)**
-	* [SDKダウンロード](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [SDKダウンロード](https://github.com/forceoperationx/public_fox_android_sdk/releases)
 	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
 	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
 	* [旧バージョンからのマイグレーション](./doc/migration/README.md)
@@ -75,7 +75,7 @@ F.O.X SDKモジュールをGradleを用いてインポートする場合、以�
 ```
 repositories {
     maven {
-        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+        url "https://github.com/forceoperationx/public-fox-android-sdk/raw/master/mavenRepo"
     }
 }
 
@@ -87,7 +87,7 @@ dependencies {
 上記、dependenciesに指定するSDKバージョンは以下のSDKリリースページでご確認ください。<br>
 また、手動でインストールを行う場合は、リリースページより最新のSDKをダウンロードしてください。
 
-* [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
+* [SDKリリースページ](https://github.com/forceoperationx/public_fox_android_sdk/releases)
 
 ダウンロードしたSDKを展開し、`libs/FOX_Android_SDK_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
 
@@ -148,7 +148,7 @@ Proguard を利用してアプリケーションの難読化を行う際は F
 
 ### 2.3 インストールリファラ計測の設定
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.0)
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.4.0)
 
 [Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)でのInstallReferrer計測が可能です。以下の設定をbuild.gradleのdependencyに追加してください。<br>
 
@@ -269,7 +269,7 @@ F.O.X SDKのアクティベーションを行うため、[`FoxConfig`](./doc/sdk
 
 <div id="new_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーション兼、自動計測の実行&nbsp;]
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;アクティベーション兼、自動計測の実行&nbsp;]
 
 
 ```java
@@ -526,7 +526,7 @@ currencyの指定には[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定�
 
 ## 7. 最短実装の例
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
 
 以下のサンプルコードを実装することで、以下4点の実装と同等の処理を実行します。
 

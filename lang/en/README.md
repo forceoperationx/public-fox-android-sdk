@@ -11,14 +11,14 @@ Find out more about F.O.X at [cyber-z.co.jp](https://cyber-z.co.jp/en/fox).
 
 This is the Android SDK for F.O.X.
 
-Read this in another language: [日本語](https://github.com/cyber-z/public-fox-android-sdk/blob/4.x/lang/ja/README.md),[中文](https://github.com/cyber-z/public-fox-android-sdk/blob/4.x/lang/zh-cn/README.md).
+Read this in another language: [日本語](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md),[中文](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/zh-cn/README.md).
 
 
 ## Table of Contents
 
 * **[About F.O.X SDK](#whats_fox_sdk)**
 * **[1. Setting up the SDK](#install_sdk)**
-	* [Adding the SDK to your project](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [Adding the SDK to your project](https://github.com/forceoperationx/public_fox_android_sdk/releases)
 	* [AndroidStudio projects](./doc/integration/android_studio/README.md)
 	* [Eclipse projects](./doc/integration/eclipse/README.md)
 	* [Migrating from a previous version](./doc/migration/README.md)
@@ -77,7 +77,7 @@ When integrating the F.O.X SDK into a gradle project, add the following to your 
 ```
 repositories {
     maven {
-        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+        url "https://github.com/forceoperationx/public-fox-android-sdk/raw/master/mavenRepo"
     }
 }
 
@@ -85,7 +85,7 @@ dependencies {
     implementation 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
-For the exact sdk version please see our sdk [release page](https://github.com/cyber-z/public_fox_android_sdk/releases). <br>
+For the exact sdk version please see our sdk [release page](https://github.com/forceoperationx/public_fox_android_sdk/releases). <br>
 ※ For manual installs, please download the most recent SDK.
 
 Unzip the SDK and add `libs/FOX_Android_SDK_{VERSION}.jar` to the project.
@@ -154,7 +154,7 @@ In order to accurately attribute an install of your app to its source, F.O.X nee
 
 #### Using the Google Play Referrer API
 
-This feature is supported for [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
+This feature is supported for [![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.4.1)
 
 You can attribute app installs by adding the [Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html) dependency to your build.gradle file, as shown below. <br>
 (There is no need to run the SDK)
@@ -277,7 +277,7 @@ Additionally, it is necessary to set the `android:name` value in your `AndroidMa
 
 <div id="new_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;activation and auto-tracking execution&nbsp;]
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;activation and auto-tracking execution&nbsp;]
 
 
 ```java
@@ -531,7 +531,7 @@ Please specify the currency code as defined in [ISO 4217](https://en.wikipedia.o
 
 ## 7. Quick integration
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
 
 These four functions can be replicated using the following source code:
 

@@ -12,7 +12,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 * **[什么是F.O.X SDK](#whats_fox_sdk)**
 * **[1.导入](#install_sdk)**
-	* [下载SDK](https://github.com/cyber-z/public_fox_android_sdk/releases)
+	* [下载SDK](https://github.com/forceoperationx/public_fox_android_sdk/releases)
 	* [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
 	* [Eclipse项目的导入方法](./doc/integration/eclipse/README.md)
 	* [从旧版本转移](./doc/migration/README.md)
@@ -71,7 +71,7 @@ F.O.X Android SDK 4.0.0〜 支持`Android 4.0(API Level 14)` 及以上版本。
 ```
 repositories {
     maven {
-        url "https://github.com/cyber-z/public-fox-android-sdk/raw/master/mavenRepo"
+        url "https://github.com/forceoperationx/public-fox-android-sdk/raw/master/mavenRepo"
     }
 }
 
@@ -84,7 +84,7 @@ dependencies {
 dependencies中指定的SDK版本号与下面下载页面中一致，请在下载页面去确认后下载<br>
 如果是使用本地jar来手动安装的话，请从release页面下载最新版本的zip文件。
 
-* [SDK下载](https://github.com/cyber-z/public_fox_android_sdk/releases)
+* [SDK下载](https://github.com/forceoperationx/public_fox_android_sdk/releases)
 
 打开下载的SDK文件、在APP项目中导入`libs/FOX_Android_SDK_{VERSION}.jar`。
 
@@ -155,7 +155,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|任意|使用外部存储来优化排除�
 
 #### 使用Google Play Referrer API
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.4.1)
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.4.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.4.1)
 
 通过将下面的[Google Play Referrer API](https://developer.android.com/google/play/installreferrer/library.html)的dependency添加到build.gradle的方式，可以利用此API实现InstallReferrer计测。<br>
 (不需要特意去安装SDK)
@@ -260,7 +260,7 @@ dependencies {
 
 <div id="new_activation"></div>
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;激活兼自动计测的执行&nbsp;]
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;激活兼自动计测的执行&nbsp;]
 
 
 ```java
@@ -514,7 +514,7 @@ Fox.trackEvent(purchaseEvent);
 
 ## 7. 最简单的实际安装案例
 
-[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/cyber-z/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
+[![F.O.X](http://img.shields.io/badge/F.O.X%20SDK-4.3.0%20〜-blue.svg?style=flat)](https://github.com/forceoperationx/public-fox-android-sdk/releases/tag/4.3.0)&nbsp;&nbsp;&nbsp;
 
 通过执行下面的案例代码，相当于执行了下面4个部分的代码处理。
 

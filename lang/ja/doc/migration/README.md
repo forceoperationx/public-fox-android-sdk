@@ -11,7 +11,7 @@
 **[Eclipseの場合]**
 
 1. 以前のバージョンの FOX_Android_SDK_{VERSION}.jarがプロジェクトに組み込まれていれば、それらを削除
-2. [最新のSDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jarファイルをプロジェクトのlibsに追加
+2. [最新のSDK](https://github.com/forceoperationx/public-fox-android-sdk/releases) jarファイルをプロジェクトのlibsに追加
 3. Eclipse の「プロジェクト」→「クリーン」を実行
 
 **[AndroidStudioの場合]**

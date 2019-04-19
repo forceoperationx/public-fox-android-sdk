@@ -11,7 +11,7 @@ Instructions for how to migrate from previous versions of the F.O.X SDK
 **[For Eclipse]**
 
 1. Delete any previous versions of FOX_Android_SDK_{VERSION}.jar files in your project build
-2. Add the [Latest SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) to your project's list of jar files
+2. Add the [Latest SDK](https://github.com/forceoperationx/public-fox-android-sdk/releases) to your project's list of jar files
 3. Clean your Eclipse project
 
 **[For AndroidStudio]**

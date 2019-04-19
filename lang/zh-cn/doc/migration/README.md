@@ -11,7 +11,7 @@
 **[Eclipse环境**
 
 1. 如果项目中安装了旧版FOX_Android_SDK_{VERSION}.jar，将其删除。
-2. 将[最新安定版(Latest release)SDK](https://github.com/cyber-z/public-fox-android-sdk/releases) jar文件添加到项目的libs中。
+2. 将[最新安定版(Latest release)SDK](https://github.com/forceoperationx/public-fox-android-sdk/releases) jar文件添加到项目的libs中。
 3. Eclips［项目］→实行［clean］
 
 **[AndroidStudio环境]**
