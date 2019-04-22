@@ -85,7 +85,7 @@ dependencies {
     implementation 'co.cyberz.fox:track-core:4.x.x'
 }
 ```
-For the exact sdk version please see our sdk [release page](https://github.com/forceoperationx/public_fox_android_sdk/releases). <br>
+For the exact sdk version please see our sdk [release page](https://github.com/forceoperationx/public-fox-android-sdk/releases). <br>
 ※ For manual installs, please download the most recent SDK.
 
 Unzip the SDK and add `libs/FOX_Android_SDK_{VERSION}.jar` to the project.
