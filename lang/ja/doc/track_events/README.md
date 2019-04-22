@@ -106,7 +106,7 @@ purchaseEvent.eventInfo = eventInfo;
 Fox.trackEvent(purchaseEvent);
 ```
 
-> ※ 各種アプリ内イベントの媒体連携計測を行う場合、[`F.O.X Android SDK Extension`](https://github.com/cyber-z/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)を利用することで、実装するコード量を削減することが可能となります。
+> ※ 各種アプリ内イベントの媒体連携計測を行う場合、[`F.O.X Android SDK Extension`](https://github.com/forceoperationx/fox-android-sdk-extension/blob/master/doc/lang/ja/README.md)を利用することで、実装するコード量を削減することが可能となります。
 
 <div id="track_by_tag"></div>
 
