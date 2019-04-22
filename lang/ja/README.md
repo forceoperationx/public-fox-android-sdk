@@ -87,7 +87,7 @@ dependencies {
 上記、dependenciesに指定するSDKバージョンは以下のSDKリリースページでご確認ください。<br>
 また、手動でインストールを行う場合は、リリースページより最新のSDKをダウンロードしてください。
 
-* [SDKリリースページ](https://github.com/forceoperationx/public_fox_android_sdk/releases)
+* [SDKリリースページ](https://github.com/forceoperationx/public-fox-android-sdk/releases)
 
 ダウンロードしたSDKを展開し、`libs/FOX_Android_SDK_{VERSION}.jar`をアプリケーションのプロジェクトに組み込んでください。
 
