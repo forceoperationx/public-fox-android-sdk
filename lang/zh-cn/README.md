@@ -84,7 +84,7 @@ dependencies {
 dependencies中指定的SDK版本号与下面下载页面中一致，请在下载页面去确认后下载<br>
 如果是使用本地jar来手动安装的话，请从release页面下载最新版本的zip文件。
 
-* [SDK下载](https://github.com/forceoperationx/public_fox_android_sdk/releases)
+* [SDK下载](https://github.com/forceoperationx/public-fox-android-sdk/releases)
 
 打开下载的SDK文件、在APP项目中导入`libs/FOX_Android_SDK_{VERSION}.jar`。
 
