@@ -18,7 +18,7 @@ Read this in another language: [日本語](https://github.com/forceoperationx/pu
 
 * **[About F.O.X SDK](#whats_fox_sdk)**
 * **[1. Setting up the SDK](#install_sdk)**
-	* [Adding the SDK to your project](https://github.com/forceoperationx/public_fox_android_sdk/releases)
+	* [Adding the SDK to your project](https://github.com/forceoperationx/public-fox-android-sdk/releases)
 	* [AndroidStudio projects](./doc/integration/android_studio/README.md)
 	* [Eclipse projects](./doc/integration/eclipse/README.md)
 	* [Migrating from a previous version](./doc/migration/README.md)
