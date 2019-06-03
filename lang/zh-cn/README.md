@@ -12,7 +12,7 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 
 * **[什么是F.O.X SDK](#whats_fox_sdk)**
 * **[1.导入](#install_sdk)**
-	* [下载SDK](https://github.com/forceoperationx/public_fox_android_sdk/releases)
+	* [下载SDK](https://github.com/forceoperationx/public-fox-android-sdk/releases)
 	* [AndroidStudio项目的导入方法](./doc/integration/android_studio/README.md)
 	* [Eclipse项目的导入方法](./doc/integration/eclipse/README.md)
 	* [从旧版本转移](./doc/migration/README.md)
