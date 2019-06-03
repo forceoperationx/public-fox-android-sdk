@@ -12,7 +12,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 
 * **[F.O.X SDKとは](#whats_fox_sdk)**
 * **[1. インストール](#install_sdk)**
-	* [SDKダウンロード](https://github.com/forceoperationx/public_fox_android_sdk/releases)
+	* [SDKダウンロード](https://github.com/forceoperationx/public-fox-android-sdk/releases)
 	* [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/README.md)
 	* [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/README.md)
 	* [旧バージョンからのマイグレーション](./doc/migration/README.md)
