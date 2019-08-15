@@ -2,7 +2,21 @@
 
 ---
 
-# 外部ストレージを利用した重複排除設定
+# 外部ストレージを利用した重複排除設定（非推奨）
+
+**重要**
+
+**Android Q （API 29） での外部ストレージへのアクセスの仕様変更により、APIレベル29以降をターゲットにしたアプリについては本機能はサポート対象外となります。また、今後はF.O.Xとして本機能は廃止予定となります。**
+
+**今後の重複排除設定については、[オートバックアップ機能の利用](../auto_backup/README.md)をご利用ください。**
+
+**なお、Android Qで一時的に本機能を継続利用をする場合は、以下のどちらかの対応が必要です。詳しくはこちらのページ（[Opt out of filtered view](https://developer.android.com/preview/privacy/scoped-storage#opt-out-of-filtered-view)）もご確認ください。**
+
+**1. Android 9（API レベル 28）以前をターゲットにする。**
+
+**2. Android Q をターゲットにする場合は、manifestファイルに、`requestLegacyExternalStorage=true` を設定する。**
+
+---
 
 アプリケーションの初回起動時にSDKが生成した識別IDをローカルストレージまたはSDカードに保存することで、アプリケーション再インストール時に重複判定を行うことができます。
 
@@ -13,7 +27,8 @@
 外部ストレージへのファイル読み書きに必要なパーミッションの設定をAndroidManifest.xmlの<manifest>タグ内に追加します。
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
 上記パーミッションが設定されている場合、次のパスに識別IDファイルが保存されます。
@@ -42,7 +57,8 @@ Environment.getExternalStorageDirectory().getPath()で取得できるパス/ア�
 AndroidManifest.xmlの設定例を次に記載します。
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 <application
 	android:icon="@drawable/ic_launcher"
@@ -64,7 +80,8 @@ Environment.getExternalStorageDirectory().getPath()で取得できるパス/fox_
 ## 外部ストレージの利用停止
 
 Force Operation X SDKによる外部ストレージへのアクセスを停止したい場合には、AndroidManifest.xmlにAPPADFORCE_USE_EXTERNAL_STORAGEの設定を追加してください。
-```xml
+
+```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
 

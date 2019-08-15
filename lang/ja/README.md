@@ -35,9 +35,9 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[7. 最短実装の例](#quickly_integration)**
 * **[8. その他機能の実装](#other_function)**
 	* [オプトアウトの実装](./doc/optout/README.md)
-	* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-	* [オートバックアップ機能の利用 (Android M)](./doc/auto_backup/README.md)
-  * [サードパーティーツールとの連携](./doc/integration/thirdparty_tools/README.md)
+	* [オートバックアップ機能の利用](./doc/auto_backup/README.md)
+  	* [サードパーティーツールとの連携](./doc/integration/thirdparty_tools/README.md)
+  	* [外部ストレージを利用した重複排除設定（機能廃止予定）](./doc/external_storage/README.md)
 * **[9. 最後に必ずご確認ください](#trouble_shooting)**
 	* [FAQ・注意事項](./doc/trouble_shooting/README.md)
 * **[10. SDK API](#sdk_api)**
@@ -562,9 +562,9 @@ public class YourApplication extends Application {
 
 * [オプトアウトの実装](./doc/optout/README.md)
 
-* [外部ストレージを利用した重複排除設定](./doc/external_storage/README.md)
-
 * [オートバックアップ機能の利用 Android M](./doc/auto_backup/README.md)
+
+* [外部ストレージを利用した重複排除設定（非推奨）](./doc/external_storage/README.md)
 
 * [サードパーティーツールとの連携](./doc/integration/thirdparty_tools/README.md)
 
