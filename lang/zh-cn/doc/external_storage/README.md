@@ -2,7 +2,19 @@
 
 ---
 
-# 利用外部储存来优化排除重复
+# 利用外部储存来优化排除重复（不推荐）
+
+**重要**
+
+**Android Q （API29）之后访问外部储存的机制有很大变化，Target设定为API Level 29之后的APP将无法使用本功能。同时，F.O.X也计划将本功能移除。**
+
+**关于今后的排除重复设定，请参照[使用自动备份功能](../auto_backup/README.md)。**
+
+**如果想要在Android Q中也暂时继续使用本功能，请进行一下1或者2的设定。详细参考（[Opt out of filtered view](https://developer.android.com/preview/privacy/scoped-storage#opt-out-of-filtered-view)）。**
+
+**1. 将Target设置为Android 9 （API Level 28）以前。**
+
+**2. 将Target设置为Android Q的情况下，在manifest中设置`requestLegacyExternalStorage=true`。**
 
 APP首次启动时，SDK生成的识别ID保存在本地储存或外部SD卡中，可以在APP再次安装时利用该ID进行重复判定。
 
@@ -13,7 +25,8 @@ APP首次启动时，SDK生成的识别ID保存在本地储存或外部SD卡中�
 在AndroidManifest.xml的tag中添加读写外部储存必要的权限设置。
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
 已设置上述权限的情况，ID识别文件会保存在以下路径。
@@ -42,7 +55,8 @@ Environment.getExternalStorageDirectory().getPath()的返回值路径下生成�
 以下是AndroidManifest.xml的设置案例
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 <application
 	android:icon="@drawable/ic_launcher"
@@ -63,7 +77,9 @@ Environment.getExternalStorageDirectory().getPath()的返回值路径下生成�
 
 ## 停止使用外部储存
 
-想要通过Force Operation X SDK停止访问外部储存时，请在AndroidManifest.xml中添加APPADFORCE_USE_EXTERNAL_STORAGE的设置。```xml
+想要通过Force Operation X SDK停止访问外部储存时，请在AndroidManifest.xml中添加APPADFORCE_USE_EXTERNAL_STORAGE的设置。
+
+```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
 
