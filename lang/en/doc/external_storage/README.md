@@ -2,6 +2,24 @@
 
 ---
 
+# De-duplication using External Storage (No Longer Recommended)
+
+**IMPORTANT**
+
+**Due to a change in Android specifications for access to external storage as of Android Q (API 29), this feature will not be supported for any apps targeting an API level of 29 and above. Additionally, F.O.X intends to remove this feature in the future.**
+
+**For our new De-duplication settings, see [De-duplication feature (auto-backup)](../auto_backup/README.md)**
+
+**Note: If you wish to temporarily continue using this feature in Android Q, either one of the following steps are required.
+For further details see:（[Opt out of filtered view](https://developer.android.com/preview/privacy/scoped-storage#opt-out-of-filtered-view)）as well.**
+
+**1. Target only Android 9（API レベル 28）and below. **
+
+**2. Include `requestLegacyExternalStorage=true` in your manifest file.**
+
+---
+
+
 # De-duplication feature settings (external storage permissions)
 
 External storage permissions are used to read and write data to external storage. Having these permissions enabled allows F.O.X's de-duplication feature to function optimally.
@@ -14,7 +32,8 @@ The F.O.X SDK utilizes the following two permissions.
 Add them inside your `Manifest` tags.
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
 By having the above two permissions set, a unique ID can be saved in the following path.
@@ -43,7 +62,8 @@ Typically, these settings are not necessary.
 Here is an example `AndroidManifest.xml`
 
 ```xml
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 <application
 	android:icon="@drawable/ic_launcher"
@@ -66,7 +86,8 @@ Path_acquired_by_Environment.getExternalStorageDirectory().getPath()/fox_id_dir/
 
 If you want to prevent F.O.X from accessing external storage, please set `APPADFORCE_USE_EXTERNAL_STORAGE` as follows.
 
-```xml
+
+```xml
 <meta-data android:name="APPADFORCE_USE_EXTERNAL_STORAGE" android:value="0" />
 ```
 
