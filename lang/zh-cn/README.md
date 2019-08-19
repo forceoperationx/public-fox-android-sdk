@@ -35,8 +35,8 @@ Force Operation X（以下简称F.O.X）是一款用于优化智能手机广告�
 * **[7. 最快实际安装案例](#quickly_integration)**
 * **[8. 安装其他功能](#other_function)**
 	* [安装Optout](./doc/optout/README.md)
-	* [利用外部储存排除重复的设定](./doc/external_storage/README.md)
-	* [自动备份功能的使用 (Android M)](./doc/auto_backup/README.md)
+	* [自动备份功能的使用](./doc/auto_backup/README.md)
+	* [利用外部储存排除重复的设定（即将停止支持）](./doc/external_storage/README.md)
 * **[9. 最后的注意事项](#trouble_shooting)**
 	* [FAQ・注意事项](./doc/trouble_shooting/README.md)
 * **[10. SDK API](#sdk_api)**
@@ -549,9 +549,9 @@ public class YourApplication extends Application {
 
 * [安装Optout](./doc/optout/README.md)
 
-* [利用外部储存优化重复排除](./doc/external_storage/README.md)
-
 * [使用自动备份功能 Android M](./doc/auto_backup/README.md)
+
+* [利用外部储存优化重复排除（不推荐）](./doc/external_storage/README.md)
 
 <div id="trouble_shooting"></div>
 
