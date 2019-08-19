@@ -41,7 +41,7 @@ Read this in another language: [日本語](https://github.com/forceoperationx/pu
 * **[7. Quick Integration Example](#quickly_integration)**
 * **[8. Additional Feature Implementation](#other_function)**
 	* [Enabling opt-out feature](./doc/optout/README.md)
-	* [De-duplication feature settings (external storage permissions)](./doc/external_storage/README.md)
+	* [De-duplication feature settings (external storage permissions) -- NOT RECOMMENDED](./doc/external_storage/README.md)
 	* [De-duplication feature settings (auto-backup for Android M)](./doc/auto_backup/README.md)
 * **[9. Frequent Troubleshooting Issues](#trouble_shooting)**
 	* [FAQ・Notes](./doc/trouble_shooting/README.md)
@@ -124,7 +124,7 @@ WRITE_EXTERNAL_STORAGE ※1|Dangerous|Optional|Used to improve de-duplication fe
 
 > ※1 READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions are used to read and write data to external storage. User actions such as app re-installs are more easily tracked by having these permissions enabled. However, these permissions are not necessary for the SDK to function.
 
-> ※2 Beginning with Android Marshmallow(6.0), in order to use permissions with the ProtectionLevel of `dangerous`, users must accept those permissions at a prompt. See [De-duplication feature settings (external storage permissions)](./doc/external_storage/README.md) for more details.
+> ※2 Beginning with Android Marshmallow(6.0), in order to use permissions with the ProtectionLevel of `dangerous`, users must accept those permissions at a prompt. See [De-duplication feature settings (external storage permissions) -- NOT RECOMMENDED](./doc/external_storage/README.md) for more details.
 
 <div id="setting_proguard"></div>
 
@@ -567,7 +567,7 @@ public class YourApplication extends Application {
 
 * [Enabling opt-out feature](./doc/optout/README.md)
 
-* [De-duplication feature settings (external storage permissions)](./doc/external_storage/README.md)
+* [De-duplication feature settings (external storage permissions) -- NOT RECOMMENDED](./doc/external_storage/README.md)
 
 * [De-duplication feature settings (auto-backup for Android M)](./doc/auto_backup/README.md)
 
