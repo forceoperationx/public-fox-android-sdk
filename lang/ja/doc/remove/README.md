@@ -55,9 +55,11 @@ libs配下に`FOX_Android_SDK_X.X.X.jar` または `AppAdForce.jar` がある場
 
 ## インストールリファラの削除
 
-以下の設定を削除してください。
+manifest.xmlの以下の設定を削除してください。
 
-[SDKバージョン 4.4.0未満の場合の実装方法](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#sdk%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-440%E6%9C%AA%E6%BA%80%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95)
+[インストールリファラ計測の設定 4.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#sdk%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-440%E6%9C%AA%E6%BA%80%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95)
+
+[インストールリファラ計測の設定 3.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/3.x/lang/ja/README.md#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%AA%E3%83%95%E3%82%A1%E3%83%A9%E8%A8%88%E6%B8%AC%E3%81%AE%E8%A8%AD%E5%AE%9A)
 
 
 ## コード/その他ファイル全体
