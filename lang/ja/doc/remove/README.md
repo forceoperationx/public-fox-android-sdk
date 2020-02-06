@@ -43,9 +43,11 @@ dependencies {
 
 以下で追加した設定で不要なものを削除してください。
 
-[SDKの導入方法 4.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/3.x/lang/ja/README.md#install_sdk)
+[SDKの導入方法 4.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#install_sdk)
 
-[SDKの導入方法 3.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#install_sdk)
+[SDKの導入方法 3.X](https://github.com/forceoperationx/public-fox-android-sdk/blob/3.x/lang/ja/README.md#install_sdk)
+
+
 
 ## ライブラリの削除
 
